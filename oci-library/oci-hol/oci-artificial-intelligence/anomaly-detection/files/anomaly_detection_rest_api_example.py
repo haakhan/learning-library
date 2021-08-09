@@ -18,7 +18,7 @@ from oci.ai_anomaly_detection.models.model_training_details import ModelTraining
 from oci.ai_anomaly_detection.models.data_item import DataItem
 from oci.ai_anomaly_detection.models.inline_detect_anomalies_request import InlineDetectAnomaliesRequest
 
-# change the following constants accordingly 
+# change the following constants accordingly
 ## If using the instance in data science platform, please refer this page https://dzone.com/articles/quick-and-easy-configuration-of-oracle-data-scienc to setup the content of config file
 CONFIG_FILENAME = "/Users/home/.oci/config"
 SERVICE_ENDPOINT="https://anomalydetection.aiservice.us-phoenix-1.oci.oraclecloud.com"
@@ -139,38 +139,16 @@ time.sleep(30)
 
 # DETECT
 print("-*-*-*-DETECT-*-*-*-")
-signalNames = [
-    "sensor1",
-    "sensor2",
-    "sensor3",
-    "sensor4",
-    "sensor5",
-    "sensor6",
-    "sensor7",
-    "sensor8",
-    "sensor9",
-    "sensor10",
-    "sensor11",
-]
-timestamp = datetime.strptime("2020-07-13T20:44:46Z", "%Y-%m-%dT%H:%M:%SZ")
-values = [
-    1.0,
-    0.4713,
-    1.0,
-    0.5479,
-    1.291,
-    0.8059,
-    1.393,
-    0.0293,
-    0.1541,
-    0.2611,
-    0.4098,
-]
-dItem = DataItem(timestamp=timestamp, values=values)
-inlineData = [dItem] #multiple items can be added here
-inline = InlineDetectAnomaliesRequest(
-    model_id=model_id, request_type="INLINE", signal_names=signalNames, data=inlineData
-)
+signalNames = ["sensor1", "sensor2", "sensor3", "sensor4", "sensor5", "sensor6", "sensor7", "sensor8", "sensor9", "sensor10", "sensor11"]
+
+payloadData = []
+for i in range(10):
+    timestamp = datetime.strptime(f"2020-07-13T20:4{i}:46Z", "%Y-%m-%dT%H:%M:%SZ")
+    values = [ 10.0*i, 0.4713, 1.0, 0.5479, 1.291, 0.8059, 1.393, 0.0293, 0.1541, 0.2611, 0.4098 ]
+    dItem = DataItem(timestamp=timestamp, values=values)
+    payloadData.append(dItem)
+
+inline = InlineDetectAnomaliesRequest( model_id=model_id, request_type="INLINE", signal_names=signalNames, data=payloadData)
 
 detect_res = ad_client.detect_anomalies(detect_anomalies_details=inline)
 print("----DETECTING----")
