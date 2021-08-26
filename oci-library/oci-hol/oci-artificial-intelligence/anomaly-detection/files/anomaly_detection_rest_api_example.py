@@ -52,7 +52,6 @@ project_id = create_res.data.id
 get_proj = ad_client.get_project(project_id=project_id)
 print("----READING---")
 print(get_proj.data)
-time.sleep(5)
 
 # LIST CALL
 list_proj = ad_client.list_projects(compartment_id=compartment_id)
@@ -82,14 +81,12 @@ da_details = CreateDataAssetDetails(
 create_res = ad_client.create_data_asset(create_data_asset_details=da_details)
 print("----CREATING----")
 print(create_res.data)
-time.sleep(5)
 da_id = create_res.data.id
 
 # READ CALL
 get_da = ad_client.get_data_asset(data_asset_id=da_id)
 print("----READING----")
 print(get_da.data)
-time.sleep(5)
 
 # LIST CALL
 list_da = ad_client.list_data_assets(
@@ -97,8 +94,7 @@ list_da = ad_client.list_data_assets(
 )
 print("----LISTING----")
 print(list_da.data)
-time.sleep(30)
-
+time.sleep(5)
 
 # MODEL
 print("-*-*-*-MODEL-*-*-*-")
@@ -118,24 +114,24 @@ mDetails = CreateModelDetails(
 create_res = ad_client.create_model(create_model_details=mDetails)
 print("----CREATING----")
 print(create_res.data)
-time.sleep(60)
 model_id = create_res.data.id
 
 # READ CALL
 get_model = ad_client.get_model(model_id=model_id)
 print("----READING----")
 print(get_model.data)
-time.sleep(60)
+time.sleep(10)
 while get_model.data.lifecycle_state == Model.LIFECYCLE_STATE_CREATING:
     get_model = ad_client.get_model(model_id=model_id)
     time.sleep(60)
     print(get_model.data.lifecycle_state)
+print(get_model.data)
 
 # LIST CALL
 list_model = ad_client.list_models(compartment_id=compartment_id, project_id=project_id)
 print("----LISTING----")
 print(list_model.data)
-time.sleep(30)
+time.sleep(10)
 
 
 # DETECT
