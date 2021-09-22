@@ -76,7 +76,7 @@ To start the  process of anomaly detection select "Detect Anomalies" on the Mode
 Select a file from local filesystem or drag and drop the desired file.
 ![](../images/detect-anomaly-upload-data-form.png " ")
 
-**Note: The detection data can have up to 100 timestamps, and requires at least 3 timestamps to generate any anomalies.**
+**Note: The detection data can have up to 100 timestamps, and requires at least 3 signals(excluding timestamp column) to generate any anomalies.**
 
 Once the test file is uploaded, now click Detect button.
 

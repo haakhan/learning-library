@@ -145,7 +145,7 @@ for i in range(10):
     dItem = DataItem(timestamp=timestamp, values=values)
     payloadData.append(dItem)
 
-inline = InlineDetectAnomaliesRequest( model_id=model_id, request_type="INLINE", signal_names=signalNames, data=payloadData)
+inline = InlineDetectAnomaliesRequest(model_id=model_id, request_type="INLINE", signal_names=signalNames, data=payloadData)
 
 detect_res = ad_client.detect_anomalies(detect_anomalies_details=inline)
 print("----DETECTING----")

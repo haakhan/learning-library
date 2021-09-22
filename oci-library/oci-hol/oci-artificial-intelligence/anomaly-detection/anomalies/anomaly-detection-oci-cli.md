@@ -177,6 +177,36 @@ Finally, you can use the following command example to make detection with the mo
 <copy>oci anomaly-detection model detect-anomalies-inline --model-id <MODEL-ID>  --data file://data.json --signal-names file://signal_names.json </copy>
 ```
 
+The content of signal_names.json can be like the following:
+```
+[
+    "temperature_1",
+    "temperature_2",
+    "temperature_3",
+    "temperature_4",
+    "temperature_5",
+    "pressure_1",
+    "pressure_2",
+    "pressure_3",
+    "pressure_4",
+    "pressure_5",
+    "pressure_6"
+]
+```
+The content of data.json can be like the following:
+```
+[
+    {
+        "timestamp": "2020-07-13T20:44:46Z",
+        "values": [ 1, 0.4713, 1, 0.5479, 1.291, 0.8059, 1.393, 0.0293, 0.1541, 0.2611, 0.4098]
+    },
+    {
+        "timestamp": "2020-07-13T20:45:46Z",
+        "values": [ 2, 0.4713, 1, 0.5479, 1.291, 0.8059, 1.393, 0.0293, 0.1541, 0.2611, 0.4098]
+    }
+]
+```
+
 Congratulations on completing this lab session!
 
 [Proceed to the next section](#next).
