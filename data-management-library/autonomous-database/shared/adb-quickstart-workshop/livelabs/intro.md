@@ -1,6 +1,6 @@
 # Workshop Introduction and Overview                                    
 
-The labs in this workshop walk you through all the steps to get started using the **Oracle Autonomous Database on Shared Infrastructure (ADB-S)**. You will provision a new ADB instance, load data from the object store and troubleshoot data loads, query external data residing on the object store, manage an ADB instance, and scale an ADB instance.
+The labs in this workshop walk you through all the steps to get started using the **Oracle Autonomous Database on Shared Infrastructure (ADB-S)**. You will provision a new ADB instance, load data from the object store and troubleshoot data loads, query external data residing on the object store, and create rich data visualizations using Oracle Analytics Desktop.
 
 With Oracle Autonomous Database we make it quick and easy for you to create a secure, fully managed database service in the Oracle Cloud which allows you to start loading and analyzing your data immediately.
 
@@ -19,7 +19,7 @@ Oracle’s Autonomous Database is the perfect quick-start service for fast data 
 - Run sample queries against the sample data sets
 - Load data from the object store
 - Query external data from the object store
-- Scale an ADB instance
+- Visualize your data using Oracle Analytics Desktop
 
 ## Lab Breakdown
 - **Lab 1:** Log in to Oracle Cloud and access the Oracle Autonomous Data Warehouse console.
@@ -27,9 +27,8 @@ Oracle’s Autonomous Database is the perfect quick-start service for fast data 
 - **Lab 3:** Explore the provided sample data sets that come with your Autonomous Database.
 - **Lab 4:** Upload files to the Oracle Cloud Infrastructure (OCI) Object Storage, create sample tables, load data into them from files on the OCI Object Storage, and troubleshoot data loads with errors.
 - **Lab 5:** Query files on the Oracle Cloud Infrastructure Object Storage (OCI) directly without loading them to your database.
-- **Lab 6:** Scale up your Oracle Autonomous Database service to have more CPUs.
 
-**After reading the following workshop prerequisites, get started by clicking Getting Started in the Contents menu on the left.**
+**After reading the following workshop prerequisites, get started by clicking Get Started in the Contents menu on the left.**
 
 ## Workshop Prerequisites
 This workshop requires an Oracle Cloud account. As a result of registering for LiveLabs, you will receive an email with instructions for accessing your account.
@@ -39,7 +38,7 @@ If you have a question during this workshop then use the <a href="https://cloudc
 
 Are you are completely new to the **Cloud Customer Connect**</a> forums? Visit our <a href="https://cloudcustomerconnect.oracle.com/pages/1f00b02b84" target="\_blank">**Getting Started forum page**</a> to learn how to best leverage community resources.
 
-**You are all set; let's begin! Click Lab 1 in the Contents menu on the right.**
+**You are all set; let's begin! Click Lab 1 in the Contents menu on the left.**
 
 ## Want to Learn More About Autonomous Database?
 
@@ -54,6 +53,7 @@ Use these links to get more information about Oracle Autonomous Database:
 - <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/tutorials.html" target="\_blank">Additional Autonomous Data Warehouse Tutorials</a>
 
 ## Acknowledgements
+
 
 - **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance

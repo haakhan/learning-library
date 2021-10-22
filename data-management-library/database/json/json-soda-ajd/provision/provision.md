@@ -6,6 +6,10 @@ This lab walks you through the steps to get started using the Oracle Autonomous 
 
 Estimated Lab Time: 10 minutes
 
+Watch the video below for a quick walk through of the lab.
+
+[](youtube:ICHM8bDast0)
+
 ### Objectives
 
 In this lab, you will:
@@ -58,7 +62,7 @@ In this lab, you will:
    > **Note:** Avoid the use of the ManagedCompartmentforPaaS compartment as this is an Oracle default used for Oracle Platform Services.
 </if>
 
-## Task 2: Creating the AJD Instance
+## Task 2: Create the AJD Instance
 
 1. Click **Create Autonomous Database** to start the instance creation process.
 

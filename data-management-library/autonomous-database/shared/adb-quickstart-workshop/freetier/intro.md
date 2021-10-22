@@ -1,6 +1,6 @@
 # Workshop Introduction and Overview                                    
 
-The labs in this workshop walk you through all the steps to get started using the **Oracle Autonomous Database on Shared Infrastructure (ADB-S)**. You will provision a new ADB instance, load data from the object store and troubleshoot data loads, query external data residing on the object store, manage an ADB instance, and scale an ADB instance.
+The labs in this workshop walk you through all the steps to get started using the **Oracle Autonomous Database on Shared Infrastructure (ADB-S)**. You will provision a new ADB instance, load data from the object store and troubleshoot data loads, query external data residing on the object store, and create rich data visualizations using Oracle Analytics Desktop.
 
 With Oracle Autonomous Database we make it quick and easy for you to create a secure, fully managed database service in the Oracle Cloud which allows you to start loading and analyzing your data immediately.
 
@@ -19,7 +19,7 @@ Oracle’s Autonomous Database is the perfect quick-start service for fast data 
 - Run sample queries against the sample data sets
 - Load data from the object store
 - Query external data from the object store
-- Scale an ADB instance
+- Visualize your data using Oracle Analytics Desktop
 
 ## Lab Breakdown
 - **Lab 1:** Provision your first Autonomous Data Warehouse.
@@ -28,7 +28,7 @@ Oracle’s Autonomous Database is the perfect quick-start service for fast data 
 - **Lab 4:** Query files on the Oracle Cloud Infrastructure Object Storage (OCI) directly without loading them to your database.
 - **Lab 5:** Visualize your data using Oracle Analytics Desktop.
 
-**After reading the following workshop prerequisites, get started by clicking Lab 1 in the Contents menu on the right.**
+**After reading the following workshop prerequisites, get started by clicking Getting Started in the Contents menu on the left.**
 
 ## Workshop Prerequisites
 This workshop requires an Oracle Cloud account. You may use your own cloud account, a cloud account that you obtained through a trial, a Free Tier account, or a training account whose details were given to you by an Oracle instructor.
@@ -56,4 +56,4 @@ Use these links to get more information about Oracle Autonomous Database:
 
 - **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Richard Green, April 2021
+- **Last Updated By/Date** - Richard Green, September 2021

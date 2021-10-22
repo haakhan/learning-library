@@ -60,7 +60,7 @@ Go to [oracle.com](https://www.oracle.com/database/technologies/instant-client/d
 
 You should also add _C:\\oracle\\instantclient\_19\_9_ in your environment variables.
 
-More information about Instant Client can be found [here](https://www.oracle.com/database/technologies/instant-client/).
+More information about Instant Client can be found [here](https://www.oracle.com/database/technologies/instant-client.html).
 
 You may now [proceed to the next lab](#next).
 

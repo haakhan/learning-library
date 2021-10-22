@@ -1,15 +1,15 @@
 {
-    "workshoptitle": "Graph Studio: Finding Circular Payment Chains using Graph Queries",
+    "workshoptitle": "Graph Studio: Find Circular Payment Chains using Graph Queries in Autonomous Database",
       "help": "livelabs-help-db_us@oracle.com",
 	"tutorials": [
         {
             "title": "Introduction",
-            "description": "Loading data from CSV files and creating a graph.",
+            "description": "About this workshop",
             "filename": "../../introduction/introduction.md"
         },
         {
-            "title": "Getting Started",
-            "description": "Prerequisites for events.",
+            "title": "Get Started",
+            "description": "Prerequisites for this workshop.",
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/event-register-free-tier-account.md"
         },
         {
@@ -20,12 +20,12 @@
         },
         {
             "title": "Lab 2: Create a graph-enabled database user",
-            "description": "Labs that follow the introduction are numbered, starting with Lab 1",
+            "description": "Create a database user with the required roles and privileges",
             "filename": "../../../create-user/create-user.md"
         },                
         {
             "title": "Lab 3: Load CSV files into the Autonomous Database",
-            "description": "Labs that follow the introduction are numbered, starting with Lab 1",
+            "description": "Load data from CSV files using Database Actions Data Load",
             "filename": "../../load-csv-files/load-csv-files.md"
         },
         {

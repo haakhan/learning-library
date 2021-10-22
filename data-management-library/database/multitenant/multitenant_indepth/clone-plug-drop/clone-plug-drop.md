@@ -219,7 +219,7 @@ This section looks at how to login and create a new PDB. You will create a plugg
 
     ![](./images/step1.9-containers.png " ")
 
-## Task 4: Clone a PDB
+## Task 3: Clone a PDB
 This section looks at how to clone a PDB.
 
 The tasks you will accomplish in this step are:

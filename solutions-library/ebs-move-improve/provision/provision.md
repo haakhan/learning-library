@@ -25,6 +25,10 @@ Watch this short video to preview how to provision Oracle E-Business Suite using
 
   ![](./images/ebscm-login.png " ")
 
+  This will bring you to the home screen.
+
+  ![](./images/cm_home_screen.png " ")
+
 ## Task 2: Provision an Environment Using One-Click Provisioning
 1. On the Oracle E-Business Suite Cloud Manager Environments page, click **Provision Environment** and select **One-Click**.
 
@@ -36,7 +40,7 @@ Watch this short video to preview how to provision Oracle E-Business Suite using
 
     b. **Purpose**: Vision Demo Install
 
-    c. **EBS Version**: 12.2.9
+    c. **EBS Version**: 12.2.10
 
     d. **DB Version**: 19.0.0.0
 
@@ -65,6 +69,10 @@ You can check the status of the activity to provision the environment in the Act
         <copy>
         ssh <ebsholenv1_private_ip>
         </copy>
+    
+    The private ip can be found by clicking on your newly created environment as shown
+
+      ![](./images/priv_ip.png " ")
 2. Once logged into your EBS instance as an Oracle user, source your variables for the release you are using via the following commands:
         
       a. Source variables for **release 12.2** 
@@ -130,7 +138,7 @@ You can refer [Enable and Set Oracle E-Business Account Passwords](https://www.o
 
 3. Now we will open the Security List in our VCN to allow traffic from the internet on port 4443. Go to OCI and navigate to the **Networking** > **Virtual Cloud Networks** section. 
 
-  Note: In the below screenshots, the naming convention is a little different. Where you see **ebswjm** as a prefix, you will most likely have **ebshol**. 
+  Note: In the below screenshots, the naming convention is a little different. Where you see **cwCM** as a prefix, you will most likely have **ebshol**. 
 
   ![](./images/7.png " ")
 
@@ -235,6 +243,7 @@ You may now proceed to the next lab.
   - Santiago Bastidas, Product Management Director
   - William Masdon, Cloud Engineering
   - Mitsu Mehta, Cloud Engineering
-* **Last Updated By/Date:** Quintin Hill, Cloud Engineering, May 2021
+  - Chris Wegenek, Cloud Engineering
+* **Last Updated By/Date:** Chris Wegenek, Cloud Engineering, September 2021
 
 

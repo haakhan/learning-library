@@ -10,7 +10,7 @@ drop table moviestream_labs; -- may fail if hasn't been defined
 -- Create the MOVIESTREAM_LABS table that allows you to query all of the labs and their associated scripts
 begin
     dbms_cloud.create_external_table(table_name => 'moviestream_labs',
-                file_uri_list => 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/adwc4pm/b/moviestream_scripts/o/prerequisites/moviestream-labs.json',
+                file_uri_list => 'https://objectstorage.us-phoenix-1.oraclecloud.com/p/asZnZNzK6aAz_cTEoRQ9I00x37oyGkhgrv24vd_SGap2joxi3FvuEHdZsux2itTj/n/adwc4pm/b/moviestream_scripts/o/moviestream-labs.json',
                 format => '{"skipheaders":"0", "delimiter":"\n", "ignoreblanklines":"true"}',
                 column_list => 'doc varchar2(30000)'
             );
@@ -21,7 +21,7 @@ end;
 declare
     b_plsql_script blob;            -- binary object
     v_plsql_script varchar2(32000); -- converted to varchar
-    uri_scripts varchar2(2000) := 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/adwc4pm/b/moviestream_scripts/o/prerequisites'; -- location of the scripts
+    uri_scripts varchar2(2000) := 'https://objectstorage.us-phoenix-1.oraclecloud.com/p/asZnZNzK6aAz_cTEoRQ9I00x37oyGkhgrv24vd_SGap2joxi3FvuEHdZsux2itTj/n/adwc4pm/b/moviestream_scripts/o'; -- location of the scripts
     uri varchar2(2000);
 begin
 
@@ -55,6 +55,8 @@ begin
 
     end loop lab_rec;  
     
+    execute immediate 'grant execute on moviestream_write to public';
+
     exception 
         when others then
             dbms_output.put_line('Unable to setup prequisite scripts.');
@@ -63,4 +65,8 @@ begin
             dbms_output.put_line(sqlerrm);
  end;
  /
-
+ 
+begin
+    run_lab_prereq(10);
+end;
+/

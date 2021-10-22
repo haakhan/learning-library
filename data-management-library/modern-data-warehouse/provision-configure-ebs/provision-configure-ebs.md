@@ -278,5 +278,5 @@ You may now proceed to Lab 3.
 
 ## Acknowledgements
 - **Author** - Srinidhi Koushik, Manager, Technology Hub, April 2021
-- **Contributor** - Yash Lamba, April 2021
+- **Contributor** - Yash Lamba, Massimo Castelli, Senior Director Product Management, April 2021
 - **Last Updated By/Date** - Yash Lamba, May 2021

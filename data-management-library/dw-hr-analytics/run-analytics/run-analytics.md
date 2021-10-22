@@ -139,7 +139,7 @@ We will now leave it upto your imagination to analyse the data sets that have be
 *Congratulations! You have successfully completed the lab*.
 
 ## Acknowledgements
- - **Author** - Yash Lamba, Cloud Native Solutions Architect, September 2020
+ - **Author** - Yash Lamba, Cloud Native Solutions Architect, Massimo Castelli, Senior Director Product Management, September 2020
  - **Contributors** - Maharshi Desai, Frankie OToole, Clarence Ondieki, Shikhar Mishra, Srihareendra Bodduluri, Arvi Dinavahi, Devika Chandrasekhar, Shikhar Mishra,
  - **Last Updated By/Date** - Kay Malcolm, October 2020
 

@@ -1,0 +1,4 @@
+This images shows the directive %python to call the Python interpreter. 
+
+
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

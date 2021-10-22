@@ -4,4 +4,4 @@ This figure shows the project and workspace drop-down list that is available on 
 
 
 
-Copyright © 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

@@ -13,9 +13,7 @@ Since we have already setup Active-Active configuration on CDRDEMO table, we wil
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
     - Lab: Initialize Environment
@@ -39,7 +37,7 @@ To resolve an insert where the row exists in the source and target, but some or 
     ![](./images/stop_all_process_3.png " ")
     ![](./images/stop_all_process_4.png " ")
 
-1. Edit the Extract parameter file.
+2. Edit the Extract parameter file.
 
     Go back to your browser and open Atlanta adminserver, click the <b>Action</b> dropdown of extract EXTSOE and choose <b>Details</b>.
 
@@ -54,7 +52,7 @@ To resolve an insert where the row exists in the source and target, but some or 
 
     ![](./images/edit_param_3.png " ")
 
-    Add below parameter to <b>EXTSOE</b> on Atlanta:
+    Add below parameters:
 
     ```
     <copy>
@@ -73,7 +71,7 @@ To resolve an insert where the row exists in the source and target, but some or 
     ![](./images/edit_param_5.png " ")
 
 
-2. Repeat the above step to edit <b>EXTSOE1</b> on Boston and add below parameters.
+3. Follow the instructions from step-2 to edit process parameter and add below parameters to <b>EXTSOE1</b> on Boston.
 
      ```
     <copy>
@@ -93,7 +91,7 @@ To resolve an insert where the row exists in the source and target, but some or 
 
     **NOTE** : The same steps will be repeated for editing parameter for extract or replicat on any of the two deployments (Boston and Atlanta).
 
-3. Modify the Replicat parameter file.
+4. Modify the Replicat parameter file.
 
     In both the replicat(IREP and IREP1) comment/remove "map <oggoow191||oggoow19>.soe.cdrdemo,target soe.cdrdemo;" if exist and add below lines:
 
@@ -104,7 +102,7 @@ To resolve an insert where the row exists in the source and target, but some or 
     ```
     **NOTE** : Do not forget to edit the above parameter with correct database name. Example - OGGOOW19 in IREP parameter and OGGOOW191 in IREP1 paramter.
 
-4.  To raise the conflict execute the below script which is going to insert same primary key row with different values for non-primary key column, so when all the process will start it raises the conflict.
+5.  To raise the conflict execute the below script which is going to insert same primary key row with different values for non-primary key column, so when all the process will start it raises the conflict.
 
     <b>insert into soe.cdrdemo(id,name,balance) values(99,'oggoow19',200);</b> on OGGOOW19 database and <br/>
     <b>insert into soe.cdrdemo(id,name,balance) values(99,'oggoow191',400);</b> on OGGOOW191
@@ -117,7 +115,7 @@ To resolve an insert where the row exists in the source and target, but some or 
     ```
 
     ![](./images/db_conflict_insertRowExist.png " ")
-5. Start all the processes.
+6. Start all the processes.
 
      ```
     <copy>
@@ -130,11 +128,13 @@ To resolve an insert where the row exists in the source and target, but some or 
     ![](./images/start_all_process_3.png " ")
     ![](./images/start_all_process_4.png " ")    
 
-6. To get the details for the conflict go to the performance Metrics in the <b>Atlanta</b> and click on <b>IREP1</b>.
+7. To get conflict details go to the performance Metrics in the <b>Atlanta</b> and click on <b>IREP1</b>.
 
     ![](./images/pm_irep1.png " ")
     ![](./images/ire_pm_db_1.png " ")
     ![](./images/ire_pm_db_2.png " ")
+
+    In case, you don’t see any conflicts on Atlanta, go to Performance Metrics of <b>Boston</b> and check <b>IREP</b> as the other extract must have captured the changes first from the trial.
 
 
 

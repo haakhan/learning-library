@@ -1,0 +1,4 @@
+This is the image of a notebook paragraph with the %md tag. It shows the markdown tag to display static html text. 
+
+
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

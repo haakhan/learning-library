@@ -248,6 +248,7 @@ You may now proceed to the next lab.
   - Santiago Bastidas, Product Management Director
   - William Masdon, Cloud Engineering
   - Mitsu Mehta, Cloud Engineering
-* **Last Updated By/Date:** Quintin Hill, Cloud Engineering, May 2021
+  - Chris Wegenek, Cloud Engineering
+* **Last Updated By/Date:** Chris Wegenek, Cloud Engineering, September 2021
 
 

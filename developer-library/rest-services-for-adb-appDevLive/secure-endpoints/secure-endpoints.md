@@ -6,6 +6,10 @@ In this lab you will Securing the REST Endpoints you created in the previous lab
 
 Estimated Lab Time: 10 minutes
 
+Watch the video below for a quick walk through of the lab.
+
+[](youtube:oCJcYj8kbmY)
+
 ### Objectives
 
 - Create an OAuth2 token
@@ -15,17 +19,20 @@ Estimated Lab Time: 10 minutes
 ### Prerequisites
 
 - The following lab requires an <a href="https://www.oracle.com/cloud/free/" target="\_blank">Oracle Cloud account</a>. You may use your own cloud account, a cloud account that you obtained through a trial, or a training account whose details were given to you by an Oracle instructor.
-- This lab assumes you have successfully provisioned Oracle Autonomous database an connected to ADB with SQL Developer web.
-- Completed the [User Setups Lab](../user-setups/user_setups.md)
-- Completed the [Create and auto-REST enable a table lab](../create_table/create_table.md)
-- Completed the [Loading Data and Creating Business Objects Lab](../load_data_and_biz_objs/load_data_and_biz_objs.md)
-- Completed the [REST Enable Business Logic and Custom SQL Lab](../REST_enable_objects/REST_enable_objects.md)
+
+This lab assumes you have completed the following labs:
+* Lab 1: [Login to Oracle Cloud](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md)
+* Lab 2: [Provision an Autonomous Database](https://raw.githubusercontent.com/oracle/learning-library/master/data-management-library/autonomous-database/shared/adb-provision/adb-provision.md)
+* Lab 3: [Connect to your Autonomous Database using Database Actions/SQL Developer Web](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/sqldevweb-login/sqldevweb-login.md)
+* Lab 4: [Create and auto-REST enable a table](../create-table/create-table.md)
+* Lab 5: [Loading Data and Creating Business Objects](../load-data-and-biz-objs/load-data-and-biz-objs.md)
+* Lab 6: [REST Enable Business Logic and Custom SQL Lab](../rest-enable-objects/rest-enable-objects.md)
 
 ## Task 1: Securing the REST Endpoint
 
 **If this is your first time accessing the REST Workshop, you will be presented with a guided tour. Complete the tour or click the X in any tour popup window to quit the tour.**
 
-1. If not already there from the previous lab, we need to be on the **REST Database Actions** page. To do this, use the Database Actions menu in the upper left of the page and choose **REST** in the Development list.
+1. If not already there from the previous lab, we need to be on the **REST Database Actions** page. To do this, use the **Database Actions menu** in the upper left of the page and choose **REST** in the Development list.
 
     ![Database Actions Menu, Development then REST](./images/sec-1.png)
 
@@ -205,7 +212,7 @@ Estimated Lab Time: 10 minutes
     "output": "" 
     }'
     ```
-    and using the OCI Cloud Shell, run it again:
+    and using the Oracle Cloud Infrastructure Cloud Shell, run it again:
 
     ```
     > curl --location --request POST \
@@ -239,7 +246,7 @@ Estimated Lab Time: 10 minutes
     }'
     ```    
 
-32. Now using the OCI Cloud Shell and your new cURL command with the **--header 'Authorization: Bearer VALUE'** section added with your token text, run the new cURL command. (**NOTE: your URL hostname will be different than the below command**)
+32. Now using the Oracle Cloud Infrastructure Cloud Shell and your new cURL command with the **--header 'Authorization: Bearer VALUE'** section added with your token text, run the new cURL command. (**NOTE: your URL hostname will be different than the below command**)
 
     ```
     curl -X POST --header 'Authorization: Bearer tW-AM_cDQu0l8oAsh707vw' \
@@ -304,6 +311,6 @@ You may now [proceed to the next lab](#next).
 ## Acknowledgements
 
 - **Author** - Jeff Smith, Distinguished Product Manager and Brian Spendolini, Trainee Product Manager
-- **Last Updated By/Date** - Brianna Ambler, June 2021
+- **Last Updated By/Date** - Brian Spendolini, September 2021
 - **Workshop Expiry Date** - April 2022
 

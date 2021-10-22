@@ -6,7 +6,7 @@ Before you get started, you will need an Oracle Cloud account. This 5-minute lab
 
 ### Existing Cloud Accounts
 
-If you already have access to an Oracle Cloud account, including an Oracle Cloud account using [Oracle Universal Credits](https://docs.oracle.com/en/cloud/get-started/subscriptions-cloud/csgsg/universal-credits.html), skip to **STEP 2** to sign in to your cloud tenancy.
+If you already have access to an Oracle Cloud account, including an Oracle Cloud account using [Oracle Universal Credits](https://docs.oracle.com/en/cloud/get-started/subscriptions-cloud/csgsg/universal-credits.html), skip to **Task 2** to sign in to your cloud tenancy.
 
 ### Two Cloud Offers in One
 
@@ -19,9 +19,11 @@ Oracle Cloud Free Tier allows you to sign up for an Oracle Cloud account which p
 * A valid email address
 * Ability to receive SMS text verification (only if your email isn't recognized)
 
+> **Note**: Interfaces in the following screenshots may look different from the interfaces you will see.
+
 ## Task 1: Create Your Free Trial Account
 
-If you already have a cloud account, skip to **STEP 2**.
+If you already have a cloud account, skip to **Task 2**.
 
 1. Open up a web browser to access the Oracle Cloud account registration form at [oracle.com/cloud/free](https://signup.cloud.oracle.com).
 
@@ -74,6 +76,8 @@ If you already have a cloud account, skip to **STEP 2**.
 
 ## Task 2: Sign in to Your Account
 
+_Please note that while your tenancy is initially created, you will only see a direct login. Once your tenancy is fully provisioned, you will see the screens as described below._
+
 1. Go to [cloud.oracle.com](https://cloud.oracle.com). Enter your Cloud Account Name and click **Next**. This is the name you chose while creating your account in the previous section. It's NOT your email address. If you've forgotten the name, see the confirmation email.
 
     ![](images/cloud-oracle.png " ")
@@ -99,4 +103,4 @@ You may now [proceed to the next lab](#next).
 
 - **Created By/Date** - Tom McGinn, Database Innovations Architect, Database Product Management, March 2020
 - **Contributors** - John Peach, Kamryn Vinson, Rene Fontcha
-- **Last Updated By** - Tom McGinn, June 2021
+- **Last Updated By** - Kevin Lazarz, October 2021

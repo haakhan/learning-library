@@ -1,3 +1,4 @@
+{"lab_num":-2,"title":"Logging script","script":"moviestream_write"}
 {"lab_num":-1,"title":"Run prequisite script","script":"run_lab_prereq"}
 {"lab_num":1,"title":"Provision an ADB Instance","script":null}
 {"lab_num":2,"title":"Quick Tour of ADB","script":null}

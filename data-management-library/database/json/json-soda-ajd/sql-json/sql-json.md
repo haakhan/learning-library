@@ -12,6 +12,10 @@ In the following we show you how you can use SQL to work with the JSON data in a
 
 Estimated Lab Time: 30 minutes
 
+Watch the video below for a quick walk through of the lab.
+
+[](youtube:MrSXStEfOF4)
+
 ### Objectives
 
 In this lab, you will:
@@ -29,7 +33,7 @@ In this lab, you will:
 
     ![](./images/nav-sql.png)
 
-2. On the left side, click on PRODUCTS - this is the table for the 'products' collection.
+2. On the left side, click on PRODUCTS - this is the table for the 'products' collection. To get the view displayed, you need to right-click on **PRODUCTS** and choose **Open**.
 
     ![](./images/products-table.png)
 
@@ -93,11 +97,11 @@ In this lab, you will:
     group by p.json_document.decade.string();
     </copy>
     ```
-    ![](./images/sql2-4.png " ")  
+    ![](./images/sql2-4.png " ")
 
     *Learn more -* [Oracle SQL Function JSON_SERIALIZE](https://docs.oracle.com/en/database/oracle/oracle-database/21/adjsn/json-in-oracle-database.html#GUID-667D37FF-F5FB-465D-B8AE-DAE88F191B2F), and [Simple Dot-Notation Access to JSON Data](https://docs.oracle.com/en/database/oracle/oracle-database/21/adjsn/simple-dot-notation-access-to-json-data.html#GUID-7249417B-A337-4854-8040-192D5CEFD576)
 
-## Task 3: Unnesting JSON arrays
+## Task 3: Unnest JSON arrays
 
 All above examples extracted singleton values from the JSON data - values that only occurred once per document (like title or price). But JSON can have nested arrays - how can we access those?
 
@@ -159,9 +163,9 @@ The 'simple dot notation' as shown in the previous steps is a syntax simplificat
 
 SQL/JSON relies on 'path expressions' which consist of steps: A step can navigate into an object or array.
 
-An object step starts with a dot followed by a key name; e.g '.name' or '.id'. If the key name starts with a non-Ascii character you need to quote it; e.g. '."0abc"'.
+An object step starts with a dot followed by a key name; for example, '.name' or '.id'. If the key name starts with a non-Ascii character you need to quote it; for example, '."0abc"'.
 
-An array step uses square brackets; '[0]' selects the first value in an array. It is possible to select more than one element form the array, e.g. '[*]' selects all values, '[0,1,2]' selects the first three elements, and '[10 to 20]' selects elements 11 through 21.
+An array step uses square brackets; '[0]' selects the first value in an array. It is possible to select more than one element form the array, for example, '[*]' selects all values, '[0,1,2]' selects the first three elements, and '[10 to 20]' selects elements 11 through 21.
 
 Steps can be chained together. A path expression typically starts with the '$' symbol which refers to the document itself.
 
@@ -317,7 +321,7 @@ JSON\_Table is used to 'flatten' hierarchical JSON data to a table consisting of
     *	The 'id' column is defined to be a number instead of the default VARCHAR2(4000).
     *	The next column is called 'ProductName' which is not a field name in the JSON data, we therefore need to tell which field name we want to use. This is done by providing title column path expression, '$.title', which targets field 'title'.. We also set the data type to be a VARCHAR2 of length 50.
     *	The column 'type' uses the same name as the field in the JSON, therefore we do not need to provide a path expression. Also we accept the default datatype.
-    *	Field 'actors' does not exists, so we map the the actors, which are elements of array 'starring', to column 'actors' using path expression '$.starring'. We use FORMAT JSON to specify JSON\_Table that this column has JSON\_Query  semantics and the returned value is JSON itself - in this case we extract the embedded array.
+    *	Field 'actors' does not exists, so we map the actors, which are elements of array 'starring', to column 'actors' using path expression '$.starring'. We use FORMAT JSON to specify JSON\_Table that this column has JSON\_Query  semantics and the returned value is JSON itself - in this case we extract the embedded array.
     *	Similarly, we use the keyword 'EXISTS' to specify that the next column ('year') or JSON_Exists semantics. We're not interested in the actual year value - only if a value exists or not. You will therefore see true|false values for this column (or 1|0 if you change the return type to NUMBER).
     *	The last column 'numGenres' is an example of using a path item method (or trailing function), in this case we call 'size()' on an array to count the number of values in the array. There are many other trailing functions that can be used.
 
@@ -396,18 +400,18 @@ JSON_Mergepatch follows RFC 7386 [https://datatracker.ietf.org/doc/html/rfc7386]
     <copy>
     select JSON_Serialize(json_document)
     from products p
-    where p.json_document.id.number() = 1414;
+    where p.json_document.id.number() = 316;
     </copy>
     ```
     ![](./images/sql7-1.png " ")
 
-2.  This brings us the 'ET' doll which we have not sold yet. Maybe we should update the price and add a note?
+2.  This brings up a rare original VHS of 'Star Wars' which we have not sold yet. Maybe we should update the price and add a note?
 
     ```
     <copy>
     update products p
-    set p.json_document = JSON_Mergepatch(json_document, '{"price":45, "note":"only 100 were made!"}')
-    where p.json_document.id.number() = 1414;
+    set p.json_document = JSON_Mergepatch(json_document, '{"price":45, "note":"rare original VHS!"}')
+    where p.json_document.id.number() = 316;
     </copy>
     ```
     ![](./images/sql7-2.png " ")
@@ -418,7 +422,8 @@ JSON_Mergepatch follows RFC 7386 [https://datatracker.ietf.org/doc/html/rfc7386]
     <copy>
     select JSON_Serialize(json_document)
     from products p
-    where p.json_document.id.number()= 1414;
+    where p.json_document.id.number()= 316;
+ 
     </copy>
     ```
     ![](./images/sql7-3.png " ")
@@ -473,6 +478,10 @@ SQL/JSON has 4 operators to generate JSON objects and arrays: 2 are per-row oper
     ![](./images/sql8-1.png " ")
 
     **Note:** Click the refresh button on the left-hand side to view the new table.
+
+    We want to insert three new documents. 
+    
+    **Important:** make sure you highlight all insert statement rows before pressing the "Run Statement" button. Otherwise it will only insert the row your cursor is on. Make sure it reports "1 row inserted" three times.
 
     ```
     <copy>

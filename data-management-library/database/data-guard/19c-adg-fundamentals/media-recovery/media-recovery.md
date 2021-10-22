@@ -1,14 +1,14 @@
-# Automatic Block Media Recovery
+#Performing Automatic Block Media Recovery
 
 ## Introduction
 In this lab, we will see how Active Data Guard Automatic Block media recovery works.
 
 Block corruptions are a common source of database outages. A database block is
-corrupted when its content has changed from what Oracle Database expects to find. If
+corrupt when its content has changed from what Oracle Database expects to find. If
 not prevented or repaired, block corruption can bring down the database and possibly
 result in the loss of key business data.
 
-Data Guard maintains a copy of your data in a standby database that is continuously updated with changes from the primary database. Data Guard validates all changes before they are applied to the standby database, preventing physical corruptions that occur in the storage layer from causing data loss and downtime. The primary database automatically attempts to repair the corrupted block in real time by fetching a good version of the same block from an Active Data Guard physical standby database. This process works in both ways.
+Data Guard maintains a copy of your data in a standby database that is continuously updated with changes from the primary database. Data Guard validates all changes before it applies to the standby database, preventing physical corruptions that occur in the storage layer from causing data loss and downtime. The primary database automatically attempts to repair the corrupted block in real time by fetching a good version of the same block from an Active Data Guard physical standby database. This process works in both ways.
 
 In this lab we will introduce a block corruption in the database and see Active Data Guard repairing it.
 
@@ -34,7 +34,7 @@ First download the 3 sql scripts we will need in this Lab.
 [03-abmr.sql](./scripts/03-abmr.sql)
 
 
-Also find your ssh keys which were created earlier in order to connect to the hosts where the primary and standby database are located.
+Also find your ssh keys which are created earlier to connect to the hosts where the primary and standby database are located.
 
 We need 4 sessions
 
@@ -46,8 +46,8 @@ The first session will be used to perform the actions in the database, the secon
 1. On the first session of the primary, set the environment and log on to the database
 
 ### **Option 1:** MAC or Windows CYGWIN Emulator
-1.  Go to ***Overview >> Bare Metal, VM and Exadata >> DB Systems*** and select the First Database system ***ADGHOLAD1***
-2.  On the DB System homepage, Scroll downd to ***Nodes(1)*** find the Public IP address for your Virtual Machine.
+1.  Go to ***Overview Bare Metal, VM and Exadata DB Systems*** and select the First Database system ***ADGHOLAD1***
+2.  On the DB System homepage, Scroll down  to ***Nodes(1)*** find the Public IP for the Virutal Machine.
 3.  Open up a terminal (MAC) or cygwin emulator as the opc user.  Enter yes when prompted.
 
     ````
@@ -57,12 +57,12 @@ The first session will be used to perform the actions in the database, the secon
 
 
 ### **Option 2:** Windows using Putty
-On Windows, you can use PuTTY as an SSH client. PuTTY enables Windows users to connect to remote systems over the internet using SSH and Telnet. SSH is supported in PuTTY, provides for a secure shell, and encrypts information before it's transferred.
+On Windows, you can use PuTTY as an SSH client. PuTTY enables Windows users to connect to remote systems over the internet using SSH and Telnet. PuTTY supports SSH and it  provides secure shell, and it encrypts the information before it's transferred.
 
 1.  Download and install PuTTY. [http://www.putty.org](http://www.putty.org)
 2.  Run the PuTTY program. On your computer, go to **All Programs > PuTTY > PuTTY**
-3. Go to ***Overview >> Bare Metal, VM and Exadata >> DB Systems*** and select the First Database system ***ADGHOLAD1***
-4.   On the DB System homepage, Scroll downd to ***Nodes(1)*** find the Public IP address for your Virtual Machine.
+3. Go to ***Overview >> Bare Metal, VM and Exadata DB Systems*** and select the First Database system ***ADGHOLAD1***
+4.   On the DB System homepage, Scroll downd to ***Nodes(1)*** find the Public IP  for your Virtual Machine.
 5. Select or enter the following information:
     - Category: _Session_
     - IP address: _Your service instance’s public IP address_
@@ -105,9 +105,9 @@ Then alter your session to connect to the pdb.
     SQL>
 ````
 
-2. On the second session, set the environment and put a tail -f on the alert log.
+2. On the second session, set the environment and put a tail -f on the  Database alert log.
 
-    > **Note**: in the tail command, modify the directory name "dghol_fra1sw" to reflect your database unique name.
+    > **Note**: in the tail command, change the directory name "dghol_fra1sw" to reflect your database unique name.
 
     ````
     ssh -i ~/.ssh/sshkeyname opc@<<Public IP Address>>
@@ -237,7 +237,7 @@ In this example, you will need to remember the number 15.
 
 ## Task 3: Corrupt the datafile
 1. In the same session, execute script 02-abmr.sql.
-    This script will ask for a number. This is the number from the first step and this will be used to corrupt the datafile which the first script has created.
+    This script will ask for a number. This is the number from the first step and we will use this to corrupt the datafile which the first script has created.
 
     ````
     SQL> <copy>@02-abmr.sql</copy>
@@ -257,11 +257,11 @@ At this point, we have a corrupt datafile, but the database is not aware of it y
 
 ## Task 4: Access the table
 
-By accessing the table, Oracle will need to read the data. This demo database is not very active, so it will be necessary to flush the caches before we access the table. That way, the data needs to be read from disk. This data is corrupt and without any error returned to the user, Active Data Guard will repair the corrupt block before returning the query result.
+By accessing the table, Oracle will need to read the data. This demo database is not active, so it will be necessary to flush the caches before we access the table. That way, the data must be read from disk. This data is corrupt and without any error returned to the user, Active Data Guard will repair the corrupt block before returning the query result.
 
 1. Use the script 03-abmr.sql for this.
 
-    Monitor the alertlogs closely while executing this step.
+    Check the Database alert log closely while executing this step.
 
     In the sqlplus window we will see this
 
@@ -286,7 +286,7 @@ By accessing the table, Oracle will need to read the data. This demo database is
     SQL>
     ````
 
-    and in alertlog from the primary database we notice that the automated block media recovery took place.
+    and in alert log from the primary database we notice that the automated block media recovery took place.
 
     ````
     ...
@@ -349,4 +349,4 @@ You have now seen Active Data Guard Automatic Block media recovery working. You 
 
 - **Author** - Pieter Van Puymbroeck, Product Manager Data Guard, Active Data Guard and Flashback Technologies
 - **Contributors** - Robert Pastijn, Database Product Management
-- **Last Updated By/Date** -  Tom McGinn, July 2021
+- **Last Updated By/Date** -  Suraj Ramesh, September 2021

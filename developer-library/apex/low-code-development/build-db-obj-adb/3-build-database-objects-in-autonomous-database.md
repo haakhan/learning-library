@@ -2,14 +2,14 @@
 
 ## Introduction
 
-Memorizing the SQL to create and maintain database objects can be difficult. However, there are tools that can generate the code for you based on a shorthand syntax or a graphical user interface. In this lab, you will create database objects using Quick SQL and then view the objects in SQL Developer Web. Then you will then use SQL Developer Web to create an additional table and view all the database objects as a data model.
+Memorizing the SQL to create and maintain database objects can be difficult. However, there are tools that can generate the code for you based on a shorthand syntax or a graphical user interface. In this lab, you will create database objects using Quick SQL and then view the objects in Database Actions. Then you will then use Database Actions to create an additional table and view all the database objects as a data model.
 
 Estimated Time: 45 minutes
 
 ### Objectives
 
 - Create database objects using Quick SQL
-- View database objects in SQL Developer Web
+- View database objects in Database Actions
 - View database objects as a data model
 - Create a new table and add it to the data model
 
@@ -33,7 +33,7 @@ You should notice that the new model allows the assignment of Team Members to Pr
 
 ## Task 1: Create database objects using Quick SQL
 
-1. Return to your APEX Workspace and click the down arrow in the **SQL Workshop** tab, then select **SQL Scripts**.
+1. Return to your APEX Workspace and click the **SQL Workshop** tab, then click **SQL Scripts**.
 
    ![](images/navigate-to-sql-scripts.png " ")
 
@@ -76,7 +76,7 @@ You should notice that the new model allows the assignment of Team Members to Pr
     view project_tasks projects tasks</copy>
     ```
 
-    *Note: This shorthand does not include the To DOs and Links tables from the napkin design. You will add the To Dos table using SQL Developer Web later in this lab.*
+    *Note: This shorthand does not include the To DOs and Links tables from the napkin design. You will add the To Dos table using Database Actions later in this lab.*
 
 4. Review the shorthand code. How many tables will be created and how are they related? What types of columns and constraints will be created for the tables? Note that the **Help** button provides details on the shorthand syntax along with several examples of its usage.
 
@@ -110,51 +110,55 @@ You should notice that the new model allows the assignment of Team Members to Pr
 
     ![](images/script-name.png " ")
 
-9. Now that you saved the script you can run it to create the specified database objects.
+8. Now that you saved the script you can run it to create the specified database objects.
 
     In the SQL (right pane) toolbar, click **Review and Run**.
 
     ![](images/review-and-run.png " ")
 
-10. In the Script Editor page toolbar, click **Run**.
+9.  In the Script Editor page toolbar, click **Run**.
 
     ![](images/run.png " ")
 
-11. On the Run Script page, click **Run Now**.
+10. On the Run Script page, click **Run Now**.
 
     ![](images/run-now.png " ")
 
-12. The Results page shows the results of running the script. Scroll to the bottom to see a summary. You should not see any errors.
+11. The Results page shows the results of running the script. Scroll to the bottom to see a summary. You should not see any errors.
 
     ![](images/results.png " ")
 
-13. To view the database objects that were created, click the arrow in the **SQL Workshop** tab and then select **Object Browser**.
+12. To view the database objects that were created, click the arrow in the **SQL Workshop** tab and then select **Object Browser**.
 
     ![](images/navigate-to-object-browser.png " ")
 
-14. Select the **HOL_PROJECTS** table and review its columns.
+13. Select the **HOL_PROJECTS** table and review its columns.
 
     ![](images/hol-projects.png " ")
 
-15. Click the **Data** tab to see the data that was loaded.
+14. Click the **Data** tab to see the data that was loaded.
 
     ![](images/hol-projects-data.png " ")
 
-## Task 2: View database objects in SQL Developer Web
+## Task 2: View database objects in Database Actions
 
-In this step, you will learn how to access SQL Developer Web and then use it to review the current database objects and make some modifications to the data model.
+In this step, you will learn how to access Database Actions and then use it to review the current database objects and make some modifications to the data model.
 
 1. Switch to the ATP Console in your browser. It should still be displaying the **Tools** tab.
 
-    Within the Tools tab, click **Open SQL Developer Web**.
+    Within the Tools tab, click **Open Database Actions**.
 
-   ![](images/navigate-to-sql-dev-web.png " ")
+   ![](images/navigate-to-db-actions.png " ")
 
-2. On the SQL Developer Web log-in page, for Username enter **admin** and for Password enter **`SecretPassw0rd`**, and then click **Sign In**.
+2. On the Database Actions log-in page, for Username enter **admin** and for Password enter **`SecretPassw0rd`**, and then click **Sign In**.
 
    ![](images/login-as-admin.png " ")
 
-3. You created your database objects in the DEMO schema so you will need to enable SQL Developer Web access for that schema. Close the help popup, then copy and paste the following code into the Worksheet.
+    Under **Development**, click the **SQL** menu item
+
+   ![](images/login-admin-sql.png " ")
+
+3. You created your database objects in the DEMO schema so you will need to enable Database Actions access for that schema. Close the help popup, then copy and paste the following code into the Worksheet.
 
     ```
     <copy>begin    
@@ -162,7 +166,7 @@ In this step, you will learn how to access SQL Developer Web and then use it to 
         p_enabled => true,
         p_schema => 'DEMO', -- Actual name of the schema
         p_url_mapping_type => 'BASE_PATH',
-        p_url_mapping_pattern => 'demo', -- Alias used in the URL for access
+        p_url_mapping_pattern => 'demorest', -- Alias used in the URL for access
         p_auto_rest_auth => true
       );
 
@@ -182,6 +186,11 @@ In this step, you will learn how to access SQL Developer Web and then use it to 
 6. In the SQL Developer log-in page, set Username to **demo** and Password to **`SecretPassw0rd`**, then click **Sign In**.
 
    ![](images/url-after.png " ")
+   
+   Under **Development**, click the **SQL** menu item
+
+   ![](images/login-demo-sql.png " ")
+
 
 7. The Worksheet tab is displayed by default. Close the help popup and look under the **Navigator** tab to see the tables you created previously.
 
@@ -205,25 +214,27 @@ In this step, you will learn how to access SQL Developer Web and then use it to 
 
 ## Task 3: View database objects as a data model
 
-In this step, you will learn how to create an Entity Relationship Diagram (ERD) using SQL Developer Web.
+In this step, you will learn how to create an Entity Relationship Diagram (ERD) using Database Actions.
 
-1. Click the **Data Modeler** tab and dismiss the Help popup.
+1. Click the top left icon then click on **Data Modeler** link.
 
-2. Drag the **HOL_MILESTONES** table from the Navigator tab on the left to the diagram in the middle of the window. You may need to adjust your browser to accommodate the ERD.
+    ![](images/go-to-datamodeler.png " ")
+
+3. Drag the **HOL_MILESTONES** table from the Navigator tab on the left to the diagram in the middle of the window. You may need to adjust your browser to accommodate the ERD.
 
    ![](images/drop-hol-milestones.png " ")
 
-3. Drag the other three **HOL_** tables to the right. Use the diagram controls to adjust the zoom level and layout of the objects. Note that the foreign keys are detected and drawn on the diagram.
+4. Drag the other three **HOL_** tables to the right. Use the diagram controls to adjust the zoom level and layout of the objects. Note that the foreign keys are detected and drawn on the diagram.
 
    ![](images/drop-remaining-tables.png " ")
 
-4. Click the **HOL_PROJECTS** table in the diagram. Note that the detail is displayed in the right navigator.
+5. Click the **HOL_PROJECTS** table in the diagram. Note that the detail is displayed in the right navigator.
 
    ![](images/hol-projects-details.png " ")
 
 ## Task 4: Create a new table and add it to the data model
 
-In this step, you will use SQL Developer Web to create a new table. Then you will learn how to edit an existing table and add it to the ERD created in the previous step.
+In this step, you will use Database Actions to create a new table. Then you will learn how to edit an existing table and add it to the ERD created in the previous step.
 
 In the original napkin design, there was a table called To Dos. However, the Quick SQL script (used in step 1) did not include this table. Below you will recreate the TO Dos table with a relationship to Team Members, and Tasks.
 
@@ -334,10 +345,10 @@ In the original napkin design, there was a table called To Dos. However, the Qui
 
 ## Summary
 
-This completes this workshop. At this point you know how to use Quick SQL to generate database objects using a SQL shorthand. You also know how to use SQL Developer Web to maintain database objects and generate ERDs. Click on ***Lab 3: Create and Modify an APEX Application*** to create a new APEX application that will utilize the database objects you created.
+This completes this workshop. At this point you know how to use Quick SQL to generate database objects using a SQL shorthand. You also know how to use Database Actions to maintain database objects and generate ERDs. Click on ***Lab 3: Create and Modify an APEX Application*** to create a new APEX application that will utilize the database objects you created.
 
 ## Acknowledgements
-* **Author** - Salim Hlayel, Principle Product Manager
+* **Author** - Salim Hlayel, Product Manager
 * **Contributors** - Oracle LiveLabs QA Team (Jaden McElvey, Technical Lead, Kamryn Vinson, QA Intern, Arabella Yao, Product Manager Intern, DB Product Management)
-- **Last Updated By/Date** - Tom McGinn, Database Innovations Architect, Product Management, July 2020
+- **Last Updated By/Date** - Salim Hlayel, Product Manager, September 2021
 

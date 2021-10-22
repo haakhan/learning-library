@@ -1,1 +1,0 @@
-> With Oracle DBCA, you can perform other administrative tasks, such as configure or delete an existing Oracle Database and manage PDBs and templates.

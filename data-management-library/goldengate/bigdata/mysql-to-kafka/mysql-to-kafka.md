@@ -44,7 +44,7 @@ These two sessions will be used respectively for `source` and `target` execution
 ## Task 1: Explore GoldenGate Configuration
 1. In the first or `source` terminal session as user `ggadmin`, type  `labmenu` to display the labmenu IF not at the labmenu.
 
-    ![](./images/labmenu_opt1.png " ")
+  ![](./images/labmenu_opt1.png " ")
 
 2. Select **R** to reset the lab environment, then select **6**
 
@@ -56,10 +56,8 @@ These two sessions will be used respectively for `source` and `target` execution
     <copy>view /u01/gg4mysql/dirprm/create_mysql_to_hadoop_gg_procs.oby</copy>
     ```
     ```
-    <copy>
-    cd /u01/gg4mysql/dirprm
-    view /u01/gg4mysql/dirprm/mgr.prm
-    </copy>
+    <copy> cd /u01/gg4mysql/dirprm
+    view /u01/gg4mysql/dirprm/mgr.prm</copy>
     ```
     ```
     <copy>view /u01/gg4mysql/dirprm/extmysql.prm</copy>
@@ -68,10 +66,8 @@ These two sessions will be used respectively for `source` and `target` execution
     <copy>view /u01/gg4mysql/dirprm/pmpmysql.prm</copy>
     ```
     ```
-    <copy>
-    cd /u01/gg4hadoop123010/dirprm
-    view /u01/gg4hadoop123010/dirprm/create_kafka_replicat.oby
-    </copy>
+    <copy> cd /u01/gg4hadoop123010/dirprm
+    view /u01/gg4hadoop123010/dirprm/create_kafka_replicat.oby</copy>
     ```
     ```
     <copy>view /u01/gg4hadoop123010/dirprm/rkafka.prm</copy>
@@ -101,7 +97,7 @@ These two sessions will be used respectively for `source` and `target` execution
     <copy>info all</copy>
     ```
 
-    ![](./images/e2.png " ")
+  ![](./images/e2.png " ")
 
  2. In the second or `target` terminal session, go to the GG Home for Hadoop, and start the manager process. You can cd to the directory:
 
@@ -124,7 +120,7 @@ These two sessions will be used respectively for `source` and `target` execution
     <copy>exit</copy>
     ```
 
-    ![](./images/e3.png " ")
+  ![](./images/e3.png " ")
 
 3. Now switch back to the first or `source` terminal session (GG for MySQL) to create and start the GG extract process:
 
@@ -146,9 +142,7 @@ These two sessions will be used respectively for `source` and `target` execution
     ```
     <copy>start pmphadop</copy>
     ```
-
-    **or use start ALL**
-
+    **or use start ALL **
     ```
     <copy>start *</copy>
     ```
@@ -156,21 +150,20 @@ These two sessions will be used respectively for `source` and `target` execution
     <copy>info all</copy>
     ```
 
-    ![](./images/e4.png " ")
-    ![](./images/e5.png " ")
+  ![](./images/e4.png " ")
+  ![](./images/e5.png " ")
 
 ## Task 3: GoldenGate Target Configuration
 Now that the source side is setup, let’s configure GG on the target side (Kafka).
 
 1. In the second or `target` terminal session (GG for Hadoop), you’ll need to modify the Kafka properties by removing the ‘---‘ from the highlighted values:
 
-    ![](./images/e6.png " ")
+  ![](./images/e6.png " ")
 
     ```
-    <copy>
-    cd /u01/gg4hadoop123010/dirprm
-    vi rkafka.properties
-    </copy>
+    <copy>cd /u01/gg4hadoop123010/dirprm
+
+    vi rkafka.properties</copy>
     ```
 
 2. Remove "--" from the 3 items below as highlighted above
@@ -183,7 +176,7 @@ Now that the source side is setup, let’s configure GG on the target side (Kafk
 
 3. Now create the Kafka replicat process:
 
-    ![](./images/e7.png " ")
+  ![](./images/e7.png " ")
 
     ```
     <copy>cd .. </copy>
@@ -215,13 +208,13 @@ Now that the source side is setup, let’s configure GG on the target side (Kafk
     <copy>startkafkabroker</copy>
     ```
 
-      ![](./images/e9.png " ")
+    ![](./images/e9.png " ")
 
 ## Task 4: GoldenGate Replication to Kafka
 
 1. Now that GG processes have been created and the Kafka Broker has been started, let’s start the GG replicat for Kafka. Go back to the GG Home for Hadoop ggsci session:
 
-    ![](./images/e10.png " ")
+  ![](./images/e10.png " ")
 
     ```
     <copy>./ggsci</copy>
@@ -234,7 +227,7 @@ Now that the source side is setup, let’s configure GG on the target side (Kafk
     ```
 2. Now go back to the previous session, where you ran `showtopics`; we will load some data on the MySQL database `ggsource` and GG will extract and write it to the Kafka topics.
 
-    ![](./images/E11.png " ")
+  ![](./images/E11.png " ")
 
     ```
     <copy>loadsource</copy>
@@ -250,21 +243,20 @@ Now that the source side is setup, let’s configure GG on the target side (Kafk
 
     ```
 
+
 3. Also take a look at the Kafka schema files created by GG, it’s created in the ./dirdef directory in the GG Home for Hadoop:
 
-    ![](./images/e12.png " ")
+  ![](./images/e12.png " ")
 
     ```
-    <copy>
-    cd /u01/gg4hadoop123010/dirdef
+    <copy>cd /u01/gg4hadoop123010/dirdef
     ls -lrt
-    more gg2kafka_json.dept.schema.json
-    </copy>
+    more gg2kafka_json.dept.schema.json</copy>
     ```
 
 4. Next we will apply more DML to the source, then we will consume the emp topic, and see the additional data get appended to the topic. Run this from another session, since the consumetopic command runs in the foreground, and outputs the results. Start a new terminal session, sudo to `ggadmin`, then click **Q** to get to a prompt:
 
-    ![](./images/e13.png " ")
+  ![](./images/e13.png " ")
 
     ```
     <copy>sudo su - ggadmin</copy>
@@ -272,10 +264,9 @@ Now that the source side is setup, let’s configure GG on the target side (Kafk
     ```
     <copy>consumetopic gg2kafka_json.emp</copy>
     ```
-    
 5. Now go back to the previous session, and run the DML script:
 
-    ![](./images/e14.png " ")
+  ![](./images/e14.png " ")
 
     ```
     <copy>dmlsource</copy>
@@ -283,7 +274,7 @@ Now that the source side is setup, let’s configure GG on the target side (Kafk
 
 6. Now go back to the session running `consumetopic gg2kafka_json.emp`, you should see the new messages written to the emp topics. Scroll up to see **op-type** **U** or **D**. For Updates, GG will write the before and after image of the operation
 
-    ![](./images/e15.png)
+  ![](./images/e15.png)
 
     ```
     <copy>consumetopic gg2kafka_json.emp</copy>
@@ -291,7 +282,7 @@ Now that the source side is setup, let’s configure GG on the target side (Kafk
 
 7. Let’s confirm that GG replicated the data that it captured. In the GG for Hadoop home
 
-    ![](./images/e16.png " ")
+  ![](./images/e16.png " ")
 
     ```
     <copy>stats rkafka total</copy>

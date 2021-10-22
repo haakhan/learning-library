@@ -1,4 +1,4 @@
-# Common Markdown Development Features 
+# Common Markdown Development Features
 
 ## Introduction
 
@@ -55,21 +55,21 @@ Rather than pointing to images within your lab folder or workshop directory with
 ## Task 2: Using Conditional Formatting
 If your workshop supports multiple instance types, but the bulk of the content stays the same, then conditional formatting can save you a lot of work. Most commonly, if you have differences between the "Free Tier" and "LiveLabs" (Green button) versions such as provisioning a database instance in Free Tier and just checking that it's created properly for LiveLabs, then conditional formatting will allow your workshop to use a singular markdown for both. This will save you immense effort and prevent accidental oversights if you need to update your workshop in the future, since you won't have to maintain a duplicate markdown.
 
-  1. Conditional formatting is using the "if" conditional to choose what to display in your markdown, based on an additional attribute "type" you attach to a lab element in your manifest.json file. Take a look at this example to understand the components involved in making conditional formatting work. 
+  1. Conditional formatting is using the "if" conditional to choose what to display in your markdown, based on an additional attribute "type" you attach to a lab element in your manifest.json file. Take a look at this example to understand the components involved in making conditional formatting work.
 
   ![](./images/conditional-vsc1.png " ")
 
-  On line 71, you can see the conditional is **if type="freetier"** and the closing **/if** on line 92. That means line 71-92 is only rendered if the type is freetier, and lines 93-98 is only rendered if the type is livelabs. 
+  On line 71, you can see the conditional is **if type="freetier"** and the closing **/if** on line 92. That means line 71-92 is only rendered if the type is freetier, and lines 93-98 is only rendered if the type is livelabs.
 
   ![](./images/freetier.png " ")
-  
+
   On line 21 and 27, you can see that we added the attribute "type" to the lab element. In this instance, this manifest.json is for the free tier version of the workshop so when a customer launches the workshop through a free tier button on the workshop's landing page, lab 2 and lab 3 will always have the **"freetier"** type attached to it.
 
   ![](./images/livelabs.png " ")
 
   On line 12, 17, and 23, you can see the same thing except that the type is "livelabs" for this file. The actual word doesn't matter, as long as the "type" in the manifest.json and the "type" in the markdown matches, the contents of the markdown conditional will be displayed.
 
-2. You may have noticed that the numbering of the substeps within a step that uses conditional formatting may get out of line. Don't worry, as long as you use a number greater than 0, markdown will automatically number them sequentially when it gets rendered on a webpage. Also note that conditional formatting can be using in-line if needed, you don't **HAVE TO** envelope content in a neat code block... though it's recommended to keep things organized and easy to read. 
+2. You may have noticed that the numbering of the substeps within a step that uses conditional formatting may get out of line. Don't worry, as long as you use a number greater than 0, markdown will automatically number them sequentially when it gets rendered on a webpage. Also note that conditional formatting can be using in-line if needed, you don't **HAVE TO** envelope content in a neat code block... though it's recommended to keep things organized and easy to read.
 
   ![](./images/conditional-note.png " ")
 
@@ -86,9 +86,9 @@ Sometime you may want to link to something within your lab or workshop.  Most co
 
 
 ## Task 4: Adding Videos
-Adding videos is very similar to adding images. We most commonly see videos added in the introductions for labs to familiarize the audience with the product before they dive into the workshop. 
+Adding videos is very similar to adding images. We most commonly see videos added in the introductions for labs to familiarize the audience with the product before they dive into the workshop.
 
-1. Take a look at this example of a video linked in the introduction of a workshop. 
+1. Take a look at this example of a video linked in the introduction of a workshop.
 
   ![](./images/youtube-vsc.png " ")
 
@@ -102,31 +102,31 @@ Adding videos is very similar to adding images. We most commonly see videos adde
 Without using image scaling, all the screen shots you take for your workshop will be of different sizes (unless you're a master of making pixel perfect crops). To remedy this, we HIGHLY recommend you to stick with a scaling and use it throughout your workshop. This will make all the images scale to the same width (if possible) and contribute to a more consistent and polished feel. You can override the default image scaling by applying these manual controls below. **We highly recommend you use #4's format by default.**
 
 1. This is a demo image with no image sizing applied:
-  
+
     ```
     ![](images/livelabs-homepage.png)
     ```
 
   ![](images/livelabs-homepage.png)
 
-2. Use this format to scale the image size in relation to the amount of lab page space available. This example uses 50% of the page width and auto height: 
-  
+2. Use this format to scale the image size in relation to the amount of lab page space available. This example uses 50% of the page width and auto height:
+
     ```
     ![](images/livelabs-homepage.png =50%x*)
     ```
 
   ![](images/livelabs-homepage.png =50%x*)
 
-3. Use this format for an absolute width and auto-scaled height. This example uses 500 pixels for width: 
-  
+3. Use this format for an absolute width and auto-scaled height. This example uses 500 pixels for width:
+
     ```
     ![](images/livelabs-homepage.png =500x*)
     ```
 
   ![](./images/livelabs-homepage.png =500x*)
 
-4. Lastly, **this is the format we recommend for all your images** if you don't need a particular scaling to drive emphasis on a subject. It auto-scaled to around ~3/4ths of the page width and it's definition is maintained by the LiveLabs team so we can adjust the scaling platform wide if needed: 
-  
+4. Lastly, **this is the format we recommend for all your images** if you don't need a particular scaling to drive emphasis on a subject. It auto-scaled to around ~3/4ths of the page width and it's definition is maintained by the LiveLabs team so we can adjust the scaling platform wide if needed:
+
     ```
     ![](images/livelabs-homepage.png " ")
     ```
@@ -148,7 +148,7 @@ The LintChecker is a great javascript function for QAing that you should take ad
 
 ## Task 7: Case Sensitivity
 
-**THIS IS IMPORTANT.** The majority of us use Windows and MacOS which are **Case Insensitive** systems. This means that Windows and MacOS considers "OrAcLe.PnG" to be the same as "oracle.png" or "Oracle.PNG" for file structure. Github and github pages are **Case Sensitive**, and **do** make that distinction. 
+**THIS IS IMPORTANT.** The majority of us use Windows and MacOS which are **Case Insensitive** systems. This means that Windows and MacOS considers "OrAcLe.PnG" to be the same as "oracle.png" or "Oracle.PNG" for file structure. Github and github pages are **Case Sensitive**, and **do** make that distinction.
 
 1. This means that, for example, if you had an image file that you tested locally (on LiveServer for your IDE on your local Windows or MacOS machine) for a markdown called "case-sensitive.png", it would display just fine if you used "case-sensitive.png" or "case-sensitive.PNG" as the image link.  But if you viewed it up on github pages at [this link](https://oracle.github.io/learning-library/sample-livelabs-templates/create-labs/labs/workshops/freetier/?lab=3a-labs-misc-develop-content-features), only the "case-sensitive.png" image link would be displayed since it matches the image file name perfectly (case sensitive) and it could not find the image link for "case-sensitive.PNG" and so it cannot display it.
 
@@ -156,15 +156,15 @@ The LintChecker is a great javascript function for QAing that you should take ad
 
   ![](./images/case-sensitive.PNG " ")
 
-  Do you see one or two images above? 
-  
+  Do you see one or two images above?
+
   If you are viewing this page via LiveServer from your IDE (on a case insensitive operating system), you should see **two** images.
 
   If you are viewing this page on github.io, you should only see **one** image.
 
 2. If you do run into a Case Sensitivity error on Windows or MacOS, you cannot simply fix it by renaming it DIRECTLY with the correct case... because the system will not recognize that you are trying to rename it. You have to either rename that item to something else entirely, and the rename it back with the correct case... or you can use **"git mv"** as described [in this article](https://stackoverflow.com/questions/11183788/in-a-git-repository-how-to-properly-rename-a-directory) for more complicated fixes that involve entire directories.
 
-You may now [proceed to the next lab](#next).
+This concludes this lab. You may now proceed to the next lab.
 
 ## Want to Learn More?
 
@@ -183,7 +183,8 @@ You may now [proceed to the next lab](#next).
 ## Acknowledgements
 
 * **Author** - Didi Han, Database Product Management
-* **Contributors** -  Kay Malcolm & Tom McGinn, Database Product Management 
-* **Last Updated By/Date** - Didi Han, May 2021
+* **Contributors**:
+    * Kay Malcolm & Tom McGinn, Database Product Management
+    * Didi Han
 
-
+* **Last Updated By/Date** - Anuradha Chepuri, October 2021

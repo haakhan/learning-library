@@ -2,13 +2,12 @@
 
 ## Introduction
 
-This lab will walk you through the steps to set up the **prerequisites** before starting our Data Integration journey in Oracle Cloud Infrastructure. We'll show you how to create the required Oracle Cloud Infrastructure resources for the workshop, including uploading the source files in an Object Storage bucket and creating the necessary database objects in Autonomous Data Warehouse. Steps 3, 4 and 5 of this Lab are not prerequisites for using OCI Data Integration, but for following the workshop instructions.
+Set up these **prerequisites** before starting our Data Integration journey in Oracle Cloud Infrastructure. We'll show you how to create the required Oracle Cloud Infrastructure resources for the workshop, including uploading the source files in an Object Storage bucket and creating the necessary database objects in Autonomous Data Warehouse. Steps 3, 4 and 5 below are not prerequisites for using OCI Data Integration, but are required to complete the workshop.
 
-*Estimated Lab Time*: 45 minutes
+**Estimated Time**: 45 minutes
 
 ### Objectives
 
-In this lab, you will:
 * Create an OCI Compartment
 * Create a VCN and Subnet using VCN Wizard
 * Provision an Autonomous Data Warehouse and download Wallet
@@ -20,13 +19,13 @@ In this lab, you will:
 * **Free Tier/ Paid Oracle Cloud Account**
 * **OCI user** that is assigned to an **OCI group**.
 
-*Note:* In case you want to create a new OCI user and/or assign the user to a group, please see the following [LiveLabs workshop](https://apexapps.oracle.com/pls/apex/dbpm/r/livelabs/view-workshop?wid=624&clear=180&session=17214298097566) about Identity and Access Management.
+*Note*: If you want to create a new OCI user or assign the user to a group, see the [Identity and Access Management workshop](https://apexapps.oracle.com/pls/apex/dbpm/r/livelabs/view-workshop?wid=624&clear=180&session=17214298097566).
 
 ## Task 1: Create an OCI Compartment
 
-A **compartment** is a collection of cloud assets. For this workshop, we are creating a new compartment to help organize all of the Data Integration resources. However, if you already have a compartment, you can use that one for this Workshop and skip this step.
+A **compartment** is a collection of cloud assets. For this workshop, we are creating a new compartment to help organize all of the Data Integration resources. However, if you already have a compartment, you can use that one for this workshop and skip this task.
 
-A Cloud Administrator can create a compartment in your tenancy. In this lab, as a Cloud Administrator, you will create a new compartment that will group all of your Data Integration resources that you will use in the workshop.
+A Cloud Administrator can create a compartment in your tenancy. As a Cloud Administrator, you will create a new compartment that will group all of your Data Integration resources that you will use in this workshop.
 
 1. **Log in to the Oracle Cloud Console** as a user with administrator privileges. On the Sign In page, select your tenancy, enter your username and password, and then click **Sign In**. The Oracle Cloud Console Home page is displayed.
 
@@ -51,7 +50,7 @@ A Cloud Administrator can create a compartment in your tenancy. In this lab, as 
 
 5. The Compartments page is displayed. If the newly created compartment  was created under root parent compartment, it is shown now in the list of available compartments. If you select your new **DI-compartment**, you can see the details for it.
 
-   *Note: If the compartment was created under another parent compartment (not root), click on the parent compartment in the list of Compartments and you should be able to see your new compartment in Child Compartments section.*
+   *Note*: If the compartment was created under another parent compartment (not root), click on the parent compartment in the list of Compartments and you should be able to see your new compartment in Child Compartments section.
 
    ![](./images/new-comp.png " ")
 
@@ -67,7 +66,7 @@ You will need a **Virtual Cloud Network** (VCN) for further use in this OCI Data
 
   ![](./images/vcns.png " ")
 
-3. Select *VCN with Internet Connectivity*, and then click **Start VCN Wizard**.
+3. Select **VCN with Internet Connectivity**, and then click **Start VCN Wizard**.
 
   ![](./images/start-vcn-wizard.png " ")
 
@@ -110,10 +109,10 @@ You will need a **Virtual Cloud Network** (VCN) for further use in this OCI Data
 3. Provide basic information for the Autonomous Database:
 
     - Choose a **Compartment** - Select a compartment for the database from the drop-down list (`DI-compartment`).
-    - **Display Name** - Enter a meaningful name for the database for display purposes. For this lab, use `ADW Workshop`.
-    - **Database Name** - Use letters and numbers only, starting with a letter. Maximum length is 14 characters. For this lab, use `ADWWORKSHOP`.
+    - **Display Name** - Enter a meaningful name for the database for display purposes. Use `ADW Workshop`.
+    - **Database Name** - Use letters and numbers only, starting with a letter. Maximum length is 14 characters. Use `ADWWORKSHOP`.
 
-   *Note: The same database name cannot be used for multiple Autonomous Databases in your tenancy, in the same region.*
+   *Note*: The same database name cannot be used for multiple Autonomous Databases in your tenancy, in the same region.
 
    ![](./images/create-adw-info.png " ")
 
@@ -143,11 +142,11 @@ You will need a **Virtual Cloud Network** (VCN) for further use in this OCI Data
 
 8. Choose **Network access**:
 
-    - For this lab, accept the default **Allow secure access from everywhere**.
+    - Accept the default **Allow secure access from everywhere**.
 
     ![](./images/adw-network.png " ")
 
-9. Choose a **license type**. For this lab, choose **License Included**. The two license types are:
+9. Choose a **license type**. Choose **License Included**. The two license types are:
 
     - Bring Your Own License (BYOL) - Select this type when your organization has existing database licenses.
     - License Included - Select this type when you want to subscribe to new database software licenses and the database cloud service.
@@ -176,7 +175,7 @@ You will need a **Virtual Cloud Network** (VCN) for further use in this OCI Data
 
 ## Task 4: Prepare the Autonomous Data Warehouse
 
-In this workshop, **Autonomous Data Warehouse** serves as the **target data asset** for our data integration tasks. In this step you will configure your target Autonomous Data Warehouse database in order to complete all the labs in this workshop.
+In this workshop, **Autonomous Data Warehouse** serves as the **target data asset** for our data integration tasks. In this step you will configure your target Autonomous Data Warehouse database in order to complete this workshop.
 
 You will create a new user on the Autonomous Data Warehouse and will run a SQL script that will create the database objects you need for the following integration tasks.
 
@@ -217,13 +216,13 @@ You will create a new user on the Autonomous Data Warehouse and will run a SQL s
     alter user BETA quota 200M on data;</copy>
     ```
 
-   *Note : Ensure that you enter a password in place of password. Also, make sure that the script output shows the success of the commands.*
+   *Note*: Ensure that you enter a password in place of password. Also, make sure that the script output shows the success of the commands.
 
   ![](./images/create-user-sql.png " ")
 
 9. **Download** the zip file [OCI DI Workshop files.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/2TCtAI9Q0F7Q02LWk_os6VKrHA6d-quG4bwjKHP2g6-h3ilqQyQULWfjEHED1mY6/n/c4u04/b/labfiles/o/OCI_DI_Workshop_files.zip) to your local directories. Unzip this file.
 
-10. In the same SQL worksheet, run the **ADW\_OCIDI\_LiveLabs.sql** script from the unzipped archive from the previous step, to create the rest of the database objects that you need for the following labs.
+10. In the same SQL worksheet, run the **ADW\_OCIDI\_LiveLabs.sql** script from the unzipped archive from the previous step, to create the rest of the database objects that you will need later in the workshop.
 
    This SQL script will create tables CUSTOMERS\_TARGET, EMPLOYEES\_WEST\_MIDWEST and EMPLOYEES\_NORTHEAST\_SOUTH, which will serve as the target tables for the data integration tasks. You will also create a statistics table and a stored procedure that will write the success/error result of the data integration pipeline in this table, as well as a sequence that will be used for the primary key.
 
@@ -250,7 +249,7 @@ The Oracle Cloud Infrastructure **Object Storage** service is an internet-scale,
     - **Default Storage Tier**: `Standard`
     - Leave the rest of the defaults and then click **Create**.
 
-   *Note: The Bucket Name should be unique within your tenancy's Object Storage namespace.*
+   *Note*: The Bucket Name should be unique within your tenancy's Object Storage namespace.
 
    ![](./images/create-bucket.png " ")
 
@@ -262,7 +261,7 @@ The Oracle Cloud Infrastructure **Object Storage** service is an internet-scale,
 
   ![](./images/upload-button.png " ")
 
-6. Drop or select the files *CUSTOMERS.json*, *REVENUE.csv*, *EMPLOYEES_1.csv*, *EMPLOYEES_2.csv*, *EMPLOYEES_3.csv* from your local directory where you unzipped the **OCI DI Workshop files.zip** file. Click **Upload**.
+6. Drop or select the files **CUSTOMERS.json**, **REVENUE.csv**, **EMPLOYEES_1.csv**, **EMPLOYEES_2.csv**, **EMPLOYEES_3.csv** from your local directory where you unzipped the **OCI DI Workshop files.zip** file. Click **Upload**.
 
   ![](./images/upload-objects.png " ")
 
@@ -275,7 +274,7 @@ The Oracle Cloud Infrastructure **Object Storage** service is an internet-scale,
   ![](./images/files-in-bucket.png " ")
 
 
-   **Congratulations!** You may now [proceed to the next lab](#next).
+   **Congratulations!**
 
 ## Learn More
 

@@ -4,26 +4,25 @@
 
 This lab walks you through the steps to establish connectivity between PeopleSoft on-premise system and  Oracle Autonomous Database shared
 
-Estimated Lab Time: 10 minutes
+Estimated Time: 10 minutes
 
 ### Objectives
 
 In this lab, you will:
 * Establish connectivity between source on-premise PeopleSoft system and ADB-S
 
-
-### Prerequisties
+### Prerequisites
 * PeopleSoft on-premise system or Oracle Marketplace PeopleSoft image (Note: Peoplesoft Marketplcae images for HR system,Financials,Campus Solution etc can also be used in place of an on-premise PeopleSoft application,Refer to link [here](https://docs.oracle.com/en/applications/peoplesoft/peoplesoft-common/tutorial-deploy-demo-image/index.html#before_you_begin) for creation of new environment on OCI) 
 
 * ADB-S wallet file to be downloaded to on-premise PeopleSoft database system or Oracle Marketplace PeopleSoft image
-* Root or admin login priveleges for the on-premise PeopleSoft database system
+* Root or admin login privileges for the on-premise PeopleSoft database system
 * Basic knowledge on Unix/shell commands 
 
 
 ## Task 1: Unzipping and Configuring the ADB-S Wallet
+1. Login as root user to the source on-premise PeopleSoft database system
 
- * 1. Login as root user to the source on-premise PeopleSoft database system
- * 2. Navigate to the path where ADB-S wallet has been downloaded and create a directory and move the wallet to the directory,below are the commands to proceed with
+2. Navigate to the path where ADB-S wallet has been downloaded and create a directory and move the wallet to the directory,below are the commands to proceed with
 
 
        ```
@@ -34,7 +33,7 @@ In this lab, you will:
 
        ```
 
-* 3. Navigate to the new directory where the ADB-S wallet has been moved and unzip the wallet file
+3. Navigate to the new directory where the ADB-S wallet has been moved and unzip the wallet file
 
 
        ```
@@ -52,7 +51,7 @@ In this lab, you will:
 
        ```
 
-* 4. Using Vi editor, edit the contents of the sqlnet.ora and add the current path of the wallet directory
+4. Using Vi editor, edit the contents of the sqlnet.ora and add the current path of the wallet directory
 
 
        ```
@@ -68,7 +67,7 @@ In this lab, you will:
 
 ## Task 2: Testing connectivity between On-premise PeopleSoft Database system and ADB-S
 
-* 1. Add environment variables for the current root user, get the $ORACLE_HOME path from the current on-prem installation and add in the environment variables
+1. Add environment variables for the current root user, get the $ORACLE_HOME path from the current on-prem installation and add in the environment variables
 
 
       ```
@@ -82,9 +81,7 @@ In this lab, you will:
                [root@pscs92dmo-lnxdb-2 wallet]# source .bashrc </copy>
        ```
 
-
-
-* 2. Do a connectivity test using sqlplus and provide the admin credentials
+2. Do a connectivity test using sqlplus and provide the admin credentials
 
       ```
                <copy>[root@pscs92dmo-lnxdb-2 wallet]# sqlplus admin@psadb_high
@@ -101,18 +98,9 @@ In this lab, you will:
 You may now **proceed to the next lab.**
 
 
-
 ## Acknowledgements
 * **Authors** - Deepak Kumar M, PeopleSoft Architect
 * **Contributors** - Deepak Kumar M, PeopleSoft Architect
 * **Last Updated By/Date** - Deepak Kumar M, PeopleSoft Architect, Aug 2021
-
-
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/Migrate%20SaaS%20to%20OCI). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
-
 
 

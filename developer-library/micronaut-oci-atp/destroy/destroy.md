@@ -12,8 +12,8 @@ In this lab you will:
 
 ### Prerequisites
 - An Oracle Cloud account, Free Trial, LiveLabs or a Paid account
-  
-## Task 1: Stopping the Autonomous Database Instance 
+
+## Task 1: Stopping the Autonomous Database Instance
 
 To shutdown the Autonomous database instance follow these steps:
 

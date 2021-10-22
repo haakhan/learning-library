@@ -17,9 +17,7 @@ No video for the moment
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
     - Lab: Initialize Environment
@@ -33,35 +31,31 @@ This lab assumes you have:
 
 ## Task 1: Prepare the TSDP Environment for the Labs
 
-1. Open a SSH session on your **DBSec-Lab VM as *oracle* user**
-
-      ````
-      <copy>sudo su - oracle</copy>
-      ````
+1. As OS user *oracle* on your **DBSec-Lab** VM remote desktop session, Double-Click on the *Terminal* icon on the desktop to launch a session
 
 2. Go to the scripts directory
 
-      ````
-      <copy>cd $DBSEC_LABS/tsdp</copy>
-      ````
+    ````
+    <copy>cd $DBSEC_LABS/tsdp</copy>
+    ````
 
 3. Create the TSDP **Admin user**, the TSDP **data owner** and create the **TSDP labs table**
 
-      ````
-      <copy>./tsdp_prepare_env.sh</copy>
-      ````
+    ````
+    <copy>./tsdp_prepare_env.sh</copy>
+    ````
 
-   ![](./images/tsdp-001.png " ")
+    ![](./images/tsdp-001.png " ")
 
 ## Task 2: Create a TSDP Policy
 
 1. Create the Sensitive Type "`CREDIT_CARD_TYPE`"
 
-      ````
-      <copy>./tsdp_create_sensitive_type.sh</copy>
-      ````
+    ````
+    <copy>./tsdp_create_sensitive_type.sh</copy>
+    ````
 
-   ![](./images/tsdp-002.png " ")
+    ![](./images/tsdp-002.png " ")
 
     **Note:**
     - The sensitive type is a class of data that you designate as sensitive
@@ -69,21 +63,21 @@ This lab assumes you have:
 
 2. Identify the sensitive columns to protect (here, we will use the column "`CORPORATE_CARD`")
 
-      ````
-      <copy>./tsdp_add_sensitive_col.sh</copy>
-      ````
+    ````
+    <copy>./tsdp_add_sensitive_col.sh</copy>
+    ````
 
-   ![](./images/tsdp-003.png " ")
+    ![](./images/tsdp-003.png " ")
 
     **Note:** To identify the columns to protect, based on the sensitive type that you defined, you either can use an OEM Cloud Control Application Data Model (ADM) to identify these columns, or you can use the `DBMS_TSDP_MANAGE.ADD_SENSITIVE_COLUMN` procedure
 
 3. Create the TSDP policy "`REDACT_PARTIAL_CC`" based on a **partial redaction** that will replace the first 8 characters by "*"
 
-      ````
-      <copy>./tsdp_create_policy.sh</copy>
-      ````
+    ````
+    <copy>./tsdp_create_policy.sh</copy>
+    ````
 
-   ![](./images/tsdp-004.png " ")
+    ![](./images/tsdp-004.png " ")
 
     **Note:** You can create the policy by defining an anonymous block that has the following components:
     - If you are using Oracle Data Redaction for your policy, a specification of the type of Data Redaction that you want to use, such as partial Data Redaction
@@ -93,51 +87,51 @@ This lab assumes you have:
 
 4. Associate the TSDP policy "`REDACT_PARTIAL_CC`" with the sensitive type "`CREDIT_CARD_TYPE`" created previously
 
-      ````
-      <copy>./tsdp_associate_policy.sh</copy>
-      ````
+    ````
+    <copy>./tsdp_associate_policy.sh</copy>
+    ````
 
-   ![](./images/tsdp-005.png " ")
+    ![](./images/tsdp-005.png " ")
 
 5. Select sensitive data **before enabling** the TSDP policy
 
-      ````
-      <copy>./tsdp_select_data.sh</copy>
-      ````
+    ````
+    <copy>./tsdp_select_data.sh</copy>
+    ````
 
-   ![](./images/tsdp-006.png " ")
+    ![](./images/tsdp-006.png " ")
 
     **Note:** The credit card numbers in the column "`CORPORATE_CARD`" are in clear text
 
 6. Enable the TSDP policy "`REDACT_PARTIAL_CC`"
 
-      ````
-      <copy>./tsdp_enable_policy.sh</copy>
-      ````
+    ````
+    <copy>./tsdp_enable_policy.sh</copy>
+    ````
 
-   ![](./images/tsdp-007.png " ")
+    ![](./images/tsdp-007.png " ")
 
 7. Select sensitive data **after enabling** the TSDP policy
 
-      ````
-      <copy>./tsdp_select_data.sh</copy>
-      ````
+    ````
+    <copy>./tsdp_select_data.sh</copy>
+    ````
 
-   ![](./images/tsdp-008.png " ")
+    ![](./images/tsdp-008.png " ")
 
     **Note:**
     - Now, you can see that the credit card numbers have been redacted with the format `****-****-9999-9999`
-    - As you can see, TSDP redacts sensitive data **immediatly** and you **don't need rebooting or rewriting SQL query**!
+    - As you can see, TSDP redacts sensitive data **immediately** and you **don't need rebooting or rewriting SQL query**!
 
 ## Task 3: (Optional) Reset the TSDP Labs Environment
 
 1. Once you are comfortable with the TSDP concept, you can reset the environment
 
-      ````
-      <copy>./tsdp_reset_env.sh</copy>
-      ````
+    ````
+    <copy>./tsdp_reset_env.sh</copy>
+    ````
 
-   ![](./images/tsdp-009.png " ")
+    ![](./images/tsdp-009.png " ")
 
 You may now [proceed to the next lab](#next)..
 
@@ -166,4 +160,4 @@ Technical Documentation:
 ## Acknowledgements
 - **Author** - Hakim Loumi, Database Security PM
 - **Contributors** - Rene Fontcha
-- **Last Updated By/Date** - Hakim Loumi, Database Security PM - May 2021
+- **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2021

@@ -1,71 +1,91 @@
-# Use the Admin Client to View Extract Statistics and Log messages
+# Use the Admin Client to view Extract statistics and log messages
 
 ## Introduction
 
-This is an optional lab that guides you on how to connect to the on premise or Marketplace Oracle GoldenGate Admin Client and use it to view all running processes, Extract statistics, log messages, and purge unused files.
+This **optional** lab guides you on how to connect to the on-premises or Marketplace Oracle GoldenGate Admin Client and then use it to view all running processes, Extract statistics, log messages, and purge unused files.
 
-Estimated lab time: 5 minutes
+Estimated time: 5 minutes
 
 ### About the Admin Client
-The Admin Client is a command line utility that uses Microservices REST API to control and configure tasks in an Oracle GoldenGate deployment. You can also use the Admin Client to create, modify, and remove processes.
+The Admin Client is a command line utility that uses Microservices REST API to control and configure tasks in an Oracle GoldenGate deployment. You can also use the Admin Client to create, change, and remove processes.
 
 ### Objectives
 
 In this lab, you will:
-* Connect to the Admin Client
+* Connect to the Admin Client using Cloud Shell or an SSH client of your choice
 * Run various commands
 
 ### Prerequisites
 
 This lab assumes you successfully completed all preceding labs.
 
-## Task 1: Retrieve the OCI GoldenGate Deployment URL
+## Task 1: Retrieve the Oracle Cloud Infrastructure (OCI) GoldenGate Deployment URL
 
 1.  Log in to Oracle Cloud Infrastructure.
 
 2.  From the navigation menu, under **Oracle Database**, select **GoldenGate**.
 
+    ![](images/01-01.png " ")
+
 3.  From the list of OCI GoldenGate deployments, select the deployment you created for this LiveLab.
 
 4.  In the Deployment Details page, next to **Console URL** click **Copy**.
 
+    ![](images/01-04.png " ")
+
 ## Task 2: Connect to the Admin Client
 
-1.  SSH into the Marketplace Oracle GoldenGate instance.
+1.  Use Cloud Shell to SSH into the Marketplace Oracle GoldenGate instance.
+
+    ```
+    <copy>ssh -i <private-SSH-key> opc@<ip-address></copy>
+    ```
+
+    ![](images/02-01.png " ")
 
 2.  Change directories to **/u01/app/ogg/bin**, and then start the Admin Client:
 
     ```
-    ./adminclient
+    <copy>./adminclient</copy>
     ```
 
-3.  Connect to the OCI GoldenGate deployment:
+    ![](images/02-02.png " ")
+
+3.  Connect to the OCI GoldenGate deployment using the user name and password you entered in Lab: Create OCI GoldenGate resources, Task 1, steps 12 and 13.
 
     ```
-    connect <OCI-GoldenGate-deployment-url> as <OCI-GoldenGate-user> password <OCI-GoldenGate-password> !
+      <copy>connect <OCI-GoldenGate-deployment-url> as <OCI-GoldenGate-user> password <OCI-GoldenGate-password> !</copy>
     ```
-    NOTE: The exclamation point (!) is very important. Without it, the command fails and returns an error.
+    > **Note:** *The exclamation point (!) is required. Without it, the command fails and returns an error.*
+
+    ![](images/02-03.png " ")
 
 4.  After connecting successfully, you can run any of the following commands:
 
     Display the status of OCI GoldenGate processes:
     ```
-    info all
+      <copy>info all</copy>
     ```
+
+    ![](images/02-04a.png " ")
 
     View statistics of your Replicat:
     ```
-    view stats <replicat-name>
+    <copy>stats <replicat-name></copy>
     ```
+
+    ![](images/02-04b.png " ")
 
     View the content of a ggserror log file:
     ```
-    view messages
+    <copy>view messages</copy>
     ```
+
+    ![](images/02-04c.png " ")
 
     If your deployment had running Extract processes, then you can also purge old unused trail files using:
     ```
-    purge exttrail <trail-file-name>
+    <copy>purge exttrail <trail-file-name></copy>
     ```
 
 ## Learn More
@@ -74,4 +94,4 @@ This lab assumes you successfully completed all preceding labs.
 ## Acknowledgements
 * **Author** - Jenny Chan, Consulting User Assistance Developer, Database User Assistance
 * **Contributors** -  Julien Testut, Database Product Management
-* **Last Updated By/Date** - Jenny Chan, July 2021
+* **Last Updated By/Date** - Jenny Chan, September 2021

@@ -6,6 +6,10 @@ In this lab we will review and startup all components required to successfully r
 
 *Estimated Lab Time:* 10 Minutes.
 
+Watch the video for a quick walk through of the Initialize Environment lab.
+
+[](youtube:bT3CqjR2dEk)
+
 ### Objectives
 - Initialize the workshop environment.
 
@@ -21,7 +25,7 @@ This lab assumes you have:
 
     - Oracle Sharding GSM  Container
     - Oracle Sharding Catalog container
-    - Three Oracle shard Database container
+    - Three Oracle shard Database containers
     - Nodejs eShop Application Container
 
 2. On the *Web Browser* window on the right preloaded with *eShop Application*, click on the *Login* button to login the Application and select the saved credentials to login. These credentials have been saved within *Web Browser* and are provided below for reference

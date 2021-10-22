@@ -63,6 +63,7 @@ Estimated Lab Time: 15 minutes
   - Santiago Bastidas, Product Management Director
   - Quintin Hill, Cloud Engineering
   - Mitsu Mehta, Cloud Engineering
-* **Last Updated By/Date:** William Masdon, Cloud Engineering, May 2021
+  - Chris Wegenek, Cloud Engineering
+* **Last Updated By/Date:** Chris Wegenek, Cloud Engineering, September 2021
 
 

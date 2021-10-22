@@ -1,5 +1,5 @@
 {
-  "workshoptitle": "Building Microservices with Oracle Converged Database",
+  "workshoptitle": "Building Microservices with Converged Oracle Database",
   "help": "livelabs-help-db_us@oracle.com",
 	"tutorials": [
       {
@@ -7,7 +7,7 @@
         "filename": "../../intro/intro.md"
       },
       {
-        "title": "Getting Started",
+        "title": "Getting started",
         "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/event-register-free-tier-account.md"
       },
       {
@@ -20,7 +20,7 @@
         "type": "event-freetier"
       },
       {
-        "title": "Lab 3: Polyglot Microservices",
+        "title": "Lab 3: Polyglot microservices",
         "filename": "../../polyglot/polyglot.md",
         "type": "event-freetier"
       },
@@ -30,22 +30,22 @@
         "type": "event-freetier"
       },
       {
-        "title": "Lab 5: Tracing Using Jaeger",
-        "filename": "../../tracing/tracing.md",
+        "title": "Lab 5: Observability",
+        "filename": "../../observability/observability.md",
         "type": "event-freetier"
       },
       {
-        "title": "Lab 6: Create an APEX App to Make Sense of the Data",
+        "title": "Lab 6: Create an APEX app to view and update data",
         "filename": "../../apex/apex.md",
         "type": "event-freetier"
       },
       {
-        "title": "Lab 7: Transactional Tests: Compare MongoDB, Postgres, and Kafka to OracleDB with TEQ/AQ",
+        "title": "Lab 7: Transactional tests: compare MongoDB, Postgres, and Kafka to Oracle DB with TEQ/AQ",
         "filename": "../../transactional/transactional.md",
         "type": "event-freetier"
       },
       {
-        "title": "Lab 8: Tear Down",
+        "title": "Lab 8: Tear down",
         "filename": "../../teardown/teardown.md",
         "type": "event-freetier"
       },

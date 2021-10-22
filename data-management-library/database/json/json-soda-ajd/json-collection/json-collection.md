@@ -8,6 +8,10 @@ In order to create a collection all you have to specify is the collection's name
 
 Estimated Lab Time: 20 minutes
 
+Watch the video below for a quick walk through of the lab.
+
+[](youtube:7H086A3JKbo)
+
 ### Objectives
 
 In this lab, you will:
@@ -27,9 +31,9 @@ In this lab, you will:
 
 	![](./images/create-collection.png)
 
-2. Provide a name for your collection in the field **Collection Name - products** and click **Create**.
+2. Provide a name for your collection in the field **Collection Name - products** and click **Create**. Note that the collection name is case-sensitive. You must enter products in all lower-case, do not use PRODUCTS or Products.
 
-	![](./images/products.png)
+	![](./images/new-products.png)
 
 3. A notification pops up that displays `products` collections is created.
 
@@ -134,7 +138,7 @@ In this lab, you will:
 	</copy>
 	```
 
-## Task 3: Finding JSON documents in a collection
+## Task 3: Find JSON documents in a collection
 
 Documents can be selected based on filter conditions - we call them 'Queries By Example' or 'QBE' for short. A QBE is a JSON document itself and it contains the fields and filter conditions that a JSON document in the collection must satisfy in order to be selected. QBEs are used with SODA (only); you can use SQL functions as an alternative.
 
@@ -171,7 +175,7 @@ Now let's issue some simple queries on the *products* collection we just created
 
 4.	Find all non-movies:
 
-	This query displays the documents that are not of type - movies i.e., which means just the document with id 103.
+	This query displays the documents that are not of type - movies, which means just the document with id 103.
 
 	```
 	<copy>
@@ -235,7 +239,7 @@ Some values need to be unique, so how do we enforce this?
 
 	Copy and paste the following query in the worksheet and click **Run Query**.
 
-	The result now shows two documents with id 100. Let's delete the last inserted document by clicking on the trash bin button.
+	The result now shows two documents with id 100.
 
 	```
 	<copy>
@@ -244,6 +248,8 @@ Some values need to be unique, so how do we enforce this?
 	```
 
 	![](./images/id100-2.png)
+
+	Let's delete the {id:100, fruit:banana} last inserted document by clicking on the trash bin button.
 
 	![](./images/delete_document.png)
 

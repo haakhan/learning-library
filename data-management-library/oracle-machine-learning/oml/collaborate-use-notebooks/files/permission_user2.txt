@@ -2,4 +2,4 @@
 
 This images shows the Workspace Permissions dialog while signed in as USER1. The screenshot shows USER2 added with developer permission type by USER1.   
 
-Copyright © 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

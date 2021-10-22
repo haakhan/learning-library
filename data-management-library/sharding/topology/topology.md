@@ -8,7 +8,10 @@ In this workshop, we attempt to use minimal resources to show the demonstration,
 You can find more details at [Oracle Sharding on Docker](https://github.com/oracle/db-sharding/tree/master/docker-based-sharding-deployment)
 
 
-*Estimated Lab Time*: 20 Minutes
+*Estimated Lab Time*: 15 Minutes
+
+Watch the video below for a walk through of the lab.
+[](youtube:1wTpz4k7wL8)
 
  ![](./images/topology.jpg " ")  
 
@@ -19,6 +22,7 @@ As shown in the diagram above, the sharded database is deployed as multiple cont
 In this lab, you will:
 * Explore Sharding environment.
 * Understand Sharding architecture and its components.
+* Try running your queries on already loaded data.
 
 ### Prerequisites
 This lab assumes you have:
@@ -114,14 +118,13 @@ For more details check [GDSCTL with Oracle Sharding] (https://docs.oracle.com/en
 
     ![](./images/showddl.jpg " ")
 
-7. Check list of CDBs in the catalog.
+7. Now **exit** from here.
 
     ```
     <copy>
-    gdsctl config cdb
+    exit
     </copy>
     ```
-    ![](./images/cdb.jpg " ")
 
 ## Task 3: Connect to Catalog
 
@@ -173,11 +176,19 @@ For more details see [Oracle Sharding documentation] (https://docs.oracle.com/en
      ```
     <copy>
     set heading off;
-    select 'PRODUCT', count(*) from products union select 'REVIEWS', count(*) from reviews;
+    select 'PRODUCTS', count(*) from products union select 'REVIEWS', count(*) from reviews;
     </copy>
     ```
 
    ![](./images/query.jpg " ")
+
+5. Now **exit** from SQLPLUS and Catalog as well.
+
+    ```
+    <copy>
+    exit
+    </copy>
+    ```
 
 ## Task 4: Connect to Shard 1 Database
 
@@ -220,13 +231,136 @@ For more details see [Oracle Sharding documentation] (https://docs.oracle.com/en
     ```
     <copy>
     set heading off;
-    select 'PRODUCT', count(*) from products union select 'REVIEWS', count(*) from reviews;
+    select 'PRODUCTS', count(*) from products union select 'REVIEWS', count(*) from reviews;
     </copy>
     ```
 
     ![](./images/query1.jpg " ")
 
    You can find the difference in the row count between the shard catalog and the shard-database (porcl1cdb\_porcl1pdb, porcl2cdb\_porcl2pdb, porcl3cdb\_porcl3pdb).
+
+5. Now **exit** from SQLPLUS and Shard 1 as well.
+
+    ```
+    <copy>
+    exit
+    </copy>
+    ```
+
+## Task 5: Run Application Queries on a sharded Database
+
+Run each SQL query by logging in to the shard catalog database as well as one of the shard databases. You can observe the difference in row count on the shard catalog compared to the shard-database (porcl1cdb\_porcl1pdb, porcl2cdb\_porcl2pdb and porcl3cdb\_porcl3pdb).
+
+**Establish connection to Catalog and to one of the Shards.**
+
+1. Open a terminal and execute below as **opc** user to connect to **Catalog**.
+
+    ```
+    <copy>
+    sudo docker exec -i -t catalog /bin/bash
+    </copy>
+    ```
+
+    ```
+    <copy>
+    sqlplus SHARDUSERTEST/oracle@PCAT1PDB
+    </copy>
+    ```
+
+2. Open another terminal and execute below as **opc** user to connect to one of the shards. In this    case, you will connect to **shard3** as below.
+
+    ```
+    <copy>
+    sudo docker exec -i -t shard3 /bin/bash
+    </copy>
+    ```
+    ```
+    <copy>
+    sqlplus SHARDUSERTEST/oracle@PORCL3PDB
+    </copy>
+    ```
+
+    ![](./images/1.jpg " ")
+
+**Run Application Queries on sharding Database.**
+
+Run the below each sql query by login into Catalog database as well as one of the shard database(shard3 in this case). You can notice the difference of row count on Shard catalog vs shard-DB (porcl1cdb\_porcl1pdb, porcl2cdb\_porcl2pdb and porcl3cdb\_porcl3pdb).
+
+1. Text search on Products (JSON) table with auto corrections: Oracle Fuzzy matching is a method that provides an improved ability to process word-based matching queries to find matching phrases or sentences from a database.
+
+    ```
+    <copy>
+    select p.json_text.NAME from PRODUCTS p where contains(json_text, 'fuzzy((meras))', 1) > 0 order by score(1) desc;
+    </copy>
+    ```
+
+    ![](./images/query2.jpg " ")
+
+2. Top Selling Products: Return top Selling products in the store ranging from high to low from last one year by fetching from LINE_ITEM (Relational ) & Products (JSON) & Reviews (JSON) Tables.
+
+    ```
+    <copy>
+    set lines 200 pages 200
+    col SKU for a20
+    col PRODUCT_NAME for a30
+    col BEST_REVIEW for a50
+    select le.SKU,pr.Product_Name,le.count,le.SELL_VALUE,re.Avg_Senti_Score,rev.BEST_REVIEW from (select product_id as SKU, sum(PRODUCT_QUANTITY) as count,ROUND(sum(PRODUCT_COST*PRODUCT_QUANTITY),2) as SELL_VALUE from LINE_ITEM where DATE_ORDERED > sysdate -365 group by product_id ) le,(select r.sku as id,round(avg(r.senti_score)) as Avg_Senti_Score from reviews r group by r.sku) re,(select p.sku as pid,substr(p.json_text.NAME,0,30) as Product_Name from products p) pr,(select r.sku as rvid,r.revid,substr(r.json_text.REVIEW,0,40) as BEST_REVIEW from reviews r,(select sku as pid ,max(senti_score) as bestscore from reviews group by sku) where r.sku=pid and r.senti_score=bestscore) rev where re.id=le.SKU and pr.pid=le.SKU and rev.rvid=le.SKU order by 3 desc;
+    </copy>
+    ```
+    ![](./images/queryone.jpg " ")
+
+
+3. Select products ordered by maximum sell from last one year.
+
+    ```
+    <copy>
+    set lines 200 pages 200
+    col SKU for a40
+    select product_id as SKU, sum(PRODUCT_QUANTITY) as count,ROUND(sum(PRODUCT_COST*PRODUCT_QUANTITY),2) as SELL_VALUE from LINE_ITEM where DATE_ORDERED > sysdate -365 group by product_id order by count desc;
+    </copy>
+    ```
+    ![](./images/query5.jpg " ")
+
+4. Customer Average Review and review count
+
+    ```
+    <copy>
+    Set lines 200 pages 200
+    col NAME for a40
+    col AVG_REV for a5
+    col REV_COUNT for a5
+    col SKU for a30
+    select substr(p.json_text.NAME,0,40) NAME,p.json_text.CUSTOMERREVIEWAVERAGE as AVG_REV,p.json_text.CUSTOMERREVIEWCOUNT as REV_COUNT,SKU from PRODUCTS p ;
+    </copy>
+    ```
+
+    ![](./images/query6.jpg " ")
+
+5.  Let's try one query at **shard2** database as the default user **'demo@eshop.com'** belongs to shard2. Open another terminal and execute below as **opc** user to connect to **shard2**.
+
+    ```
+    <copy>
+    sudo docker exec -i -t shard2 /bin/bash
+    </copy>
+    ```
+    ```
+    <copy>
+    sqlplus SHARDUSERTEST/oracle@PORCL2PDB
+    </copy>
+    ```
+
+    Dollar Value sale by month: A single query spanning from LINE_ITEM shard table by accessing multiple (3) shard databases.
+
+    ```
+    <copy>
+    Select L.monthly,to_char(l.monthly,'MON') as month,sum(l.value) value from (select TRUNC(date_ordered, 'MON') as Monthly,Product_Cost*Product_Quantity as value, date_ordered from LINE_ITEM order by date_ordered asc) l group by l.monthly order by monthly asc;
+    </copy>
+    ```
+
+   ![](./images/query3.jpg " ")
+
+This is the end of the Oracle Sharding Workshop.
+
 
 ## **Appendix 1**: Sharding Overview & Architecture
 
@@ -314,6 +448,20 @@ You may now [proceed to the next lab](#next).
 ## Learn More
 
 - [Oracle Sharding Documentation] (https://docs.oracle.com/en/database/oracle/oracle-database/19/shard/sharding-overview.html#GUID-0F39B1FB-DCF9-4C8A-A2EA-88705B90C5BF)
+
+## Rate this Workshop
+When you are finished don't forget to rate this workshop!  We rely on this feedback to help us improve and refine our LiveLabs catalog.  Follow the steps to submit your rating.
+
+1.  Go back to your **workshop homepage** in LiveLabs by searching for your workshop and clicking the Launch button.
+2.  Click on the **Brown Button** to re-access the workshop  
+
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/images/workshop-homepage-2.png " ")
+
+3.  Click **Rate this workshop**
+
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/images/rate-this-workshop.png " ")
+
+If you selected the **Green Button** for this workshop and still have an active reservation, you can also rate by going to My Reservations -> Launch Workshop.
 
 ## Acknowledgements
 * **Authors** - Shailesh Dwivedi, Database Sharding PM , Vice President

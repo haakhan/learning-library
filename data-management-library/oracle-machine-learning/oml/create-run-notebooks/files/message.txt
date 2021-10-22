@@ -1,0 +1,4 @@
+This images shows the message "Notebook 'Test Anomaly Detection' successdully created in USER1 project." This message is displayed after the user creates the notebook from the example template notebook.
+
+
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

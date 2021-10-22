@@ -1,1 +1,3 @@
 This is the image of the prodcuct sales data that is pulled from the SALES table  visualized in a scatter plot. 
+
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

@@ -39,6 +39,10 @@
             "title": "Lab 7: Modifying Application Configuration file to Re-deploy modified component",
             "filename": "../modify-yaml-config/modify-yaml-config.md"
         },
+	    {
+            "title": "Lab 5-7: ALTERNATE VERSION with simplified solution",
+            "filename": "../alternate-version/alternate-version.md"
+        },
 		{
             "title": "Lab 8: Verifying the changes through application access and Curated stack",
             "filename": "../verify-changes/verify-changes.md"

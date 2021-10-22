@@ -3,21 +3,17 @@
 ## Introduction
 This lab walks you through the steps to provision an Oracle Autonomous Database Shared on your Oracle Cloud Infrastructure Tenancy
 
-Estimated Lab Time: 5 minutes
-
+Estimated Time: 5 minutes
 
 ### Objectives
 
 In this lab, you will:
 * Learn how to provision a new Autonomous Database shared.
 
-
-
 ### Prerequisites
 
 To complete this lab, you need to have the following:
 * Logged into your Oracle Cloud Account
-
 
 
 ## Task 1: Choosing ATP from the Services Menu
@@ -35,8 +31,6 @@ To complete this lab, you need to have the following:
 4. The console shows the list of databases created under Autonomous database
 
  ![click on the navigation bar](./images/adb3.png )
-
-
 
 
 ## Task 2: Creating the ADB instance
@@ -117,8 +111,3 @@ You may now **proceed to the next lab.**
 * **Authors** - Deepak Kumar M, PeopleSoft Architect
 * **Contributors** - Deepak Kumar M, PeopleSoft Architect
 * **Last Updated By/Date** - Deepak Kumar M, PeopleSoft Architect, Aug 2021
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/Migrate%20SaaS%20to%20OCI). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

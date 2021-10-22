@@ -1,13 +1,13 @@
-# Use Datastores to store Python objects
+# Store and manage Python objects and user-defined functions
 
 ## Introduction
 
-This lab walks you through the steps to use and work with datastores.
+This lab walks you through the steps to use and work with OML4Py datastores and the script repository.
 
 Estimated Lab Time: 20 minutes
 
-### About Datastore
-Datastores exist in the user’s Oracle Database schema. A datastore, and the objects it contains, persist in the database until explicitly deleted. By using a datastore, you can store Python objects in a named datastore entry. This named datastore can then be used in subsequent Python sessions, and even be made available to other users or programs by granting/revoking read permissions.
+### About datastores
+Datastores exist in the user’s Oracle database schema. A datastore, and the objects it contains, persist in the database until explicitly deleted. By using a datastore, you can store Python objects in a named datastore entry. This named datastore can then be used in subsequent Python sessions, and even be made available to other users or programs by granting/revoking read permissions.
 
 Python objects, including Oracle Machine Learning for Python (OML4Py) proxy objects, exist for the duration of the current Python session unless you explicitly save them. You can save one or more Python objects, including OML proxy objects, to a named datastore and then load those objects in a later Python session. This is also useful when using embedded Python execution.
 By using a datastore, you can:
@@ -18,319 +18,150 @@ By using a datastore, you can:
 
 * List available datastores and explore datastore contents.
 
+### About the Python script repository
+
+OML4Py stores named user-defined functions called scripts in the script repository. You can make scripts either private or global. A private script is available only to the owner. A global script is available to any user. For private scripts, the owner of the script may grant the read privilege to other users or revoke that privilege.
+
+* `oml.script.create` - Creates a script, which contains a single Python function definition, in the script repository.
+* `oml.script.dir` - Lists the scripts present in the script repository.
+* `oml.script.drop` - Drops a script from the script repository.
+* `oml.script.load` - Loads a script from the script repository into a Python session.
+* `oml.grant` - Grants read privilege permission to another user to a datastore or script owned by the current user.
+* `oml.revoke` - Revokes the read privilege permission that was granted to another user to a datastore or script owned by the current user.
+
 ### Objectives
 
 In this lab, you will learn how to:
-* Move objects between datastore and a Python sessions
-* Save Python objects in a datastore
-* Save model objects in a datastore
-* Load datastore objects into memory
-* View datastore and its details
-* Manage datastore privileges
-* Delete datastores
 
+**Datastores**
+  * Move objects between datastore and a Python sessions
+  * Save Python objects in a datastore
+  * Save model objects in a datastore
+  * Load datastore objects into memory
+  * View datastore and its details
+  * Manage datastore privileges
+  * Delete datastores
 
-## (Optional) Download and View the Notebook File
+**Python script repository**
+  * Use the Python Script Repository
+  * Create Scripts in Repository
+  * Store a function as a global function
+  * Drop scripts from the Script Repository
 
-To download the notebook version of this lab (without screenshots), click [lab4_datastores.json](./../notebooks/lab4_datastores.json?download=1).
+## Access the notebook for this Lab
 
-[](include:import)
+1. Go back to the main notebooks listing by clicking on the "hamburger" menu (the three lines) on the upper left of the screen, and then select **Notebooks**.
 
-## Task 1: Import libraries supporting OML4Py and Create Data Table
+ ![Oracle Machine Learning Notebooks menu](images/go-back-to-notebooks.png " ")
 
-To use OML4Py, first import the package `oml`. Also import the pandas package for pandas-specific functionality.
+2. Click the **Lab 4 notebook name** to view it.
+   <if type="freetier">
+   ![Open Lab 4 notebook ft](images/click-on-lab4-ft.png " ") </if>
+   <if type="livelabs">
+   ![Open Lab 4 notebook ll](images/click-on-lab4-ll.png " ") </if>
 
->**Note:** This lab requires the `PYQADMIN` role to use some functionalities in this lab, and in the Embedded Python Execution.
+  OML Notebooks will create a session and make the notebook available for editing.
 
-1. Run the following commands to imports the `oml` module and the `Pandas` package. Import the Pandas package work with `oml` DataFrames.
+  You can optionally click the **Run all paragraphs** (![](images/run-all-paragraphs.png =20x*)) icon, and then click **OK** to confirm to refresh the content with your data, or just scroll down and read the pre-recorded results.  
+   
+  ![Lab 4 main screen](images/lab4-main.png " ")
 
-    ```
-    <copy>%python
+> **NOTE:** If you had problems downloading and extracting the ZIP file for the labs, please [**CLICK HERE** to download the lab4\_datastores.json notebook file](./../notebooks/lab4_datastores.json?download=1). Download the notebook file for this lab to your local machine and then import it like illustrated in **Lab 1, Task 2**.
 
-    import pandas as pd
-    import oml</copy>
-    ```  
+## Task 1: Import libraries supporting OML4Py and create data table
 
-## Task 2: Create Pandas DataFrames and Load them into Oracle Autonomous Database
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-In this step, you will work with three data set: IRIS data sets, Diabetes data set, and Boston data set. You will learn how to:
+Scroll down to the beginning of Task 1.
 
-* Load these three data sets and for each combine the target and predictors into a single DataFrame
-* Create and display the columns for each data set
-* Use the dataframe to explore the datastore functionality
+  ![Lab 4 Task 1 screen](images/lab4-task1.png " ")  
 
-1. Run the following command to sync the IRIS table in the OMLUSER schema to an OML DataFrame proxy object:
+## Task 2: Create pandas dataFrames and load them into Oracle Autonomous Database
 
-    ```
-    %python
-    <copy>
-    IRIS = oml.sync("OMLUSER", view = "IRIS_VIEW")
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-    print(IRIS.columns)</copy>
-    ```
-  ![Sync IRIS table in OMLUSER Schema to an OML Dataframe proxy object](images/sync_iris_table.png "Sync IRIS table in OMLUSER Schema to an OML Dataframe proxy object")
+Scroll down to the beginning of Task 2.
 
-2. Run the following script to create the temporary Diabetes table:
-    ```
-    %python
-    <copy>
+  ![Lab 4 Task 2 screen](images/lab4-task2.png " ")  
+  
+## Task 3: Save Python objects to datastore
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-    from sklearn import datasets
-    diabetes = datasets.load_diabetes()
-    x = pd.DataFrame(diabetes.data, columns=diabetes.feature_names)
-    y = pd.DataFrame(diabetes.target, columns=['disease_progression'])
+Scroll down to the beginning of Task 3.
 
-    DIABETES_TMP = oml.push(pd.concat([x, y], axis=1))
-    print(DIABETES_TMP.columns)</copy>
-    ```
-     ![Script to create Diabetes table](images/create_diabetes_table.png "Script to create Diabetes table")  
+  ![Lab 4 Task 3 screen](images/lab4-task3.png " ")  
 
+## Task 4: Save model objects in a datastore
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-3. Run the following script to create the Boston table:
+Scroll down to the beginning of Task 4.
 
-    ```
-    %python
-    <copy>
+  ![Lab 4 Task 4 screen](images/lab4-task4.png " ")  
 
-    boston = datasets.load_boston()
-    x = pd.DataFrame(boston.data, columns = boston.feature_names.tolist())
-    y = pd.DataFrame(boston.target, columns = ['Value'])
+## Task 5:  Load datastore objects into memory
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-    BOSTON_TMP = oml.push(pd.concat([x, y], axis=1))
-    print(BOSTON_TMP.columns)</copy>
-    ```
-    ![Script to create Boston table](images/create_boston_table.png "Script to create Boston table")
+Scroll down to the beginning of Task 5.
 
-## Task 3: Save Python Objects to Datastore
+  ![Lab 4 Task 5 screen](images/lab4-task5.png " ")  
 
-In this step, you will save the actual Iris data set and the temporary BOSTON proxy object to a datastore named `ds_pydata`, overwriting if the named datastore already exists.
+## Task 6: View datastores and other details
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
->**Note:** You can store actual data objects in a datastore, but large data objects should remain as database tables for performance and scalability.    
+Scroll down to the beginning of Task 6.
 
-By storing the `BOSTON_TMP` object, the temporary table will not be deleted when the session terminates.
+  ![Lab 4 Task 6 screen](images/lab4-task6.png " ")  
 
-1. Run the following script to save the `IRIS` and `BOSTON_TMP` tables in the Oracle Autonomous Database:
+## Task 7: View contents of a datastore
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-    ```
-    %python
-    <copy>
+Scroll down to the beginning of Task 7.
 
-    oml.ds.save(objs={'oml_iris':IRIS, 'oml_boston':BOSTON_TMP},
-                name="ds_pydata", description = "python datasets",
-                overwrite=True)</copy>
-    ```
-2. Save the `DIABETES_TMP` tables into the database.
+  ![Lab 4 Task 7 screen](images/lab4-task7.png " ")     
 
-    ```
-    %python
-    <copy>
+## Task 8: Manage datastore privileges
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-    oml.ds.save(objs={'oml_diabetes':DIABETES_TMP}, name="ds_pydata", append=True)</copy>
-    ```
+Scroll down to the beginning of Task 8.
 
-  >**Note:** The condition `append=TRUE` adds the object to the datastore, if it already exists.  The default is `append=False`, and in that case, you will receive an error stating that the datastore exists and it won't be able to create it again.
+  ![Lab 4 Task 8 screen](images/lab4-task8.png " ")  
 
+## Task 9: Delete datastore content
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-3. Save the `IRIS` table to a new datastore, and then list the datastores. Notice that you see the datastore name, the number of objects in the datastore, the size in bytes consumed, when the datastore was create or updated, and any description provided by the user. The two datastores `ds_iris_data` and `ds_pydata` are present, with the latter containing the three objects you added.
+Scroll down to the beginning of Task 9.
 
-    ```
-    %python
-    <copy>
+  ![Lab 4 Task 9 screen](images/lab4-task9.png " ")
 
-    oml.ds.save(objs={'iris':IRIS},
-    name="ds_iris_data", description = "iris dataset", overwrite=True)
+## Task 10: Use the Python Script Repository
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-    oml.ds.dir()</copy>
-    ```
-     ![IRIS table saved in a new datastore](images/iris_df_in_ds.png "IRIS table saved in a new datastore")
+Scroll down to the beginning of Task 10.
 
-## Task 4: Save Model Objects in a Datastore
+  ![Lab 4 Task 10 screen](images/lab4-task10.png " ")  
 
-This step illustrates how to store other types of objects in datastores. For this, you will create regression models using sklearn and OML4Py.
+## Task 11: Create scripts in repository
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-1. Run the following script to build two regression models - `regr1` and `regr2`. The `regr1` uses the open  source function `LinearRegression()` and the `regr2` uses the OML function `oml.glm()`.
+Scroll down to the beginning of Task 11.
 
-    ```
-    %python
-    <copy>
+  ![Lab 4 Task 11 screen](images/lab4-task11.png " ")  
 
-    from sklearn import linear_model
+## Task 12: Store a function as a global function
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-    regr1 = linear_model.LinearRegression()
-    regr1.fit(boston.data, boston.target)
+Scroll down to the beginning of Task 12.
 
-    regr2 = oml.glm("regression")
-    X = BOSTON_TMP.drop('Value')
-    y = BOSTON_TMP['Value']
-    regr2 = regr2.fit(X, y)</copy>
-    ```
+  ![Lab 4 Task 12 screen](images/lab4-task12.png " ")  
 
-  >**Note:** This highlights that both open source models and in-database model proxy objects can be stored in a datastore. Like tables created using `oml.push` function, default-named model proxy objects are dropped at the end of the database connection unless they are saved in a datastore.
+## Task 13: Drop scripts from the script repository
+Follow the flow of the notebook by scrolling to view and run each paragraph of this lab.
 
-2. Run the following script to save the objects `regr1` and `regr2` to the datastore `ds_pymodels`, and allow the read privilege to be granted to them.
+Scroll down to the beginning of Task 13.
 
-    ```
-    %python
-    <copy>
+  ![Lab 4 Task 13 screen](images/lab4-task13.png " ")  
 
-    oml.ds.save(objs={'regr1':regr1, 'regr2':regr2},
-                name="ds_pymodels", grantable=True,
-                overwrite=True)
-
-    oml.ds.dir()</copy>
-    ```
-    ![Saving objects in datastores](images/regr1_regr2.png "Saving objects in datastores")  
-
-  >**Note:** `overwrite=True` indicates that the contents of the datastore should be replaced.
-
-3. Now grant the read privilege to all users by specifying `user=None`. Finally, list the datastores to which the read privilege has been granted.
-
-    ```
-    %python
-    <copy>
-
-    oml.grant(name="ds_pymodels", typ="datastore", user=None)
-
-    oml.ds.dir(dstype="grant")</copy>
-    ```
-    ![Granting read privilege](images/grant_read_priv.png "Granting read privilege" )    
-
-## Task 5:  Load Datastore Objects into Memory
-
-In this step, you load all Python objects from a datastore to the global workspace and sort the result by name. Notice that they have the name specified in the dictionary when saved.
-
-1. Run the following script to load the datastore `ds_pydata` into memory:
-    ```
-    %python
-    <copy>
-
-    sorted(oml.ds.load(name="ds_pydata"))</copy>
-    ```  
-
-    ![Loading datastore into memory](images/load_ds_into_memory.png "Loading datastore into memory")      
-
-2. Run the following script to load the named Python object `regr2` (regression model), from the datastore to the global workspace.
-
-    >**Note:** Using the boolean `to_globals` parameter, you can specify whether the objects are loaded to a global workspace or to a dictionary object. If the argument is `to_globals=True`, then `oml.ds.load` function loads the objects into the global workspace. If the argument is `to_globals=False`, then the function returns a dict object that contains pairs of object names and values.
-
-    ```
-    %python
-    <copy>
-
-    oml.ds.load(name="ds_pymodels", objs=["regr2"], to_globals=True)</copy>
-    ```
-
-    ![Loading Python object from the datastore to the global workspace](images/load_regr2_gbl_ws.png "Loading Python object from the datastore to the global workspace")
-
-3. Run the following script to view the model details:
-
-    ```
-    %python
-    <copy>
-
-    regr2</copy>
-    ```
-    ![Viewing model details](images/view_model_details.png "Viewing model details")
-4. Run the following script to load the named Python object `regr1`, from the datastore to the user's workspace.
-
-    >**Note:** Using the boolean `to_globals` parameter, you can specify whether the objects are loaded to a global workspace or to a dictionary object. If the argument is `to_globals=True`, then `oml.ds.load` function loads the objects into the global workspace. If the argument is `to_globals=False`, then the function returns a dict object that contains pairs of object names and values.
-
-    ```
-    %python
-    <copy>
-
-    oml.ds.load(name="ds_pymodels", objs=["regr1"], to_globals=False)</copy>
-    ```
-  ![Loading Python object from the datastore to the user's workspace](images/load_regr1_usr_ws.png "Loading Python object from the datastore to the user's workspace")
-
-## Task 6: View Datastores and Other Details
-
-This step shows how to work with datastores.
-
-1. Run the following script to get the list of datastore and a count of the objects in it:
-    ```
-    %python
-    <copy>
-
-    oml.ds.dir(dstype="all")[['owner', 'datastore_name', 'object_count']]</copy>
-    ```
-    ![Listing datastores](images/list_datastores.png "Listing datastores")
-
-2. Run the following script to list the datastores to which other users have been granted the read privilege:
-
-    ```
-    %python
-    <copy>
-
-    oml.ds.dir(dstype="grant")</copy>
-    ```
-    ![Viewing datastores with details about user roles](images/datastore_with_read_priv.png "Viewing datastores with details about user roles")
-
-## Task 7: View Contents of a Datastore
-
-This step shows how to view/describe the content of a datastore. This example shows the `ds_pydata` datastore. Notice that the three proxy objects are listed.
-
-1. Run the following script to list the content of a datastore:
-    ```
-    %python
-    <copy>
-
-    oml.ds.describe(name='ds_pydata')</copy>
-    ```
-
-    ![Viewing datastore content](images/datastore_content.png "Viewing datastore content")
-
-  The script returns the description of three proxy objects - `iris`, `oml_boston`, and `oml_diabetes`. It lists the class, size, length, row and column count for each object.     
-
-## Task 8: Manage Datastore Privileges
-
-This step shows how to revoke read privilege, show datastores to which the read privilege has been granted, and again grant read privilege to a user.
-
-1. Run the following script to revoke the read privilege from every user:
-
-    ```
-    %python
-    <copy>
-
-    oml.revoke(name="ds_pymodels", typ="datastore", user=None)
-
-    oml.ds.dir(dstype="grant")</copy>
-    ```
-
-    ![Revoking read privilege from every user](images/revoke_priv.png "Revoking read privilege")        
-2. Run the following script to grant read privilege to `OMLUSER2`:
-
-    ```
-    %python
-    <copy>
-
-    oml.grant(name="ds_pymodels", typ="datastore", user="OMLUSER2")
-
-    oml.ds.dir(dstype="grant")</copy>
-    ```
-    ![Granting privilege to OMLUSER2](images/grant_priv.png "Granting privilege to OMLUSER2")        
-
-## Task 9: Delete Datastore Content
-
-This step shows how to use the `oml.ds.delete` function to delete datastores or datastore content.
-
-1. Run the following script to delete datastore content:
-
-    ```
-    %python
-    <copy>
-
-    oml.ds.delete(name="ds_pydata", objs=["IRIS", "oml_boston"])
-
-    oml.ds.delete(name="ds_pydata")
-
-    oml.ds.delete(name="_pymodels", regex_match=True)
-
-    oml.ds.dir()</copy>
-    ```
-    ![Deleting datastore content](images/delete_datastore.png "Deleting datastore content")
-
-  The script first deletes the contents of datastore `ds_pydata`, and then deletes the datastore itself. It also deletes the datastore `ds_pymodel` using regular expression pattern matching.
+After you reach the end of Lab 4, you can *proceed to the next lab*.
 
 ## Learn More
 
@@ -338,6 +169,6 @@ This step shows how to use the `oml.ds.delete` function to delete datastores or 
 * [Oracle Machine Learning Notebooks](https://docs.oracle.com/en/database/oracle/machine-learning/oml-notebooks/)
 
 ## Acknowledgements
-* **Author** - Moitreyee Hazarika, Principal User Assistance Developer
-* **Contributors** -  Mark Hornick, Senior Director, Data Science and Machine Learning; Marcos Arancibia Coddou, Product Manager, Oracle Data Science; Sherry LaMonica, Principal Member of Tech Staff, Advanced Analytics, Machine Learning
-* **Last Updated By/Date** - Moitreyee Hazarika, July 2021
+* **Authors** - Marcos Arancibia, Product Manager, Machine Learning; Jie Liu, Data Scientist; Moitreyee Hazarika, Principal User Assistance Developer
+* **Contributors** -  Mark Hornick, Senior Director, Data Science and Machine Learning; Sherry LaMonica, Principal Member of Tech Staff, Machine Learning
+* **Last Updated By/Date** - Marcos Arancibia and Jie Liu, October 2021

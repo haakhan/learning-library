@@ -4,7 +4,25 @@
 
 So far, all collection operations have been issued from a UI in the browser. In a real application these operations would be called directly from a programming language (for example using the open-source SODA drivers for Java, Python or NodeJS). Another option is to use REST.
 
+This lab is optional for those that wish to understand how to access Autonomous JSON Database through raw REST calls. Part of this lab involves loading more documents through a REST call. If you wish to move straight on to Lab 4, you can load the extra documents from SQL instead, using the following SQL code:
+
+```
+<copy>
+begin
+dbms_cloud.copy_collection(
+	collection_name => 'products',
+	file_uri_list => 'https://objectstorage.us-ashburn-1.oraclecloud.com/p/b3XNySsmYQLPsy2Aw8C_uz14NYTfv2lqJ9IKoLNDRfKj6uZzUKPUFc5MbloNP0Cz/n/c4u04/b/data-management-library-files/o/testdata.json',
+	format => '{ "recorddelimiter" : "0x''01''", "unpackarrays" : "TRUE", "maxdocsize" : "1000000" }'
+);
+end;
+</copy>
+```
+
 Estimated Lab Time: 15 minutes
+
+Watch the video below for a quick walk through of the lab.
+
+[](youtube:9I38EbsVWPQ)
 
 ### Objectives
 

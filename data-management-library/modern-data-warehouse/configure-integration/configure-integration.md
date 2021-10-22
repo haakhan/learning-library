@@ -148,7 +148,7 @@ Now that you have configured your connections to your source and destination, we
 You may now proceed to Lab 5.
 
 ## Acknowledgements
-- **Author** - Yash Lamba, Cloud Native Solutions Architect, January 2021
+- **Author** - Yash Lamba, Cloud Native Solutions Architect, Massimo Castelli, Senior Director Product Management, January 2021
 - **Contributor** - Clarence Ondieki, Cloud Engineer
 - **Last Updated By/Date** - Yash Lamba, January 2021
 

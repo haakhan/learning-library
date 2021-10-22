@@ -1,9 +1,9 @@
 # Setup
 
 ## Introduction
-In the previous lab you created an ADB instance.  In this lab you will connect to the ADB instance from Oracle Cloud Shell.
+In the previous lab you created an ADB instance.  In this lab, you will connect to the ADB instance from Oracle Cloud Shell.
 
-*Estimated time:* 20 Minutes
+Estimated Time: 20 Minutes
 
 ### Objectives
 - Create a bucket, auth token and Oracle Wallet
@@ -18,9 +18,9 @@ In the previous lab you created an ADB instance.  In this lab you will connect t
 
 1. Login to Oracle Cloud if you are not already logged in.
 
-2. Click on the hamburger menu and navigate to Object Storage and click on **Object Storage**.
+2. Click on the hamburger menu and navigate to **Storage** and click on **Buckets**.
 
-      ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/storage-buckets.png " ")
+      ![](./images/object_storage.png " ")
 
 3. Choose the compartment where your ATP is provisioned and click **Create Bucket**.
 
@@ -255,7 +255,7 @@ To access data in the Object Store you have to enable your database user to auth
 
       ![](./images/step4-signout.png " ") 
 
-You may now [proceed to the next lab](#next).
+You may now **proceed to the next lab**.
 
 ## Acknowledgements
 * **Authors** - Kay Malcolm, Senior Director, Database Product Management

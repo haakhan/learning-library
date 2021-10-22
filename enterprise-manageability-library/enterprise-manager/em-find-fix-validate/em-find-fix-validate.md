@@ -7,7 +7,7 @@ The goal of this lab is to become familiar with on-premise and Oracle Cloud Data
 *Estimated Lab Time:* 55 minutes
 
 ### About Database Performance Management
-Performance Hub is a single pane of glass view of database performance with access to Active Session History (ASH) Analytics, Real-time SQL Monitoring and SQL Tuning together. In this lab you will get familiar with Performance hub, Real-time database operation monitoring, SQL Performance Analyzer etc.  
+Performance Hub is a single pane of glass view of database performance with access to Active Session History (ASH) Analytics, Real-time SQL Monitoring and SQL Tuning together. In this lab you will get familiar with Performance hub, Real-time database operation monitoring, SQL Performance Analyzer, etc.  
 
 ### Objectives
 
@@ -17,17 +17,15 @@ In this lab you will learn:
 | **Step No.** | **Feature**                                   | **Approx. Time** | **Details**                                                                                                                                                                                                                    | **Value proposition**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |--------|-----------------------------------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **1**  | Performance Hub                               | 15 minutes       | Oracle Enterprise Manager 13c includes a new Jet based unified Performance Hub Jet interface for performance monitoring.                                                                                           | Performance Hub is a single pane of glass view of database performance with access to Active Session History (ASH) Analytics, Real-time SQL Monitoring and SQL Tuning together. The time picker allows the administrator to switch between Real-Time and Historical views of database performance.                                                                                                                                                                                                                                                                      |
-| **2**  | Real-time database operation monitoring       | 10 minutes       | Real-Time Database Operations Monitoring, introduced in Oracle Database 12c, enables an administrator to monitor long running database tasks as a composite business operation.                                                | Developers and DBAs can define business operations for monitoring by explicitly specifying the start and end of an operation or implicitly with tags that identify the operation.                                                                                                                                                                                                                                                                                                                                                                                              |
-| **3**  | Tuning a SQL in a Pluggable Database (PDB)                         | 10 minutes       | In this activity see how a pluggable database administrator can tune queries in a PDB.                                                                                                                                        | The DBA for the PDB will not have access to the Container so their view is restricted to the queries running in the PDB assigned to them. This activity identifies a Top SQL in a PDB and then tune it using SQL Tuning Advisor.                                                                                                                                                                                                                                                                                                                                  |
-| **4**  | SQL Performance Analyzer Optimizer Statistics | 10 minutes       | The objective of this activity is to demonstrate and use the SQL Performance Analyzer functionality of Real Application Testing capabilities in Oracle Enterprise Manager Cloud Control 13c with Oracle Database 18c. | SQL Performance Analyzer gathers Oracle Database Optimizer statistics for validation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **2**  | Real-time Database Operation Monitoring       | 10 minutes       | Real-Time Database Operations Monitoring, introduced in Oracle Database 12c, enables an administrator to monitor long running database tasks as a composite business operation.                                                | Developers and DBAs can define business operations for monitoring by explicitly specifying the start and end of an operation or implicitly with tags that identify the operation.                                                                                                                                                                                                                                                                                                                                                                                              |
+| **3**  | Tuning a SQL in a Pluggable Database (PDB)                         | 10 minutes       | In this activity see how a pluggable database administrator can tune queries in a PDB.                                                                                                                                        | The DBA for the PDB will not have access to the Container so their view is restricted to the queries running in the PDB assigned to them. This activity identifies a Top SQL in a PDB and then tunes it using SQL Tuning Advisor.                                                                                                                                                                                                                                                                                                                                  |
+| **4**  | SQL Performance Analyzer Optimizer Statistics | 10 minutes       | The objective of this activity is to demonstrate and use the SQL Performance Analyzer functionality of Real Application Testing capabilities in Oracle Enterprise Manager Cloud Control 13c with Oracle Database 18c. | SQL Performance Analyzer gathers Oracle Database Optimizer statistics for validation.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **5**  | Database Workload Replay                      | 10 minutes       | The objective of this activity is to is to demonstrate and use the Database Replay functionality of Real Application Testing capabilities in Oracle Enterprise Manager Cloud Control 13c and Oracle Database 18c.                | **Scenario:** You've been asked to add three new indexes for an application, but before adding, you want proof that database performance is improved. Use of SQL Performance Analyzer (SPA) isn't enough because there is also the cost of maintaining the indexes. Replay will be performed against the **Sales** Container Database and changes need to be performed in the OLTP Container against the **DWH\_TEST** schema. The database version is 18c so the capture and replay are performed using a CDB. |
 
 
 ### Prerequisites
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH (*Free-tier* and *Paid Tenants* only)
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
     - Lab: Initialize Environment
@@ -35,11 +33,11 @@ In this lab you will learn:
 *Note*: This lab environment is setup with Enterprise Manager Cloud Control Release 13.5 and Database 19.10 as Oracle Management Repository.
 
 ## Task 1: Prepare Database
-Select between *STEP 1A* and *STEP 1B*
+Select between *Task 1A* and *Task 1B*
 
 ## Task 1A: Prepare Database Using EM Console
 
-1. On the *Firefox* window on the right preloaded with *Enterprise Manager*, click on the *Username* field and select the saved credentials to login. These credentials have been saved within *Firefox* and are provided below for reference
+1. On the Browser *Chrome/Firefox* window on the right preloaded with *Enterprise Manager*, click on the *Username* field and select the saved credentials to login. These credentials have been saved within *Chrome/Firefox* and are provided below for reference
 
     ```
     Username: <copy>sysman</copy>
@@ -59,7 +57,7 @@ Select between *STEP 1A* and *STEP 1B*
 
     ![](images/emdbstartjob.png " ")
 
-4. Then Click the Submit button in the upper right hand of your window.
+4. Leave default values in the fields and then click the Submit button in the upper right hand of your window.
 
     ![](images/emjobsubmitbutton.png " ")
 
@@ -69,7 +67,9 @@ Select between *STEP 1A* and *STEP 1B*
 
 ## Task 1B: Prepare database Using the terminal
 
-1. Instead of *STEP 1* above, you may run the block below from the terminal as user *oracle*
+1. Instead of *Task 1A* above, you may run the block below from the terminal as user *oracle*
+
+    ![](images/em-login2.png " ")
 
     ```
     <copy>
@@ -78,25 +78,25 @@ Select between *STEP 1A* and *STEP 1B*
     . ./1-db_lab_start.sh</copy>
     ```
 
-    ![](images/emopt2start.jpg " ")
+    ![](images/emopt3start.png " ")
 
 ## Task 2: Performance Hub
 
 1. Click on the Targets, then Databases. You will be directed to the list of Databases in EM.
 
-    ![](images/9b88b0ba0cefae75a2374d91dcbd4e2e.jpg " ")
+    ![](images/emffvlab2step1.png " ")
 
-2. Here you will notice different databases listed, such as SALES, HR etc. We will work the sales container database. **Select** the Sales database from the list and this will take you to the DB home page for this database.
+2. Here you will notice different databases listed, such as SALES, HR etc. We will work the sales container database. Select the **Sales** database from the list and this will take you to the DB home page for this database.
 
-    ![](images/95063e3082e730e54d957b9ff7575f49.jpg " ")
+    ![](images/emffvlab2step2.png " ")
 
     ![](images/89801010273a62f99a3da10de8bf5c71.jpg " ")
 
-3.  Click on the **Containers** tab. It is located at the upper right-hand corner of the page, underneath the Performance tile. This will show the list of pluggable databases in the CDB and their activity
+3.  Click on the **Containers** tab. It is located at the upper right-hand corner of the page, underneath the Performance tile. This will show the list of pluggable databases in the CDB and their activity.
 
     ![](images/c6bc11e91d6db9627a146b3e79d0ce19.jpg " ")
 
-4.  Notice that the PSALES database is the busiest. We focus our attention to this PDB. Let us now navigate to Performance Hub. Select Performance Hub from the Performance Menu and Click on ASH Analytics and use the sales\_system credential name from the database login screen
+4.  Notice that the PSALES database is the busiest. We focus our attention to this PDB. Let us now navigate to Performance Hub. Select Performance Hub from the Performance Menu and Click on ASH Analytics and use the sales\_system credential name from the database login screen.
 
     ![](images/e131e1ce965ab5bb248d5439529fc921.jpg " ")
 
@@ -118,7 +118,7 @@ Select between *STEP 1A* and *STEP 1B*
 
     ![](images/95cce3b331aa85fc893b8eecc9a6c0a6.jpg " ")
 
-8. What do you see? The chart changes to activity by the different pluggable databases created in this Container database.Click on the ‘PSALES” pluggable database on the list to add it to the filter by list and drilldown to activity by this PDB on the same page.
+8. What do you see? The chart changes to activity by the different pluggable databases created in this Container database.Click on the **PSALES** pluggable database on the list to add it to the filter by list and drilldown to activity by this PDB on the same page.
 
     ![](images/384fdb12e234cbc0d60df1639079dc3e.jpg " ")
 
@@ -128,11 +128,11 @@ Select between *STEP 1A* and *STEP 1B*
 
       ![](images/6e47bf2703c3c1e4adffd39d2202045f.jpg " ")
 
-10. You can see all the executed SQL during that time along with different attributes like ‘user’,’Start’,’Ended’ etc. The test next to the \@ sign indicates the name of the PDB. Click on any SQL of your choice (e.g. 6kd5jj7kr8swv)
+10. You can see all the executed SQL during that time along with different attributes like ‘user’,’Start’,’Ended’ etc. The test next to the \@ sign indicates the name of the PDB. Click on any SQL of your choice (e.g. 6kd5jj7kr8swv).
 
     ![](images/533523dca8453a0ce246ac933fdb639c.jpg " ")
 
-11. It will navigate you to show the details of this particular query. You can see the plan, parallelism and activity of the query. “Plan Statistics” tab is selected by default. You can see the plan of this query in graphical mode. In some cases, the Monitored SQL may have aged out and no rows are displayed, in this case try using the time-picker and pick last 24 hrs. time period to identify the historical SQL that was monitored.
+11. It will navigate you to show the details of this particular query. You can see the plan, parallelism and activity of the query. **Plan Statistics** tab is selected by default. You can see the plan of this query in graphical mode. In some cases, the Monitored SQL may have aged out and no rows are displayed, in this case try using the time-picker and pick last 24 hrs. time period to identify the historical SQL that was monitored.
 
 12. Select **Parallel** tab. This will give details about parallel coordinator and parallel slaves.
 
@@ -140,7 +140,7 @@ Select between *STEP 1A* and *STEP 1B*
 
 14. Click on the **activity** tab to understand about the activity breakdown for this SQL.
 
-16. Click on **Save** button on the top right corner of the page. This will help you to save this monitored execution in “.html” format, which can be used to share or to diagnose offline.
+16. Click on **Save Report** button on the top right corner of the page. This will help you to save this monitored execution in “.html” format, which can be used to share or to diagnose offline.
 
 ## Task 3: Real-Time Database Operations Monitoring
 
@@ -148,9 +148,8 @@ Select between *STEP 1A* and *STEP 1B*
 
     ```
     <copy>
-    cd scripts
     source SALESENV
-    cd load/frame/queries/awrv</copy>
+    cd scripts/load/frame/queries/awrv</copy>
     ```
 
 2. Using SQLPlus connect to the sh2 account. Open the file (!vi DBOP.sql) from the SQL prompt and then review the content of the file. At the beginning of the file you will notice how we have tagged the operation with dbms\_sql\_monitor.begin\_operation and ended it with dbms\_sql\_monitor.end\_operation.
@@ -173,7 +172,7 @@ Now execute the file \@DBOP.sql
 
     ![](images/a59f28bdd1166978c41e9c9c6a5d9b93.jpg " ")
 
-6.  Click on the **Activity** tab. You will see all the activity for this operation.
+6.  Click on the **Metric** tab. You will see all the activity for this operation.
 
     ![](images/1a32fbdd89e519c2b8401e7dd0626890.jpg " ")
 
@@ -255,93 +254,89 @@ In this step we need to configure the database to set up optimizer statistics to
 
     ![](images/emspasetup.png " ")
 
-4. Select OS Command in the Create library Job drop down list Click **Go**.
-
-    ![](images/a04978f5e6e7d3e03d34685c7212f413.jpg " ")
-
-5. Click the **Submit** button
+4. Click the **Submit** button
 
     ![](images/spasubmit.png " ")
 
-6. The job then runs and completes
+5. The job then runs and completes
 
     ![](images/emspajobconfirm.png " ")
 
-7. The job is now running. Continue with configuring SPA Quick Check. Navigate to ***Databases >> Targets >> Databases***
+6. The job is now running. Continue with configuring SPA Quick Check. Navigate to ***Databases >> Targets >> Databases***
 
     ![](images/emspadbtarget.png " ")
 
 
-8. Expand the *sales.subnet.vcn.oraclevcn.com* database. Click on *sales.subnet.vcn.oraclevcn.com\_HR* pluggable database.
+7. Expand the *sales.subnet.vcn.oraclevcn.com* database. Click on *sales.subnet.vcn.oraclevcn.com\_HR* pluggable database.
 
     ![](images/6273897d2614da4d3babab73299d5bc5.jpg " ")
 
-9. In ***sales.subnet.vcn.oraclevcn.com\_HR*** database Navigate to ***Performance >> SQL >> SQL Performance Analyzer Quick Check Setup***
+8. In ***sales.subnet.vcn.oraclevcn.com\_HR*** database Navigate to ***Performance >> SQL >> SQL Performance Analyzer Quick Check Setup***
 
     ![](images/52d28e53edc6e12a26eefd6df1487d20.jpg " ")
 
-10.  This is the page where you configure SPA Quick Check. Make sure that the selected SQL Tuning Set includes as many SQL statements as possible. If the application has specific workloads that are executed during End of Month, End of Year or even certain period during the day, then make sure to collect the workload in separate SQL Tuning Sets and merge them into a “Total Workload Tuning set”
+9.  This is the page where you configure SPA Quick Check. Make sure that the selected SQL Tuning Set includes as many SQL statements as possible. If the application has specific workloads that are executed during End of Month, End of Year or even certain period during the day, then make sure to collect the workload in separate SQL Tuning Sets and merge them into a “Total Workload Tuning set”
 
-11. In this example we are working with a SQL Tuning Set called PENDING\_STATS\_WKLD. Select: SQL Tuning Set: PENDING\_STATS\_WKLD. Select “Comparison Metric”: Buffer Gets **Click** Save.
+10. In this example we are working with a SQL Tuning Set called PENDING\_STATS\_WKLD. Select: SQL Tuning Set: PENDING\_STATS\_WKLD. Select “Comparison Metric”: Buffer Gets **Click** Save.
 
     ![](images/dd8e59451bf9d2de14f07592d390da6a.jpg " ")
 
-12.  Navigate ***Performance >> SQL >> Optimizer Statistics***
+11.  Navigate ***Performance >> SQL >> Optimizer Statistics***
 
       ![](images/4e82b571a46f839223bca1f879643bb0.jpg " ")
 
-13.  Click **Gather**
+12.  Click **Gather**
 
       ![](images/1e54f21d483e95189477069278b54053.jpg " ")
 
-14.  Select “Schema”. Check “Validate the impact of statistics on…..” Click **Next**.
+13.  Select “Schema”. Check “Validate the impact of statistics on…..” Click **Next**.
       ![](images/1d4b3ee3678078564de13336896fbe34.jpg " ")
 
-15.  Click  **Add**
+14.  Click  **Add**
 
       ![](images/07c9dde006c7bc0a1fc804ef62f5cd5a.jpg " ")
 
-16.  Click **Search**. Select: **STAT1, STAT2**. Click  **OK**.
+15.  Click **Search**. Select: **STAT1, STAT2**. Click  **OK**.
 
       ![](images/5f8e1b0229f48747aa96998dbbe0aa87.jpg " ")
 
-17.  Click **Next**
+16.  Click **Next**
 
       ![](images/47d4db96f2a225723e405f06171d2c7d.jpg " ")
 
-18.  Click **Next**
+17.  Click **Next**
 
       ![](images/a4faddf1878e9f72df40f1bde4e54bdf.jpg " ")
 
-19.  Click **Submit**
+18.  Click **Submit**
 
       ![](images/d2c4f87d66682e3ecbb6b9c62e639281.jpg " ")
 
-20. In the confirmation section on top, click on the SQL Performance Analyzer Task that was started. If you accidentally closed or lost this page, navigate to **DB Target** , then **Performance Menu** ,  then **SQL Performance Analyzer Home** , then **Select** the latest SPA task you just created at the bottom of the page.
+19. In the confirmation section on top, click on the SQL Performance Analyzer Task that was started. If you accidentally closed or lost this page, navigate to **DB Target** , then **Performance Menu** ,  then **SQL Performance Analyzer Home** , then **Select** the latest SPA task you just created at the bottom of the page.
 
     ![](images/24fee673a5a32b19e55b92dae376c233.jpg " ")
 
-21. You now have now a running SQL Performance Analyzer task. Wait until its Last Run Status is Completed.Click  on **Name**
+20. You now have now a running SQL Performance Analyzer task. Wait until its Last Run Status is Completed.Click  on **Name**
 
     ![](images/d7b97d687f8d9a904ed2e7ee68f5da89.jpg " ")
 
-22.  As you can see there are four SQL trials that have been executed. The first two have identified SQL statements with plan changes. In the last two trials it is only the statements with plan changes that have been executed. This will reduce the amount of time and resources used in a production system. Click on the eyeglasses icon for the second report.
+21.  As you can see there are four SQL trials that have been executed. The first two have identified SQL statements with plan changes. In the last two trials it is only the statements with plan changes that have been executed. This will reduce the amount of time and resources used in a production system. Click on the eyeglasses icon for the second report.
 
       ![](images/e74bda3508f98dbfb69f1e9e196d9c01.jpg " ")
 
-23.  As we can see the majority of our statements have had unchanged performance. We have a significant improvement but the most important thing to notice is that we have no regression. If there had been regression then we have the ability to tune the regressed statement or use SQL Plan Baselines to remediate the identified regressions. Note you can also use SQL Tuning Advisor to remediate regressions by implementing SQL Profile recommendations
+22.  As we can see the majority of our statements have had unchanged performance. We have a significant improvement but the most important thing to notice is that we have no regression. If there had been regression then we have the ability to tune the regressed statement or use SQL Plan Baselines to remediate the identified regressions. Note you can also use SQL Tuning Advisor to remediate regressions by implementing SQL Profile recommendations
 
       ![](images/emspapubobj.png " ")
 
-24.  Since this application has used stale statistics for a long period, then it would be good to have new statistics implemented. Click on **Publish Object Statistics**
+23.  Since this application has used stale statistics for a long period, then it would be good to have new statistics implemented. Click on **Publish Object Statistics**
 
       ![](images/bfd46716f39ec820e1c9c0c9982d5218.jpg " ")
 
-25. We can now change statistics for all tables where we have pending statistics. For the scope of this exercise we will only change statistics for schema STAT1. Click the **Checkbox** for schema STAT1 .Click **Publish**.
+24. We can now change statistics for all tables where we have pending statistics. For the scope of this exercise we will only change statistics for schema STAT1. Click the **Checkbox** for schema STAT1 .Click **Publish**.
 
     ![](images/1d3a02d5d46d720eefbe226143471f2c.jpg " ")
 
-26. Click **Yes**
+25. Click **Yes**
 
     ![](images/a8dc3af7bcf1c5b473e4f0037dd722a4.jpg " ")
 

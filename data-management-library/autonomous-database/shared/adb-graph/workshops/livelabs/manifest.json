@@ -1,5 +1,5 @@
 {
-    "workshoptitle": "Getting Started with Graph Studio",
+    "workshoptitle": "Get Started with Graph Studio",
     "help": "livelabs-help-db_us@oracle.com",
 	"tutorials": [
         {
@@ -18,7 +18,7 @@
             "filename": "../../create-user/create-user.md"
         },
         {
-            "title": "Lab 2: Create Hello World",
+            "title": "Lab 2: Hello World",
             "description": "Create a simple graph and learn how to navigate the user interface.",
             "filename": "../../hello-world/hello-world.md"
         },

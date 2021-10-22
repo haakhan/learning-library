@@ -41,25 +41,21 @@ In lab 3, step 1, you used Quick SQL to create a script which you subsequently r
 
    *Note: The tables listed are those from the HOL script you created from Quick SQL, and does not include HOL\_TODOS which you created manually using SQL Developer Web.*
 
-6. On the Create an Application page, set Name to **HOL Projects** and then click the popup icon for Appearance. In the dialog, select **Vita - Slate** and then click **Save Changes**.
+6. On the Create an Application page, set Name to **HOL Projects** and then click **Check All** for Features, and then click **Create Application**.
 
    ![](images/create-an-application.png " ")
 
-7. Next, click **Check All** for Features, and then click **Create Application**.
-
-   ![](images/create-an-application-2.png " ")
-
    After the app is created, you will be redirected to the application home page in the Application Builder.
 
-8. Click **Run Application** to see the app at runtime.
+7. Click **Run Application** to see the app at runtime.
 
    ![](images/app-home-page-in-builder.png " ")
 
-9. Set username to **demo** and password to **`SecretPassw0rd`**, then click **Sign In**.
+8. Set username to **demo** and password to **`SecretPassw0rd`**, then click **Sign In**.
 
    ![](images/sign-in.png " ")
 
-10. Take a moment to explore the pages that APEX created on top of the tables identified in the script.
+9.  Take a moment to explore the pages that APEX created on top of the tables identified in the script.
 
    ![](images/app-from-a-script-runtime.png " ")
 
@@ -145,7 +141,6 @@ A page in APEX is made up of various components, such as regions, items, and but
     - List of Values > Display Extra Values - **Uncheck**
 
    ![](images/page-designer-team-member-id.png " ")
-   ![](images/page-designer-team-member-id2.png " ")
 
 4. Unfortunately there is not already a List of Values defined for the HOL_TASKS table. Therefore, you will need to define a list of values using a SQL Statement.
 
@@ -238,7 +233,7 @@ APEX includes different components for viewing and working with data in differen
 You have completed the workshop, well done! At this point you should have a basic understanding of how the Autonomous Transaction Processing service, along with APEX and SQL Developer Web can be used to develop data driven applications with very little code.
 
 ## Acknowledgements
-* **Author** - Salim Hlayel, Principle Product Manager
+* **Author** - Salim Hlayel, Product Manager
 * **Contributors** - Oracle LiveLabs QA Team (Jaden McElvey, Technical Lead, Kamryn Vinson, QA Intern, Arabella Yao, Product Manager Intern, DB Product Management)
-- **Last Updated By/Date** - Tom McGinn, Database Innovations Architect, Product Management, July 2020
+- **Last Updated By/Date** - Salim Hlayel, Product Manager, September 2021
 

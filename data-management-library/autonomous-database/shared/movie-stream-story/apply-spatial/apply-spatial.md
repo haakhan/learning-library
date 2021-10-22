@@ -1,18 +1,24 @@
-# Find Closest Pizza Shops with Spatial
+# Find the closest pizza shops with Oracle Spatial
 
 ## Introduction
 
+#### Video Preview
+
+[] (youtube:IpUuoOcpgho)
+
+Time to run a promotion to help keep our at-risk customers. Run a localized promotion by finding these customers' local pizza locations using Oracle Spatial's nearest neighbor algorithm.
+
 To reduce customer churn, our business has partnered with a pizza chain to offer coupons for free pizza. The promotion will be offered to customers identified as both likely to churn and within reasonable proximity to a pizza chain location. Likelihood to churn is covered in Lab 6 (Using Oracle Machine Learning AutoML UI to Predict Churn). In this lab you determine which customers are near one or more pizza chain locations, and for those customers, which location is the closest. Specifically, we will answer the following question: "For customers that are within 10km of pizza chain location(s), which is the closest and what is the distance?"
 
-Estimated Lab Time: 20 minutes
+Estimated Time: 20 minutes
 
-### About Product/Technology
+### About product/technology
 
-Oracle Database, including Oracle Autonomous Database, provides native support for spatial data management, analysis, and processing. Oracle Database stores spatial data (points, lines, polygons) in a native data type called SDO_GEOMETRY. Oracle Database also provides a native spatial index for high performance spatial queries. This spatial index relies on spatial metadata that is entered for each geometry column storing spatial data. Once spatial data is populated and indexed, robust APIs are available to perform spatial analysis, calculations, and processing.  A self-service web application, Spatial Studio, is also available for no-code access to the Spatial features of Oracle Database.
+Oracle Database, including Oracle Autonomous Database, provides native support for spatial data management, analysis, and processing. Oracle Database stores spatial data (points, lines, polygons) in a native data type called SDO_GEOMETRY. Oracle Database also provides a native spatial index for high performance spatial queries. This spatial index relies on spatial metadata that is entered for each geometry column storing spatial data. Once spatial data is populated and indexed, robust APIs are available to perform spatial analysis, calculations, and processing. A self-service web application, Spatial Studio, is also available for no-code access to the Spatial features of Oracle Database.
 
 ![Conceptual diagram of Spatial in Oracle Autonomous Database](images/spatial.png " ")
 
-To add spatial capability to a table, we can add and populate a column of type SDO_GEOMETRY and then create a spatial index. In the case of large tables, it would be preferable to enable spatial capability without having to create a new column. Fortunately, Spatial is a first-class feature of Oracle Database and, as such, is able to leverage many powerful mainstream Oracle features.  One such feature is **[function-based indexes](https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/indexes-and-index-organized-tables.html#GUID-9AD7651D-0F0D-4FC6-A984-5845F0224EE6)**, which allows creating an index on the result of a SQL function. This is perfect for Spatial: we create a function that accepts coordinates and returns SDO\_GEOMETRY, and then create a spatial index on the output of that function. Using a function-based spatial index, our table is enabled for spatial analysis without the need to add a geometry column.
+To add spatial capability to a table, we can add and populate a column of type SDO_GEOMETRY and then create a spatial index. In the case of large tables, it would be preferable to enable spatial capability without having to create a new column. Fortunately, Spatial is a first-class feature of Oracle Database and, as such, is able to leverage many powerful mainstream Oracle features. One such feature is **[function-based indexes](https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/indexes-and-index-organized-tables.html#GUID-9AD7651D-0F0D-4FC6-A984-5845F0224EE6)**, which allows creating an index on the result of a SQL function. This is perfect for Spatial: we create a function that accepts coordinates and returns SDO\_GEOMETRY, and then create a spatial index on the output of that function. Using a function-based spatial index, our table is enabled for spatial analysis without the need to add a geometry column.
 
 For a hands-on general introduction, you are encouraged to review **[Introduction to Oracle Spatial Workshop] (https://apexapps.oracle.com/pls/apex/dbpm/r/livelabs/view-workshop?wid=736)**
 
@@ -20,24 +26,29 @@ For a hands-on general introduction, you are encouraged to review **[Introductio
 ### Objectives
 
 In this lab, you will:
-* Create function-based spatial indexes for tables with latitude, longitude columns
-* Perform spatial queries to identify the nearest pizza location to customers
+- Create function-based spatial indexes for tables with latitude, longitude columns
+- Perform spatial queries to identify the nearest pizza location to customers
 
 
 ### Prerequisites
 
-* This lab requires completion of Labs 1-4 in the Contents menu on the left.
+- This lab requires completion of Labs 1&ndash;4 in the Contents menu on the left.
+- You can complete the prerequisite labs in two ways:
 
-**Note:** If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)**
+    a. Manually run through the labs.
 
-## Task 1: Prepare the Data
+    b. Provision your Autonomous Database and then go to the **Initializing Labs** section in the contents menu on the left. Initialize Labs will create the MOVIESTREAM user plus the required database objects.
+
+> **Note:** If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)**
+
+## Task 1: Prepare the data
 
 To prepare your data for spatial analyses, you create function-based spatial indexes on the CUSTOMER\_CONTACT and PIZZA\_LOCATION tables. Function-based spatial indexes enable tables for spatial analysis without the need to create geometry columns. Tables with coordinate columns are always good candidates for a function-based spatial index.
 
 
-1. As described in the Lab entitled "Create a Database User", Task 3, navigate to a SQL Worksheet as user MOVIESTREAM.
+1. As described in Task 3 of the Lab entitled "Create a Database User," navigate to a SQL Worksheet as user MOVIESTREAM.
 
-2. Begin by creating a function that accepts coordinates and returns a geometry. In order to use a function for a function-based index, it must be declared DETERMINISTIC. This means that a given input will always return the same output.  Our case of returning a geometry from latitude, longitude input meets this requirement. Run the following command to create the function.
+2. Begin by creating a function that accepts coordinates and returns a geometry. In order to use a function for a function-based index, it must be declared DETERMINISTIC. This means that a given input will always return the same output. Our case of returning a geometry from latitude, longitude input meets this requirement. Run the following command to create the function.
 
     ```
 	<copy>
@@ -121,7 +132,7 @@ To prepare your data for spatial analyses, you create function-based spatial ind
     </copy>
     ```
 
-## Task 2: Run Spatial Queries
+## Task 2: Run spatial queries
 
 Oracle Autonomous Database provides an extensive SQL API for spatial analysis. This includes spatial relationships, measurements, aggregations, transformations, and more. In this lab you focus on one of those spatial analysis operations, "nearest neighbor" analysis. Nearest neighbor analysis refers to identifying which item(s) are nearest to a location.
 
@@ -144,8 +155,7 @@ There are 2 scenarios for a nearest neighbor query: search all items for nearest
 
 - Scenario 2: Search for nearest pizza location that offers gluten-free, where availability of gluten-free at pizza locations is identified using a SQL predicate such as gluten\_free\_available='yes'.
 
-This lab is based on scenario 1.  Scenario 2 requires a slightly different syntax for the nearest neighbor SQL operator and adds some complexity to queries at the end of this section. For details on the distinction between these scenarios and the associated syntax, please see the **[nearest neighbor documentation](https://docs.oracle.com/en/database/oracle/oracle-database/19/spatl/spatial-operators-reference.html#GUID-41E6B1FA-1A03-480B-996F-830E8566661D)**.
-
+This lab is based on scenario 1. Scenario 2 requires a slightly different syntax for the nearest neighbor SQL operator and adds some complexity to queries at the end of this section. For details on the distinction between these scenarios and the associated syntax, please see the **[nearest neighbor documentation](https://docs.oracle.com/en/database/oracle/oracle-database/19/spatl/spatial-operators-reference.html#GUID-41E6B1FA-1A03-480B-996F-830E8566661D)**.
 
 
 1. Begin with a **nearest neighbor query**, which returns item(s) nearest to a specific location. Run the following query to identify the pizza location nearest to customer 1029765.
@@ -164,7 +174,7 @@ This lab is based on scenario 1.  Scenario 2 requires a slightly different synta
 
     ![Nearest neighbor query results](images/spatial-05.png " ")
 
- 2. To return the 5 nearest pizza locations, update the sdo\_num\_res parameter from 1 to 5 and re-run.
+2. To return the 5 nearest pizza locations, update the sdo\_num\_res parameter from 1 to 5 and re-run.
 
     ```
     <copy>
@@ -198,7 +208,7 @@ This lab is based on scenario 1.  Scenario 2 requires a slightly different synta
 
     ![Nearest neighbor query showing distance](images/spatial-07.png " ")
 
- 4. To return the 5 nearest pizza locations with distance, update the sdo\_num\_res parameter from 1 to 5 and re-run. Notice the addition of ORDER BY to order results by distance.
+4. To return the 5 nearest pizza locations with distance, update the sdo\_num\_res parameter from 1 to 5 and re-run. Notice the addition of ORDER BY to order results by distance.
 
     ```
     <copy>
@@ -218,7 +228,7 @@ This lab is based on scenario 1.  Scenario 2 requires a slightly different synta
     ![Five nearest pizza locations with distance](images/spatial-08.png " ")
 
 
-5. The previous queries identified pizza locations nearest to a single customer location (i.e. customer 1019429). You can also use the sdo_nn( ) operator to identify the nearest pizza location for a set of customer locations. This is a **nearest neighbor join**, where pizza and customer locations are joined based on the nearest neighbor relationship. Run the following query to identify the nearest pizza location for all customers in Rhode Island.
+5. The previous queries identified pizza locations nearest to a single customer location (that is, customer 1019429). You can also use the sdo_nn( ) operator to identify the nearest pizza location for a set of customer locations. This is a **nearest neighbor join**, where pizza and customer locations are joined based on the nearest neighbor relationship. Run the following query to identify the nearest pizza location for all customers in Rhode Island.
 
     ```
     <copy>
@@ -311,36 +321,40 @@ This lab is based on scenario 1.  Scenario 2 requires a slightly different synta
     </copy>
     ```
 
-###Performance and Scaling
+###Performance and scaling
 Parallel processing is a powerful capability of Oracle Database for high performance and scalability. Parallelized operations are spread across database server processors, where performance generally increases linearly with the "degree of parallelism" (DOP). DOP can be thought of as the number of processors that the operation is spread over. Many spatial operations of Oracle database support parallel processing, including nearest neighbor.
 
-In customer-managed (non-Autonomous) Oracle Database, the degree of parallelism is set using optimizer hints. In Oracle Autonomous Database, parallelism is ... you guessed it... autonomous.  A feature called "auto-DOP" controls parallelism based on available processing resources for the database session. Those available processing resources are in turn based on; 1) the service used for the current session: (service)\_LOW, (service)\_MEDIUM, or (service)\_HIGH, and 2) the shape (total OCPUs) of the Autonomous Database. Changing your connection from LOW to MEDIUM to HIGH  will increase the degree of parallelism and consume more of the overall processing resources for other operations.  So a balance must be reached between optimal performance and sufficient resources for all workloads. Details can be found in the documentation [here](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/manage-priorities.html#GUID-19175472-D200-445F-897A-F39801B0E953).
+In customer-managed (non-Autonomous) Oracle Database, the degree of parallelism is set using optimizer hints. In Oracle Autonomous Database, parallelism is ... you guessed it... autonomous. A feature called "Auto DOP" controls parallelism based on available processing resources for the database session. Those available processing resources are in turn based on; 1) the service used for the current session: (service)\_LOW, (service)\_MEDIUM, or (service)\_HIGH, and 2) the shape (total OCPUs) of the Autonomous Database. Changing your connection from LOW to MEDIUM to HIGH  will increase the degree of parallelism and consume more of the overall processing resources for other operations. So a balance must be reached between optimal performance and sufficient resources for all workloads. Details can be found in the [**documentation**](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/manage-priorities.html#GUID-19175472-D200-445F-897A-F39801B0E953).
 
-## Task 3: Purge Changes (Optional)
+## Task 3: Purge changes (optional)
 
 If you would like to purge all changes made in this lab, run the following commands in order.
 
-    <copy>
-    DROP INDEX customer_sidx;
+```
+<copy>
+DROP INDEX customer_sidx;
 
-    DROP INDEX pizza_location_sidx;
+DROP INDEX pizza_location_sidx;
 
-    DELETE FROM user_sdo_geom_metadata
-    WHERE TABLE_NAME in ('CUSTOMER_CONTACT','PIZZA_LOCATION');
+DELETE FROM user_sdo_geom_metadata
+WHERE TABLE_NAME in ('CUSTOMER_CONTACT','PIZZA_LOCATION');
 
-    DROP TABLE customer_nearest_pizza ;
+DROP TABLE customer_nearest_pizza ;
 
-    DROP FUNCTION latlon_to_geometry;
-    </copy>
+DROP FUNCTION latlon_to_geometry;
+</copy>
+```
 
-You may now [proceed to the next lab](#next).
+Please *proceed to the next lab*.
 
-## Learn More
+## Learn more
 * [Spatial product portal](https://www.oracle.com/database/spatial/)
 * [Spatial documention](https://docs.oracle.com/en/database/oracle/oracle-database/21/spatl/index.html)
 * [Spatial blogs](https://blogs.oracle.com/oraclespatial/)
+* [Performing spatial analyses on Latitude, Longitude data in Oracle Database](https://blogs.oracle.com/oraclespatial/performing-spatial-analyses-on-latitude-longitude-data-in-oracle-database)
+* [Tips on tuning SDO_NN (nearest neighbor) queries](https://blogs.oracle.com/oraclespatial/tips-on-tuning-sdonn-nearest-neighbor-queries)
 
 ## Acknowledgements
-* **Author** - David Lapp, Database Product Management, Oracle
+* **Author** - David Lapp, Oracle Database Product Management, Oracle
 * **Contributors** -  Marty Gubar, Patrick Wheeler, Keith Laker, Rick Green
 * **Last Updated By/Date** - David Lapp, July 2021

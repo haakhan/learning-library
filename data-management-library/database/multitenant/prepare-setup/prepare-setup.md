@@ -1,9 +1,9 @@
-# Prepare Setup
+# Prepare setup
 
 ## Introduction
 In this lab, you will download the Oracle Resource Manager (ORM) stack zip file needed to setup the resource needed to run this workshop. This workshop requires a compute instance and a Virtual Cloud Network (VCN).
 
-*Estimated Lab Time:* 15 minutes
+Estimated Time: 15 minutes
 
 ### Objectives
 -   Download ORM stack
@@ -15,14 +15,14 @@ This lab assumes you have:
 - SSH Keys
 
 ## Task 1: Download Oracle Resource Manager (ORM) stack zip file
-1.  Click on the link below to download the Resource Manager zip file you need to build your environment: [db-multitenant-mkplc-freetier.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/G7LZB2PC1IU-WlBfrsDzKTgqKL9vbyhE5mWrF01MAyD3Gi589C6detaJdbTESF3F/n/natdsecurity/b/stack/o/db-multitenant-mkplc-freetier.zip)
+1.  Click the link below to download the Resource Manager zip file you need to build your environment: [db-multitenant-mkplc-freetier.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/G7LZB2PC1IU-WlBfrsDzKTgqKL9vbyhE5mWrF01MAyD3Gi589C6detaJdbTESF3F/n/natdsecurity/b/stack/o/db-multitenant-mkplc-freetier.zip)
 
 2.  Save in your downloads folder.
 
-We strongly recommend using this stack to create a self-contained/dedicated VCN with your instance(s). Skip to *Step 3* to follow our recommendations. If you would rather use an exiting VCN then proceed to the next step as indicated below to update your existing VCN with the required Egress rules.
+We strongly recommend using this stack to create a self-contained/dedicated Virtual Cloud Network (VCN) with your instance(s). Skip to *Step 3* to follow our recommendations. If you would rather use an exiting VCN then proceed to the next step as indicated below to update your existing VCN with the required Egress rules.
 
-## Task 2: Adding Security Rules to an Existing VCN  (Optional) 
-This workshop requires a certain number of ports to be available, a requirement that can be met by using the default ORM stack execution that creates a dedicated VCN. In order to use an existing VCN the following ports should be added to Egress rules
+## Task 2: Add security rules to an existing VCN  (optional)
+This workshop requires a certain number of ports to be available, a requirement that you can meet by using the default ORM stack execution that creates a dedicated VCN. To use an existing VCN, add the following ports to Egress rules:
 
 | Port           |Description                            |
 | :------------- | :------------------------------------ |
@@ -31,10 +31,10 @@ This workshop requires a certain number of ports to be available, a requirement 
 | 1523           | DB Listener                           |
 | 1524           | DB Listener                           |
 
-1.  Go to *Networking >> Virtual Cloud Networks*
+1.  Go to *Networking > Virtual Cloud Networks*
 2.  Choose your network
 3.  Under Resources, select Security Lists
-4.  Click on Default Security Lists under the Create Security List button
+4.  Click Default Security Lists under the Create Security List button
 5.  Click Add Ingress Rule button
 6.  Enter the following:  
     - Source CIDR: 0.0.0.0/0
@@ -44,12 +44,12 @@ This workshop requires a certain number of ports to be available, a requirement 
 ## Task 3: Setup Compute   
 Using the details from the two steps above, proceed to the lab *Environment Setup* to setup your workshop environment using Oracle Resource Manager (ORM) and one of the following options:
   -  Create Stack:  *Compute + Networking*
-  -  Create Stack:  *Compute only* with an existing VCN where security lists have been updated as per *Step 2* above
+  -  Create Stack:  *Compute only* with an existing VCN where security lists have been updated per *Step 2* above
 
-You may now [proceed to the next lab](#next).
+Please *proceed to the next lab*.
 
 ## Acknowledgements
 
 * **Author** - Rene Fontcha, LiveLabs Platform Lead, NA Technology
 * **Contributors** - Meghana Banka, Rene Fontcha, Narayanan Ramakrishnan
-* **Last Updated By/Date** - Kay Malcolm, May 2021
+* **Last Updated By/Date** - Rick Green, Database User Assistance, May 2021

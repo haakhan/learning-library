@@ -5,13 +5,13 @@ inject-note: true
 # Analyze Alerts and Audit Reports
 
 ## Introduction
-After you enable audit data collection on a target database in Oracle Data Safe, you can analyze the audit data via alerts and audit reports. Begin by viewing and manipulating the generated alerts for your Autonomous Transaction Processing (ATP) database. You can do so from the Alerts tab and from the dashboard on the Home tab in the Oracle Data Safe Console. Also analyze the collected audit data by viewing and modifying various audit reports. Finish by creating your own custom report that shows user login activity.
+After you enable audit data collection on a target database in Oracle Data Safe, you can analyze the audit data through alerts and audit reports. Begin by viewing and manipulating the generated alerts for your Autonomous Transaction Processing (ATP) database. You can do so from the Alerts tab and from the dashboard on the Home tab in the Oracle Data Safe Console. Also analyze the collected audit data by viewing and modifying various audit reports. Finish by creating your own custom report that shows user login activity.
 
 Estimated Lab Time: 20 minutes
 
 ### Objectives
 
-You learn how to perform the following tasks:
+In this lab, you will:
 
 - View and close alerts
 - Analyze open alerts from the dashboard
@@ -22,12 +22,12 @@ You learn how to perform the following tasks:
 
 ### Prerequisites
 
-Before starting, be sure that you have completed the following prerequisite tasks:
+This lab assumes you have:
 
-- You obtained an Oracle Cloud account and signed in to the Oracle Cloud Infrastructure Console.
-- You prepared your environment for this workshop. If not, see [Prepare Your Environment](?lab=prepare-environment). It's important that your ATP database is registered with Oracle Data Safe, the Activity Auditing feature is enabled on your database, and you have the appropriate privileges in Oracle Data Safe to use the Activity Auditing feature with your database.
-- You registered your Autonomous Database with Oracle Data Safe and loaded sample data into it. If not, see [Register an Autonomous Database](?lab=register-autonomous-database).
-- Audit data collection is started in Oracle Data Safe for your database. If not, see [Provision Audit and Alert Policies](?lab=provision-audit-alert-policies).
+- Obtained an Oracle Cloud account and signed in to the Oracle Cloud Infrastructure Console
+- Prepared your environment for this workshop (see [Prepare Your Environment](?lab=prepare-environment)). It's important that your ATP database is registered with Oracle Data Safe, the Activity Auditing feature is enabled on your database, and you have the appropriate privileges in Oracle Data Safe to use the Activity Auditing feature with your database.
+- Registered your Autonomous Database with Oracle Data Safe and loaded sample data into it (see [Register an Autonomous Database](?lab=register-autonomous-database))
+- Started audit data collection in Oracle Data Safe for your database (see [Provision Audit and Alert Policies](?lab=provision-audit-alert-policies))
 
 
 ### Assumptions
@@ -37,22 +37,16 @@ Before starting, be sure that you have completed the following prerequisite task
 
 ## Task 1: View and close alerts
 
-1. If you are already signed in to the Oracle Data Safe Console, click the **Oracle Data Safe** tab in your browser.
+1. If you are in the Oracle Data Safe Console, click the **Alerts** tab.
 
-2. If you are not signed in to the Oracle Data Safe Console, do the following:
+2. If you are in Security Center, click **Activity Auditing**. When the Oracle Data Safe Console is displayed, click the **Alerts** tab.
 
-    1. Click the browser tab named **Oracle Cloud Infrastructure**, and sign in to the Console if needed.
-    2. From the navigation menu, select **Oracle Database**, and then **Data Safe**. The **Overview** page for the Oracle Data Safe service is displayed.
-    3. Click **Service Console**. The **Home** tab in the Oracle Data Safe Console is displayed.
-
-3. In Oracle Data Safe Console, click the **Alerts** tab.
-
-4. View the total number of target databases, critical risk alerts, high risk alerts, medium risk alerts, open alerts, and closed alerts. At a glance, you can better understand whether the security of your database is in jeopardy and how you should prioritize your work.
+3. View the total number of target databases, critical risk alerts, high risk alerts, medium risk alerts, open alerts, and closed alerts. At a glance, you can better understand whether the security of your target database is in jeopardy and how you should prioritize your work.
 
     ![Alert totals](images/totals-alerts-page.png "Alert totals")
 
 
-5. Scroll down to review the alerts in the table.
+4. Scroll down to review the alerts in the table.
 
     - The **DB User** column identifies who is doing the action.
     - The **Operation** column identifies the action.
@@ -61,52 +55,47 @@ Before starting, be sure that you have completed the following prerequisite task
     ![Alerts in the table](images/alert-table.png "Alerts in the table")
 
 
-6. At the bottom of the page, click the page numbers to view other pages of alerts.
+5. At the bottom of the page, click the page numbers to view other pages of alerts.
 
-7. To filter the report to show only open high alerts, at the top of the report, click **+ Filter** and then set the filter to be: **Alert Severity = High**. Click **Apply**.
+6. To filter the report to show only open high alerts, at the top of the report, click **+ Filter** and then set the filter to be: **Alert Severity = High**. Click **Apply**. The table shows you the open high alerts.
 
     - If the filters are not displayed, click **Filters** below the totals at the top of the page.
     - Leave the default filters on **Alert Status** and **Operation Time** set as is.
 
     ![Alert filters](images/high-alert-severity.png "Alert filters")
 
-    The table shows you the open high alerts.
 
-8. To sort the **Operation** column, position the cursor over the **Operation** column heading, and then click the arrow button.
+7. To sort the **Operation** column, position the cursor over the **Operation** column heading, and then click the arrow button.
 
     ![Sort the DB User column icon](images/sort-operation-column.png "Sort the DB User column icon")
 
-9. To view more detail for an alert, click the alert ID.
+8. To view more detail for an alert, click the alert ID.
 
     ![An alert ID highlighted in the Alerts table](images/click-alert-id.png "An alert ID highlighted in the Alerts table")
 
-10. Review the information in the **Alert Details** dialog box, and then click **X** to close it. You can view the **DB User**, **Operation Status**, **SQL Text**, and much more.
+9. Review the information in the **Alert Details** dialog box, and then click **X** to close it. You can view the **DB User**, **Operation Status**, **SQL Text**, and much more.
 
     ![Alert Details dialog box](images/alert-details-dialog-box.png "Alert Details dialog box")
 
-11. To remove the filters, click the **X** next to each filter, and then click **Apply**.
+10. To remove the filters, click the **X** next to each filter, and then click **Apply**.
 
-12. To create a filter to view the list of alerts for user entitlement changes, do the following:
+11. Create a filter to view the list of alerts for user entitlement changes. To do so, click **+ Filter**. Set the filter to be: **Alert = User Entitlement Changes**. Click **Apply**.
 
-    1. Click **+ Filter**.
-    2. Set the filter to be: **Alert = User Entitlement Changes**.
-    3. Click **Apply**.
-
-13. Review the alerts.
+12. Review the alerts.
 
     ![User Entitlement Changes alerts](images/user-entitlement-changes.png "User Entitlement Changes alerts")
 
-14. Suppose you are fine with these entitlement changes. Now you can close the alerts. Select the check box in the top left corner of the table to select all of the alerts displayed.
+13. Suppose you are fine with these entitlement changes. Now you can close the alerts. Select the check box in the top left corner of the table to select all of the alerts displayed.
 
-15. From the **Mark As** menu, select **Closed**. The alerts selected on this page are closed and the next page is displayed.
+14. From the **Mark As** menu, select **Closed**. The alerts selected on this page are closed and the next page is displayed.
 
     ![Mark As Closed](images/closed-alerts.png "Mark As Closed")
 
-16. Because there is another page of alerts that meet the filter criteria, repeat the previous step to mark all alerts with entitlement changes as closed.
+15. Because there is another page of alerts that meet the filter criteria, repeat the previous step to mark all alerts with entitlement changes as closed.
 
-17. Remove the filter **Alert = User Entitlement Changes**. Both open and closed alerts are displayed.
+16. Remove the filter **Alert = User Entitlement Changes**. Both open and closed alerts are displayed.
 
-18. To hide closed alerts on the pages, move the **Open Alerts only** slider to the right.
+17. To hide closed alerts on the pages, move the **Open Alerts only** slider to the right.
 
     ![Open Alerts only slider](images/show-open-alerts-only.png "Open Alerts only slider")  
 
@@ -168,13 +157,7 @@ Before starting, be sure that you have completed the following prerequisite task
 
 4. To filter the time period for the report, at the top, select **Last 1 Month**, and then click **Apply**.
 
-5. To filter the target database for the report, do the following:
-
-    1. In the **Filters** section, click **All Targets**.
-
-    2. In the **Select Targets** dialog box, deselect the check box for **All Targets**, click the field, select your target database, and then click **Done**.
-
-    3. Click **Apply**. Your target database is now set as a filter.
+5. Filter the target database for the report. To do so, in the **Filters** section, click **All Targets**. In the **Select Targets** dialog box, deselect the check box for **All Targets**, click the field, select your target database, and then click **Done**. Click **Apply**. Your target database is now set as a filter.
 
     ![Database set as a filter](images/last-one-month-filter.png "Database set as a filter")  
 
@@ -212,10 +195,10 @@ Before starting, be sure that you have completed the following prerequisite task
 
 ## Learn More
 
-* [Activity Auditing Reports](https://docs.oracle.com/en-us/iaas/data-safe/doc/activity-auditing-reports.html)
-* [Manage Alerts](https://docs.oracle.com/en-us/iaas/data-safe/doc/manage-alerts.html)
+* [Activity Auditing Reports](https://docs.oracle.com/en/cloud/paas/data-safe/udscs/activity-auditing-reports.html)
+* [Manage Alerts](https://docs.oracle.com/en/cloud/paas/data-safe/udscs/manage-alerts.html)
 
 
 ## Acknowledgements
 * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-* **Last Updated By/Date** - Jody Glover, May 28 2021
+* **Last Updated By/Date** - Jody Glover, September 27 2021

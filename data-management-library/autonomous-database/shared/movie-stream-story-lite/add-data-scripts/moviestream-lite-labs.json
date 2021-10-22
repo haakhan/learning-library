@@ -1,0 +1,4 @@
+{"lab_num":1,"title":"Logging script","script":"moviestream_write"}
+{"lab_num":2,"title":"Execute DDL script","script":"moviestream_exec"}
+{"lab_num":4,"title":"Add data sets required for workshop","script":"add_datasets"}
+{"lab_num":5,"title":"Create graph","script":"add_graph"}

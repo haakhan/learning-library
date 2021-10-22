@@ -13,7 +13,6 @@ If you don't have an Oracle Cloud account then you can quickly and easily sign u
 
 Click here to request your trial account: [https://www.oracle.com/cloud/free](https://www.oracle.com/cloud/free)
 
-
 ## Product Pages
 - [Micronaut](https://micronaut.io/)
 - [Oracle Cloud Infrastructure](https://www.oracle.com/cloud/)
@@ -21,7 +20,6 @@ Click here to request your trial account: [https://www.oracle.com/cloud/free](ht
 - [Oracle Cloud Documentation](https://docs.cloud.oracle.com/en-us/iaas/Content/home.htm)
 
 ## Documentation
-- [Micronaut Documentation](https://micronaut.io/documentation.html)
-- [Micronaut Data Documentation](https://micronaut-projects.github.io/micronaut-data/latest/guide/index.html)
+- [Micronaut Documentation](https://micronaut.io/docs/)
+- [Micronaut Data Documentation](https://micronaut-projects.github.io/micronaut-data/latest/guide/)
 - [Oracle Autonomous Database](https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/adboverview.htm)
-

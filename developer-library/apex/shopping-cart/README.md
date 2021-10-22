@@ -1,9 +1,9 @@
 # Oracle APEX Hands-On Lab
 
-## Building a Shopping Cart
+## Build a Shopping Cart
 
 ## Overview
-This workshop walks you through creation a Shopping Cart application that allows managing products, customers, and  stores. The application will have two application roles:
+This workshop walks you through creating a Shopping Cart application that allows managing products, customers, and stores. The application will have two application roles:
 
 * Administrators
     * To manage the products, customers and stores
@@ -28,40 +28,37 @@ Estimated Time: 90 minutes
 
 | # | Module | Est. Time |
 | --- | --- | --- |
-| 1 | [Signing up for an APEX Workspace](1-sign-up-apex.md) | 5 min |
-| 2 | [Installing Sample Tables](2-installing-sample-tables.md) | 15 min |
-| 3 | [Adding columns to Products table](3-adding-columns.md) | 15 min |
-| 4 | [Creating database objects](4-creating-db-objects.md) | 5 min |
-| 5 | [Creating the application](4-create-app.md) | 15 min |
-| 5 | [Improving Products page](5-improving-products.md) | 5 min |
-| 5 | [Creating supporting pages](5-improving-products.md) | 5 min |
-| 6 | [Creating a Map page](6-create-map.md) | 5 min |
-| 7 | [Managing the navigation menu ](7-improving-links.md) | 5 min |
+| 1 | [Install a Sample Dataset](?lab=1-installing-sample-tables) | 5 min |
+| 2 | [Add Columns to Products table](?lab=2-adding-columns) | 10 min |
+| 3 | [Create Database Objects](?lab=3-creating-db-objects) | 5 min |
+| 4 | [Create the Application](?lab=4-create-app) | 15 min |
+| 5 | [Create the Order Page](?lab=5-creating-orders-page) | 15 min |
+| 6 | [Create the Shopping Cart Page](?lab=6-creating-shopping-cart) | 20 min |
+| 7 | [Create the Add to Cart Page](?lab=7-creating-add-to-cart-page) | 20 min |
+| 8 | [Improve Products Page](?lab=8-improving-products) | 20 min |
+| 9 | [Improve Application](?lab=9-improving-app) | 10 min |
 
 
-## Navigating in the Lab
-To return to this page from anywhere within the lab click either Oracle Hands on Labs, or Home in the header.
+### **Let's Get Started!**
 
-![](images/0/lab-header.png)
+- If the menu is not displayed, you can open by clicking the menu button (![Menu icon](./images/menu-button.png)) at the top of the page.
+- If you don't have experience working with APEX, please take a look at [Page Designer](https://docs.oracle.com/en/database/oracle/application-express/21.1/htmdb/about-page-designer.html#GUID-F4A825A2-6BD5-4A11-8D68-B24B2B6ED18B) to familiarize with it.
 
-Click the navigation menu icon, in the upper-left corner of the header, to see a list of modules in this lab. Click any of the list entries to navigate directly to that module.
+### Downloads
 
-![](images/0/lab-menu.png)
-
-## Downloads
-
-[Click here](proofofconcept-app.sql) to download the completed application. 
+- [Download the completed application](https://objectstorage.us-ashburn-1.oraclecloud.com/p/Zj4e0yI2vy8IJhU1uanEjpi7CX7kj4xLWG_dHkcpkox0OX1bu6KWPYNzk8MLZJBb/n/c4u04/b/developer-library/o/shoppingcart-app.sql).
+- [Download images for your application](https://objectstorage.us-ashburn-1.oraclecloud.com/p/nDA-UBc8y27dbtyRu0DVR0u6CRUI1jRXTAP17J_Cd4QqUaTCxjdG4puUa4aF1qGm/n/c4u04/b/developer-library/o/clothing-images.zip).
 
 ## Learn More - *Useful Links*
 
-- APEX on Autonomous   https://apex.oracle.com/autonomous
-- APEX Service         https://apex.oracle.com/en/platform/apex-service/
-- APEX Collateral   https://apex.oracle.com
-- Tutorials   https://apex.oracle.com/en/learn/tutorials
-- Community   https://apex.oracle.com/community
-- External Site + Slack   http://apex.world
+- [APEX on Autonomous](https://apex.oracle.com/autonomous)
+- [APEX Service](https://apex.oracle.com/en/platform/apex-service/)
+- [APEX Collateral](https://apex.oracle.com)
+- [Tutorials](https://apex.oracle.com/en/learn/tutorials)
+- [Community](https://apex.oracle.com/community)
+- [External Site + Slack](http://apex.world)
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-apex-development-workshops). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
+## Acknowledgments
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+- **Author** - Monica Godoy, Principal Product Manager
+- **Last Updated By/Date** - Mónica Godoy, Principal Product Manager, September 2021

@@ -4,7 +4,7 @@
 
 This lab walks you through the steps to validate PeopleSoft schema objects on ADB-S
 
-Estimated Lab Time: 5 minutes
+Estimated Time: 5 minutes
 
 
 ### Objectives
@@ -12,15 +12,14 @@ Estimated Lab Time: 5 minutes
 In this lab, you will:
 * Validate PeopleSoft schema objects after MV2ADB job successful completion
 
-
-### Prerequisties
+### Prerequisites
 * Oracle user login access and SQL access on the on-premise PeopleSoft database system
 * SQL Access using ADMIN user on the PeopleSoft ADB-S database.
 
 
 ## Task 1: Source On-Premise Peoplesoft Objects count
 
-* Login as Oracle user and connect to the sqlplus prompt by entering the below SQL command
+1. Login as Oracle user and connect to the sqlplus prompt by entering the below SQL command
 
     ```
     <copy>[oracle@pscs92dmo-lnxdb-2 ~] sqlplus / as sysdba
@@ -47,7 +46,7 @@ In this lab, you will:
 
 ## Task 2: Peoplesoft Schema objects count on ADB-S
 
-* Login as root user to the source Peopleoft database system and connect to the ADB-S database and execute the below SQL commands to verify the count of Peoplesoft schema objects
+1. Login as root user to the source Peopleoft database system and connect to the ADB-S database and execute the below SQL commands to verify the count of Peoplesoft schema objects
 
     ```
     <copy>[oracle@pscs92dmo-lnxdb-2 ~] sqlplus admin@psadb_high
@@ -77,15 +76,3 @@ You may now **proceed to the next lab.**
 * **Authors** - Deepak Kumar M, PeopleSoft Architect
 * **Contributors** - Deepak Kumar M, PeopleSoft Architect
 * **Last Updated By/Date** - Deepak Kumar M, PeopleSoft Architect, Aug 2021
-
-
-
-
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/Migrate%20SaaS%20to%20OCI). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
-
-
-

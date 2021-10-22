@@ -93,7 +93,7 @@ Once you have provisioned an instance, you can access it from the **Infrastructu
 
   ![skills](./images/skills.png)
 
-2. Download the **Skill** by accessing this [link](https://objectstorage.us-ashburn-1.oraclecloud.com/p/efUHVuXRy_8QsKWdYPaEOzaH07C8wNKoWlwGZdx2ytgpP2cgf_QmSyMF66HW60Zd/n/c4u04/b/labfiles/o/Lab7-SkillTracker_1.0.zip)
+2. Download the **Skill** by accessing this [link](https://objectstorage.us-ashburn-1.oraclecloud.com/p/aA4xXJ3NFQgV6bxcrYEXjRpQtqYIsV40CVX2AZxKGd-CEtDgG6AxtK-BT-dwc7Jx/n/c4u03/b/labfiles/o/Lab7-SkillTracker_1.0.zip)
 
 3. In the up right corner of the Console, select **Import Skill**.
 

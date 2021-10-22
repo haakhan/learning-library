@@ -16,9 +16,7 @@ In this lab, you will be able to play with the DBSAT and understand how it works
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
     - Lab: Initialize Environment
@@ -42,31 +40,27 @@ This lab assumes you have:
 
 ## Task 1: Installing DBSAT
 
-1. Open a SSH session on your **DBSec-Lab VM as *oracle* user**
-
-      ````
-      <copy>sudo su - oracle</copy>
-      ````
+1. As OS user *oracle* on your **DBSec-Lab** VM remote desktop session, Double-Click on the *Terminal* icon on the desktop to launch a session
 
 2. Go to the scripts directory
 
-      ````
-      <copy>cd $DBSEC_LABS/dbsat</copy>
-      ````
+    ````
+    <copy>cd $DBSEC_LABS/dbsat</copy>
+    ````
 
 3. Create a directory to install DBSAT
 
-      ````
-      <copy>mkdir dbsat221</copy>
-      ````
+    ````
+    <copy>mkdir dbsat221</copy>
+    ````
 
 4. Unzip the DBSAT zip file
 
-      ````
-      <copy>unzip /u01/app/sources/dbsat-2.2.1.zip -d dbsat221</copy>
-      ````
+    ````
+    <copy>unzip /u01/app/sources/dbsat-2.2.1.zip -d dbsat221</copy>
+    ````
 
-   ![](./images/dbsat-001.png " ")
+    ![](./images/dbsat-001.png " ")
 
     **Note**:
     - For this lab, the DBSAT zip file has already been downloaded to DBSec-Lab VM into the folder **/u01/app/sources**
@@ -76,25 +70,25 @@ This lab assumes you have:
 
 1. Go to the dbsat directory just created
 
-      ````
-      <copy>cd $DBSEC_LABS/dbsat/dbsat221</copy>
-      ````
+    ````
+    <copy>cd $DBSEC_LABS/dbsat/dbsat221</copy>
+    ````
 
 2. Let's start by examining all DBSAT execution parameters
 
-      ````
-      <copy>./dbsat</copy>
-      ````
+    ````
+    <copy>./dbsat</copy>
+    ````
 
 3. You should see this
 
-   ![](./images/dbsat-002.png " ")
+    ![](./images/dbsat-002.png " ")
 
 4. Let’s run DBSAT to collect data from **pdb1**
 
-      ````
-      <copy>./dbsat collect dbsat_admin@pdb1 pdbhol</copy>
-      ````
+    ````
+    <copy>./dbsat collect dbsat_admin@pdb1 pdbhol</copy>
+    ````
 
     **Note**:
     - DBSAT will not create any objects in the database
@@ -108,7 +102,7 @@ This lab assumes you have:
       <copy>Oracle123</copy>
       ````
 
-   ![](./images/dbsat-003.png " ")
+    ![](./images/dbsat-003.png " ")
 
     **Note**:
     - Please note that `DBSAT_ADMIN` user is pre-seeded in this database
@@ -123,9 +117,9 @@ This lab assumes you have:
 ## Task 3: Generate the report
 1. Let’s run dbsat to analyze data from the pdbhol file
 
-      ````
-      <copy>./dbsat report pdbhol</copy>
-      ````
+    ````
+    <copy>./dbsat report pdbhol</copy>
+    ````
 
     **Note**:
     - You do not need to include the .zip extension
@@ -134,29 +128,29 @@ This lab assumes you have:
 
 2. DBSAT will prompt the user for one password – the password used when running the collector so it can unzip the file – followed by another password prompt that will be used to protect the reports zip file, plus the password confirmation: stick to "*`Oracle123`*"
 
-      ````
-      <copy>Oracle123</copy>
-      ````
+    ````
+    <copy>Oracle123</copy>
+    ````
 
-   ![](./images/dbsat-004.png " ")
+    ![](./images/dbsat-004.png " ")
 
 3. You will end up with the results of the analysis inside a password protected zip file named `pdbhol_report.zip`
 
 4. Let’s unzip the file to view the reports
 
-      ````
-      <copy>unzip pdbhol_report.zip</copy>
-      ````
+    ````
+    <copy>unzip pdbhol_report.zip</copy>
+    ````
 
-   ![](./images/dbsat-005.png " ")
+    ![](./images/dbsat-005.png " ")
 
 5. For the purpose of this lab, and as we are not using a desktop environment, copy the html file to the glassfish server directory by executing the script. This will make the html report accessible by your laptop browser
 
-      ````
-      <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
-      ````
+    ````
+    <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
+    ````
 
-   ![](./images/dbsat-006.png " ")
+    ![](./images/dbsat-006.png " ")
 
     **Note**:
     - This script will copy the html report to the glassfish webserver to make it easier for you to see the report
@@ -173,7 +167,7 @@ Please take a couple of minutes to scroll through the HTML report. You can click
 
 2. The report contains informational tables, like the one shown below and findings
 
-   ![](./images/dbsat-007.png " ")
+    ![](./images/dbsat-007.png " ")
 
     **Note**: Informational tables provide either summary information or additional context to the findings in the same section
 
@@ -219,7 +213,7 @@ Explains the reason for the rule and recommended actions for remediation.
 6. **References**
 If the finding is related to a CIS Oracle Database Benchmark 12c v2.0.0 recommendation, Oracle Database 12c STIG v1 r10 or related to a GDPR Article/Recitals, it will be mentioned here
 
-   ![](./images/dbsat-008.png " ")
+    ![](./images/dbsat-008.png " ")
 
 ## Task 6: Analyze the Report - Details
 
@@ -230,30 +224,30 @@ In this exercise, you will be guided by relevant DBSAT findings. This will provi
     - Click **Basic Information** in the Summary table
     - And scroll to **INFO.PATCH**
 
-       ![](./images/dbsat-009.png " ")
+    ![](./images/dbsat-009.png " ")
 
-        **Note**:
-        - This is a **Finding**
-        - It seems that the database needs to be patched! This is an important finding as it is one of the most common ways hackers get into databases. They exploit vulnerable, unpatched, databases
+    **Note**:
+    - This is a **Finding**
+    - It seems that the database needs to be patched! This is an important finding as it is one of the most common ways hackers get into databases. They exploit vulnerable, unpatched, databases
 
 2. You can always return to the Summary table by clicking **TOP** on the navigation panel (bottom right)
 
-   ![](./images/dbsat-010.png " ")
+    ![](./images/dbsat-010.png " ")
 
 3. Let’s have a look at "User Accounts" and search for the finding marked as **Medium Risk** (orange line)
 
     - Click the **User Accounts** link in the Summary table
     - And scroll to **USER.SAMPLE**
 
-       ![](./images/dbsat-011.png " ")
+    ![](./images/dbsat-011.png " ")
 
-        **Note**:
-        - DBSAT pointed out that we have users sample schemas `HR` and `SCOTT`. Should `HR` and `SCOTT` be around in this database?
-        - These sample schemas should not be in production databases... Keep this in mind!
+    **Note**:
+    - DBSAT pointed out that we have users sample schemas `HR` and `SCOTT`. Should `HR` and `SCOTT` be around in this database?
+    - These sample schemas should not be in production databases... Keep this in mind!
 
 4. What else can DBSAT show me on users? I’m curious about `SCOTT` and `HR`... Scroll down or search for **USER.INACTIVE**
 
-   ![](./images/dbsat-012.png " ")
+    ![](./images/dbsat-012.png " ")
 
     **Note**:
     - There are several user accounts with unlimited `INACTIVE_ACCOUNT_TIME`, including `SCOTT`
@@ -261,21 +255,21 @@ In this exercise, you will be guided by relevant DBSAT findings. This will provi
     Is it the case that these users have a user profile that do not impose limits on `INACTIVE_ACCOUT_TIME`?
     You can scroll up to the **USER ACCOUNTS** table and have a look at the profile that is set for these users `DEFAULT`
 
-   ![](./images/dbsat-013.png " ")
+    ![](./images/dbsat-013.png " ")
 
     - All Users belong to the `DEFAULT` Profile
 
 5. Search for **User Profiles** (or scroll down to that table)
 
-   ![](./images/dbsat-014.png " ")
+    ![](./images/dbsat-014.png " ")
 
-      **Note**:
-      - All database users are on the `DEFAULT` profile which has `INACTIVE_ACCOUNT_TIME = UNLIMITED`
-      - The `INACTIVE_ACCOUNT_TIME` profile parameter locks a user account that has not logged in to the database instance in a specified number of days
+    **Note**:
+    - All database users are on the `DEFAULT` profile which has `INACTIVE_ACCOUNT_TIME = UNLIMITED`
+    - The `INACTIVE_ACCOUNT_TIME` profile parameter locks a user account that has not logged in to the database instance in a specified number of days
 
 6. See the next finding – **USER.NOEXPIRE**
 
-   ![](./images/dbsat-015.png " ")
+    ![](./images/dbsat-015.png " ")
 
     **Note**: Findings in this section will provide a view on who are the users in my database, their status, password settings and user profiles
 
@@ -285,7 +279,7 @@ In this exercise, you will be guided by relevant DBSAT findings. This will provi
 
 9. This section provides information about System Privileges, Roles, Account Management Privileges, Privilege Management Privileges, Database Management Privileges, Audit Management Privileges, Data Access Privileges, Access Control Exemption Privileges, Access to Password Verifier Tables, Access to Restricted Objects, Users with DBA role, Users with Administrative privileges among others
 
-   ![](./images/dbsat-016.png " ")
+    ![](./images/dbsat-016.png " ")
 
     **Note**: This provides a powerful insight into what can users do that typically is not addressed in everyday vulnerability management products
 
@@ -299,12 +293,13 @@ In this exercise, you will be guided by relevant DBSAT findings. This will provi
     - Combinations are also possible **(D)(*)** means, directly granted with admin option
 
 12. Scroll down to **Account Management Privileges** (you can also search for **PRIV.ACCT** in the browser):
-      - This finding will present **direct** or **indirect grants** of account management privileges – `ALTER USER, CREATE USER, DROP USER` – and will show the grant path
-      - Either **direct as `JSCHAFFER: ALTER USER, CREATE USER, DROP USER`** or **indirect as `SCOTT <- APPROLE1 <- APPROLE2 <- APPROLE3 <- DBA: ALTER USER, CREATE USER, DROP USER`**
-      - `SCOTT` received those privileges via the `DBA` grant to `APPROLE3`, that was granted to `APPROLE2` and then to `APPROLE1`
-      - Finally, `APPROLE1` was granted to `SCOTT`
 
-   ![](./images/dbsat-017.png " ")
+    - This finding will present **direct** or **indirect grants** of account management privileges – `ALTER USER, CREATE USER, DROP USER` – and will show the grant path
+    - Either **direct as `JSCHAFFER: ALTER USER, CREATE USER, DROP USER`** or **indirect as `SCOTT <- APPROLE1 <- APPROLE2 <- APPROLE3 <- DBA: ALTER USER, CREATE USER, DROP USER`**
+    - `SCOTT` received those privileges via the `DBA` grant to `APPROLE3`, that was granted to `APPROLE2` and then to `APPROLE1`
+    - Finally, `APPROLE1` was granted to `SCOTT`
+
+    ![](./images/dbsat-017.png " ")
 
 13. Let’s have a look at another example: this time on **DBA Role** – **PRIV.DBA**
 
@@ -313,36 +308,36 @@ In this exercise, you will be guided by relevant DBSAT findings. This will provi
     - Do these users need it? This is something that DBSAT can’t define as it lacks organizational and processes awareness
     - That is why it is marked for review (Status = Evaluate)
 
-         ![](./images/dbsat-018.png " ")
+    ![](./images/dbsat-018.png " ")
 
-      **Note**:
-      - As a best practice the usage of the out-of-the-box DBA role should be avoided
-      - Customers are encouraged to create their own DBA-like role with the exact set of privileges required for the administrators to execute their daily tasks
+    **Note**:
+    - As a best practice the usage of the out-of-the-box DBA role should be avoided
+    - Customers are encouraged to create their own DBA-like role with the exact set of privileges required for the administrators to execute their daily tasks
 
 14. We have spent some time now looking into users, privileges, and roles. What about "Authorization Control"? Click **TOP** and in the summary table go to **Authorization Control**
 
-      ![](./images/dbsat-019.png " ")
+    ![](./images/dbsat-019.png " ")
 
     - The **AUTH.DV** Finding is marked Blue (Advisory) as it presents an opportunity for improvement. Database Vault (DBV) enables to define Realms around sensitive data to prevent unauthorized access, even from privileged users. Database Vault also enables to control command execution according to a particular factor(s). As an example, you can disable `DROP TABLE` in your production database or `ALTER SYSTEM` if not coming from a specific `IP ADDRESS` or day/time of day.
     - Database Vault may help address the Articles and Recitals mentioned above: **DBV help address GDPR topics related to pseudonymization, restriction of processing and security of processing**
     - **AUTH.PRIV** relates to Privilege Analysis: this finding is showing that `DBSAT_ADMIN` and `PA_ADMIN` can start the capture process. However it was never run!
 
-        **Note**:
-        - Privilege Analysis was first introduced with Oracle Database 12c and licensed as part of the Oracle Database Vault option
-        - Since then, Privilege Analysis has been used by many customers to reduce their attack surface area by helping them implement least privilege model
-        - **Privilege Analysis is now included with Oracle Database Enterprise Edition for no additional license fee**. This change applies to all supported versions of the Oracle Database
+    **Note**:
+    - Privilege Analysis was first introduced with Oracle Database 12c and licensed as part of the Oracle Database Vault option
+    - Since then, Privilege Analysis has been used by many customers to reduce their attack surface area by helping them implement least privilege model
+    - **Privilege Analysis is now included with Oracle Database Enterprise Edition for no additional license fee**. This change applies to all supported versions of the Oracle Database
 
-            Privilege Analysis allows to:
-            - Report on actual privileges and roles used in the database, e.g. to capture privilege and role usage for a period and report on the usage
-            - Identify unused privileges and roles by users and applications, e.g. Privileges used by DBA
-            - Reduce risk by helping enforce least privilege for users and applications
+        Privilege Analysis allows to:
+        - Report on actual privileges and roles used in the database, e.g. to capture privilege and role usage for a period and report on the usage
+        - Identify unused privileges and roles by users and applications, e.g. Privileges used by DBA
+        - Reduce risk by helping enforce least privilege for users and applications
 
 15. Go to **Fine-Grained Access Control** – CTRL + F **ACCESS.REDACT**
     - This section displays information on Data Redaction, VPD, RAS Policies, Label Security and Transparent Sensitive Data Protection (TSDP) policies
     - In case there are policies in place, these findings will show them
     - Users not impacted by policies and that can manage or create them are listed in the findings
 
-   ![](./images/dbsat-020.png " ")
+    ![](./images/dbsat-020.png " ")
 
 16. Have a look and when finished move to the next section **Auditing**
     - There are Unified Audit trail records
@@ -352,11 +347,11 @@ In this exercise, you will be guided by relevant DBSAT findings. This will provi
 
     **Note**: When **Unified Audit** is in place, all information about Traditional Auditing is ignored and it is not displayed in the findings
 
-   ![](./images/dbsat-021.png " ")
+    ![](./images/dbsat-021.png " ")
 
 17. Moving to the next finding – **AUDIT.ADMIN** – and we find out that auditing for administrative actions by `SYS` is not being performed
 
-   ![](./images/dbsat-022.png " ")
+    ![](./images/dbsat-022.png " ")
 
 18. Scroll down to **Data Encryption** – CTRL + F **CRYPT.TDE**
     - No encrypted tablespaces and no encrypted columns
@@ -368,27 +363,27 @@ In this exercise, you will be guided by relevant DBSAT findings. This will provi
 
     - We will discover sensitive data with DBSAT Discoverer in one of the next labs
 
-   ![](./images/dbsat-023.png " ")
+    ![](./images/dbsat-023.png " ")
 
 19. Let’s get to the next section – **Database Configuration**- and have a look at some of the findings. This section starts with an informational table that provides a summary of relevant security-related database initialization parameters
 
-   ![](./images/dbsat-024.png " ")
+    ![](./images/dbsat-024.png " ")
 
 20. Scroll down or search for **CONF.DIR**: it's also marked as posing a **Medium Risk**
     - A special look needs to be taken into these **DIRECTORY** Objects as they allow access to the server's file system from PL/SQL code within the database
     - Access to files that are used by the database kernel itself should not be permitted. **Directories with both write and execute** will be flagged
     - Make sure all DIRECTORY objects are needed and for the ones that are, point them to other directories rather than inside `$ORACLE_HOME`, `$ORACLE_BASE`
 
-      **Note**:
+    **Note**:
 
-      - This finding detail list all the directories (DIRECTORY objects) in the database (17) and then the directories that pose risk
-      - In this particular case, the last line of the details show "`Access to $ORACLE_HOME: ORACLE_HOME`", meaning that the DIRECTORY object that point to `$ORACLE_HOME` path is called "`ORACLE_HOME`"
+    - This finding detail list all the directories (DIRECTORY objects) in the database (17) and then the directories that pose risk
+    - In this particular case, the last line of the details show "`Access to $ORACLE_HOME: ORACLE_HOME`", meaning that the DIRECTORY object that point to `$ORACLE_HOME` path is called "`ORACLE_HOME`"
 
-   ![](./images/dbsat-025.png " ")
+    ![](./images/dbsat-025.png " ")
 
 21. No backups were found in the past 90 days
 
-   ![](./images/dbsat-026.png " ")
+    ![](./images/dbsat-026.png " ")
 
 22. Click [**TOP**] on the navigation panel (bottom right)
 
@@ -396,7 +391,7 @@ In this exercise, you will be guided by relevant DBSAT findings. This will provi
 
 24. Scroll down to **"OS.FILES"**. In this finding, DBSAT will identified operating system file permissions that are wrongly set
 
-      ![](./images/dbsat-027.png " ")
+    ![](./images/dbsat-027.png " ")
 
     **Note**:
     - In this case, 10 files have wrong permission settings
@@ -409,19 +404,19 @@ In this exercise, you will learn how to execute DBSAT discoverer. DBSAT discover
 
 1. Go to the scripts directory
 
-      ````
-      <copy>cd $DBSEC_LABS/dbsat/dbsat221/Discover/conf</copy>
-      ````
+    ````
+    <copy>cd $DBSEC_LABS/dbsat/dbsat221/Discover/conf</copy>
+    ````
 
 2. Copy the provided `sample_dbsat.config`, make the copy writable and open it for editing
 
-      ````
-      <copy>cp sample_dbsat.config dbsat.config
-      chmod +w dbsat.config
-      vi dbsat.config</copy>
-      ````
+    ````
+    <copy>cp sample_dbsat.config dbsat.config
+    chmod +w dbsat.config
+    vi dbsat.config</copy>
+    ````
 
-   ![](./images/dbsat-028.png " ")
+    ![](./images/dbsat-028.png " ")
 
     **Note**:
     - The configuration file includes comments that should be sufficient to understand what the various parameters do
@@ -433,11 +428,11 @@ In this exercise, you will learn how to execute DBSAT discoverer. DBSAT discover
 
 3. Change the following parameter to:
 
-      ````
-      <copy>DB_SERVICE_NAME = pdb1</copy>
-      ````
+    ````
+    <copy>DB_SERVICE_NAME = pdb1</copy>
+    ````
 
-   ![](./images/dbsat-029.png " ")
+    ![](./images/dbsat-029.png " ")
 
     **Note**: When using "vi", you can type "i" to enter insert mode and edit the file, and don't forget to save it by typing "`:wq![Enter]`"
 
@@ -445,27 +440,27 @@ In this exercise, you will learn how to execute DBSAT discoverer. DBSAT discover
 
 5. Go back to the terminal and change directory to the dbsat home:
 
-      ````
-      <copy>cd ../..</copy>
-      ````
+    ````
+    <copy>cd ../..</copy>
+    ````
 
 6. Execute the DBSAT discoverer:
 
-      ````
-      <copy>./dbsat discover -c Discover/conf/dbsat.config pdb1_dbsat</copy>
-      ````
+    ````
+    <copy>./dbsat discover -c Discover/conf/dbsat.config pdb1_dbsat</copy>
+    ````
 
 7. Enter *`DBSAT_ADMIN`* as the username and "*`Oracle123`*" as the password
 
-      ````
-      <copy>DBSAT_ADMIN</copy>
-      ````
+    ````
+    <copy>DBSAT_ADMIN</copy>
+    ````
 
-      ````
-      <copy>Oracle123</copy>
-      ````
+    ````
+    <copy>Oracle123</copy>
+    ````
 
-   ![](./images/dbsat-030.png " ")
+    ![](./images/dbsat-030.png " ")
 
     **Note**:
     - At the end of the process, you’ll be asked to provide a password twice (please use "*`Oracle123`*")
@@ -473,25 +468,25 @@ In this exercise, you will learn how to execute DBSAT discoverer. DBSAT discover
 
 8. Unzip the file and check the contents by opening the HTML report in firefox
 
-      ````
-      <copy>unzip pdb1_dbsat_report.zip</copy>
-      ````
+    ````
+    <copy>unzip pdb1_dbsat_report.zip</copy>
+    ````
 
-   ![](./images/dbsat-031.png " ")
+    ![](./images/dbsat-031.png " ")
 
 9. As we are not using a desktop environment in this lab, copy the html file to the glassfish server directory by executing the script. This will make the html report accessible by your laptop browser
 
-      ````
-      <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
-      ````
+    ````
+    <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
+    ````
 
-   ![](./images/dbsat-032.png " ")
+    ![](./images/dbsat-032.png " ")
 
     **Note**: This script will copy the html report to the glassfish webserver to make it easier for you to see the report
 
 10. Open your web browser, copy-paste the URL provided for the discoverer html report as the output, and you should see the **Database Sensitive Data Assessment** report as shown below:
 
-      ![](./images/dbsat-033.png " ")
+    ![](./images/dbsat-033.png " ")
 
     **Note**: For real life cases you won’t need to copy file to glassfish, just unzip the files and open the html!
 
@@ -500,7 +495,7 @@ In this exercise, you will learn how to analyze the **Sensitive Data Assessment 
 
 1. Initial Section
 
-   ![](./images/dbsat-034.png " ")
+    ![](./images/dbsat-034.png " ")
 
 2. At the top of the report, you will find information about the Discoverer run details as the Date of DBSAT Report Generation along with the DBSAT Discoverer version
 
@@ -529,7 +524,7 @@ In this exercise, you will learn how to analyze the **Sensitive Data Assessment 
 
 5. Go to the next section, **Summary Table** to see, organized by Sensitive Category, the number of tables, the number of columns and the number of rows
 
-   ![](./images/dbsat-035.png " ")
+    ![](./images/dbsat-035.png " ")
 
     **Note**:
     - Keep in mind that one Table might contain columns/or column comments that might match more than one category, and that makes the total for **#Sensitive Tables** and **#Sensitive Rows** not to add up
@@ -542,7 +537,7 @@ In this exercise, you will learn how to analyze the **Sensitive Data Assessment 
 
     Sample findings:
 
-      ![](./images/dbsat-036.png " ")
+    ![](./images/dbsat-036.png " ")
 
       **Note**:
       - The first one lists the Schemas with Sensitive Data and then follows, by Risk Level, a recommendation on which security controls should be in place to protect this type of data followed by findings per Sensitive Category
@@ -550,11 +545,11 @@ In this exercise, you will learn how to analyze the **Sensitive Data Assessment 
 
 7. Go to **Schema View** section, to get the **Schema View**. The **Table Summary** shows the list of Schemas, Table names, number of total columns and sensitive columns, along with the number of rows and Sensitive Category
 
-   ![](./images/dbsat-037.png " ")
+    ![](./images/dbsat-037.png " ")
 
 8. Then the list of **Sensitive Column Details** with the Schema Name, Table Name, Column Name, Sensitive Category and Sensitive Type details and Risk Level
 
-   ![](./images/dbsat-038.png " ")
+    ![](./images/dbsat-038.png " ")
 
 9. DBSAT helped discovering Sensitive Types in different categories!
 
@@ -568,7 +563,7 @@ In this exercise, you will learn how **dbsat.config** parameters determine the b
 
 1. After reviewing the report (and in practice should review the actual table data), it is clear that DBSAT reported the column `LAST_INS_CLAIM` from table `HCM1.SUPPLEMENTAL_DATA` as containing **Healthcare Provider** data when it does not
 
-   ![](./images/dbsat-039.png " ")
+    ![](./images/dbsat-039.png " ")
 
     **Note**: Let’s exclude the false positive by leveraging the **Fully Qualified Column Name (FQCN)** that is in the csv generated report and the `EXCLUSION_LIST_FILE` parameter in dbsat.config
 
@@ -576,9 +571,9 @@ In this exercise, you will learn how **dbsat.config** parameters determine the b
 
 3. For simplicity, you can view the content of the csv by typing on the command line:
 
-      ````
-      <copy>column -s, -t < pdb1_dbsat_discover.csv |grep LAST_INS_CLAIM</copy>
-      ````
+    ````
+    <copy>column -s, -t < pdb1_dbsat_discover.csv |grep LAST_INS_CLAIM</copy>
+    ````
 
 4. The **FQCN** for this particular column, as displayed above, is `HCM1.SUPPLEMENTAL_DATA.LAST_INS_CLAIM`
 
@@ -586,72 +581,84 @@ In this exercise, you will learn how **dbsat.config** parameters determine the b
 
 6. Create a file called **exclude.ini**
 
-      ````
-      <copy>vi Discover/conf/exclude.ini</copy>
-      ````
+    ````
+    <copy>vi Discover/conf/exclude.ini</copy>
+    ````
 
 7. Paste the copied value and you should see this:
 
-   ![](./images/dbsat-040.png " ")
+    ![](./images/dbsat-040.png " ")
 
 8. Save the file by typing "`:wq![Enter]`"
 
 9. Open the dbsat.config file and set the parameter *`EXCLUSION_LIST_FILE = exclude.ini`*
 
-      ````
-      <copy>vi Discover/conf/dbsat.config</copy>
-      ````
+    ````
+    <copy>vi Discover/conf/dbsat.config</copy>
+    ````
 
-   ![](./images/dbsat-041.png " ")
+    ![](./images/dbsat-041.png " ")
 
 10. Save the file
 
 11. Rerun DBSAT Discoverer: Append "*`_v2`*" to the filename
 
-      ````
-      <copy>./dbsat discover -c Discover/conf/dbsat.config pdb1_dbsat_v2</copy>
-      ````
+    ````
+    <copy>./dbsat discover -c Discover/conf/dbsat.config pdb1_dbsat_v2</copy>
+    ````
 
 12. Unzip the file
 
-      ````
-      <copy>unzip pdb1_dbsat_v2_report.zip</copy>
-      ````
+    ````
+    <copy>unzip pdb1_dbsat_v2_report.zip</copy>
+    ````
 
 13. As we are not using a desktop environment in this lab, copy the html file to the glassfish server directory by executing the script. This will make the html report accessible in the glassfish application server and make it reacheable by your laptop browser
 
-      ````
-      <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
-      ````
+    ````
+    <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
+    ````
 
     **Note**: This script will copy the html report to the glassfish webserver to make it easier for you to see the report
 
 14. You should see this is the output:
 
-        Start Glassfish...
+    Start Glassfish...
 
-        Starting the Glassfish application...
+    Starting the Glassfish application...
 
-        Waiting for domain1 to start ..........
-        Successfully started the domain : domain1
-        domain  Location: /u01/app/glassfish/glassfish4/glassfish/domains/domain1
-        Log File: /u01/app/glassfish/glassfish4/glassfish/domains/domain1/logs/server.log
-        Admin Port: 4848
-        Command start-domain executed successfully.
+    Waiting for domain1 to start ..........
+    Successfully started the domain : domain1
+    domain  Location: /u01/app/glassfish/glassfish4/glassfish/domains/domain1
+    Log File: /u01/app/glassfish/glassfish4/glassfish/domains/domain1/logs/server.log
+    Admin Port: 4848
+    Command start-domain executed successfully.
 
-        Make a directory in the Glassfish HR app for the DBSAT HTML file...
-
-
-        Copy the .html files to our new Glassfish DBSAT directory...
+    Make a directory in the Glassfish HR app for the DBSAT HTML file...
 
 
-        Use your local browser to view it at:
+    Copy the .html files to our new Glassfish DBSAT directory...
 
-        http://<DBSec_Lab_Public_IP>:8080/hr_prod_pdb1/dbsat/pdb1_dbsat_discover.html
-        http://<DBSec_Lab_Public_IP>:8080/hr_prod_pdb1/dbsat/pdb1_dbsat_v2_discover.html
-        http://<DBSec_Lab_Public_IP>:8080/hr_prod_pdb1/dbsat/pdbhol_report.html
 
-15. Open your browser of choice, and copy-paste the URL provided as the output by replacing *`<DBSec_Lab_Public_IP>`* in the link by **your DBSecLab VM Public IP address**
+    Use your local browser to view it at:
+
+    http://<DBSec_Lab_Public_IP>:8080/hr_prod_pdb1/dbsat/pdb1_dbsat_discover.html
+    http://<DBSec_Lab_Public_IP>:8080/hr_prod_pdb1/dbsat/pdb1_dbsat_v2_discover.html
+    http://<DBSec_Lab_Public_IP>:8080/hr_prod_pdb1/dbsat/pdbhol_report.html
+
+15. On the right web browser window on your remote desktop, open a new tab and browse to any of the above, replacing *`<DBSec_Lab_Public_IP>`* with *`dbsec-lab`* :
+
+    ````
+    <copy>http://dbsec-lab:8080/hr_prod_pdb1/dbsat/pdb1_dbsat_discover.html</copy>
+    ````
+    ````
+    <copy>http://dbsec-lab:8080/hr_prod_pdb1/dbsat/pdb1_dbsat_v2_discover.html</copy>
+    ````
+    ````
+    <copy>http://dbsec-lab:8080/hr_prod_pdb1/dbsat/pdbhol_report.html</copy>
+    ````
+
+    **Notes:** You may also access this page outside of the remote desktop by going to by replacing *`<DBSec_Lab_Public_IP>`* in the link by **your DBSecLab VM Public IP address**
 
 16. Search for `LAST_INS_CLAIM` or the `SUPPLEMENTAL_DATA` table, and it is now gone (it's an easy way to remove false positives from the end report)
 
@@ -663,99 +670,99 @@ In this exercise, you will learn how **dbsat.config** parameters determine the b
 
     - Edit the configuration file and add change the following variables:
 
-          ````
-          <copy>vi Discover/conf/dbsat.config</copy>
-          ````
+    ````
+    <copy>vi Discover/conf/dbsat.config</copy>
+    ````
 
     - Set *`SCHEMAS_SCOPE = HR`* and *`MINROWS = 11`*
 
-         ![](./images/dbsat-042.png " ")
+    ![](./images/dbsat-042.png " ")
 
     - Save the file and run again. Append "*`_v3`*" to the filename
 
-          ````
-          <copy>./dbsat discover -c Discover/conf/dbsat.config pdb1_dbsat_v3</copy>
-          ````
+    ````
+    <copy>./dbsat discover -c Discover/conf/dbsat.config pdb1_dbsat_v3</copy>
+    ````
 
 19. Unzip the file
 
-      ````
-      <copy>unzip pdb1_dbsat_v3_report.zip</copy>
-      ````
+    ````
+    <copy>unzip pdb1_dbsat_v3_report.zip</copy>
+    ````
 
 20. Make the file available using Glassfish:
 
-      ````
-      <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
-      ````
+    ````
+    <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
+    ````
 
 21. Open the following link in your browser: *`http://<DBSec_Lab_Public_IP>:8080/hr_prod_pdb1/dbsat/pdb1_dbsat_v3_discover.html`*
 
 22. You should see a smaller report focused just on the `HR` schema and that excludes the `JOB_HISTORY` table
 
-   ![](./images/dbsat-043.png " ")
+    ![](./images/dbsat-043.png " ")
 
 ## Task 10: Advanced Discoverer - Getting into Pattern files, Sensitive Types, and Categories
 
 1. Let's start by adding some sample data to work with in the next exercise. For that you will create the schema `FINACME` and insert some sample **Company Financial Information**
 
-      ````
-      <copy>sqlplus system/Oracle123@pdb1</copy>
-      ````
+    ````
+    <copy>sqlplus system/Oracle123@pdb1</copy>
+    ````
 
 2. Carefully copy/paste the code below and **make sure that all statements execute successfully!**
 
-      ````
-      <copy>
-      drop user finacme cascade;
-      create user finacme identified by oracle temporary tablespace temp default tablespace users;
-      grant connect, create session to finacme;
-      grant create table to finacme;
-      alter user finacme quota 100M on USERS;
+    ````
+    <copy>
+    drop user finacme cascade;
+    create user finacme identified by oracle temporary tablespace temp default tablespace users;
+    grant connect, create session to finacme;
+    grant create table to finacme;
+    alter user finacme quota 100M on USERS;
 
-      create table finacme.company_data (
-         company_id number not null constraint company_data_company_id_pk primary key,
-         name varchar2(20),
-         stadr varchar2(20),
-         city varchar2(20),
-         state varchar2(20),
-         zip varchar2(20),
-         tax_payer_id number(12),
-         comp_profit number(20),
-         fy_end_date date );
-      </copy>
-      ````
+    create table finacme.company_data (
+       company_id number not null constraint company_data_company_id_pk primary key,
+       name varchar2(20),
+       stadr varchar2(20),
+       city varchar2(20),
+       state varchar2(20),
+       zip varchar2(20),
+       tax_payer_id number(12),
+       comp_profit number(20),
+       fy_end_date date );
+    </copy>
+    ````
 
 3. Insert some records
 
-      ````
-      <copy>
-      begin
-        for i in 1..100 loop
-            insert into finacme.company_data values (i, 'Company '||initcap(dbms_random.string('A', 10)) , 'California', 'San Francisco','CA','90000'+i,'19442350012'+i, i+23440003, sysdate-i);
-        end loop;
-      end;
-      /
-      commit;
-      </copy>
-      ````
+    ````
+    <copy>
+    begin
+      for i in 1..100 loop
+          insert into finacme.company_data values (i, 'Company '||initcap(dbms_random.string('A', 10)) , 'California', 'San Francisco','CA','90000'+i,'19442350012'+i, i+23440003, sysdate-i);
+      end loop;
+    end;
+    /
+    commit;
+    </copy>
+    ````
 
 4. Let’s gather table statistics
 
-      ````
-      <copy>exec dbms_stats.gather_table_stats('FINACME','COMPANY_DATA');</copy>
-      ````
+    ````
+    <copy>exec dbms_stats.gather_table_stats('FINACME','COMPANY_DATA');</copy>
+    ````
 
 5. Check the data to validate everything is ok
 
-      ````
-      <copy>
-      set pages 120
-      set lines 150
+    ````
+    <copy>
+    set pages 120
+    set lines 150
 
-      select * from finacme.company_data;   
-      </copy>
-      ````
+    select * from finacme.company_data;   
+    </copy>
+    ````
 
 6. Type "*`exit`*"
 
@@ -767,31 +774,31 @@ DBSAT uses pattern files and the regexes that are there defined to find sensitiv
 
 1. To get you familiarized with what a pattern file is, open the `sensitive_en.ini` file that is inside the **Discover/conf** directory
 
-      ````
-      <copy>
-      chmod +w Discover/conf/sensitive_en.ini
-      vi Discover/conf/sensitive_en.ini
-      </copy>
-      ````
+    ````
+    <copy>
+    chmod +w Discover/conf/sensitive_en.ini
+    vi Discover/conf/sensitive_en.ini
+    </copy>
+    ````
 
-   ![](./images/dbsat-044.png " ")
+    ![](./images/dbsat-044.png " ")
 
     - A **Pattern file** contains a collection of Sensitive Types, their regular expressions, and Categories
     - A **Sensitive Type** is defined as follows:
 
-            [SENSITIVE_TYPE_NAME]
-            COL_NAME_PATTERN = the java regex to search column names
-            COL_COMMENT_PATTERN = the java regex to search column comments
-            SENSITIVE_CATEGORY = the Sensitive Category to which the sensitive type belongs to.
+      [SENSITIVE_TYPE_NAME]
+      COL_NAME_PATTERN = the java regex to search column names
+      COL_COMMENT_PATTERN = the java regex to search column comments
+      SENSITIVE_CATEGORY = the Sensitive Category to which the sensitive type belongs to.
 
 2. Take your time and explore the file
 
 3. The first Sensitive Type in the file is the "`US SOCIAL SECURITY NUMBER (SSN)`" Sensitive Type is defined as the following:
 
-        [US SOCIAL SECURITY NUMBER (SSN)]
-        COL_NAME_PATTERN = (^|[_-])SSN#?($|[_-])|^SS#?$|(^|[_-])(SSN|SOC.*SEC.*).?(ID|NO|NUMBERS?|NUM|NBR|#)($|[_-])|^SOCIAL.?SEC(URITY)?#?$
-        COL_COMMENT_PATTERN = \bSS#\b|\bSSN#?\b|SOCIAL SECURITY (ID|NUM|\bNO\b|NBR|#)
-        SENSITIVE_CATEGORY = Identification Info - National IDs
+    [US SOCIAL SECURITY NUMBER (SSN)]
+    COL_NAME_PATTERN = (^|[_-])SSN#?($|[_-])|^SS#?$|(^|[_-])(SSN|SOC.*SEC.*).?(ID|NO|NUMBERS?|NUM|NBR|#)($|[_-])|^SOCIAL.?SEC(URITY)?#?$
+    COL_COMMENT_PATTERN = \bSS#\b|\bSSN#?\b|SOCIAL SECURITY (ID|NUM|\bNO\b|NBR|#)
+    SENSITIVE_CATEGORY = Identification Info - National IDs
 
 4. DBSAT will parse this pattern file and search for matches of the defined regexp patterns
     - In this example, it will search **column names** that match the regex "`(^|[_-])SSN#?($|[_-])|^SS#?$|(^|[_-])(SSN|SOC.*SEC.*).?(ID|NO|NUMBERS?|NUM|NBR|#)($|[_-])|^SOCIAL.?SEC(URITY)?#?$`"
@@ -804,9 +811,9 @@ DBSAT uses pattern files and the regexes that are there defined to find sensitiv
 
 6. Let’s have a second look at the **dbsat.config** file
 
-      ````
-      <copy>cat Discover/conf/dbsat.config</copy>
-      ````
+    ````
+    <copy>cat Discover/conf/dbsat.config</copy>
+    ````
 
     ![](./images/dbsat-045.png " ")
 
@@ -842,27 +849,27 @@ DBSAT uses pattern files and the regexes that are there defined to find sensitiv
 
     - Edit dbsat.config
 
-          ````
-          <copy>vi Discover/conf/dbsat.config</copy>
-          ````
+    ````
+    <copy>vi Discover/conf/dbsat.config</copy>
+    ````
 
     - Add the new Sensitive Category to the bottom of the file
 
-          ````
-          <copy>Financial Info - Company Data = Medium Risk</copy>
-          ````
+    ````
+    <copy>Financial Info - Company Data = Medium Risk</copy>
+    ````
 
-      ![](./images/dbsat-046.png " ")
+    ![](./images/dbsat-046.png " ")
 
     - Let’s revert some parameters back to the original values to get more data in the report:
 
-          ````
-          <copy>
-          SCHEMAS_SCOPE = ALL
-          MINROWS = 1
-          EXCLUSION_LIST_FILE =
-          </copy>
-          ````
+    ````
+    <copy>
+    SCHEMAS_SCOPE = ALL
+    MINROWS = 1
+    EXCLUSION_LIST_FILE =
+    </copy>
+    ````
 
     - Save dbsat.config file
 
@@ -870,51 +877,51 @@ DBSAT uses pattern files and the regexes that are there defined to find sensitiv
 
     - Edit the `sensitive_en.ini` file:
 
-          ````
-          <copy>vi  Discover/conf/sensitive_en.ini</copy>
-          ````
+    ````
+    <copy>vi  Discover/conf/sensitive_en.ini</copy>
+    ````
 
     - And add a the new Sensitive Type to the file as shown below
 
-          ````
-          <copy>
-          # Financial Info - Company Data
-          [PROFIT]
-          COL_NAME_PATTERN = ^(?!.*(NON)).*PROFIT
-          COL_COMMENT_PATTERN = ^(?!.*(NON)).*PROFIT
-          SENSITIVE_CATEGORY = Financial Info - Company Data
-          </copy>
-          ````
+    ````
+    <copy>
+    # Financial Info - Company Data
+    [PROFIT]
+    COL_NAME_PATTERN = ^(?!.*(NON)).*PROFIT
+    COL_COMMENT_PATTERN = ^(?!.*(NON)).*PROFIT
+    SENSITIVE_CATEGORY = Financial Info - Company Data
+    </copy>
+    ````
 
     - Save the file and run again - Append "*`_v4`*" to the filename
 
-          ````
-          <copy>./dbsat discover -c Discover/conf/dbsat.config pdb1_dbsat_v4</copy>
-          ````
+    ````
+    <copy>./dbsat discover -c Discover/conf/dbsat.config pdb1_dbsat_v4</copy>
+    ````
 
 10. Unzip the report file
 
-      ````
-      <copy>unzip pdb1_dbsat_v4_report.zip</copy>
-      ````
+    ````
+    <copy>unzip pdb1_dbsat_v4_report.zip</copy>
+    ````
 
 11. Make it available using Glassfish
 
-      ````
-      <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
-      ````
+    ````
+    <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
+    ````
 
 12. Go to your web browser and open: *`http://<DBSec_Lab_Public_IP>:8080/hr_prod_pdb1/dbsat/pdb1_dbsat_v4_discover.html`*
 
-   ![](./images/dbsat-047.png " ")
+    ![](./images/dbsat-047.png " ")
 
 13. A bit down in the report, this:
 
-   ![](./images/dbsat-048.png " ")
+    ![](./images/dbsat-048.png " ")
 
 14. And in the **Sensitive Column Details** section of the report:
 
-   ![](./images/dbsat-049.png " ")
+    ![](./images/dbsat-049.png " ")
 
 ## Task 12: Processing DBSAT report JSON output
 In this exercise, you will be exposed to the DBSAT utilities ("`dbsat_diff`" & "`dbsat_extract`"), the JSON output report, and how to get a relational view from it. The primary purpose of the JSON report is to open DBSAT reporter to integration with 3rd party tools. Another use case could be to build a model to load data from multiple databases and be able to compare/generate side-by-side reports.
@@ -923,32 +930,32 @@ In this exercise, you will be exposed to the DBSAT utilities ("`dbsat_diff`" & "
 
 1. Go to the scripts directory
 
-      ````
-      <copy>cd $DBSEC_LABS/dbsat</copy>
-      ````
+    ````
+    <copy>cd $DBSEC_LABS/dbsat</copy>
+    ````
 
 2. Unzip `dbsat_util.zip`
 
-      ````
-      <copy>unzip dbsat_util.zip -d dbsat221</copy>
-      ````
+    ````
+    <copy>unzip dbsat_util.zip -d dbsat221</copy>
+    ````
 
-   ![](./images/dbsat-050.png " ")
+    ![](./images/dbsat-050.png " ")
 
 
 3. Go to the DBSAT directory
 
-      ````
-      <copy>cd dbsat221</copy>
-      ````
+    ````
+    <copy>cd dbsat221</copy>
+    ````
 
 4. Using "`dbsat_extract`", extract findings by their identifiers
 
-      ````
-      <copy>python dbsat_extract -i CRYPT.TDE -i CONF.PWDFILE -v pdbhol_report.json</copy>
-      ````
+    ````
+    <copy>python dbsat_extract -i CRYPT.TDE -i CONF.PWDFILE -v pdbhol_report.json</copy>
+    ````
 
-   ![](./images/dbsat-051.png " ")
+    ![](./images/dbsat-051.png " ")
 
     **Note**: this script extract `CRYPT.TDE` and `CONF.PWDFILE` findings from the previously generated `hol_report.json` file
 
@@ -958,85 +965,85 @@ In this exercise, you will be exposed to the DBSAT utilities ("`dbsat_diff`" & "
     You can do some configuration changes and run dbsat collect and report again so you can have two different reports to compare.
     As an example, generate a second report:
 
-          ````
-          <copy>./dbsat collect dbsat_admin@pdb1 pdbhol2</copy>
-          ````
+    ````
+    <copy>./dbsat collect dbsat_admin@pdb1 pdbhol2</copy>
+    ````
 
-          ````
-          <copy>./dbsat report pdbhol2</copy>
-          ````
+    ````
+    <copy>./dbsat report pdbhol2</copy>
+    ````
 
-          ````
-          <copy>unzip pdbhol2_report.zip</copy>
-          ````
+    ````
+    <copy>unzip pdbhol2_report.zip</copy>
+    ````
 
     - Run the "`dbsat_diff`" script:
 
-          ````
-          <copy>python dbsat_diff pdbhol_report.json pdbhol2_report.json</copy>
-          ````
+    ````
+    <copy>python dbsat_diff pdbhol_report.json pdbhol2_report.json</copy>
+    ````
 
-   ![](./images/dbsat-052.png " ")
+    ![](./images/dbsat-052.png " ")
 
 
 6. Loading the JSON report into the database for further processing. In this simple case, we will load the JSON document into the Oracle Database and execute a query to get the findings in a relational view
 
     - Connect as *`DBA_DEBRA`*
 
-          ````
-          <copy>sqlplus dba_debra/Oracle123@pdb1</copy>
-          ````
+    ````
+    <copy>sqlplus dba_debra/Oracle123@pdb1</copy>
+    ````
 
     - Create a directory object to read from the dbsat installation directory:
 
-          ````
-          <copy>create or replace directory DBSAT_DIR as '/home/oracle/DBSecLab/livelabs/dbsat/dbsat221';</copy>
-          ````
+    ````
+    <copy>create or replace directory DBSAT_DIR as '/home/oracle/DBSecLab/livelabs/dbsat/dbsat221';</copy>
+    ````
 
     - Create a table to store the JSON report:
 
-          ````
-          <copy>
-          create table DBSAT_FOO(
-              docname varchar2(32),
-              doc CLOB check (DOC IS JSON));
-          </copy>
-          ````
+    ````
+    <copy>
+    create table DBSAT_FOO(
+        docname varchar2(32),
+        doc CLOB check (DOC IS JSON));
+    </copy>
+    ````
 
     - Insert the JSON report into the table:
 
-          ````
-          <copy>
-          insert into DBSAT_FOO values ('pdbhol_report.json', bfilename('DBSAT_DIR','pdbhol_report.json'));
+    ````
+    <copy>
+    insert into DBSAT_FOO values ('pdbhol_report.json', bfilename('DBSAT_DIR','pdbhol_report.json'));
 
-          commit;
-          </copy>
-          ````
+    commit;
+    </copy>
+    ````
 
     - Execute the following:
 
-          ````
-          <copy>
-          col docname format a17
-          col title format a50
-          col remarks format a60
-          set lines 400
-          set pages 100
+    ````
+    <copy>
+    col docname format a17
+    col title format a50
+    col remarks format a60
+    set lines 400
+    set pages 100
 
-          select docname, severity, title, remarks
-            from DBSAT_FOO, JSON_TABLE(
-                 doc,
-                 '$[*].items[*]' columns TYPE VARCHAR2(32) PATH '$.type',
-                 severity NUMBER PATH '$.severity',
-                 title VARCHAR2(128) PATH '$.title',
-                 remarks VARCHAR2(4000) PATH '$.remarks' )
-           where TYPE = 'finding'
-           order by docname, severity
-           /
-          </copy>
-          ````
+    select docname, severity, title, remarks
+      from DBSAT_FOO, JSON_TABLE(
+           doc,
+           '$[*].items[*]' columns TYPE VARCHAR2(32) PATH '$.type',
+           severity NUMBER PATH '$.severity',
+           title VARCHAR2(128) PATH '$.title',
+           remarks VARCHAR2(4000) PATH '$.remarks' )
+     where TYPE = 'finding'
+     order by docname, severity
+     /
+    </copy>
+    ````
 
-         ![](./images/dbsat-053.png " ")
+    ![](./images/dbsat-053.png " ")
 
     - Type "*`exit`*"
 
@@ -1044,17 +1051,17 @@ In this exercise, you will be exposed to the DBSAT utilities ("`dbsat_diff`" & "
 
 1. Go to the scripts directory
 
-      ````
-      <copy>cd $DBSEC_LABS/dbsat</copy>
-      ````
+    ````
+    <copy>cd $DBSEC_LABS/dbsat</copy>
+    ````
 
-1. Run the following script
+2. Run the following script
 
-      ````
-      <copy>./dbsat_uninstall.sh</copy>
-      ````
+    ````
+    <copy>./dbsat_uninstall.sh</copy>
+    ````
 
-   ![](./images/dbsat-054.png " ")
+    ![](./images/dbsat-054.png " ")
 
 You may now [proceed to the next lab](#next)..
 
@@ -1066,7 +1073,7 @@ You can use DBSAT to implement and enforce security best practices in your organ
 
 **Components of DBSAT and flow**
 
-   ![](./images/dbsat-concept.png " ")
+    ![](./images/dbsat-concept.png " ")
 
 DBSAT consists of three components, the DBSAT Collector, the DBSAT Reporter and the DBSAT Discoverer, that correspond to the functions of data collection, data analysis, and sensitive data discovery respectively:
 - The **DBSAT Collector** executes SQL queries and runs operating system commands to collect data from the system to be assessed. It does this primarily by querying database dictionary views. The collected data is written to a file that is used by the DBSAT Reporter in the analysis phase.
@@ -1114,4 +1121,4 @@ Technical Documentation:
 ## Acknowledgements
 - **Author** - Hakim Loumi, Database Security PM
 - **Contributors** - Pedro Lopes, Rene Fontcha
-- **Last Updated By/Date** - Hakim Loumi, Database Security PM - May 2021
+- **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2021

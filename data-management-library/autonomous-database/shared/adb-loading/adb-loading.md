@@ -19,7 +19,7 @@ You can load data into your new autonomous database (Autonomous Data Warehouse [
 
 > **Note:** While this lab uses ADW, the steps are identical for loading data into an ATP database.
 
-Estimated Lab Time: 30 minutes
+Estimated Time: 30 minutes
 
 ### Objectives
 
@@ -35,6 +35,10 @@ In Tasks 1 and 2, you will create one ADW table, **CHANNELS_LOCAL**, and load it
 - **Loading Method 1**: Create and load one ADW table with sample data from your *local file system*, using the Database Actions DATA LOAD tool.
 - **Loading Method 2**: Create and load two ADW tables with sample data that you stage in an *OCI Object Store*, using the Database Actions DATA LOAD tool.
 - **Loading method 3**: Create ADW tables using SQL Worksheet and load them with sample data that you stage in an *OCI Object Store*, using the PL/SQL *`DBMS_CLOUD`* package.
+
+### Prerequisites:
+
+- This lab requires completion of the Provision Autonomous Database lab in the Contents menu on the left.
 
 ## Task 1: Download Sample Data for Loading from Local File
 
@@ -82,15 +86,18 @@ In Tasks 1 and 2, you will create one ADW table, **CHANNELS_LOCAL**, and load it
 
     ![Click EXPLORE in the Data Load page.](./images/click-explore-in-data-load-page.png " ")
 
-11. The Explore tool shows the *CHANNELS_LOCAL* table has been successfully created. You can click the table name to see the data.
+11. The Catalog shows the *CHANNELS_LOCAL* table has been successfully created. You can click the table name to see the data.
 
-    ![View the new table in the Explore tool.](./images/view-new-table.png " ")
+    ![View the new table in the Catalog.](./images/view-new-table.png " ")
+    
+    ![See the new table's data.](./images/see-new-table-data.png " ")
+
 
 ## Task 3: Download Sample Data for Staging to Object Store
 
 In Tasks 1 and 2, you downloaded a channels.csv file to your local computer and used the Database Actions DATA LOAD tool to create and load an ADW table. Now, you will download a zip file containing data files that you will stage to an *OCI Object Store*, to populate a number of tables in subsequent tasks.
 
-1. Click <a href="https://objectstorage.us-ashburn-1.oraclecloud.com/p/FNddNM_ga0qV-01p7an3Gkg4cpApXppFJwWYK_BzsH94qgZHibssWbhOHO87QUMp/n/c4u04/b/data-management-library-files/o/adb_sample_data_files.zip" target="\_blank">here</a> to download a zip file of the sample source files that you will upload to an object store that you will be defining. Unzip it to a directory on your local computer.
+1. Click <a href="https://objectstorage.us-ashburn-1.oraclecloud.com/p/FNddNM_ga0qV-01p7an3Gkg4cpApXppFJwWYK_BzsH94qgZHibssWbhOHO87QUMp/n/c4u04/b/data-management-library-files/o/adb_sample_data_files.zip" target="\_blank">**here to download a zip file of the sample source files**</a> that you will upload to an object store that you will be defining. Unzip it to a directory on your local computer.
 
 ## Task 4: Navigate to Object Storage and Create Bucket
 
@@ -262,7 +269,9 @@ This task shows how to load data from Oracle Cloud Infrastructure Object Storage
 
   ![Open SQL Web Developer](images/open-sql-web-dev.png)
 
-1. Unlike the previous steps where the Database Actions DATA LOAD tool gave you the option to automatically create the target autonomous database tables during the data load process, the following steps for loading with the `DBMS_CLOUD` package require you to first create the target tables. Connected as your ADMIN user in SQL Worksheet, copy and paste <a href="./files/create_tables.txt" target="\_blank">this code snippet</a> to the worksheet. Take a moment to examine the script. You will first drop any tables with the same name before creating tables. Then click the **Run Script** button to run it.
+2. Unlike the previous steps where the Database Actions DATA LOAD tool gave you the option to automatically create the target autonomous database tables during the data load process, the following steps for loading with the `DBMS_CLOUD` package require you to first create the target tables.
+
+    - Connected as your ADMIN user in SQL Worksheet, copy and paste <a href="./files/create_tables.txt" target="\_blank">this code snippet to create the required tables</a> to the worksheet. Take a moment to examine the script. You will first drop any tables with the same name before creating tables. Then click the **Run Script** button to run it.
 
     - It is expected that you may get *ORA-00942 table or view does not exist* errors during the `DROP TABLE` commands for the first execution of the script, but you should not see any other errors.
 
@@ -270,29 +279,35 @@ This task shows how to load data from Oracle Cloud Infrastructure Object Storage
 
     *Note that you do not need to specify anything other than the list of columns when creating tables in the SQL scripts. You can use primary keys and foreign keys if you want, but they are not required.*
 
-2. Download <a href="./files/load_data_without_base_url.txt" target="\_blank">this code snippet</a> to a text editor.
+3. Download <a href="./files/load_data_without_base_url_v2.txt" target="\_blank">this code snippet</a> to a text editor.
 
-3. Replace `<file_uri_base>` in the code with the base URL you copied in Task 6. You should make 10 substitutions. The top of the file should look similar to the example below:
+4. Replace `<bucket URI>` in the code with the base URL you copied in Task 6.  The top of the file should look similar to the example below:
 
     ```
+    /* Replace <bucket URI> below with the URL you copied from your files in OCI Object Storage at runtime.
+    */
+    set define on
+    define file_uri_base = 'https://objectstorage.me-dubai-1.oraclecloud.com/n/c4u04/b/LL6570-ADWLab/o'
+
     begin
      dbms_cloud.copy_data(
         table_name =>'CHANNELS',
         credential_name =>'OBJ_STORE_CRED',
-        file_uri_list =>'https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/ADWCLab/o/chan_v3.dat',
+        file_uri_list =>'&file_uri_base/chan_v3.dat',
         format => json_object('ignoremissingcolumns' value 'true', 'removequotes' value 'true')
      );
     end;
+    /
     ...
     ```
 
-4.  Copy and paste your edited file to a SQL Worksheet. This script uses the **copy\_data** procedure of the **DBMS\_CLOUD** package to copy the data from the source files to the target tables you created before.
+5.  Copy and paste your edited file to a SQL Worksheet. This script uses the **copy\_data** procedure of the **DBMS\_CLOUD** package to copy the data from the source files to the target tables you created before.
 
-5.  Run the script.
+6.  Run the script.
 
     ![Click Run Script.](./images/run_data_loading_script_in_sql_dev_web_without_base_url.png " ")
 
-6.  You have successfully loaded the sample tables. You can now run any sample query in the <a href="https://docs.oracle.com/database/122/DWHSG/part-relational-analytics.htm#DWHSG8493" target="\_blank">relational analytics</a> section of the Oracle documentation. For example, to analyze the cumulative amount sold for specific customer IDs in a quarter in 2000, you could run the query in <a href="./files/query_tables.txt" target="\_blank">this code snippet</a> using the Run Script button.   <a href="https://docs.oracle.com/en/database/oracle/oracle-database/12.2/dwhsg/introduction-data-warehouse-concepts.html#GUID-452FBA23-6976-4590-AA41-1369647AD14D" target="\_blank">Click Here</a> to read more about Data Warehousing.
+7.  You have successfully loaded the sample tables. You can now run any sample query in the <a href="https://docs.oracle.com/database/122/DWHSG/part-relational-analytics.htm#DWHSG8493" target="\_blank">relational analytics</a> section of the Oracle documentation. For example, to analyze the cumulative amount sold for specific customer IDs in a quarter in 2000, you could run the query in <a href="./files/query_tables.txt" target="\_blank">this code snippet</a> using the Run Script button.   <a href="https://docs.oracle.com/en/database/oracle/oracle-database/12.2/dwhsg/introduction-data-warehouse-concepts.html#GUID-452FBA23-6976-4590-AA41-1369647AD14D" target="\_blank">Click Here</a> to read more about Data Warehousing.
 
     ![](./images/sample-query-rel-analytics.png " ")
 
@@ -338,4 +353,4 @@ Click [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-clo
 
 - **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Richard Green, June 2021
+- **Last Updated By/Date** - Richard Green, September 2021

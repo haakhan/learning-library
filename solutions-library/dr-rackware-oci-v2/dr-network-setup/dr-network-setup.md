@@ -20,21 +20,21 @@ Estimated Lab Time 45-60 minutes
         ├── dr-ords-schema.yaml
         ├── main.tf
         ├── modules
-        │   ├── bastion_instance
-        │   │   ├── main.tf
-        │   │   ├── outputs.tf
-        │   │   └── variables.tf
-        │   ├── dbaas
-        │   │   ├── main.tf
-        │   │   ├── outputs.tf
-        │   │   └── variables.tf
-        │   ├── network
-        │   │   ├── main.tf
-        │   │   ├── outputs.tf
-        │   │   └── variables.tf
-        │   └── ords
-        │       ├── main.tf
-        │       ├── outputs.tf
+        │ ├── bastion_instance
+        │ │ ├── main.tf
+        │ │ ├── outputs.tf
+        │ │ └── variables.tf
+        │ ├── dbaas
+        │ │ ├── main.tf
+        │ │ ├── outputs.tf
+        │ │ └── variables.tf
+        │ ├── network
+        │ │ ├── main.tf
+        │ │ ├── outputs.tf
+        │ │ └── variables.tf
+        │ └── ords
+        │     ├── main.tf
+        │     ├── outputs.tf
         │       ├── README.md
         │       ├── remote-exec.tf
         │       └── variables.tf

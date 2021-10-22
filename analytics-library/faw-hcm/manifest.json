@@ -1,0 +1,46 @@
+{
+  "workshoptitle": "Fusion Analytics Warehouse for HCM",
+  "help": "livelabs-help-license_us@oracle.com",
+  "tutorials": [
+       {
+      "title": "Introduction",
+      "description": "Introduction",
+      "filename": "../../intro/intro.md"
+    },
+    {
+      "title": "Task 1: Analytics Update",
+      "description": "Overall Business Performance Monitoring",
+      "filename": "../../faw-hcm/analytics-update.md"
+    },
+    {
+      "title": "Task 2: Business Resillience",
+      "description": "Fusion Application Reporting",
+      "filename": "../../faw-hcm/buiness-resillience.md"
+    },
+    {
+      "title": "Task 3: Diversity and Inclusion",
+      "description": "Top talent retention for different employee categories",
+      "filename": "../../faw-hcm/diversity-inclusion.md"
+    },
+    {
+      "title": "Task 4: Wworkforce Analysis",
+      "description": "Workforce Analysis sample",
+      "filename": "../../faw-hcm/workforce-analysis.md"
+    },
+    {
+      "title": "Task 5: Wworkforce Overall",
+      "description": "Wworkforce Overall sample",
+      "filename": "../../faw-hcm/workforce-overall.md"
+    },
+    {
+      "title": "Task 6: Workforce Sales",
+      "description": "Workforce Sales sample",
+      "filename": "../../faw-hcm/workforce-sales.md"
+    },
+    {
+      "title": "Need Help?",
+      "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+      "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-freetier.md"
+    }
+  ]
+}

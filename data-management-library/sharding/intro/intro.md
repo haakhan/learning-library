@@ -1,9 +1,9 @@
 # Introduction
 
 ## About Oracle Database Sharding
-Oracle Database Sharding enables globally distributed, linearly scalable, multi-model databases. It distributes segments of a data set—**a shard**—across lots of databases on lots of different computers on-premises or in cloud. It requires no specialized hardware or software. Oracle Sharding does all this while rendering the strong consistency, full power of SQL, support for structured and unstructured data and the Oracle Database ecosystem. It allows you to support applications that require low latency, high availability, and meet data sovereignty requirements.
+Oracle Database Sharding enables globally distributed, linearly scalable, multi-model databases. It distributes segments of a data set —**a shard**— across lots of databases on lots of different computers on-premises or in cloud. It requires no specialized hardware or software. Oracle Sharding does all this while rendering the strong consistency, full power of SQL, support for structured and unstructured data and the Oracle Database ecosystem. It allows you to support applications that require low latency, high availability, and meet data sovereignty requirements.
 
-*Estimated Workshop Time:*  2.5 hours
+*Estimated Workshop Time:*  1 hour
 
 ![](images/sharding1.jpg " ")
 

@@ -50,7 +50,7 @@ The purpose of this lab is to give you an overview of the Object Service and an 
 
 ## Task 2: Upload Object and create pre authenticated link
 
-1. Download this file to your local PC: <a href="files/sample-file.txt" download="sample-text" target="_blank">sample-file.txt</a>.
+1. Download this file to your local PC: [Click here](./../files/sample-file.txt?download=1).
 
 3. Switch to OCI window and click the Bucket Name.
 
@@ -105,5 +105,5 @@ The purpose of this lab is to give you an overview of the Object Service and an 
 - **Author** - Flavio Pereira, Larry Beausoleil
 - **Adapted by** -  Tom McGinn, Database Product Management
 - **Contributors** - Arabella Yao, Product Manager Intern, DB Product Management, Rajeshwari Rai, Prasenjit Sarkar
-- **Last Updated By/Date** - Rajeshwari Rai, February 2021
+- **Last Updated By/Date** - Kevin Lazarz, September 2021
 

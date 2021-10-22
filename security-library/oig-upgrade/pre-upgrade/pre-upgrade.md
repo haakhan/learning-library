@@ -14,12 +14,12 @@ In this lab, you will:
 * Run the Upgrade Assistant to perform Pre-Upgrade readiness check
 
 ### Prerequisites
-
-* An Oracle Cloud Account - Please view this workshop's LiveLabs landing page to see which environments are supported
-* SSH Private Key to access the host via SSH
-* You have completed:
-      - Lab 1: Initialize the workshop Environment
-
+This lab assumes you have:
+- A Free Tier, Paid or LiveLabs Oracle Cloud account
+- You have completed:
+    - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
+    - Lab: Environment Setup
+    - Lab: Initialize Environment
 
 ## Task 1: Create a non-SYSDBA user
 

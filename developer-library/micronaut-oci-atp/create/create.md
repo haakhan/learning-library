@@ -16,7 +16,6 @@ If you were unable to setup the Autonomous Database and necessary cloud resource
     git clone -b lab2-h2 https://github.com/graemerocher/micronaut-hol-example.git
     </copy>
 
-
 Estimated Lab Time: 15 minutes
 
 ### Objectives
@@ -33,14 +32,12 @@ In this lab you will:
 
 1. There are several ways you can get started creating a new Micronaut application. If you have the Micronaut CLI installed (see the [Installation instructions](https://micronaut-projects.github.io/micronaut-starter/latest/guide/#installation) for how to install) you can use the `mn` command to create a new application. Which will setup an application that uses the Oracle driver and Micronaut Data JDBC.
 
-
     ```
     <copy>
       mn create-app example-atp --jdk 11 --features oracle,data-jdbc
     cd example-atp
     </copy>
     ```
-
 
 > **NOTE:** By default Micronaut will use the [Gradle](https://gradle.org/) build tool, however you can add `--build maven` if you prefer Maven.
 
@@ -49,7 +46,7 @@ In this lab you will:
     ```
     <copy>
     curl https://launch.micronaut.io/example-atp.zip\?javaVersion\=JDK_11\&features\=oracle,data-jdbc -o example-atp.zip
-    unzip example-atp.zip -d example-atp
+    unzip example-atp.zip
     cd example-atp
     </copy>
     ```
@@ -84,10 +81,10 @@ To configure the Micronaut application to work with Autonomous Database open the
         data-source-properties:
           oracle:
             jdbc:
-              fanEnabled: false     
-    </copy>   
+              fanEnabled: false
+    </copy>
 
-> **NOTE**: The password you enter should be the Schema user password not the Admin password for the Autonomous Database instance. 
+> **NOTE**: The password you enter should be the Schema user password not the Admin password for the Autonomous Database instance.
 
 ## Task 3: Configure Oracle Autonomous Database JDBC Drivers
 
@@ -123,7 +120,6 @@ Alternatively if you are using Maven, add the following dependencies to your `po
     </copy>
 
 ## Task 4: Configure Flyway to Create the Schema
-
 
 Once you have configured the `DataSource`, add a dependency on `micronaut-flyway` to your `build.gradle` configuration inside the `dependencies` block:
 
@@ -175,7 +171,148 @@ The next step is to define a SQL migration script that will create the applicati
 
 The SQL above will create `owner` and `pet` tables to store data for owners and their pets in Autonomous Database.
 
+## Task 6: Replace Hardcoded Password With Vault Secret (Optional)
 
+> **NOTE:** Also complete task 8 below to configure OCI authentication, which is required when using Vault secrets.
+
+If you created a Vault with secrets for the user and admin passwords in the previous lab, you can replace the hardcoded user password with a placeholder for the secret which will be resolved at application startup.
+
+1. Add a dependency for __micronaut-oraclecloud-vault__ to your build.
+
+    If you are using Gradle, add the following dependency in `build.gradle` inside the `dependencies` block:
+
+        <copy>
+        runtimeOnly('io.micronaut.oraclecloud:micronaut-oraclecloud-vault')
+        </copy>
+
+    and if you are using Maven, add the following dependency to your `pom.xml` inside the `<dependencies>` element:
+
+        <copy>
+        <dependency>
+            <groupId>io.micronaut.oraclecloud</groupId>
+            <artifactId>micronaut-oraclecloud-vault</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        </copy>
+
+2. Create `src/main/resources/bootstrap.yml` with the following content:
+
+        <copy>
+        micronaut:
+          application:
+            name: example-atp
+          config-client:
+            enabled: true
+        oci:
+          config:
+            profile: DEFAULT
+          vault:
+            config:
+              enabled: true
+            vaults:
+              - ocid: OCID_VAULT
+                compartment-ocid: OCID_COMPARTMENT
+        </copy>
+
+    Replace __OCID\_VAULT__ with the Vault OCID that you saved when creating it (the OCID should start with "ocid1.vault"), and replace __OCID\_COMPARTMENT__ with the OCID of the compartment where you created the secrets (the compartment OCID should start with "ocid1.compartment"). To find that, in the OCI Console, click on the burger menu and select "Compartments" under "Identity & Security".
+
+    ![Compartment menu](images/compartment1.png)
+
+    then find your compartment in the list, mouse over the link, and click the __Copy__ link in the popup:
+
+    ![Copy compartment OCID](images/compartment2.png)
+
+3. Replace the password value in `src/main/resources/application.yml` with the placeholder for the __ATP\_USER\_PASSWORD__ secret:
+
+        ...
+        username: mnocidemo
+        password: ${ATP_USER_PASSWORD}
+        dialect: ORACLE
+        ...
+
+## Task 7: Configure Automatic Wallet Download (Optional)
+
+> **NOTE:** Also complete task 8 below to configure OCI authentication, which is required when using automatic Wallet download.
+
+1. Add a dependency for __micronaut-oraclecloud-sdk__ and __micronaut-oraclecloud-atp__ to your build.
+
+    If you are using Gradle, add the following dependencies in `build.gradle` inside the `dependencies` block:
+
+        <copy>
+        runtimeOnly('io.micronaut.oraclecloud:micronaut-oraclecloud-sdk')
+        runtimeOnly('io.micronaut.oraclecloud:micronaut-oraclecloud-atp')
+        </copy>
+
+    and if you are using Maven, add the following dependencies to your `pom.xml` inside the `<dependencies>` element:
+
+        <copy>
+        <dependency>
+            <groupId>io.micronaut.oraclecloud</groupId>
+            <artifactId>micronaut-oraclecloud-sdk</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.oraclecloud</groupId>
+            <artifactId>micronaut-oraclecloud-atp</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        </copy>
+
+2. Comment out the current __datasources__ section in `src/main/resources/application.yml` by adding a `%` character to the start of each line (you'll need this version when deploying), and add the following:
+
+        <copy>
+        datasources:
+          default:
+            ocid: OCID_ATP
+            walletPassword: ${ATP_ADMIN_PASSWORD}
+            username: mnocidemo
+            password: ${ATP_USER_PASSWORD}
+        </copy>
+
+
+    Replace __OCID\_ATP__ with the your Autonomous Database OCID. To find that, in the OCI Console, click on the burger menu and select "Autonomous Transaction Processing" under "Oracle Database".
+
+    ![Compartment menu](images/dbocid1.png)
+
+    then click the link for your database and click the __Copy__ link in the __OCID__ row of the database details page to copy the OCID to the clipboard:
+
+    ![Compartment menu](images/dbocid2.png)
+
+3. If you are not using Vault secrets, replace __${ATP\_ADMIN\_PASSWORD}__ with the cleartext admin database password, and replace __${ATP\_USER\_PASSWORD}__ with the cleartext user database password.
+
+## Task 8: Configure OCI authentication (Optional)
+
+If you already have the [Oracle Cloud CLI](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm) installed and you have run __oci setup config__ to configure local access, then you should be all set. If you are using a profile in __~/.oci/config__ other than __DEFAULT__, change the profile name in `bootstrap.yml`:
+
+        oci:
+          config:
+            profile: MY_OTHER_PROFILE
+
+Don't install the Oracle Cloud CLI if you haven't already since it involves a few steps including installing or updating Python. Instead, manually create the __~/.oci/config__ file.
+
+1. In the OCI Console, open the Profile menu ![Profile link](images/usermenu.png) in the top right corner and click __User Settings__.
+
+    ![Compartment menu](images/apikey1.png)
+
+2. Under __Resources__, click __API Keys__, then click __Add API Key__
+
+    ![Compartment menu](images/apikey2.png)
+
+3. Select __Generate API Key Pair__, then click __Download Private Key__ and save the private key file (as a .pem file) in the __~/.oci__ directory (create the __~/.oci__ directory if it doesn't already exist).
+
+    ![Compartment menu](images/apikey3.png)
+
+4. Click __Add__ to add the new API signing key to your user settings
+
+    ![Compartment menu](images/apikey4.png)
+
+5. Click the __Copy__ link in the lower right corner of the __Configuration File Preview__ dialog to copy the API key configuration to the clipboard, then create __~/.oci/config__ in a text editor and paste the contents there. 
+
+   ![Compartment menu](images/apikey5.png)
+
+6. Update the __key\_file__ value in __~/.oci/config__ to be the location of the .pem file you downloaded, e.g.
+
+        key_file=/home/burt/.oci/burt.beckwith-09-03-05-32.pem
 
 You may now *proceed to the next lab*.
 

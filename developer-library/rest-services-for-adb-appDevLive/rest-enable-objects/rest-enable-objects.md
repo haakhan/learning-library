@@ -6,65 +6,38 @@ In this lab, you will use Database Actions and the REST console to build a REST 
 
 Estimated Lab Time: 20 minutes
 
-#### About RESTful Web Services
+Watch the video below for a quick walk through of the lab.
 
-Representational State Transfer (REST) is a style of software architecture for distributed hypermedia systems such as the World Wide Web. An API is described as RESTful when it conforms to the tenets of REST. Although a full discussion of REST is outside the scope of this document, a RESTful API has the following characteristics:
+[](youtube:6Y_BArzNgaw)
 
-- Data is modeled as a set of resources. Resources are identified by URIs.
-- A small, uniform set of operations are used to manipulate resources (for example, PUT, POST, GET, DELETE).
-- A resource can have multiple representations (for example, a blog might have an HTML representation and an RSS representation).
-- Services are stateless and since it is likely that the client will want to access related resources, these should be identified in the representation returned, typically by providing hypertext links.
-
-#### RESTful Services Terminology
-
-This section introduces some common terms that are used throughout this lab:
-
-**RESTful service**: An HTTP web service that conforms to the tenets of the RESTful architectural style.
-
-**Resource module**: An organizational unit that is used to group related resource templates.
-
-**Resource template**: An individual RESTful service that is able to service requests for some set of URIs (Universal Resource Identifiers). The set of URIs is defined by the URI Pattern of the Resource Template
-
-**URI pattern**: A pattern for the resource template. Can be either a route pattern or a URI template, although you are encouraged to use route patterns.
-
-**Route pattern**: A pattern that focuses on decomposing the path portion of a URI into its component parts. For example, a pattern of /:object/:id? will match /emp/101 (matches a request for the item in the emp resource with id of 101) and will also match /emp/ (matches a request for the emp resource, because the :id parameter is annotated with the ? modifier, which indicates that the id parameter is optional).
-
-**URI template**: A simple grammar that defines the specific patterns of URIs that a given resource template can handle. For example, the pattern employees/{id} will match any URI whose path begins with employees/, such as employees/2560.
-
-**Resource handler**: Provides the logic required to service a specific HTTP method for a specific resource template. For example, the logic of the GET HTTP method for the preceding resource template might be:
-```
-select empno, ename, dept from emp where empno = :id
-```
-**HTTP operation**: HTTP (HyperText Transport Protocol) defines standard methods that can be performed on resources: GET (retrieve the resource contents), POST (store a new resource), PUT (update an existing resource), and DELETE (remove a resource).
-
-
-
-![ORDS Termonology](./images/ords-module-template-uri.png)
-
+### You can learn more about REST in the  **Learn More About REST** section the [introduction](../intro/intro.md) page of this lab.
 
 ### Objectives
 
 - Publish REST API using Custom SQL
-- Publish REST API using stored PL/SQL program
+- Publish REST API using stored PL/SQL procedure
 
 
 ### Prerequisites
 
 - The following lab requires an <a href="https://www.oracle.com/cloud/free/" target="\_blank">Oracle Cloud account</a>. You may use your own cloud account, a cloud account that you obtained through a trial, or a training account whose details were given to you by an Oracle instructor.
-- This lab assumes you have successfully provisioned Oracle Autonomous database an connected to ADB with SQL Developer web.
-- Completed the [User Setups Lab](../user-setups/user_setups.md)
-- Completed the [Create and auto-REST enable a table lab](../create_table/create_table.md)
-- Completed the [Loading Data and Creating Business Objects Lab](../load_data_and_biz_objs/load_data_and_biz_objs.md)
+
+This lab assumes you have completed the following labs:
+* Lab 1: [Login to Oracle Cloud](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md)
+* Lab 2: [Provision an Autonomous Database](https://raw.githubusercontent.com/oracle/learning-library/master/data-management-library/autonomous-database/shared/adb-provision/adb-provision.md)
+* Lab 3: [Connect to your Autonomous Database using Database Actions/SQL Developer Web](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/sqldevweb-login/sqldevweb-login.md)
+* Lab 4: [Create and auto-REST enable a table](../create-table/create-table.md)
+* Lab 5: [Loading Data and Creating Business Objects](../load-data-and-biz-objs/load-data-and-biz-objs.md)
 
 ## Task 1: REST Enable a custom SQL Statement
 
 **If this is your first time accessing the REST Workshop, you will be presented with a guided tour. Complete the tour or click the X in any tour popup window to quit the tour.**
 
-1. Start by using the Database Actions Menu in the upper left of the page and select REST
+1. Start by using the **Database Actions Menu** in the upper left of the page and select **REST**
 
     ![DB Actions Menus, choose REST](./images/rest-1.png)
 
-2. Once on the REST page, use the upper tab bar to select **Modules**
+2. Once on the **REST page**, use the upper tab bar to select **Modules**
 
     ![REST Tab Menu, choose Modules](./images/rest-2.png)
 
@@ -76,7 +49,7 @@ select empno, ename, dept from emp where empno = :id
 
     ![Create Modules slider](./images/rest-4.png)
 
-5. Using the **Create Module** slider, we start with the Module name. Lets use the following value of **com.oracle.livelab.api**:
+5. Using the **Create Module** slider, we start with the Module name. Lets use the following value of **com.oracle.livelab.api**
 
     ````
     <copy>com.oracle.livelab.api</copy>
@@ -84,7 +57,7 @@ select empno, ename, dept from emp where empno = :id
 
     ![Create Modules slider](./images/rest-5.png)
 
-6. For the **Base Path** field, we can use the default of **/api/**. Enter /api/ in the base path field.
+6. For the **Base Path** field, we can use the default of **/api/**. Enter **/api/** in the **base path field**.
 
     ````
     <copy>/api/</copy>
@@ -110,7 +83,7 @@ select empno, ename, dept from emp where empno = :id
     
     Here we will create the endpoint or URL location for our REST enabled SQL Statement that takes in a value.
 
-10. In the **URI Template** template field, enter sqlreport/:id
+10. In the **URI Template** template field, enter **sqlreport/:id**
 
     ````
     <copy>sqlreport/:id</copy>
@@ -222,7 +195,7 @@ select empno, ename, dept from emp where empno = :id
     </copy>
     ````
 
-    ![Create Handler slider](./images/rest-00.png)
+    ![Create Handler slider](./images/rest-30a.png)
 
 10. When the **Create Handler** slider looks like the below image (**NOTE: your URL hostname will be different than the below image**), left click the **Create** button.
 
@@ -270,7 +243,7 @@ select empno, ename, dept from emp where empno = :id
 
     ![bizlogic breadcrumb](./images/rest-41.png)
 
-20. Now, using the popout menu icon ![popout menu icon](./images/pop-menu.png) on our bizlogic POST tile, select **Get cURL command**.
+20. Now, using the popout menu icon ![popout menu icon](./images/pop-menu.png) on our **bizlogic POST tile**, select **Get cURL command**.
 
     ![selecting Get cURL command](./images/rest-42.png)
 
@@ -286,7 +259,7 @@ select empno, ename, dept from emp where empno = :id
 
     ![Copied cURL command](./images/rest-45.png)
 
-23. Using the OCI Cloud Shell, paste and run the cURL command and see that the count is returned as the output variable.
+23. Using the Oracle Cloud Infrastructure Cloud Shell, paste and run the cURL command and see that the count is returned as the output variable.
 
     ```
     curl -X POST \
@@ -313,6 +286,6 @@ You may now [proceed to the next lab](#next).
 ## Acknowledgements
 
 - **Author** - Jeff Smith, Distinguished Product Manager and Brian Spendolini, Trainee Product Manager
-- **Last Updated By/Date** - Anoosha Pilli, Brianna Ambler, June 2021
+- **Last Updated By/Date** - Brian Spendolini, September 2021
 - **Workshop Expiry Date** - April 2022
 

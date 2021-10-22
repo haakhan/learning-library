@@ -61,6 +61,12 @@
       "filename": "./../../em-rat-spa-dbreplay/em-rat-spa-dbreplay.md"
     },
     {
+      "title": "Lab 9: Enterprise Monitoring Quick Tour",
+      "description": "This lab provides an overview of Enterprise Monitoring capabilities using Oracle Enterprise Manager Cloud Control 13c",
+      "publisheddate": "9/15/2021",
+      "filename": "./../../em-monitoring-overview/em-monitoring-overview.md"
+    },
+    {
       "title": "Appendix: Frequently Asked Questions (FAQ)",
       "description": "Frequently Asked Questions (FAQ) you may refer to when troubleshooting issues encountered while executing above labs",
       "publisheddate": "8/12/2020",

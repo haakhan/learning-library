@@ -1,3 +1,0 @@
-## See an issue?
-
-Submit feedback using this [form](https://apexapps.oracle.com/pls/apex/f?p=133:1:::::P1_FEEDBACK:1). Select the *workshop name*, *lab details*, and *step* in your request.  If you don't see the workshop name listed, enter it manually. If you would like us to follow up with you, mention your email in the *Feedback Comments* section.

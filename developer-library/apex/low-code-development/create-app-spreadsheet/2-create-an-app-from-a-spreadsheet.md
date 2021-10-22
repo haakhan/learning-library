@@ -1,17 +1,13 @@
-# Create an APEX App from a Spreadsheet
+# Creating an App from a Spreadsheet
+
+In this lab, you will learn how to create an APEX application using data imported from a spreadsheet. To simplify the lab, you will use sample data that's built into APEX. However, the sequence will be the same when uploading your own data.
 
 ## Introduction
-
-After you have logged into your workspace, you can start creating APEX applications. In this lab, you will build a simple application based on a spreadsheet. Keep in mind that APEX is great for a variety of apps, from simple ones like this to large, sophisticated apps based on local database objects, REST enabled SQL objects, and even REST APIs.
+Now that you are logged into your workspace, you can start creating APEX applications. In this lab, you will build a simple application based on a spreadsheet. Keep in mind that APEX is great for a variety of apps, from simple ones like this to large, sophisticated apps based on local database objects, REST enabled SQL objects, and even REST APIs.
 
 While APEX developers spend the majority of their time in the App Builder, you should also investigate the SQL Workshop, where you can create and maintain database objects, Team Development, where you can track large APEX development projects, and the App Gallery, which contains numerous productivity and sample apps that can be installed within minutes.
 
-Estimated Time: 15 minutes
-
-### Objectives
-
-- Load project and tasks data
-- Create and run an application
+Estimated Time: 5 minutes
 
 ## Task 1: Loading project and tasks data  
 
@@ -34,11 +30,11 @@ Estimated Time: 15 minutes
 
     ![](images/copy-paste-projects-tasks.png " ")
 
-5.  Review the parsed data. Set Table Name to **PROJECT_TASKS** and click **Load Data**. Note that the Error Table Name defaults to the Table Name with a postfix of \_ERR$.
+6.  Review the parsed data. Enter **PROJECT_TASKS** for Table Name and Click **Load Data**.
 
     ![](images/new-table-name.png " ")
 
-    After clicking **Load Data** you will see a spinner until the wizard finishes loading the data.
+    After clicking **Load Data** you will see a spinner until the wizard finishes loading the data. Continue to Part 2 at that point.
 
 ## Task 2: Creating an application
 
@@ -57,11 +53,11 @@ The Data Load wizard has created a new table and populated that table with the r
 
     ![](images/object-browser.png " ")
 
-3. On the Create an Application page, click **Create App**.
+3. On the Create Application page, click **Create App**.
 
-4. In the Create an Application page, review the pages listed. Click the **Edit** button for a page to review more details.
+2. In the Create Application page, review the pages listed. Click the **Edit** button for a page to review more details.
 
-    Scroll down then click **Check All** for Features, and then click **Create Application**.
+    Click **Check All** for Features, and then click **Create Application**.
 
     ![](images/name-for-application.png " ")
     ![](images/create-application.png " ")
@@ -76,20 +72,24 @@ The Data Load wizard has created a new table and populated that table with the r
 
 2.  Enter your user credentials and click **Sign In**.
 
-    *Note: Use the same Username and Password you used to sign into the APEX Workspace. For this workshop your username should be DEMO and your password should be SecretPassw0rd.*
+    *Note: Use the same Username and Password you used to sign into the APEX Workspace.*
 
     ![](images/sign-in.png " ")
 
-3.  Explore the application a little. Click **Dashboard** (in the home menu or the navigation menu) to view the charts created. Click **Project Tasks Search**, in the navigation menu, to play with the faceted search. Click **Project Tasks Report** to view an interactive report, then click the edit icon for a record to display the details in an editable "form" page. Next, navigate to the **Calendar** page and review the data displayed (*Note: You may need to scroll forward several months to see data*). Finally, review the options available under **Administration**.
+3. Click on the navigation menu icon to expand the navigation menu
+    ![](images/new-app-expand-nav.png " ")
+
+4.  Explore the application a little. Click **Dashboard** (in the home menu or the navigation menu) to view the charts created. Click **Project Tasks Search**, in the navigation menu, to play with the faceted search. Click **Project Tasks Report** to view an interactive report, then click the edit icon for a record to display the details in an editable "form" page. Next, navigate to the **Calendar** page and review the data displayed (*Note: You may need to scroll back several months to see data*). Finally, review the options available under **Administration**.
 
     ![](images/new-app.png " ")
 
-## Summary
+## **Summary**
 
-This completes this lab. You now know how to create an application from a spreadsheet by either dragging and dropping a file or loading sample data for training purposes. Click on ***Lab 2: Build Database Objects in Autonomous Database*** to generate database objects using Quick SQL.
+You now know how to create an application from a spreadsheet by either dragging and dropping a file or loading sample data for training purposes.
 
-## Acknowledgements
-* **Author** - Salim Hlayel, Principle Product Manager
-* **Contributors** - Oracle LiveLabs QA Team (Jaden McElvey, Technical Lead, Kamryn Vinson, QA Intern, Arabella Yao, Product Manager Intern, DB Product Management)
-- **Last Updated By/Date** - Tom McGinn, Database Innovations Architect, Product Management, July 2020
+## **Acknowledgements**
+
+ - **Author** -  Salim Hlayel, Principal Product Manager
+ - **Contributors** - Tom McGinn, Database Cloud Services, Product Management
+ - **Last Updated By/Date** - Salim Hlayel, Principal Product Manager, November 2020
 

@@ -1,13 +1,27 @@
-# The last matching pattern has the most precedence.
-*                        @flavio-santino @kaymalcolm @tmcginn @kamryn-v @anooshapilli @davidastart @klazarz @malcherm
-/common/               @kaymalcolm @tmcginn @davidastart @klazarz @malcherm
-/ai-ml-library/       @kaymalcolm @tmcginn @kamryn-v @troyanthony06 @anooshapilli @davidastart @klazarz @malcherm
-/analytics-library/       @kaymalcolm @tmcginn @troyanthony06 @kamryn-v @rfontcha @anooshapilli @davidastart @klazarz @malcherm
-/data-management-library/ @kaymalcolm @tmcginn @troyanthony06 @kamryn-v @anooshapilli @davidastart @klazarz @malcherm
-/developer-library/       @kaymalcolm @tmcginn @troyanthony06 @kamryn-v @rfontcha @anooshapilli @davidastart @oegentil @flavio-santino @klazarz @malcherm
-/enterprise-manageability-library/       @kaymalcolm @tmcginn @rfontcha @kamryn-v @anooshapilli @davidastart @klazarz @malcherm
-/oci-library/             @flavio-santino @oegentil @kaymalcolm @tmcginn @davidastart @anooshapilli @kamryn-v @klazarz @malcherm
+#  The last matching pattern has the most precedence.
+# *                        @kaymalcolm @kamryn-v @anooshapilli @davidastart @klazarz @malcherm @william-masdon-oracle @kaylien
+# /common/               @kaymalcolm @davidastart @klazarz @malcherm
+# /ai-ml-library/       @kaymalcolm @kamryn-v @troyanthony06 @anooshapilli @davidastart @klazarz @malcherm @william-masdon-oracle @kaylien
+# /analytics-library/       @kaymalcolm @troyanthony06 @kamryn-v @rfontcha @anooshapilli @davidastart @klazarz @malcherm @william-masdon-oracle @kaylien
+# /data-management-library/ @kaymalcolm @troyanthony06 @kamryn-v @anooshapilli @davidastart @klazarz @malcherm @william-masdon-oracle @kaylien
+# /developer-library/       @kaymalcolm @troyanthony06 @kamryn-v @rfontcha @anooshapilli @davidastart @oegentil  @klazarz @malcherm @william-masdon-oracle @kaylien
+# /enterprise-manageability-library/       @kaymalcolm @rfontcha @kamryn-v @anooshapilli @davidastart @klazarz @malcherm @william-masdon-oracle @kaylien
+# /oci-library/              @oegentil @kaymalcolm @davidastart @anooshapilli @kamryn-v @klazarz @malcherm @william-masdon-oracle @kaylien
+# /ospa-library/            @jjking2019 @dankingsley001 @AlejandroCasas-oracle
+# /solutions-library/       @kaymalcolm @troyanthony06 @kamryn-v @rfontcha @anooshapilli @davidastart @oegentil  @klazarz @malcherm @william-masdon-oracle @kaylien
+# /security-library/       @kaymalcolm @troyanthony06 @rfontcha @anooshapilli @kamryn-v @davidastart  @oegentil @klazarz @malcherm @william-masdon-oracle @kaylien
+# /workshops/               @kaymalcolm @troyanthony06 @davidastart @klazarz @malcherm @william-masdon-oracle
+
+#  Changes made for Database World code freeze until 2 Dec.  Contact Michelle Malcher or Kevin Lazarz if you need an update made (DB Workshops only)
+*                          @kaymalcolm @klazarz @malcherm
+/common/               @kaymalcolm @klazarz @malcherm
+/ai-ml-library/       @kaymalcolm @kamryn-v @troyanthony06 @anooshapilli @davidastart @klazarz @malcherm @william-masdon-oracle @kaylien
+/analytics-library/       @kaymalcolm @troyanthony06 @kamryn-v @rfontcha @anooshapilli @davidastart @klazarz @malcherm @william-masdon-oracle @kaylien
+/data-management-library/  @kaymalcolm @klazarz @malcherm
+/developer-library/        @kaymalcolm @klazarz @malcherm
+/enterprise-manageability-library/       @kaymalcolm @rfontcha @kamryn-v @anooshapilli @davidastart @klazarz @malcherm @william-masdon-oracle @kaylien
+/oci-library/              @oegentil @kaymalcolm @davidastart @anooshapilli @kamryn-v @klazarz @malcherm @william-masdon-oracle @kaylien
 /ospa-library/            @jjking2019 @dankingsley001 @AlejandroCasas-oracle
-/solutions-library/       @kaymalcolm @tmcginn @troyanthony06 @kamryn-v @rfontcha @anooshapilli @davidastart @oegentil @flavio-santino @klazarz @malcherm
-/security-library/       @kaymalcolm @tmcginn @troyanthony06 @rfontcha @anooshapilli @kamryn-v @davidastart @flavio-santino @oegentil @klazarz @malcherm
-/workshops/               @snicholspa @chipbaber @kaymalcolm @tmcginn @troyanthony06 @davidastart @klazarz @malcherm
+/solutions-library/        @kaymalcolm @klazarz @malcherm
+/security-library/        @kaymalcolm @klazarz @malcherm
+/workshops/               @kaymalcolm @troyanthony06 @davidastart @klazarz @malcherm @william-masdon-oracle

@@ -13,37 +13,32 @@
       "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
     },
     {
-      "title": "Lab 1: Generate SSH Key",
-      "description": "Generate SSH Key",
-      "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/generate-ssh-key/generate-ssh-keys.md"
-    },
-    {
-      "title": "Lab 2: Prepare Setup",
+      "title": "Lab 1: Prepare Setup",
       "description": "How to download your ORM stack and update security rules for an existing VCN",
       "publisheddate": "09/28/2020",
       "filename": "../../prepare-setup/prepare-setup.md"
     },
     {
-      "title": "Lab 3: Environment Setup",
+      "title": "Lab 2: Environment Setup",
       "description": "How to provision the workshop environment and connect to it",
       "publisheddate": "06/30/2020",
       "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/setup-compute-generic/setup-compute-novnc.md"
     },
     {
-      "title": "Lab 4: Initialize Environment",
+      "title": "Lab 3: Initialize Environment",
       "description": "Labs that follow the introduction are numbered, starting with Lab 1",
       "filename": "../../initialize-environment/initialize-environment.md"
     },
     {
-      "title": "Lab 5: Pre-Upgrade Requirements",
+      "title": "Lab 4: Pre-Upgrade Requirements",
       "filename": "../../pre-upgrade/pre-upgrade.md"
     },
     {
-      "title": "Lab 6: One-hop Upgrade",
+      "title": "Lab 5: One-hop Upgrade",
       "filename": "../../upgrade/upgrade.md"
     },
     {
-      "title": "Lab 7: Post-Upgrade Tasks",
+      "title": "Lab 6: Post-Upgrade Tasks",
       "filename": "../../post-upgrade/post-upgrade.md"
     },
     {

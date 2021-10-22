@@ -346,8 +346,6 @@ The structure of the project you are going to create will look like the followin
       });
     }
 
-    module.exports.close = close;
-
     const iso8601RegExp = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z$/;
     function reviveJson(key, value) {
       // revive ISO 8601 date strings to instances of Date
@@ -357,6 +355,8 @@ The structure of the project you are going to create will look like the followin
         return value;
       }
     }
+
+    module.exports.close = close;
     </copy>
     ```
 

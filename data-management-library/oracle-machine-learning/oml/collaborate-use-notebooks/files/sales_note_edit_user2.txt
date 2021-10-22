@@ -4,4 +4,4 @@ This screenshot shows the Sales Note notebook opened and edited by USER2 in USER
 
 The screenshot also highlights the date and timestamp at the time of edit by USER2 which is "Took 1 sec. Last Updated by USER2 at April 23 2020, 5.37.00 pm."   
 
-Copyright © 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

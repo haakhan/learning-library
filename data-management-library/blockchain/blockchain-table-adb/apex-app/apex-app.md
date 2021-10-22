@@ -6,6 +6,10 @@ In the lab, you will create an APEX workspace, define the rest end points and en
 
 Estimated time: 20 minutes
 
+Watch the video below for a quick walk through of the lab.
+
+[](youtube:0vNYCULNhnI)
+
 ### Objectives
 
 In this lab, you will:
@@ -23,11 +27,11 @@ This workshop assumes you have:
 
 ## Task 1: Create APEX Workspace
 
-1. Navigate back to the tab with Oracle Cloud console. Click on the hamburger menu, search for **Oracle Database** and click **Autonomous Transaction Processing**.
+1. Navigate back to the tab with Oracle Cloud console. Click the navigation menu, search for **Oracle Database** and click **Autonomous Transaction Processing**.
 
 	![](./images/task1-1.png " ")
 
-2. Click on the Display Name of your ADB instance to navigate to your ADB instance details page. In this lab, click on the provisioned **DEMOATP** instance.
+2. Click the Display Name of your Oracle Autonomous Database instance to navigate to your Oracle Autonomous Database instance details page. In this lab, click the provisioned **DEMOATP** instance.
 
 	![](./images/task1-2.png " ")
 
@@ -36,9 +40,9 @@ This workshop assumes you have:
     Click the **Tools** tab. Click **Open APEX**.
 	![](./images/task1-3.png " ")
 
-4. Enter the password for the Administration Services and click **Sign In to Administration**. The password is the same as the one entered for the ADMIN user when creating the ATP instance.
+4. Enter the password for the Administration Services and click **Sign In to Administration**. The password is the same as the one entered for the ADMIN user when creating the Oracle Autonomous Transaction Processing instance.
 
-    In the lab, provide the **password - WElcome123##** for the ADMIN user you created when you provisioned your ADB instance and click **Sign in to Administration** to sign in to APEX Workspace.
+    In the lab, give the **password - WElcome123##** for the ADMIN user you created when you provisioned your Oracle Autonomous Database instance and click **Sign in to Administration** to sign in to APEX Workspace.
 	![](./images/task1-4.png " ")
 
 5. Click **Create Workspace**.
@@ -61,23 +65,23 @@ This workshop assumes you have:
 
     ![](./images/task1-8.png " ")
 
-9. Click on **Set APEX Account Password**.
+9. Click **Set APEX Account Password**.
 
 	![](./images/task1-9.png " ")
 
-10. Navigate to the tab with Oracle cloud console, click on Profile icon, click on User Setting and Copy the email address.
+10. Navigate to the tab with Oracle cloud console, click on Profile icon then click **User Setting** and copy the email address.
 
 	![](./images/task1-101.png " ")
     ![](./images/task1-102.png " ")
 
-11. Navigate back to the APEX workspace, paste the email address in the Email Address field, provide the **Password - W3lcome123##** and confirm the password for the `demouser` and click on **Apply Changes**.
+11. Navigate back to the APEX workspace, paste the email address in the Email Address field, give the **Password - W3lcome123##** and confirm the password for the `demouser` and click **Apply Changes**.
 
 	![](./images/task1-111.png " ")
 	![](./images/task1-112.png " ")
 
 ## Task 2: Define the REST End Points and Enable the Schema
 
-By default the schema is not registered with ORDS. Let's define REST endpoints for the bank_ledger schema and enable the schema.
+APEX application will interact with the blockchain tables using REST API through the Oracle REST Data Services (ORDS). This requires that the DB schema is registered with ORDS. By default, the schema is not registered with ORDS. Let's define REST endpoints for the bank_ledger schema and enable the schema to use as part of the data signing for the APEX application, which we will import in the next task.
 
 1. Click on the **SQL Workshop** drop-down menu.
 
@@ -96,12 +100,11 @@ By default the schema is not registered with ORDS. Let's define REST endpoints f
 
 4. Click [here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/nlUdle-us1TMJ-yTOL-sVxXazoDqQegCYakiXiA8zIONnFMWsaCt2u3tNHlz4sUx/n/c4u04/b/data-management-library-files/o/blockchain/ORDS-REST-Blockchain.sql) to download the ORDS-REST-Blockchain.sql file that has the SQL Script to REST Enable this schema and also to create modules for the bank_ledger table with the appropriate handlers.
 
-
 5. Let's import the modules by clicking on **Import**.
 
     ![](./images/task2-5.png " ")
 
-6. Click on **Choose File** and upload the ORDS REST Blockchain file that you just downloaded. Click on **Import**.
+6. Click **Choose File** and upload the ORDS REST Blockchain file that you just downloaded. Click **Import**.
 
     ![](./images/task2-6.png " ")
 
@@ -146,8 +149,6 @@ By default the schema is not registered with ORDS. Let's define REST endpoints f
     END;
     ```
 
-
-
 11. After receiving the rowdata, the Node.js application which will install in the next lab will use that row data to do the signing using the other rest point -  POST method under the signdata.
 
 12. Expand the signdata tab and select **POST**. Notice the sign PL/SQL procedure under Source field takes the cert_guid, chainId, instanceId, seqId as input parameters along with the rowdata to sign the row.
@@ -170,8 +171,6 @@ By default the schema is not registered with ORDS. Let's define REST endpoints f
         :status := 400;
     END;
     ```
-
-
 
 ## Task 3: Import and Run the APEX Application
 
@@ -200,7 +199,7 @@ Now, we have the blockchain module, the handlers, and the templates defined. Let
 
     ![](./images/task3-6.png " ")
 
-7. In the Blockchain APEX application sign in page, provide the **Username - DEMOUSER**, **Password - W3lcome123##** and click **Sign In**.
+7. In the Blockchain APEX application sign in page, give the **Username - DEMOUSER**, **Password - W3lcome123##** and click **Sign In**.
 
     ![](./images/task3-7.png " ")
 
@@ -254,28 +253,16 @@ Now, we have the blockchain module, the handlers, and the templates defined. Let
 
     ![](./images/task4-9.png " ")
 
-10. Make note the Instance ID, Chain ID and Seq ID of a row that you want to sign. In the demo, we are going to sign the row with Instance ID - 1, Chain ID - 5, and Seq ID - 1.
+10. Chose any row of your choice, make note the Instance ID, Chain ID and Seq ID values of that row and save these required parameters values as you will need to enter them in the signing task in next lab.
 
-   ![](./images/task4-10.png " ")
-<!---
-12. Replace the number 1 for the instanceId, chainId and seqId and update with your notes values in the below command.
+    > *Note - It is expected that every blockchain table will have different Instance ID, Chain ID and Seq ID values. Please do not be concerned if you do not see the same values in your table as in the demo.*
 
-    ```
-    curl --location --request POST 'http://localhost:8080/transactions/row' --header 'Content-Type: application/json' --data '{"instanceId":1,"chainId":1,"seqId":1}'
-    ```
+    In the demo, we are going to sign the row with Instance ID - 1, Chain ID - 5, and Seq ID - 1.
 
-    After replacing the instanceId, chainId and seqId values in the command, it should look like this:
-
-    ```
-    curl --location --request POST 'http://localhost:8080/transactions/row' --header 'Content-Type: application/json' --data '{"instanceId":1,"chainId":1,"seqId":1}'
-    ```
-
-13. Save this command in a noted to run which we will run in the next lab and sign the row.
-
---->
+    ![](./images/task4-10.png " ")
 
 ## Acknowledgements
 
-* **Author** - Salim Hlayel, Mark Rakhmilevich, Anoosha Pilli
-* **Contributors** - Anoosha Pilli, Product Manager, Oracle Database
-* **Last Updated By/Date** - Brianna Ambler, August 2021
+* **Author** - Mark Rakhmilevich, Anoosha Pilli
+* **Contributors** - Anoosha Pilli, Salim Hlayel, Brianna AmblerProduct Manager, Oracle Database
+* **Last Updated By/Date** - Anoosha Pilli, September 2021

@@ -3,4 +3,4 @@
 This is the icon for running a notebook.  
 
 
-Copyright © 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

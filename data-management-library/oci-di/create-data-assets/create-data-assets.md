@@ -2,22 +2,16 @@
 
 ## Introduction
 
-This lab walks you through the steps to create **Data assets** for your source and target data sources used in the integration tasks. You will be using **Object Storage** as the source and **Autonomous Data Warehouse** as the target. Data assets can be databases, flat files, and so on.
+Learn how to create **Data assets** for your source and target data sources used in _Create an OCI Data Integration Workspace_. You will be using **Object Storage** as the source and **Autonomous Data Warehouse** as the target. Data assets can be databases, flat files, and so on.
 
-*Estimated Lab Time*: 25 minutes
+**Estimated Time**: 25 minutes
 
 ### Objectives
-In this lab, you will:
 * Copy the Workspace OCID for further use in policies
 * Create policies for ADW and Object Storage
 * Copy the Tenancy OCID for further use to create Object Storage data asset
 * Create Object Storage data asset
 * Create Autonomous Data Warehouse data asset
-
-### Prerequisites
-* **Free Tier/ Paid Oracle Cloud Account**
-* All previous labs have been **successfully completed**
-
 
 ## Task 1: Get the Workspace OCID
 
@@ -25,7 +19,7 @@ In this lab, you will:
 
   ![](./images/menu-di.png " ")
 
-2. From the **Workspaces** page, make sure that you are in the compartment for data integration (`DI-compartment`). The Workspace you created in Lab 1 should be displayed (`DI-workspace`).
+2. From the **Workspaces** page, make sure that you are in the compartment for data integration (`DI-compartment`). The Workspace you created in _Create an OCI Data Integration Workspace_ should be displayed (`DI-workspace`).
 
   ![](./images/workspaces.png " ")
 
@@ -33,19 +27,19 @@ In this lab, you will:
 
   ![](./images/copy-ocid.png " ")
 
-4. A notification saying `Workspace OCID copied` should be displayed at the top right of your screen. Paste your workspace OCID in a notepad, you will need it for later use in policies, as described in the next step of this lab.
+4. A notification saying `Workspace OCID copied` should be displayed at the top right of your screen. Paste your workspace OCID in a notepad, you will need it for later use in policies, as described in the next step.
 
   ![](./images/notification-ocid-copied.png " ")
 
 ## Task 2: Create policies for ADW and Object Storage
 
-Data Integration needs specific permissions to **Oracle Object Storage** to access metadata, and read and write data. Also working with **Autonomous Databases** in Data Integration uses Object Storage. You must create all the required Object Storage **policies** and an additional one. This lab step will guide you through the necessary policy statements that you need to add in order to perform the data integration tasks in this workshop.
+Data Integration needs specific permissions to **Oracle Object Storage** to access metadata, and read and write data. Also working with **Autonomous Databases** in Data Integration uses Object Storage. You must create all the required Object Storage **policies** and an additional one. This step will guide you through the necessary policy statements that you need to add in order to perform the data integration tasks in this workshop.
 
 1. In the Oracle Cloud Infrastructure Console navigation menu, navigate to **Identity & Security**, and then select **Policies** under Identity section.
 
   ![](./images/menu-policies.png " ")
 
-2. Make sure that you are in your compartment for data integration (`DI-compartment`). In the list of policies, click on the **Policies-OCI-DI** that you created in Lab 1. You will add here the necessary policies for the Object Storage connection from OCI Data Integration.
+2. Make sure that you are in your compartment for data integration (`DI-compartment`). In the list of policies, click on the **Policies-OCI-DI** that you created in _Create an OCI Data Integration Workspace_. You will add here the necessary policies for the Object Storage connection from OCI Data Integration.
 
   ![](./images/modify-policies.png " ")
 
@@ -57,7 +51,7 @@ Data Integration needs specific permissions to **Oracle Object Storage** to acce
 
   ![](./images/policy-another-button.png " ")
 
-5. You will add the necessary policy statements to **enable access to Oracle Object Storage** and **to use Autonomous Data Warehouse** as target for your data integration tasks. In this workshop, the Data Integration workspace and Object Storage data asset belong to the same tenancy so the following statements are needed. Copy the following statements and paste them in the **Policy Builder** box, each statement as a new line:
+5. You will add the necessary policy statements to **enable access to Oracle Object Storage** and **to use Autonomous Data Warehouse** as target for _Create an OCI Data Integration Workspace_. In this workshop, the Data Integration workspace and Object Storage data asset belong to the same tenancy so the following statements are needed. Copy the following statements and paste them in the **Policy Builder** box, each statement as a new line:
 
     - For **Object Storage**:
 
@@ -83,9 +77,9 @@ Data Integration needs specific permissions to **Oracle Object Storage** to acce
 
 6. **Replace** in the new policy statements:
 
-    - *"compartment-name"* with the name of your data integration Compartment (`DI-compartment)`.
-    - *"group-name"* with the name of the OCI group that your user belongs to (`di-group`).
-    - *"workspace-ocid"* with the workspace OCID you copied in Step 1 of this lab.
+    - **"compartment-name"** with the name of your data integration Compartment (`DI-compartment)`.
+    - **"group-name"** with the name of the OCI group that your user belongs to (`di-group`).
+    - **"workspace-ocid"** with the workspace OCID you copied in _Get the Workspace OCID_.
 
   ![](./images/new-policy.png " ")
 
@@ -109,7 +103,7 @@ Most types of Oracle Cloud Infrastructure resources have an Oracle-assigned uniq
 
   ![](./images/tenancy-details.png " ")
 
-3. Paste your tenancy OCID to a local notepad, you will need it for the next step of this lab to create the Object Storage data asset in OCI Data Integration.
+3. Paste your tenancy OCID to a local notepad, you will need it for the next step to create the Object Storage data asset in OCI Data Integration.
 
 ## Task 4: Create Object Storage data asset
 
@@ -138,12 +132,12 @@ In this workshop, **Oracle Object Storage** serves as the **source data asset** 
     <copy>https://objectstorage.<region-identifier>.oraclecloud.com</copy>
     ```
 
-   *Note*: Replace the *"region-identifier"* with the one corresponding to the region where your Object Storage bucket is located. You can find the list of region identifiers at the following [link](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm). For example, if you have your Object Storage in Frankfurt region, use `https://objectstorage.eu-frankfurt-1.oraclecloud.com`
+   *Note*: Replace the **"region-identifier"** with the one corresponding to the region where your Object Storage bucket is located. You can find the list of region identifiers at the following [link](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm). For example, if you have your Object Storage in Frankfurt region, use `https://objectstorage.eu-frankfurt-1.oraclecloud.com`
 
-    - For **Tenant OCID**, paste the one you copied in Step 3 of this lab.
+    - For **Tenant OCID**, paste the one you copied in _Get the Tenancy OCID_.
     - For **Namespace**, the value should be auto-populated after completing the preceding step.
 
-   *Note*: If the values does not get auto-populated, enter the namespace for the Object Storage bucket that you can find as in the picture from step 3.2 of this lab, section highlighted in yellow.
+   *Note*: If the values do not get auto-populated, enter the namespace for the Object Storage bucket that you can find as in the picture from step 3.2 of this lab, section highlighted in yellow.
 
     - Under **Default Connection** Information, you can optionally enter a name and description for the connection or leave the default one.
 
@@ -184,10 +178,10 @@ A success or failure message displays, indicating whether the test was successfu
     - **Description**: It is optional to give a description for your data asset.
     - **Type**: Oracle Autonomous Data Warehouse.
     - Choose the **Upload Wallet** option to provide the login credentials for the ADW
-    - **Wallet File**: Drag and drop or browse to select your wallet file. See the process to download the wallet in Lab 0 - Step 4 of this workshop.
+    - **Wallet File**: Drag and drop or browse to select your wallet file. See the process to download the wallet in _Provision an Autonomous Data Warehouse and download Wallet_ under _Setting up the Data Integration prerequisites in OCI_.
     - Enter your **wallet password**.
     - **Service Name**: Choose the **low** service of Autonomous Data Warehouse.
-   *Note: For more information on predefined Database Service Names for Autonomous Data Warehouse, please see the following* [link](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/cswgs/autonomous-connect-database-service-names.html#GUID-9747539B-FD46-44F1-8FF8-F5AC650F15BE).
+   *Note*: For more information on predefined Database Service Names for Autonomous Data Warehouse, please see the following [link](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/cswgs/autonomous-connect-database-service-names.html#GUID-9747539B-FD46-44F1-8FF8-F5AC650F15BE).
 
    ![](./images/adw-asset-general.png " ")
 
@@ -195,7 +189,7 @@ A success or failure message displays, indicating whether the test was successfu
     - **Name**: `BETA connection`
     - **Description**: Optional (For example, `Connect with BETA user`)
     - **User Name**: `BETA`
-    - **Password**: The password you added for BETA user during Lab 0.
+    - **Password**: The password you added for BETA user in _Setting up the Data Integration prerequisites in OCI_.
 
   ![](./images/adw-asset-conn.png " ")
 
@@ -208,7 +202,7 @@ A success or failure message displays, indicating whether the test was successfu
 
   ![](./images/create-asset.png " ")
 
-   **Congratulations!**  Now you have created the Data Assets for Autonomous Data Warehouse and Object Storage, in OCI Data Integration. You may now [proceed to the next lab](#next).
+   **Congratulations!**  Now you have created the Data Assets for Autonomous Data Warehouse and Object Storage, in OCI Data Integration.
 
 ## Learn More
 

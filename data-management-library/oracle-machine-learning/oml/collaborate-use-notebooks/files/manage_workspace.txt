@@ -2,4 +2,4 @@
 
 This images shows the Manage Workspaces dialog while signed in as USER1. While signed in as USER1, you can view the default workspace owner by USER1, and all other workspaces that are shared with USER1. In this screenshot, USER1 selects USER1 Workspace and clicks Permission.   
 
-Copyright © 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

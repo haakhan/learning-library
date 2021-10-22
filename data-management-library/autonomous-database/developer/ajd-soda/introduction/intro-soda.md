@@ -1,4 +1,4 @@
-# SODA for Python Workshop Introduction
+# SODA for Python Workshop Environment Preparation
 
 ## Introduction
 
@@ -19,16 +19,16 @@ In this lab, you will:
 
 ### Prerequisites
 * An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account
-* SSH Keys for Putty or OpenSSH (id_rsa.ppk or id_rsa, and id_rsa.pub)
+* SSH Keys for Putty or OpenSSH (`id_rsa.ppk` or `id_rsa`, and `id_rsa.pub`)
 
 
 ## Task 1: Create Virtual Cloud Network (VCN)
 
 1. Login to Oracle cloud console using the URL: [https://console.eu-frankfurt-1.oraclecloud.com](https://console.eu-frankfurt-1.oraclecloud.com)
 
-- Tenant: oci-tenant
-- Username: oci-username
-- Password: oci-password
+    - Tenant: oci-tenant
+    - Username: oci-username
+    - Password: oci-password
 
 2. Click on main menu ≡, then Networking > **Virtual Cloud Networks**. Select your Region and Compartment assigned by the instructor. 
 
@@ -36,8 +36,8 @@ In this lab, you will:
 
 4. Select **VCN with Internet Connectivity**. Start VCN Wizard.
 
-- VCN Name: [Your Initials]-VCN (e.g. VLT-VCN)
-- Compartment: [Your Compartment]
+    - VCN Name: [Your Initials]-VCN (e.g. VLT-VCN)
+    - Compartment: [Your Compartment]
 
 5. Click Next and Create.
 
@@ -45,9 +45,9 @@ In this lab, you will:
 
 7. Click **Public Subnet-[Your Initials]-VCN**. Click **Default Security List for [Your Initials]-VCN**. Click **Add Ingress Rules**.
 
-- CIDR Block: 0.0.0.0/0
-- Destination Port Range: 5000
-- Description: Python Flask
+    - CIDR Block: 0.0.0.0/0
+    - Destination Port Range: 5000
+    - Description: Python Flask
 
 8. Click **Save Changes**.
 
@@ -56,34 +56,33 @@ In this lab, you will:
 
 1. Click on main menu ≡, then Compute > **Instances**. Click **Create Instance**.
 
-- Name: [Your Initials]-ClientVM (e.g. VLT-ClientVM)
-- Image or operating system: Change Image > Oracle Images > Oracle Cloud Developer Image
-- Virtual cloud network: [Your Initials]-VCN
-- Subnet: Public Subnet
-- Assign a public IP address
-- Add SSH keys: Choose SSH key files > id_rsa.pub
+    - Name: [Your Initials]-ClientVM (e.g. VLT-ClientVM)
+    - Image or operating system: Change Image > Image source: Oracle Images > Oracle Cloud Developer Image (this image may be on the second page, you need to move the blue lifebuoy/donut icon up to click next)
+    - Shape: Change Shape > Intel: VM.Standard2.1
+    - Virtual cloud network: existing VCN (default)
+    - Subnet: Public Subnet (default)
+    - Assign a public IP address (default)
+    - Generate a key pair for me, and download both private and public keys. Or click Add SSH keys: Choose SSH key files > `id_rsa.pub`
 
-2. Click **Create**. Wait for Compute Instance to finish provisioning, and have status Available.
+2. Click **Create**. Wait for Compute Instance to finish provisioning, and have status Available. On the Instance Details page, copy Public IP Address in your notes.
 
-3. Click **[Your Initials]-ClientVM** Compute instance. On the Instance Details page, copy Public IP Address in your notes.
-
-4. Connect to the Compute node using SSH. In OpenSSH, local port forwarding is configured using the -L option. Use this option to forward any connection to port 3389 on the local machine to port 3389 on your Compute node. (Mac/Linux only)
+3. Connect to the Compute node using SSH. In OpenSSH, local port forwarding is configured using the -L option. Use this option to forward any connection to port 3389 on the local machine to port 3389 on your Compute node. (Mac/Linux only)
 
     ````
     ssh -C -i id_rsa -L 3389:localhost:3389 opc@[ClientVM Public IP Address]
     ````
 
-5. Connect to the Compute node using SSH Connection From a Windows Client. Connect to Compute Public IP Address port 22. (Windows only)
+4. Connect to the Compute node using SSH Connection From a Windows Client. Connect to Compute Public IP Address port 22. (Windows only)
 
     ![](./images/putty1.png "")
 
-6. Use the id_rsa.ppk private key. (Windows only)
+5. Use the `id_rsa.ppk` private key. (Windows only)
 
     ![](./images/putty2.png "")
 
     ![](./images/putty3.png "")
 
-7. Create a SSH tunnel from source port 5001 to localhost:3389. (Windows only)
+6. Create a SSH tunnel from source port 5001 to localhost:3389. (Windows only)
 
     ![](./images/putty4.png "")
 
@@ -113,9 +112,8 @@ For some of the labs we need graphical user interface, and this can be achieved 
 
     yum -y install xrdp tigervnc-server terminus-fonts terminus-fonts-console cabextract
 
-    yum -y update sqldeveloper.noarch
-
-    yum -y localinstall https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+    wget --no-check-certificate https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+    yum -y localinstall msttcore-fonts-installer-2.6-1.noarch.rpm
 
     yum -y update sqldeveloper.noarch
 
@@ -134,7 +132,7 @@ For some of the labs we need graphical user interface, and this can be achieved 
 
     echo -e "DBlearnPTS#21_\nDBlearnPTS#21_" | passwd oracle
 
-    sed -i -e 's/^/#/' /etc/profile.d/oracle-instantclient18.5.sh
+    sed -i -e 's/^/#/' /etc/profile.d/oracle-instantclient*
 
     printf "\nORACLE_HOME=/opt/oracle/product/19c/dbhome_1\nLD_LIBRARY_PATH=\$ORACLE_HOME/lib\nPATH=\$PATH:\$ORACLE_HOME/bin\nexport ORACLE_HOME LD_LIBRARY_PATH PATH\n" >> /etc/profile
     ````
@@ -165,60 +163,60 @@ For some of the labs we need graphical user interface, and this can be achieved 
 
 9. When asked about username and password, use **oracle** and **DBlearnPTS#21_**.
 
-10. After setting your language and keyboard layout, open a Terminal window using **Right-Click** and **Open Terminal**. Check if your keyboard works. If you need to select another keyboard layout, click the **On-Off** button in the upper right corner, and **Settings** button. You will find the options under Region & Language.
+10. After setting your language and keyboard layout, open a Terminal window using **Right-Click** and **Open Terminal**. 
+
+11. Check if your keyboard works. If you need to select another keyboard layout, click the **On-Off** button in the upper right corner, and **Settings** button. You will find the options under Region & Language.
 
 ## Task 4: Provision Oracle Autonomous JSON Database (AJD)
 
-1. Click on main menu ≡, then **Autonomous JSON Database** under Oracle Database. **Create Autonomous Database**.
+1. Click on main menu ≡, then Oracle Database > **Autonomous JSON Database**. **Create Autonomous Database**.
 
-- Select a compartment: [Your Compartment]
-- Display name: [Your Initials]-AJD (e.g. VLT-AJD)
-- Database name: [Your Initials]AJD (e.g. VLTAJD)
-- Choose a workload type: JSON
-- Choose a deployment type: Shared Infrastructure
-- Choose database version: 19c
-- OCPU count: 1
-- Storage (TB): 1
-- Auto scaling: enabled
+    - Select a compartment: [Your Compartment]
+    - Display name: [Your Initials]-AJD (e.g. VLT-AJD)
+    - Database name: [Your Initials]AJD (e.g. VLTAJD)
+    - Choose a workload type: JSON
+    - Choose a deployment type: Shared Infrastructure
+    - Choose database version: 19c
+    - OCPU count: 1
+    - Storage (TB): 1
+    - Auto scaling: enabled
 
 2. Under Create administrator credentials:
 
-- Password: DBlearnPTS#21_
+    - Password: DBlearnPTS#21_
 
 3. Under Choose network access:
 
-- Access Type: Allow secure access from everywhere
+    - Access Type: Allow secure access from everywhere
 
 4. Click **Create Autonomous Database**. Wait for Lifecycle State to become Available.
 
 5. On Tools tab, under Oracle Application Express, click **Open APEX**. On Administration Services login page, use password for ADMIN.
 
-- Password: DBlearnPTS#21_
+    - Password: DBlearnPTS#21_
 
 6. Click **Sing In to Administration**. Click **Create Workspace**.
 
-- Database User: DEMO
-- Password: DBlearnPTS#21_
-- Workspace Name: DEMO
+    - Database User: DEMO
+    - Password: DBlearnPTS#21_
+    - Workspace Name: DEMO
 
 7. Click **Create Workspace**. Click AD on upper right corner, **Sign out**. Click **Return to Sign In Page**.
 
-- Workspace: demo
-- Username: demo
-- Pasword: DBlearnPTS#21_
+    - Workspace: demo
+    - Username: demo
+    - Pasword: DBlearnPTS#21_
 
 8. Click **Sign In**. Oracle APEX uses low-code development to let you build data-driven apps quickly without having to learn complex web technologies. This also gives you access to Oracle REST Data Services, that allows developers to readily expose and/or consume RESTful Web Services by defining REST end points.
 
-9. On Oracle Cloud Infrastrucuture Console, on Tools tab, under SQL Developer Web, click **Open SQL Developer Web**. Copy the URL from browser in your notes:
-
-    https://kndl0dsxmmt29t1-vltajd.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/_sdw/?nav=worksheet
+9. On Oracle Cloud Infrastructure Console, on Tools tab, under Database Actions, click **Open Database Actions**.
 
 10. Use ADMIN user credentials to login.
 
-- Username: admin
-- Password: DBlearnPTS#21_
+    - Username: admin
+    - Password: DBlearnPTS#21_
 
-11. On SQL Dev Web Worksheet as ADMIN user, run the following code:
+11. Click Development > SQL, and run the following code:
 
     ````
     BEGIN 
@@ -246,14 +244,12 @@ For some of the labs we need graphical user interface, and this can be achieved 
     GRANT SODA_APP TO demo;
     ````
 
-13. Click **ADMIN** upper right corner, and **Sign Out**. Login using DEMO user credentials.
+13. Click **ADMIN** upper right corner, and **Sign Out**. 
 
-- Username: demo
-- Password: DBlearnPTS#21_
+14. Click **Sign In**. Login using DEMO user credentials.
 
-14. Save in your notes the URL of SQL Developer Web for DEMO user, by changing '**admin**' with '**demo**' in the URL you saved for ADMIN user:
-
-    https://kndl0dsxmmt29t1-vltajd.adb.eu-frankfurt-1.oraclecloudapps.com/ords/demo/_sdw/?nav=worksheet
+    - Username: demo
+    - Password: DBlearnPTS#21_
 
 
 ## Task 5: Deploy Atlas document store on MongoDB Cloud
@@ -262,27 +258,29 @@ One of the objectives of this workshop is to show the integration of Oracle Auto
 
 1. Access MongoDB Cloud at [https://cloud.mongodb.com](https://cloud.mongodb.com), and create an account. You can login using your Google account.
 
-2. Create a new Cluster using the default settings.
+2. Click Build a Database. Select the Free option, choose a Cloud Provider and Region. Create the new Cluster using the default settings.
 
 3. Once your Cluster is up and running, on the overview page, click Connect.
 
-4. Click Add a Different IP Address, and use the Public IP address of your ClientVM Compute Node.
+4. Click Add a Different IP Address, and use the Public IP address of your ClientVM Compute Node. To add more or change this IP address, go to Security > Network Access on the left side menu.
 
-5. Create a Database User: mongoUser/DBlearnPTS#21_
+5. Create a Database User: mongoUser/DBlearnPTS#21_. To add more or change this user, click Security > Database Access on the left side menu.
 
-    Save the username and the password in your notes.
+6. Save the username and the password in your notes.
 
-6. Click Connect Your Application: Python 3.6 or later. You will receive a connection string like this:
+7. Click Connect Your Application: Python 3.6 or later. You will receive a connection string like this:
 
     ````
-    mongodb+srv://mongoUser:[password]@cluster_name.dsbwl.mongodb.net/[dbname]?retryWrites=true&w=majority
+    mongodb+srv://mongoUser:[password]@[cluster_name].dsbwl.mongodb.net/[dbname]?retryWrites=true&w=majority
     ````
 
-    Save this string in your notes.
+8. Save this string in your notes. Replace `[password]`, `[cluster_name]` and `[dbname]` with your values.
 
-7. Under Collections, use Load a Sample Dataset wizard to generate some JSON documents for different use cases in your MongoDB database. Navigate these sample datasets and familiarize yourself with JSON documents, if this is your first experience.
+9. Click the cluster name **Cluster0**. Under Collections, use Load a Sample Dataset wizard to generate some JSON documents for different use cases in your MongoDB database. Navigate these sample datasets and familiarize yourself with JSON documents, if this is your first experience.
 
-8. Click Create Database, and name it SimpleDatabase, and the collection SimpleCollection. This will be used for our Python application development in the next lab.
+10. Click Create Database, and name it SimpleDatabase, and the collection SimpleCollection. This will be used for our Python application development in the next lab.
+
+11. On the Collections left-side menu, select SimpleDatabase > SimpleCollection. This collection is now empty.
 
 
 ## Acknowledgements

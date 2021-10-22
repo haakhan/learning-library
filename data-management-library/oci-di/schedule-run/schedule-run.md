@@ -2,31 +2,25 @@
 
 ## Introduction
 
-This lab walks you through the steps to **run a Data Loader task**, to create a **task schedule** in your OCI Data Integration application, to **schedule the Pipeline task** and to **run it**.
+Learn how to **run a Data Loader task**, create a **task schedule** in your OCI Data Integration application, to **schedule the Pipeline task** and to **run it**.
 After publishing tasks to an Application, you can run a task **manually on-demand**, or you can use schedules and task schedules to **automate the execution** of your tasks.
 To run a task automatically on a specific schedule, you must:
 * **Create a schedule**: A schedule defines when and how frequently tasks should be run. A schedule can be used across tasks of any type.
 * **Create a task schedule for the task**: A task schedule is an automated run configuration for a specific task. You schedule a task to run automatically by creating a task schedule, and associating the task schedule with an existing schedule.
 
-In this Lab, you will schedule your Pipeline Task to run daily at 2PM.
+You will schedule your Pipeline Task to run daily at 2PM.
 
-*Estimated Lab Time*: 30 minutes
+**Estimated Time**: 30 minutes
 
 ### Objectives
-In this lab, you will:
 * Run the Data Loader task
 * Create a Schedule
 * Schedule the Pipeline Task
 * Run the Pipeline Task
 
-### Prerequisites
-* **Free Tier/ Paid Oracle Cloud Account**
-* All previous labs have been **successfully completed**
-
-
 ## Task 1: Run the Data Loader task
 
-In this lab step, you will do a **manual on-demand run** of your **Data Loader task**. However, you can run all the published tasks in your Application (Integration task, Data Loader task, SQL task, Pipeline task) in the same manner. The Tasks section of an Application details page shows the list of tasks you have published to the Application. You execute published tasks from the list.
+In this step, you will do a **manual on-demand run** of your **Data Loader task**. However, you can run all the published tasks in your Application (Integration task, Data Loader task, SQL task, Pipeline task) in the same manner. The Tasks section of an Application details page shows the list of tasks you have published to the Application. You execute published tasks from the list.
 
 1. In the Oracle Cloud Infrastructure Console navigation menu, navigate to **Analytics & AI**. Under Data Lake, click **Data Integration**.
 
@@ -40,7 +34,7 @@ In this lab step, you will do a **manual on-demand run** of your **Data Loader t
 
   ![](./images/workspace-homepage-applications.png " ")
 
-4. From the **list of Applications**, select the `Workshop Application`, which contains all the tasks that you have created in the previous labs of this workshop.
+4. From the **list of Applications**, select the `Workshop Application`, which contains all the tasks that you created previously in this workshop.
 
   ![](./images/applications-list.png " ")
 
@@ -72,7 +66,7 @@ You will first create a **Schedule** in the Application that contains the tasks 
 
   ![](./images/workspace-homepage-applications.png " ")
 
-4. From the **list of Applications**, select the `Workshop Application`, which contains all the tasks that you have created in the previous labs of this workshop.
+4. From the **list of Applications**, select the `Workshop Application`, which contains all the tasks that you created previously in this workshop.
 
   ![](./images/applications-list.png " ")
 
@@ -104,7 +98,7 @@ You will first create a **Schedule** in the Application that contains the tasks 
 
 ## Task 3: Schedule the Pipeline task
 
-You can create **task schedules** to schedule tasks to run on **specific days and times**, and at a **specific frequency**. You create a task schedule for each task that you want to run on an **automated schedule**. A task schedule must be associated with an existing schedule. You can enable or disable a task schedule at any time. In this lab step, you will schedule the Pipeline Task. However, scheduling process is the same for all tasks in OCI Data Integration.
+You can create **task schedules** to schedule tasks to run on **specific days and times**, and at a **specific frequency**. You create a task schedule for each task that you want to run on an **automated schedule**. A task schedule must be associated with an existing schedule. You can enable or disable a task schedule at any time. In this step, you will schedule the Pipeline Task. However, scheduling process is the same for all tasks in OCI Data Integration.
 
 1. From the `Workshop Application` you are currently in, click on **Tasks** under Details section.
 
@@ -126,7 +120,7 @@ You can create **task schedules** to schedule tasks to run on **specific days an
 
     - Click **Select** to associate this task schedule with a schedule
     ![](./images/select-button-schedule.png " ")
-    - On the **Select Schedule** page, check the existing schedule you created in the previous step of this Lab (`Daily Schedule 2PM`) and then click Select.
+    - On the **Select Schedule** page, check the existing schedule (`Daily Schedule 2PM`) that you created in _Create a Schedule_, then click **Select**.
     ![](./images/select-schedule.png " ")
 
 7. In the Configure Task Schedule section, click **Configure** to specify run options for this task schedule.
@@ -135,9 +129,9 @@ You can create **task schedules** to schedule tasks to run on **specific days an
 
 8. In the **Configure Task Schedule** page:
 
-    - **Start Time** and **End Time** are optional. If you don't specify a Start Time, this task schedule takes effect immediately, and runs are triggered when conditions specified in the associated schedule are met. In this lab we will not define Start Time and End Time.
+    - **Start Time** and **End Time** are optional. If you don't specify a Start Time, this task schedule takes effect immediately, and runs are triggered when conditions specified in the associated schedule are met. We will not define Start Time and End Time.
     - Leave blank also the optional **Expected Time to Complete** field.
-    - For **Retry Count**, enter the number of times to retry executing the task when a run fails. For example, you can define a value of **1** in this lab.
+    - For **Retry Count**, enter the number of times to retry executing the task when a run fails. For example, you can define a value of **1**.
     - Enter a value in **Retry Delay Duration**, and then select a unit from the menu to specify the time interval between retries. You can specify a value in seconds, minutes, or hours. The value must be greater than 5 seconds. Leave the default of **30 seconds**.
     - Click **Configure**.
 
@@ -157,7 +151,7 @@ You can create **task schedules** to schedule tasks to run on **specific days an
 
 ## Task 4: Run the Pipeline task
 
-In this lab step, you will now do a **manual on-demand run** of your pipeline task. However, you can run all the published tasks in your Application (Integration task, Data Loader task, SQL task, Pipeline task).
+In this step, you will now do a **manual on-demand run** of your pipeline task. However, you can run all the published tasks in your Application (Integration task, Data Loader task, SQL task, Pipeline task).
 
 1. From the `Workshop Application` you are currently in, click on **Tasks** under Details section.
 
@@ -175,8 +169,8 @@ In this lab step, you will now do a **manual on-demand run** of your pipeline ta
 
   ![](./images/pipeline-success.png " ")
 
-   **Congratulations!** You have completed all the labs in this workshop.
-   
+   **Congratulations!**
+
 ## Learn More
 
 * [Scheduling tasks in OCI Data Integration](https://docs.oracle.com/en-us/iaas/data-integration/using/schedules.htm)

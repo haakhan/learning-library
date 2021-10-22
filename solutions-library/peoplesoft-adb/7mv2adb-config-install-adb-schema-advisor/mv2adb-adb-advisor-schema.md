@@ -3,7 +3,7 @@
 ## Introduction
 This lab walks you through the steps of configuring MV2ADB for database migration and also installing ADB Schema Advisor before performing the migration to Oracle ADB-S.
 
-Estimated Lab Time: 10 minutes
+Estimated Time: 10 minutes
 
 ### Objectives
 
@@ -12,14 +12,14 @@ In this lab, you will:
 * Installing and running ADB Schema Advisor
 
 
-### Prerequisties
+### Prerequisites
 * My Oracle Support (MOS) credentials. Please make sure that you can successfully login to [Oracle Support](https://support.oracle.com).
 
 * Root user access on the on-premise PeopleSoft system
 
 ## Task 1: Configuring MV2ADB for one click PeopleSoft database migration to ADB-S
 
-* 1.Encrypt the following passwords using the “mv2adb encpass” command, and save the values to a safe location (Eg: Notepad). Run the command for each password you would like to encrypt.
+1. Encrypt the following passwords using the “mv2adb encpass” command, and save the values to a safe location (Eg: Notepad). Run the command for each password you would like to encrypt.
 
     * PeopleSoft on-premise database SYS password.
 
@@ -51,15 +51,15 @@ In this lab, you will:
 
 ## Task 2: Installing and running ADB Schema Advisor
 
-* The Advisor discovers the schema objects and performs deep analysis to highlight if any differences exist when the object gets created on Oracle Autonomous Data Warehouse or Oracle Autonomous Transaction Processing database.
+The Advisor discovers the schema objects and performs deep analysis to highlight if any differences exist when the object gets created on Oracle Autonomous Data Warehouse or Oracle Autonomous Transaction Processing database.
 
-* Download ADB schema advisor from this link [here](https://support.oracle.com/epmos/faces/DocumentDisplay?id=2462677.1) and run the sql script using below command, a new schema created for this advisor on the source DB system.
+1. Download ADB schema advisor from this link [here](https://support.oracle.com/epmos/faces/DocumentDisplay?id=2462677.1) and run the sql script using below command, a new schema created for this advisor on the source DB system.
    
      ```
      <copy>sqlplus SYS AS SYSDBA @install_adb_advisor.sql <Advisor Schema> <Password> </copy>
 
      ```
-* Run ADB Advisor using the below command
+2. Run ADB Advisor using the below command
     
      ```
      <copy>[root@pscs92dmo-lnxdb-2 opt]# cd /opt/mv2adb
@@ -70,11 +70,9 @@ In this lab, you will:
      [root@pscs92dmo-lnxdb-2 mv2adb]# ./mv2adb.bin advisor -conf conf/psftatp.cfg </copy>
      ```
 
-* Analysing the output and count of objects from the ADB Advisor job.After a successful run, output of the job will be available under ‘/opt/mv2adb/out/log’ folder
+3. Analyze the output and count of objects from the ADB Advisor job. After a successful run, output of the job will be available under ‘/opt/mv2adb/out/log’ folder
 
     ![](./images/analyser_output.png "")
-
-
 
 
 You may now **proceed to the next lab.**
@@ -83,13 +81,3 @@ You may now **proceed to the next lab.**
 * **Authors** - Deepak Kumar M, PeopleSoft Architect
 * **Contributors** - Deepak Kumar M, PeopleSoft Architect
 * **Last Updated By/Date** - Deepak Kumar M, PeopleSoft Architect, Aug 2021
-
-
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/Migrate%20SaaS%20to%20OCI). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
-
-
-

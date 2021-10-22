@@ -5,25 +5,43 @@ create or replace procedure run_lab_prereq
     lab_found boolean := false;
     e_no_lab_number EXCEPTION;
     PRAGMA exception_init( e_no_lab_number, -20001 );
+    e_table_exists exception;
+    PRAGMA exception_init( e_table_exists, -955 );
     
 begin
   
+    begin
+        -- Create a logging table
+        execute immediate 'create table moviestream_log (execution_time timestamp, message varchar2(1000))';
+        execute immediate 'create or replace public synonym moviestream_log for admin.moviestream_log';
+        execute immediate 'create or replace public synonym moviestream_write for admin.moviestream_write';
+        execute immediate 'grant execute on admin.moviestream_write to public';
+    exception 
+        when e_table_exists then
+            null;
+        when others then
+            moviestream_write(sqlerrm);
+            raise;
+    end;
+            
+    -- Clear logging table
+    execute immediate 'truncate table moviestream_log';
     
     if lab_number < 4 or lab_number is null then 
-        dbms_output.put_line('');
-        dbms_output.put_line('Invalid lab number was specified.  Please specify the number of the lab.');
-        dbms_output.put_line('Valid values are greater than 4. The earlier labs do not have prerequistes.');
-        dbms_output.put_line('');
-        dbms_output.put_line('For example, to run all the prerequisites for Lab 4:');
-        dbms_output.put_line('');
-        dbms_output.put_line('  exec run_lab_prereq(lab_number => 4)');
+        moviestream_write('');
+        moviestream_write('Invalid lab number was specified.  Please specify the number of the lab.');
+        moviestream_write('Valid values are greater than 4. The earlier labs do not have prerequistes.');
+        moviestream_write('');
+        moviestream_write('For example, to run all the prerequisites for Lab 4:');
+        moviestream_write('');
+        moviestream_write('  exec run_lab_prereq(lab_number => 4)');
         
         raise e_no_lab_number;
 
     end if;
         
-      dbms_output.put_line(''); 
-      dbms_output.put_line('Finding prequisites for lab #' || lab_number);
+      moviestream_write(''); 
+      moviestream_write('Finding prequisites for lab #' || lab_number);
       -- Get the list of prequisite labs
       -- Those will be lab numbers that come before the user provided lab
       for lab_rec in (
@@ -39,30 +57,30 @@ begin
         loop
         -- Run the prerequisite script
         lab_found := true;
-        dbms_output.put_line('  ********');
-        dbms_output.put_line('  ** Running script for ' || lab_rec.title);   
-        dbms_output.put_line('  ** Script name: ' || lab_rec.script);   
-        dbms_output.put_line('  ********');
+        moviestream_write('  ********');
+        moviestream_write('  ** Running script for ' || lab_rec.title);   
+        moviestream_write('  ** Script name: ' || lab_rec.script);   
+        moviestream_write('  ********');
         execute immediate ('begin ' || lab_rec.script || '; end;');
 
     end loop lab_rec; 
 
     
-    dbms_output.put_line('Done.');
-    dbms_output.put_line('');
+    moviestream_write('Done.');
+    moviestream_write('');
     if lab_number >= 4  then
-        dbms_output.put_line('');
-        dbms_output.put_line('Don''t forget to set a password for the moviestream user!');
-        dbms_output.put_line('');
-        dbms_output.put_line('Please create a secure password using the following command:');
-        dbms_output.put_line('');
-        dbms_output.put_line('  ALTER USER moviestream IDENTIFIED BY "<secure password>";');
-        dbms_output.put_line('');
+        moviestream_write('');
+        moviestream_write('Don''t forget to set a password for the moviestream user!');
+        moviestream_write('');
+        moviestream_write('Please create a secure password using the following command:');
+        moviestream_write('');
+        moviestream_write('  ALTER USER moviestream IDENTIFIED BY "<secure password>";');
+        moviestream_write('');
     end if;
     
 exception
     when others then        
-        dbms_output.put_line('');
-        dbms_output.put_line('* ERROR * ' || sqlerrm);
+        moviestream_write('');
+        moviestream_write('* ERROR * ' || sqlerrm);
         
 end run_lab_prereq;

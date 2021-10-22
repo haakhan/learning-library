@@ -13,18 +13,23 @@
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/remote-desktop/using-novnc-remote-desktop.md"
           },
           {
+              "title": "Initialize Your Environment",
+              "description": "Steps to verify the workshop-installed compute instance and download the lab files.",
+              "filename": "./../../initialize-environment/initialize-environment.md"
+          },
+          {
           "title": "Lab 1: Install Oracle Database 19c with Automatic Root Script Execution",
           "description": "Install Oracle Database 19c with automatic configuration script execution.",
           "filename": "./../../install-db19c-auto-root-script-execution/install-db19c-auto-root-script-execution.md"
            },
             {
-                "title": "Lab 2: Clone a PDB by Using DBCA in Silent Mode",
-                "description": "Clone a PDB by using DBCA in silent mode.",
+                "title": "Lab 2: Clone a PDB from a Remote CDB by Using DBCA in Silent Mode",
+                "description": "Clone a PDB from a remote CDB by using DBCA in silent mode.",
                 "filename": "./../../clone-pdb-using-dbca-silent-mode/clone-pdb-using-dbca-silent-mode.md"
             },
             {
-                "title": "Lab 3: Relocate a PDB by Using DBCA in Silent Mode",
-                "description": "Relocate a PDB by using DBCA in silent mode.",
+                "title": "Lab 3: Relocate a PDB to a Remote CDB by Using DBCA in Silent Mode",
+                "description": "Relocate a PDB to a remote CDB by using DBCA in silent mode.",
                 "filename": "./../../relocate-pdb-using-dbca-silent-mode/relocate-pdb-using-dbca-silent-mode.md"
             },
             {

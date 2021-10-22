@@ -17,16 +17,14 @@ In this lab, you will:
 * Verify and review the data import process
 
 ### Prerequisites
-
-* A Free Tier, Paid or LiveLabs Oracle Cloud account
-* SSH Private Key to access the host via SSH
-* You have completed:
-      - Lab : Generate SSH Keys (Free-tier and Paid Tenants only)
-      - Lab : Prepare Setup (Free-tier and Paid Tenants only)
-      - Lab : Environment Setup
-      - Lab : Initialize Environment
-      - Lab : Deploy Kubernetes Cluster and Start OIG Server
-      - Lab : Deploy OIRI in the local Kubernetes Node
+This lab assumes you have:
+- A Free Tier, Paid or LiveLabs Oracle Cloud account
+- You have completed:
+    - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
+    - Lab: Environment Setup
+    - Lab: Initialize Environment
+    - Lab: Deploy Kubernetes Cluster and Start OIG Server
+    - Lab: Deploy OIRI in the local Kubernetes Node
 
 ## Task 1: Starting the data load process
 

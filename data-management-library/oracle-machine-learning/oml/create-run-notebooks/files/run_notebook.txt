@@ -2,4 +2,4 @@
 
 This image shows a notebook after it a SQL statement is run. It fetches data from the database, and displays it. It provides the different options to visualize the data in various graphical output formats.
 
-Copyright © 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

@@ -42,7 +42,7 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
 ## Task 1: Explore GoldenGate Configuration
 1. At the terminal prompt as user `ggadmin`, type  `labmenu` to display the labmenu IF not at the labmenu.
 
-    ![](./images/labmenu_opt1.png " ")
+  ![](./images/labmenu_opt1.png " ")
 
 2. Select Option **2**
 
@@ -81,25 +81,22 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
     ```
     <copy> cd /u01/gg4mysql</copy>
     ```
-
 ## Task 2: Start GoldenGate Processes
 
 1. Go to the GG Home for MySQL. You can cd to the directory:
 
-    ![](./images/a_2.png " ")
-    ![](./images/a3.png " ")
+  ![](./images/a_2.png " ")
+  ![](./images/a3.png " ")
 
     ```
-    <copy>
-    cd /u01/gg4mysql
-    ls -l ggsci
-    </copy>
+    <copy> cd /u01/gg4mysql
+    ls -l ggsci</copy>
     ```
 
 2. Login to ggsci (GG command line interface), to create and start the GG extract, pump and replicat
 processes:
 
-    ![](./images/a4.png " ")
+  ![](./images/a4.png " ")
 
     ```  
     <copy>./ggsci</copy>
@@ -148,8 +145,8 @@ Now that the GoldenGate extract, pump and replicat processes are running, next y
 
 3. Execute the following commands. We’ve provided aliases to avoid errors, and focus on GoldenGate, rather than MySQL or Hadoop commands.
 
-     ![](./images/a5.png " ")
-     ![](./images/a6.png " ")
+   ![](./images/a5.png " ")
+   ![](./images/a6.png " ")
 
     ```
     <copy>mysqlselect</copy>
@@ -165,7 +162,7 @@ Now that the GoldenGate extract, pump and replicat processes are running, next y
 
 5. Go back to the session where you have ./ggsci running, and execute the following commands to see what data GG has processed.
 
-      ![](./images/a7.png " ")
+    ![](./images/a7.png " ")
 
     ```
     <copy>stats extmysql total</copy>
@@ -176,13 +173,13 @@ Now that the GoldenGate extract, pump and replicat processes are running, next y
 
 6.  The stats command displays the statistics of the data that GoldenGate processed (grouped by insert/update/deletes). Counts should match between source and target.
 
-    ![](./images/a8.png " ")
-    ![](./images/a9.png " ")
+  ![](./images/a8.png " ")
+  ![](./images/a9.png " ")
 
 ## Summary
 In summary, we loaded data in MySQL database `ggsource`, GG extract process `extmysql` captured the changes from the MySQL binary logs and wrote them to the local GG trail file. The pump process `pmpmysql` routed the data from the local trail (on the source) to the remote trail (on the target). The replicat process `repmysql` read the remote trail files, and applied the changes to the MySQL database `ggtarget`.
 
-You may now *proceed to the next lab*.
+You may now *proceed to the next lab*
 
 ## Learn More
 

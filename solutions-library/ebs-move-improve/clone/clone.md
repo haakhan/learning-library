@@ -40,7 +40,14 @@ Watch this short video to preview how to clone Oracle E-Business Suite using clo
 
     ![](./images/clone.png " ")
 
-4. Application Tier: Click **Edit** And Enter and verify the following values
+4. Database Tier: We can leave these values as they are and click **Next**
+
+    ![](./images/database_tier.png " ")
+
+5. Application Tier: Make sure **Start Application Tier** is switched on
+
+    ![](./images/web-entry.png " ")
+    Now Zones/Actions Click **Edit** And Enter and verify the following values
     
     a. **Web Entry Type**: New Load Balancer
 
@@ -50,35 +57,33 @@ Watch this short video to preview how to clone Oracle E-Business Suite using clo
 
     d. **Hostname**: ebsholenv2 
 
-    e. **Protocol**: https
-
-    f. **Hostname**: ebsholenv2
+    f. **Domain**: example.com
 
     g. **Port**: 443
 
     h. Click **Save Zone** and **Next**
 
-  ![](./images/web-entry.png " ")
+  ![](./images/app_tier.png " ")
 
-5. Extensibility Options:
+6. Extensibility Options:
     
     a. Click **Next**
 
     ![](./images/extensibilityoptions.png " ")
   
-6. SSH Keys:
+7. SSH Keys:
 
     a. Upload your SSH Key on the SSH Page
 
     ![](./images/add-ssh.png " ")
 
-7. Review: 
+8. Review: 
 
     a. Review the information and click Submit
 
      ![](./images/submit.png " ")
 
-8. You can check the status of the activity to clone the environment in the Activities page. The new environment is listed on the Environments page.
+9. You can check the status of the activity to clone the environment in the Activities page. The new environment is listed on the Environments page.
 
 ## Task 2: Configure Local Host Files for the Cloned Environment and Log in to Oracle E-Business Suite
 
@@ -155,6 +160,7 @@ Watch this short video to preview how to clone Oracle E-Business Suite using clo
   - Santiago Bastidas, Product Management Director
   - William Masdon, Cloud Engineering
   - Mitsu Mehta, Cloud Engineering
-* **Last Updated By/Date:** Quintin Hill, Cloud Engineering, May 2021
+  - Chris Wegenek, Cloud Engineering
+* **Last Updated By/Date:** Chris Wegenek, Cloud Engineering, September 2021
 
 

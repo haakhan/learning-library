@@ -8,7 +8,7 @@ In this lab we will load data in MySQL database `ggsource`, GG extract process `
 
 #### Lab Architecture
 
-    ![](./images/image401_1.png " ")
+  ![](./images/image401_1.png " ")
 
 ### Objectives
 - Explore GoldenGate replication from **MySQL to Hive**
@@ -45,7 +45,7 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
 
 2. Select **R** to reset the lab then Option **4**
 
-    ![](./images/labmenu_opt1.png " ")
+  ![](./images/labmenu_opt1.png " ")
 
 3. Review the overview notes on the following screen, then select **Q** to quit. These online notes have been provided so you can cut/paste file names to another session, to avoid typos.
 
@@ -54,16 +54,12 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
 5. Review the content of each of these files to explore how GoldenGate is being configured.
 
     ```
-    <copy>
-    cd /u01/gg4mysql
-    view /u01/gg4mysql/dirprm/create_mysql_to_hadoop_gg_procs.oby
-    </copy>
+    <copy>cd /u01/gg4mysql
+    view /u01/gg4mysql/dirprm/create_mysql_to_hadoop_gg_procs.oby</copy>
     ```
     ```
-    <copy>
-    cd /u01/gg4mysql/dirprm
-    view /u01/gg4mysql/dirprm/mgr.prm
-    </copy>
+    <copy>cd /u01/gg4mysql/dirprm
+    view /u01/gg4mysql/dirprm/mgr.prm</copy>
     ```
     ```
     <copy>view /u01/gg4mysql/dirprm/extmysql.prm</copy>
@@ -72,10 +68,8 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
     <copy>view  /u01/gg4mysql/dirprm/pmpmysql.prm</copy>
     ```
     ```
-    <copy>
-    cd /u01/gg4hadoop123010/dirprm
-    view /u01/gg4hadoop123010/dirprm/create_hive_replicat.oby
-    </copy>
+    <copy>cd /u01/gg4hadoop123010/dirprm
+    view /u01/gg4hadoop123010/dirprm/create_hive_replicat.oby</copy>
     ```
     ```
     <copy>view /u01/gg4hadoop123010/dirprm/rhive.prm</copy>
@@ -96,9 +90,8 @@ Now we need to start the GG manager process on both the source and target. Keep 
     <copy>ggmysql</copy>
     ```
     ```
-    <copy> pwd
-    ./ggsci
-    </copy>
+     <copy> pwd
+     ./ggsci</copy>
     ```
     ```
     <copy> info all</copy>	 
@@ -112,13 +105,11 @@ Now we need to start the GG manager process on both the source and target. Keep 
 
 5. In the second or `target` terminal session, go to the **GG Home for Hadoop**, and start the manager process. You can either cd to the directory, or call the alias gghadoop:
 
-    ![](./images/c3.png " ")
+  ![](./images/c3.png " ")
 
     ```
-    <copy>
-    cd /u01/gg4hadoop123010
-    ./ggsci
-    </copy>
+    <copy> cd /u01/gg4hadoop123010
+    ./ggsci</copy>
     ```
     ```
     <copy> info all</copy>	 
@@ -135,8 +126,8 @@ Now we need to start the GG manager process on both the source and target. Keep 
 
 6. In the first or `source` terminal session (**GG for MySQL ggsci session**), we will create and start the GG extract process:
 
-    ![](./images/c4.png " ")
-    ![](./images/c5.png " ")
+  ![](./images/c4.png " ")
+  ![](./images/c5.png " ")
 
     ```
      <copy>./ggsci</copy>
@@ -171,7 +162,7 @@ Now that the source side is setup, let us configure GG on the target side (Hive 
 
 1. In the second or `target` terminal session (**GG for Hadoop session**), you will need to modify the Hive properties by removing the ‘---‘ from the highlighted values:
 
-    ![](./images/c6.png " ")
+  ![](./images/c6.png " ")
 
     ```
     <copy>cd /u01/gg4hadoop123010/dirprm</copy>
@@ -195,13 +186,11 @@ Now that the source side is setup, let us configure GG on the target side (Hive 
 
 3. Now create and start the Hive replicat process:
 
-    ![](./images/c7.png " ")
+  ![](./images/c7.png " ")
 
     ```
-    <copy>
-    cd ..
-    ./ggsci
-    </copy>
+    <copy> cd ..
+    ./ggsci</copy>
     ```
     ```
      <copy> info all</copy>
@@ -224,7 +213,7 @@ Now that GG processes have been created and started on both the source and targe
 
 1. Open a terminal session as `ggadmin`, then click **Q** to get to a prompt:
 
-    ![](./images/c8.png " ")
+  ![](./images/c8.png " ")
 
     ```
     <copy> hivels</copy>
@@ -246,7 +235,7 @@ Now that GG processes have been created and started on both the source and targe
     ```
 2. There should be several .avro files in the data directory, and 3 .avsc files in the schema directory. You will notice that a new directory has been created for each table in the data directory.
 
-    ![](./images/c9.png " ")
+  ![](./images/c9.png " ")
 
 **Notes**:Starting with GG version 12.2.0.1.1, GG automatically creates the Hive tables with .avsc schema file. Let us take a look at the contents of the tables
 
@@ -264,28 +253,28 @@ Now that GG processes have been created and started on both the source and targe
 
 2. Click on Query, Editor, Select Hive
 
-    ![](./images/hive1.png " ")
+  ![](./images/hive1.png " ")
 
-     ![](./images/hive2.png " ")
+   ![](./images/hive2.png " ")
    Query, Editor, Hive
 
-    ![](./images/hive3.png " ")
+  ![](./images/hive3.png " ")
 
-    ![](./images/hive23.png " ")
+  ![](./images/hive23.png " ")
 
   **Schema:**
 
   **`/user/ ggtarget/ hive/ schema/ ggtarget2hive_avro.dept.avsc`**
 
-    ![](./images/c26.png " ")
+  ![](./images/c26.png " ")
 
   **Data**
 
    **`/user/ ggtarget/ hive/ data/ ggtarget2hive_avro.dept.avsc`**
 
-    ![](./images/hive24.png " ")
+  ![](./images/hive24.png " ")
 
-    ![](./images/hive25.png " ")
+  ![](./images/hive25.png " ")
 
 ## Summary
 In summary, we loaded data in MySQL database `ggsource`, GG extract process `extmysql` captured the changes from the MySQL binary logs and wrote them to the local trail file. The pump process `pmphadop` routed the data from the local trail (on the source) to the remote trail (on the target). The replicat process `rhive` read the remote trail files, created the Hive tables, wrote the data and the schema files (avsc) to the HDFS target directory for Hive: `/user/ggtarget/hive/data/*` and `/user/ggtarget/hive/schema`

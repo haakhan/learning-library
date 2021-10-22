@@ -80,25 +80,29 @@ At this point, it's assumed that the test instance created in the previous lab h
     ![](./images/create-listing-desc-1.png " ")
     ![](./images/create-listing-desc-2.png " ")
 
-6. Click on  **"App Install Package"** tab, provide a version name/ID, and Click on *"Save"* to create the version
+6. Scroll down to the section labelled **"Markets"**, Click on *"Edit"* and select all markets listed.
+
+    ![](./images/create-listing-markets.png " ")
+
+7. Click on  **"App Install Package"** tab, provide a version name/ID, and Click on *"Save"* to create the version
 
     ![](./images/create-listing-version-1.png " ")
 
-7. Scroll-down to the **"Configure OCI Compute Image"** section and Click on *"Edit"*
+8. Scroll-down to the **"Configure OCI Compute Image"** section and Click on *"Edit"*
 
     ![](./images/create-listing-version-2.png " ")
 
-8. Click on the search icon, select the artifact you created in the previous step, click on *"Save"*, then click on the **"App Listing"** tab
+9. Click on the search icon, select the artifact you created in the previous step, click on *"Save"*, then click on the **"App Listing"** tab
 
     ![](./images/create-listing-version-3.png " ")
     ![](./images/create-listing-version-4.png " ")
     ![](./images/create-listing-version-5.png " ")
 
-9. Click on *"Submit"*
+10. Click on *"Submit"*
 
     ![](./images/create-listing-submit-1.png " ")
 
-10. Provide a comment indicating the private listing nature, select the checkmark to confirm as shown, Click on *"Submit"*
+11. Provide a comment indicating the private listing nature, select the checkmark to confirm as shown, Click on *"Submit"*
 
     ```
     <copy>To be listed privately and exclusively for LiveLabs Workshops Platform</copy>
@@ -106,28 +110,28 @@ At this point, it's assumed that the test instance created in the previous lab h
 
     ![](./images/create-listing-submit-2.png " ")
 
-11. Review and Click on *"OK"*
+12. Review and Click on *"OK"*
 
     ![](./images/create-listing-submit-3.png " ")
 
-12. The Listing is now submitted and pending approval by the Marketplace Team. Once approved the three dots ***(...)*** next to your listing icon will change to a green checkmark
+13. The Listing is now submitted and pending approval by the Marketplace Team. Once approved the three dots ***(...)*** next to your listing icon will change to a green checkmark
 
     ![](./images/create-listing-submit-4.png " ")
 
-13. Once the listing has been approved, click on the hamburger menu on the far right and select *"Publish as Private"*
+14. Once the listing has been approved, click on the hamburger menu on the far right and select *"Publish as Private"*
 
     ![](./images/create-listing-publish-1.png " ")
 
-14. It will take a few hours for the listing to be propagated to all OCI regions. An email notification will be sent out to you and the private URL will be listed as shown below.
+15. It will take a few hours for the listing to be propagated to all OCI regions. An email notification will be sent out to you and the private URL will be listed as shown below.
 
     ![](./images/create-listing-done-1.png " ")
 
-15. Review your published listing by clicking on the hamburger menu, the selecting *"View Listing"*
+16. Review your published listing by clicking on the hamburger menu, the selecting *"View Listing"*
 
     ![](./images/create-listing-done-2.png " ")
     ![](./images/create-listing-done-3.png " ")
 
-16. With the image fully published and Available in all OCI regions, click on **"App Install Package"** tab, select the appropriate version, and collect the 3 key details needed for creating ORM stacks or to support a *"green button"* image configuration in LiveLabs Management System.
+17. With the image fully published and Available in all OCI regions, click on **"App Install Package"** tab, select the appropriate version, and collect the 3 key details needed for creating ORM stacks or to support a *"green button"* image configuration in LiveLabs Management System.
 
   - Listing Version
   - Listing OCID

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This workshop walks you through the steps to connect a virtual DB System and SQL Developer using SSH tunneling.
+This lab walks you through the steps to connect a virtual DB System and SQL Developer using SSH tunneling.
 
 This lab demonstrates connecting to a 21c DB System instance. However, this should work with the 19c DB System instance and DB's running in DBCS as well.
 

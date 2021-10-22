@@ -1,4 +1,4 @@
-# Deploy GoldenGate for Big Data
+# Deploy GoldenGate for Big Data (Classic)
 
 ## Introduction
 
@@ -54,12 +54,9 @@ Follow the steps below to install GoldenGate, or optionally you can select â€œIâ
 2. To install and configure GoldenGate, we have extracted the GG binaries from a tar file prior to the labs â€“ this file has been copied to /u01 as part of the setup. We will connect to the GoldenGate command line interface (ggsci) and run CREATE SUBDIRS to create the subdirectories in the GoldenGate home.
 
     ```
-    <copy>
-    cd /u01/gg4hadoop123010
-    tar -xvf  /u01/gg_binaries/gg4hadoop123010/ggs_Adapters_Linux_x64.tar
-    </copy>
+    <copy>cd /u01/gg4hadoop123010
+    tar -xvf  /u01/gg_binaries/gg4hadoop123010/ggs_Adapters_Linux_x64.tar </copy>
     ```
-
     **type**
 
     ```
@@ -69,9 +66,7 @@ Follow the steps below to install GoldenGate, or optionally you can select â€œIâ
 
     <copy>exit</copy>
     ```
-
     **type**
-
     ```
     <copy>labmenu</copy>
     ```
@@ -115,8 +110,9 @@ You may now *proceed to the next lab*.
 ## Learn More
 
 * [Oracle GoldenGate for Big Data 19c | Oracle](https://www.oracle.com/middleware/data-integration/goldengate/big-data/)
+* [GoldenGate Microservices Architecture (MA)](https://docs.oracle.com/en/middleware/goldengate/big-data/21.1/gadbd/getting-started-oracle-goldengate-microservices-big-data.html#GUID-248D5562-397F-4D10-9E95-CE9477012950)
 
 ## Acknowledgements
 * **Author** - Brian Elliott, Data Integration Team, Oracle, August 2020
 * **Contributors** - Meghana Banka, Rene Fontcha
-* **Last Updated By/Date** - Rene Fontcha, Master Principal Solutions Architect, NA Technology, October 2020
+* **Last Updated By/Date** - Brian Elliott, Data Integration Team, Oracle, August 2021

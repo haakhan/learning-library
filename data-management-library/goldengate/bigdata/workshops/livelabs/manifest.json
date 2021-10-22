@@ -1,12 +1,7 @@
 {
-  "workshoptitle": "Oracle GoldenGate for Big Data",
+  "workshoptitle": "Oracle GoldenGate for Big Data using Microservices",
   "help": "livelabs-help-license_us@oracle.com",
   "tutorials": [
-    {
-      "title": "Getting Started",
-      "description": "Login to Oracle Cloud",
-      "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"
-    },
     {
       "title": "Introduction",
       "description": "Introduction to GGBD",
@@ -49,7 +44,7 @@
       "filename": "../../mysql-to-kafka/mysql-to-kafka.md"
     },
     {
-      "title": "Lab 8: MySQL to Cassandra",
+      "title": "Lab 8:  MySQL to Cassandra",
       "description": "GGBD mysql-to-Cassandra",
       "filename": "../../mysql-to-cassandra/mysql-to-cassandra.md"
     },
@@ -57,6 +52,16 @@
       "title": "Lab 9: MySQL to Oracle",
       "description": "GGBD mysql-to-oracle",
       "filename": "../../mysql-to-oracle/mysql-to-oracle.md"
+    },
+    {
+      "title": "Lab 10: MySQL to Kafka via GG Microservices",
+      "description": "MySQL to Kafka via GG Microservices",
+      "filename": "../../mysql-to-kafka-via-ggma/mysql-to-kafka-via-ggma.md"
+    },
+    {
+      "title": "Lab 11: GGMA Adminclient",
+      "description": "GGMA Adminclient",
+      "filename": "../../ggma-adminclient/ggma-adminclient.md"
     },
     {
       "title": "Appendix",

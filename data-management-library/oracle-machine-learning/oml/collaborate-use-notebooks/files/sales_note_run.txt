@@ -2,4 +2,4 @@
 
 This screenshot shows the Sales Note notebook opened and modified by USER2 in USER1 Project. In the screenshot, USER2 enters the command select * from SH.SALES. 
 
-Copyright © 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

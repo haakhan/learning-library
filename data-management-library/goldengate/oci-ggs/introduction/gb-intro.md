@@ -2,7 +2,7 @@
 
 ## About this Workshop
 
-Oracle GoldenGate, the industry-leading data replication and integration software, is now available as a fully-managed, cloud native service on Oracle Cloud Infrastructure. This workshop guides you through the steps to set up and use Oracle Cloud Infrastructure GoldenGate.
+Oracle GoldenGate, the industry-leading data replication and integration software, is now available as a fully-managed, cloud native service on Oracle Cloud Infrastructure. This workshop guides how to instantiate a target database using Oracle Data Pump and replicate data using Oracle Cloud Infrastructure GoldenGate.
 
 Estimated Workshop Time: 2 hours
 
@@ -11,15 +11,6 @@ Oracle Cloud Infrastructure GoldenGate is a fully-managed service that uses Orac
 
    [](youtube:m4oloCyQJGM)
 
-### Objectives
-
-In this lab, you will:
-* Create the source and target databases
-* Create an Oracle Cloud Infrastructure GoldenGate Deployment
-* Register the source and target databases
-* Create an Extract and a Replicat
-* Monitor Extracts and Replicats
-
 ### Prerequisites
 
 * Experience with Oracle Database
@@ -27,14 +18,7 @@ In this lab, you will:
 * Familiarity with Oracle Cloud Infrastructure is helpful, but not required
 * An Oracle Cloud Account - Please view this workshop's LiveLabs landing page to see which environments are supported
 
-*Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
-
-## Lab Breakdown
-
-* Lab 1: Create the Oracle Cloud Infrastructure GoldenGate Deployment
-* Lab 2: Register Databases
-* Lab 3: Create and Run the Extract and Replicat
-* Lab 4: Monitor the Extract and Replicat
+> **Note:** *If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. See [Free Tier FAQs](https://www.oracle.com/cloud/free/faq.html)*.
 
 ## Learn More
 
@@ -44,4 +28,4 @@ In this lab, you will:
 ## Acknowledgements
 * **Author** - Jenny Chan, Consulting User Assistance Developer, Database User Assistance
 * **Contributors** -  Denis Gray, Database Product Management
-* **Last Updated By/Date** - Jenny Chan, April 2021
+* **Last Updated By/Date** - Jenny Chan, October 2021

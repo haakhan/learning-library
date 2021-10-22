@@ -53,7 +53,7 @@ To add a link to a lab from an OHC Tutorials page:
 
 6. In the **Create Topic** section, enter the title of the lab and, in **Href**, enter the URL you created in "**STEP 2:** Create the Target URL for a Lab".
 
-**This concludes this lab.**
+This concludes this lab. You may now proceed to the next lab.
 
 ## Want to Learn More?
 * [Add GitHub Hosted Tutorials to OHC](https://confluence.oraclecorp.com/confluence/display/DBIDDP/Add+GitHub-Hosted+Tutorials+to+the+Oracle+Help+Center)
@@ -62,10 +62,8 @@ To add a link to a lab from an OHC Tutorials page:
 
 * **Author:**
     * Anuradha Chepuri, Principal User Assistance Developer, Oracle GoldenGate
-
-* **Reviewed by:**  
+* **Contributors:**
     * Aslam Khan, Senior User Assistance Manager, ODI, OGG, EDQ
     * Tom McGinn, Database and Database Cloud Service Senior Principal Product Manager, DB Development - Documentation
-* **Last Updated By/Date:** Anuradha Chepuri, November 2020
 
-
+* **Last Updated By/Date:** Anuradha Chepuri, October 2021

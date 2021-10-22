@@ -68,7 +68,7 @@ To avoid installing tools on your local computer, we are going to use Cloud Shel
     >![Custom Component tree](./images/cloud_shell_tasks-cc.png)
     
 
-3. **Change directory** to `tasks-cc` on the Command Prompt:
+4. **Change directory** to `tasks-cc` on the Command Prompt:
 
     ```
     <copy>cd tasks-cc</copy>
@@ -76,16 +76,6 @@ To avoid installing tools on your local computer, we are going to use Cloud Shel
     > Note you have a `package.json` file and a `components` folder with a  file `tasks.js` inside.
     >
     >![Cloud Shell Tasks-cc Folder](./images/cloud_shell_tasks-cc_folder.png)
-
-    This custom component is going to make REST API calls to fetch information from APEX. To do so, we need to install an extra library called [node-fetch](https://www.npmjs.com/package/node-fetch).
-
-4. Install the library with the following command:
-
-    ```
-    <copy>npm install node-fetch</copy>
-    ```
-    ![Cloud Shell npm Instalation](./images/cloud_shell_npm.png)
-    
 
 5. Edit the file `package.json` in `tasks-cc` folder. You can use vi or vim to edit files. [Here](http://www.yolinux.com/TUTORIALS/LinuxTutorialAdvanced_vi.html) you have a good link to learn how to use it.
 We cannot cover the use of vi but we will share the commands needed to change the files.
@@ -106,14 +96,14 @@ We cannot cover the use of vi but we will share the commands needed to change th
 
     Great, we are now ready to **change the code** of our **custom component implementation**.
 
-8. **Open** the file `tasks.js` with your favorite text editor. You can find this file in the **components folder**.
+7. **Open** the file `tasks.js` with your favorite text editor. You can find this file in the **components folder**.
     
     ```
     <copy>cd components</copy>
     ```
     ![Cloud Shell tasks.js](./images/cloud_shell_task.js.png)
 
-9. **Edit** the file `tasks.js` and **replace** the whole content with the following code or download it from <a href="./files/tasks.js" target="\_blank">here</a> to download the customer component source code.
+8. **Edit** the file `tasks.js` and **replace** the whole content with the following code or download it from <a href="./files/tasks.js" target="\_blank">here</a> to download the customer component source code.
 
     ```
     <copy>vi tasks.js</copy>

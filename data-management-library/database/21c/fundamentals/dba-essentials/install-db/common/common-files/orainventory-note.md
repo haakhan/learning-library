@@ -1,1 +1,0 @@
-**Note**: If you have installed Oracle Database earlier, the next time you run the database installer, it does not display the Create Inventory window. The inventory location for Oracle Database is already set. 

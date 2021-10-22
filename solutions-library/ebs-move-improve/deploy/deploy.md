@@ -51,7 +51,7 @@ You will now deploy an E-Business Suite Cloud Manager using a Marketplace stack.
 
 Then, the stack will configure Oracle E-Business Suite Cloud Manager to work with your OCI tenancy and the newly created OCI resources.
 
-1. In the Oracle Cloud Infrastructure console navigation menu, under **Marketplace** select **All Applications** and then click **Applications**.
+1. In the Oracle Cloud Infrastructure console navigation menu, under **Marketplace** select **All Applications**.
 
   ![](./images/1.png " ")
 
@@ -263,6 +263,7 @@ You may now proceed to the next lab.
   - Santiago Bastidas, Product Management Director
   - William Masdon, Cloud Engineering
   - Mitsu Mehta, Cloud Engineering
-* **Last Updated By/Date:** Quintin Hill, Cloud Engineering, May 2021
+  - Chris Wegenek, Cloud Engineering
+* **Last Updated By/Date:** Chris Wegenek, Cloud Engineering, September 2021
 
 

@@ -14,19 +14,13 @@ A Kubernetes cluster can be organized into namespaces to divide the cluster's re
 - kube-node-lease, for one lease object per node to help determine node availability
 - kube-public, usually used for resources that have to be accessible across the cluster
 
-Watch the video below for a demo of OKE on OCI
-
-[](youtube:iKs3-4jPxbk)
-
-Estimated time: 1 hour
-
 ### Objectives
 - Create Kubernetes Cluster
-- Deploy a sample app
+
 
 ### Prerequisites
-- Lab 1: Login to Oracle Cloud
-- Lab 2: Create SSH Keys - Cloud Shell
+- OCI Command Line Interface (CLI) installation on your local machine
+
 
 ## Task 1: Create Kubernetes Cluster
 

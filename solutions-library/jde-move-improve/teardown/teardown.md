@@ -1,51 +1,46 @@
-# Tearing down Your JDE Environment
+# Tear down Your JDE Environment
 
 ## Introduction
-Now that the lab has been completed, we will use the OCI Console to destroy your JDE Trial Edition in order to make sure all resources are properly managed. 
+Now that the tutorial has been completed, we will use the Oracle Cloud Console to destroy your JD Edwards (JDE) Trial Edition to make sure all resources are properly managed.
 
-Estimated Lab Time: 5 minutes
+Estimated Time: 5 minutes
 
 
 ### Objectives
-* Delete your JDE instance
-* Destroy all associated OCI resources
+* Delete your JDE instance.
+* Destroy all associated Oracle Cloud Infrastructure (OCI) resources.
 
 ### Prerequisites
-* Tenancy Admin User
-* Tenancy Admin Password
+* Tenancy admin user name
+* Tenancy admin password
 
 ## Task 1: Delete the JDE instance
 
-To delete instances:
+1. To delete instances, if you are not already, sign in to the OCI tenancy.
 
-1. If you are not already, sign in to OCI tenancy.
+2. On the Oracle Cloud Console home page, click the navigation menu in the upper-left corner and open **Compute** and then select **Instances**.
 
+3. Navigate to your Compartment. Select the JDE trial instance in the list of instances.
 
-2. On the Oracle Cloud Infrastructure Console Home page, click the Navigation Menu   in the upper-left corner and hover over Compute then select Instances.
+   ![](./images/jde-trial-select.png " ")
 
+4. Click **More Actions** and select **Terminate** to terminate the instance.
 
-3. Navigate to your Compartment. Select the JDE trial instance in the list of Instances.
-    ![](./images/jde-trial-select.png " ")
+   ![](./images/terminate-button.png " ")
 
-4. Next click on More Actions. From there select Terminate to terminate the instance.
-    ![](./images/terminate-button.png " ")
+5. Wait for the instance to terminate. Once terminated, your instance should be gone from the instance list.
 
-5. Wait for the instance to terminate. Once terminated your instance should be gone from the instance list.
+## Task 2: Delete the Associated Oracle Cloud Infrastructure Resources
 
-## Task 2: Delete the Associated OCI Resources
+1. To delete the virtual cloud network (VCN), on the Oracle Cloud Console home page, click the navigation menu in the upper-left corner and open **Networking** and then select **Virtual Cloud Networks**.
 
-To delete the Virtual Cloud Network:
+   ![](./images/vcn-select.png " ")
 
-1. On the Oracle Cloud Infrastructure Console homepage, click on the ***Navigation Menu*** in the upper-left corner and hover over ***Networking*** then select ***Virtual Cloud Network***.
-    ![](./images/vcn-select.png " ")
+2. Under the list of VCN, click **Action** on the right-side and select **Terminate**.
 
-2. Under the list of Virtual Cloud Networks (VCN), click on the ***Action*** button on the right hand side and select ***Terminate***.
     ![](./images/vcn-terminate.png " ")
 
-3. Wait for the Virtual Cloud Network (VCN) to finish terminating and reload the page. The item should be removed from the list. 
-
-**4) You're all set!**
-    **:)**
+3. Wait for the VCN to finish terminating and reload the page. The item should be removed from the list.
 
 ## Acknowledgements
 * **Author:** AJ Kurzman, Cloud Engineering
@@ -54,7 +49,5 @@ To delete the Virtual Cloud Network:
     * Mani Julakanti, Principal JDE Specialist
     * Marc-Eddy Paul, Cloud Engineering
     * William Masdon, Cloud Engineering
-    * Chris Wegenek, Cloud Engineering 
+    * Chris Wegenek, Cloud Engineering
 * **Last Updated By/Date:** AJ Kurzman, Cloud Engineering, 11/18/2020
-
-

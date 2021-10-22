@@ -64,41 +64,30 @@ You should have a text editor, where you can paste the commands and URLs and mod
 
 ## Task 2: Create a new Docker image for the bobbys-helidon-stock-application
 
-1. Because we are going to build a new Docker image for *bobbys-helidon-stock-application*, which has dependencies on *bobbys-coherence-application*, we run a *Maven* command to clean the existing bobbys-coherence-application archive and compile, build, package, and install a new bobby-coherence-application archive in a local Maven repository. To change to the *bobbys-coherence* directory folder, copy the following command and paste it in the *Cloud Shell*.
+1. Because we are going to build a new Docker image for *bobbys-helidon-stock-application*, which has dependencies on *bobbys-coherence-application*, we run a *Maven* command to clean the existing bobbys-coherence-application archive and compile, build, package, and install a new bobby-coherence-application archive in a local Maven repository. To change to the *bobbys-coherence* directory folder and to compile, build, and install the *bobbys-coherence* application archive into a local Maven repository, copy the following command and paste it in the *Cloud Shell*.
 
     ```bash
-    <copy>cd ~/examples/bobs-books/bobbys-books/bobbys-coherence/</copy>
+    <copy>
+    cd ~/examples/bobs-books/bobbys-books/bobbys-coherence/
+    mvn clean install
+    </copy>
     ```
 
     ![change directory](images/8.png)
-
-2. To compile, build, and install the *bobbys-coherence* application archive into a local Maven repository, copy the following command and paste it in the *Cloud Shell* to run it.
-
-    ```bash
-    <copy>mvn clean install</copy>
-    ```
-
     ![mvn install](images/9.png)
-    ![mvn install](images/10.png)
 
-3. Because we modified *bobbys-helidon-stock-application*, we need to compile, build, and package this application. To change to the *bobbys-helidon-stock-application* directory , copy the following command and paste it in the *Cloud Shell*.
+2. Because we modified *bobbys-helidon-stock-application*, we need to compile, build, and package this application. To change to the *bobbys-helidon-stock-application* directory and to package *bobbys-helidon-stock-application* into a JAR file, copy the following command and paste it in the *Cloud Shell*.  In the second image, you can see the creation of the `bobbys-helidon-stock-application.jar` file at `~/examples/bobs-books/bobbys-books/bobbys-helidon-stock-application/target`.
 
     ```bash
-    <copy>cd ~/examples/bobs-books/bobbys-books/bobbys-helidon-stock-application/</copy>
+    <copy>cd ~/examples/bobs-books/bobbys-books/bobbys-helidon-stock-application/
+    mvn clean package
+    </copy>
     ```
 
     ![Change directory](images/11.png)
-
-4. To package *bobbys-helidon-stock-application* into a JAR file, copy the following *Maven* command and paste it in the *Cloud Shell*. In the second image, you can see the creation of the `bobbys-helidon-stock-application.jar` file at `~/examples/bobs-books/bobbys-books/bobbys-helidon-stock-application/target`.
-
-    ```bash
-    <copy>mvn clean package</copy>
-    ```
-
-    ![package](images/12.png)
     ![target folder](images/13.png)
 
-5. We are going to create a Docker image for bobby-stock-helidon-application, but this application uses a specific version of JDK and we don't want to change the Docker files which build the new image. So, we download the required JDK. To download the required JDK version, copy the below command and paste it in the *Cloud Shell*.
+3. We are going to create a Docker image for bobby-stock-helidon-application, but this application uses a specific version of JDK and we don't want to change the Docker files which build the new image. So, we download the required JDK. To download the required JDK version, copy the below command and paste it in the *Cloud Shell*.
 
     ```bash
     <copy>wget https://download.java.net/java/GA/jdk14.0.2/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-14.0.2_linux-x64_bin.tar.gz</copy>
@@ -106,7 +95,7 @@ You should have a text editor, where you can paste the commands and URLs and mod
 
     ![Download JDK](images/14.png)
 
-6. We are creating a Docker image, which we will upload to the Oracle Cloud Container Registry in Lab 6. To create the file name, we need the following information:
+4. We are creating a Docker image, which we will upload to the Oracle Cloud Container Registry in Lab 6. To create the file name, we need the following information:
 
     * Tenancy Namespace
     * End point for the Region
@@ -114,16 +103,16 @@ You should have a text editor, where you can paste the commands and URLs and mod
     You can find out your *Region Name* in top right corner in the Oracle Cloud Console, as shown in following image.
     ![Container Registry](images/15.png)
 
-7. For finding the Namespace of the tenancy, select the Hamburger Menu -> Developer Services -> Container Registry, as shown. In the compartment, you will find the Namespace. Copy and save it in somewhere in your text editor. In my case, *id9hokcxpkra* is my tenancy Namespace. Keep it in the text editor, because we will also use it in Lab 6.
+5. For finding the Namespace of the tenancy, select the Hamburger Menu -> Developer Services -> Container Registry, as shown. In the compartment, you will find the Namespace. Copy and save it in somewhere in your text editor. Keep it in the text editor, because we will also use it in Lab 6.
 
     ![Tenancy Namespace](images/20.png)
     ![Tenancy Namespace](images/16.png)
 
-8. To find out the endpoint for your Region, select this URL [https://docs.oracle.com/en-us/iaas/Content/Registry/Concepts/registryprerequisites.htm#Availab](https://docs.oracle.com/en-us/iaas/Content/Registry/Concepts/registryprerequisites.htm#Availab). In my case, it is *US EAST (Ashburn)* as the region name, thus its endpoint is *iad.ocir.io*. Find out your endpoint for your own *Region Name* and save it in the text editor. We will also need it for the next lab.
+6. To find out the endpoint for your Region, select this URL [https://docs.oracle.com/en-us/iaas/Content/Registry/Concepts/registryprerequisites.htm#Availab](https://docs.oracle.com/en-us/iaas/Content/Registry/Concepts/registryprerequisites.htm#Availab). In my case, it is *US EAST (Ashburn)* as the region name, thus its endpoint is *iad.ocir.io*. Find out your endpoint for your own *Region Name* and save it in the text editor. We will also need it for the next lab.
 
     ![End Points](images/17.png)
 
-9. Now you have both the Tenancy Namespace and Endpoint for your region. Copy the following command and paste it in your text editor. Then replace the `END_POINT_OF_YOUR_REGION` with the endpoint of your region name and `NAMESPACE_OF_YOUR_TENANCY` with your tenancy's namespace.
+7. Now you have both the Tenancy Namespace and Endpoint for your region. Copy the following command and paste it in your text editor. Then replace the `END_POINT_OF_YOUR_REGION` with the endpoint of your region name and `NAMESPACE_OF_YOUR_TENANCY` with your tenancy's namespace.
 
     ```bash
     <copy>docker build --force-rm=true -f Dockerfile -t `END_POINT_OF_YOUR_REGION`/`NAMESPACE_OF_YOUR_TENANCY`/helidon-stock-application:1.0 .</copy>
@@ -133,7 +122,7 @@ You should have a text editor, where you can paste the commands and URLs and mod
 
     ![Docker Build](images/19.png)
 
-This creates the Docker image, which we will push into the Oracle Cloud Container Registry repository in Lab 6. You need to copy the replaced full image name `END_POINT_OF_YOUR_REGION`/`NAMESPACE_OF_YOUR_TENANCY`/helidon-stock-application:1.0 in your text editor; we will need it in Lab 6 and Lab 7. In my case, I am copying `iad.ocir.io/id9hokcxpkra/helidon-stock-application:1.0` as the full Docker image name in my text editor.
+This creates the Docker image, which we will push into the Oracle Cloud Container Registry repository in Lab 6. You need to copy the replaced full image name `END_POINT_OF_YOUR_REGION`/`NAMESPACE_OF_YOUR_TENANCY`/helidon-stock-application:1.0 in your text editor; we will need it in Lab 6 and Lab 7.
 
 Leave the *Cloud Shell* open; we need it for next lab.
 

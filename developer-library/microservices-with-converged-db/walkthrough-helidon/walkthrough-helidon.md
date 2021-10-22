@@ -17,12 +17,12 @@ Quick walk through on how to deploy the microservices on your Kubernetes cluster
 
 ### Prerequisites
 
-* An Oracle Cloud paid account or free trial. To sign up for a trial account with $300 in credits for 30 days, click [here](http://oracle.com/cloud/free).
-* The OKE cluster and the ATP databases that you created in Lab 1
+* An Oracle Cloud paid account or free trial. To sign up for a trial account with $300 in credits for 30 days, click [Sign Up](http://oracle.com/cloud/free).
+* The OKE cluster and the Autonomous Transaction Processing databases that you created in Lab 1
 
 ## Task 1: Deploy all the Microservices and the FrontEnd UI
 
-1.  Run the deploy script.  This will create the deployment and pod for all the java images in the OKE cluster `msdataworkshop` namespace:
+1.  Run the deploy script. This will create the deployment and pod for all the java images in the OKE cluster `msdataworkshop` namespace:
 
     ```
     <copy>cd $GRABDISH_HOME;./deploy.sh</copy>
@@ -38,18 +38,18 @@ Quick walk through on how to deploy the microservices on your Kubernetes cluster
 
   ![](images/pods-all-after-deploy.png " ")
 
-  Alternatively, you can execute the `pods` shortcut command:
+  Or, you can execute the `pods` shortcut command:
 
-3. Check that the **frontend** load balancer service is running, and write down the external IP
-    address.
+3. Check that the **ingress-nginx-controller** load balancer service is running, and write down the external IP address.
 
     ```
     <copy>kubectl get services --all-namespaces</copy>
     ```
 
-  ![](images/frontend-service.png " ")
+    ![](images/ingress-nginx-loadbalancer-externalip.png " ")
 
-  Alternatively, you can execute the `services` shortcut command.
+
+  Or, you can execute the `services` shortcut command.
 
 ## Task 2: Access the FrontEnd UI
 
@@ -59,7 +59,7 @@ You are ready to access the frontend page. Open a new browser tab and enter the 
 
 Note that for convenience a self-signed certificate is used to secure this https address and so it is likely you will be prompted by the browser to allow access.
 
-You will then be prompted to authenticate to access the Front End microservices.  The user is `grabdish` and the password is the one you entered in Lab 1.
+You will be prompted to authenticate to access the Front End microservices. The user is `grabdish` and the password is the one you entered in Lab 1.
 
 ![](images/frontendauthlogin.png " ")
 
@@ -67,7 +67,7 @@ You should then see the Front End home page. You've now accessed your first micr
 
 ![](images/ui-home-page.png " ")
 
-We created a self-signed certificate to protect the frontend-helidon service.  This certificate will not be recognized by your browser and so a warning will be displayed.  It will be necessary to instruct the browser to trust this site in order to display the frontend.  In a production implementation a certificate that is officially signed by a certificate authority should be used.
+We created a self-signed certificate to protect the frontend-helidon service. This certificate will not be recognized by your browser and so a warning is displayed. It will be necessary to instruct the browser to trust this site to display the frontend. In a production implementation a certificate that is officially signed by a certificate authority should be used.
 
 ## Task 3: Verify the Order and Inventory Functionality of GrabDish store
 
@@ -105,7 +105,7 @@ We created a self-signed certificate to protect the frontend-helidon service.  T
 
    ![](images/tx-show-order-67.png " ")
 
-   The order should have been successfully placed, which is demonstrated with the order status showing success.
+   The order should have been successfully placed, which is shown by the order status showing success.
 
 
 Although this might look like a basic transactional mechanic, the difference in the microservices environment is that it’s not using a two-phase XA commit, and therefore not using distributed locks. In a microservices environment with potential latency in the network, service failures during the communication phase or delays in long running activities, an application shouldn’t have locking across the services. Instead, the pattern that is used is called the saga pattern, which instead of defining commits and rollbacks, allows each service to perform its own local transaction and publish an event. The other services listen to that event and perform the next local transaction.
@@ -144,7 +144,7 @@ What is unique to Oracle and Advanced Queuing is that a JDBC connection can be i
 
    ![](images/spatial-deliver-here.png " ")
 
-5. Your order is being fulfilled and will be delivered via the fastest route.
+5. Your order is being fulfilled and will be delivered through the fastest route.
 
    ![](images/spatial-delivery.png " ")
 
@@ -185,7 +185,7 @@ requests or not). In this STEP you will see how the probes pick up the health th
 
    ![](images/health-liveness-yaml.png " ")
 
-4. In order to observe how OKE will manage the pods, the microservice has been created with the possibility to set up the liveliness to “false”. Click **Get Last Container Start Time** and note the time the container started.
+4. To observe how OKE will manage the pods, the microservice has been created with the possibility to set up the liveliness to “false”. Click **Get Last Container Start Time** and note the time the container started.
 
    ![](images/health-get-last-start.png " ")
 
@@ -204,7 +204,7 @@ requests or not). In this STEP you will see how the probes pick up the health th
 
 ## Task 7: Understand Passing Database Credentials to a Microservice (Study)
 
-In order to connect to an ATP database you need the following four pieces of information:
+To connect to an  'Oracle Autonomous Transaction Processing database you need the following four pieces of information:
    - Database user name
    - Database user password
    - Database Wallet
@@ -233,7 +233,7 @@ Let’s analyze the Kubernetes deployment YAML file: `order-helidon-deployment.y
           key:  dbpassword
     ```
 
-   Note, code has also been implemented to accept the password from an OCI vault, however, this is not implemented in the workshop at this time.
+   Note, code has also been implemented to accept the password from a vault, however, this is not implemented in the workshop at this time.
 
    The secret itself was created during the setup using the password that you entered.  See `utils/main-setup.sh` for more details.
 
@@ -316,7 +316,7 @@ PoolDataSource atpOrderPdb;
 
 ## Task 9: Understand shortcut commands and development process (Study)
 
-A number of shortcut commands are provided in order to analyze and debug the workshop kubernetes environment including the following:
+A number of shortcut commands are provided to analyze and debug the workshop kubernetes environment including the following:
 
 `msdataworkshop` - Lists all of the kubernetes resources (deployments, pods, services, secrets) involved in the workshop
 
@@ -330,7 +330,7 @@ As the deployments in the workshop are configured with `imagePullPolicy: Always`
 
 1. Modify microservice source
 2. Run `./build.sh` to build and push the newly modified microservice image to the repository
-3. Run `deletepod` (e.g. `deletepod order`) to delete the old pod and start a new pod with the new image
+3. Run `deletepod` (for example `deletepod order`) to delete the old pod and start a new pod with the new image
 4. Verify changes
 
 If changes have been made to the deployment yaml then re-run `./deploy.sh` in the appropriate microservice's directory.

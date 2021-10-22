@@ -67,11 +67,27 @@ The following values should be supplied:
 
     ```
     <copy>
-    chmod 400 /path/to/ssh-key-*.key
+    chmod 600 /path/to/ssh-key-*.key
     </copy>
     ```
 
-2. Before deploying, ensure the wallet exists on the VM by running the following snippet replacing [YOUR IP] with the public IP from the previous section:
+2. To keep things simple, we'll revert to hardcoded passwords and explicit wallet configuration for the deployed instance. Ensure that your `datasources` block in `application.yml` looks like this (replace __XXXXXXXX__ with the user password):
+
+        <copy>
+        datasources:
+          default:
+            url: jdbc:oracle:thin:@mnociatp_high?tns_admin=/tmp/wallet
+            driverClassName: oracle.jdbc.OracleDriver
+            username: mnocidemo
+            password: XXXXXXXX
+            dialect: ORACLE
+            data-source-properties:
+              oracle:
+                jdbc:
+                  fanEnabled: false
+        </copy>
+
+3. Before deploying, ensure the wallet exists on the VM by running the following snippet replacing [YOUR IP] with the public IP from the previous section:
 
     ```
     # run on local machine to push to VM
@@ -80,9 +96,9 @@ The following values should be supplied:
     </copy>
     ```
 
-> *NOTE:* that the command above refers to the directory where you extracted the wallet to (in this case `/tmp/wallet`). If you extracted to a different location you will need to alter the command appropriately.  
+> *NOTE:* that the command above refers to the directory where you extracted the wallet to (in this case `/tmp/wallet`). If you extracted to a different location you will need to alter the command appropriately.
 
-2. If you are using Gradle, build a runnable JAR file with:
+4. If you are using Gradle, build a runnable JAR file with:
 
     ```
     # run on local machine
@@ -91,8 +107,8 @@ The following values should be supplied:
     </copy>
     ```
 
-2. Alternatively with Maven run the `package` goal:
-    
+5. Alternatively with Maven run the `package` goal:
+
     ```
     <copy>
     # run on local machine
@@ -100,7 +116,7 @@ The following values should be supplied:
     </copy>
     ```
 
-3. Push the runnable JAR file to VM:
+6. Push the runnable JAR file to VM:
 
     ```
     # run on local machine to push to VM
@@ -109,10 +125,9 @@ The following values should be supplied:
     </copy>
     ```
 
-> *NOTE:* It is important that you copy the JAR file that ends with `-all.jar` which represents the runnable JAR file. Also if you are using Maven the JAR file name will be `target/example-atp-0.1.jar`. 
+> *NOTE:* It is important that you copy the JAR file that ends with `-all.jar` which represents the runnable JAR file. Also if you are using Maven the JAR file name will be `target/example-atp-0.1.jar`.
 
-
-4. To run on the VM, first SSH in:
+7. To run on the VM, first SSH in:
 
     ```
     <copy>
@@ -120,11 +135,11 @@ The following values should be supplied:
     </copy>
     ```
 
-Then install GraalVM 21.0.0.2:
+Then install GraalVM 21.2.0:
 
     <copy>
     yum check-update
-    sudo yum install graalvm21-ee-11-native-image-21.0.0.2-2.el7.x86_64
+    sudo yum install graalvm21-ee-11-native-image.x86_64
     </copy>
 
 Open up the firewall to port 8080:
@@ -140,7 +155,7 @@ Finally start the application:
     java -jar application.jar
     </copy>
 
-## Task 2:  Verify Application
+## Task 3:  Verify Application
 
 You can now access `http://[VM IP Address]:8080/pets` for the `/pet` endpoint and `http://[VM IP Address]:8080/owners` for the `/owners` endpoint in a browser or using `curl`:
 

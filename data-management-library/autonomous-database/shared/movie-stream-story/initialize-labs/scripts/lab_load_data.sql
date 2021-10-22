@@ -2,23 +2,24 @@ create or replace procedure lab_load_data as
     reset_proc varchar2(30000);
 begin  
 
-dbms_output.put_line(systimestamp || ' - generating reset_schema_1 code in moviestream schema');
+admin.moviestream_write(' - generating reset_schema_1 code in moviestream schema');
 
 reset_proc := q'[create or replace procedure moviestream.reset_schema_1 authid definer as 
-    uri_landing     varchar2(1000) := 'https://objectstorage.us-ashburn-1.oraclecloud.com/p/tLBDQf0prua1qyczMj321erjEGwCy1kJwi5Y3B0YWBnssNmfRxRhQFRbeS799RH1/n/adwc4pm/b/moviestream_landing/o';
-    uri_gold        varchar2(1000) := 'https://objectstorage.us-ashburn-1.oraclecloud.com/p/S-9E_eBGGoo9xNm3QP-DoNPr8xlmibT52mXsirQdvmiv_FfRTFmAx2ajUqFY5RCW/n/adwc4pm/b/moviestream_gold/o';
-    uri_sandbox     varchar2(1000) := 'https://objectstorage.us-ashburn-1.oraclecloud.com/p/qrPsJPyEuJCVj4ji0c1ZbLTL0-bRaM1BRtHkXG6QOW1-UgCmHDuIRfVnkGunbtN5/n/adwc4pm/b/moviestream_sandbox/o';    
+    uri_landing     varchar2(1000) := 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/moviestream_landing/o';
+    uri_gold        varchar2(1000) := 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/moviestream_gold/o';
+    uri_sandbox     varchar2(1000) := 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/c4u04/b/moviestream_sandbox/o';    
     csv_format      varchar2(1000) := '{"dateformat":"YYYY-MM-DD", "skipheaders":"1", "delimiter":",", "ignoreblanklines":"true", "removequotes":"true", "blankasnull":"true", "trimspaces":"lrtrim", "truncatecol":"true", "ignoremissingcolumns":"true"}';
     pipe_format     varchar2(1000) := '{"dateformat":"YYYY-MM-DD", "skipheaders":"1", "delimiter":"|", "ignoreblanklines":"true", "removequotes":"true", "blankasnull":"true", "trimspaces":"lrtrim", "truncatecol":"true", "ignoremissingcolumns":"true"}';
     json_format     varchar2(1000) := '{"skipheaders":"0", "delimiter":"\n", "ignoreblanklines":"true"}';
     parquet_format  varchar2(1000) := '{"type":"parquet",  "schema": "all"}';
-    type table_array IS VARRAY(16) OF VARCHAR2(30); 
+    type table_array IS VARRAY(17) OF VARCHAR2(30); 
     table_list table_array := table_array( 'ext_genre',
                                             'ext_movie',
                                             'ext_customer_contact',
                                             'ext_customer_extension',
                                             'ext_customer_segment',
                                             'ext_pizza_location',
+                                            'ext_potential_churners',
                                             'ext_custsales',
                                             'custsales',
                                             'customer_contact',
@@ -37,28 +38,28 @@ reset_proc := q'[create or replace procedure moviestream.reset_schema_1 authid d
 begin   
   
     -- initialize
-    dbms_output.put_line(systimestamp || ' - dropping tables');
+    admin.moviestream_write(' - dropping tables');
 
     -- Loop over tables and drop
     for i in 1 .. table_list.count loop
         begin
-            dbms_output.put_line(systimestamp || ' - ...' || table_list(i));
+            admin.moviestream_write(' - ...' || table_list(i));
             execute immediate 'drop table ' || table_list(i);
         exception
             when others then
-                dbms_output.put_line(systimestamp || ' - ...... tried to delete ' || table_list(i) || ' but table was not found');
+                admin.moviestream_write(' - ...... tried to delete ' || table_list(i) || ' but table was not found');
         end;
     end loop;
     
           
     -- Create a time table  over 2 years.  Used to densify time series calculations
-    dbms_output.put_line(systimestamp || ' - create time table');
+    admin.moviestream_write(' - create time table');
     
     execute immediate 'create table time as
     select trunc (to_date(''20210101'',''YYYYMMDD'')-rownum) as day_id
     from dual connect by rownum < 732';
     
-    dbms_output.put_line(systimestamp || ' - populate time table');
+    admin.moviestream_write(' - populate time table');
     execute immediate 'alter table time
         add (
             day_name as (to_char(day_id, ''DAY'')),
@@ -79,8 +80,8 @@ begin
     -- Create external tables then do a CTAS
     
     begin
-        dbms_output.put_line(systimestamp || ' - create temporary external tables');
-        dbms_output.put_line(systimestamp || ' - ... ext_genre');
+        admin.moviestream_write(' - create temporary external tables');
+        admin.moviestream_write(' - ... ext_genre');
         dbms_cloud.create_external_table(
             table_name => 'ext_genre',
             file_uri_list => uri_gold || '/genre/*.csv',
@@ -88,7 +89,7 @@ begin
             column_list => 'genre_id number, name varchar2(30)'
             );
     
-        dbms_output.put_line(systimestamp || ' - ... ext_customer_segment');
+        admin.moviestream_write(' - ... ext_customer_segment');
         dbms_cloud.create_external_table(
             table_name => 'ext_customer_segment',
             file_uri_list => uri_landing || '/customer_segment/*.csv',
@@ -96,7 +97,7 @@ begin
             column_list => 'segment_id number, name varchar2(100), short_name varchar2(100)'
             );
 
-        dbms_output.put_line(systimestamp || ' - ... ext_potential_churner');            
+        admin.moviestream_write(' - ... ext_potential_churner');            
         dbms_cloud.create_external_table(
             table_name => 'ext_potential_churners',
             file_uri_list => uri_sandbox || '/potential_churners/*.csv',
@@ -104,7 +105,7 @@ begin
             column_list => 'cust_id number, will_churn number, prob_churn number'
             );             
     
-        dbms_output.put_line(systimestamp || ' - ... ext_movie'); 
+        admin.moviestream_write(' - ... ext_movie'); 
         dbms_cloud.create_external_table(
             table_name => 'ext_movie',
             file_uri_list => uri_gold || '/movie/*.json',
@@ -112,7 +113,7 @@ begin
             column_list => 'doc varchar2(30000)'
             );
       
-        dbms_output.put_line(systimestamp || ' - ... ext_custsales');
+        admin.moviestream_write(' - ... ext_custsales');
         dbms_cloud.create_external_table(
             table_name => 'ext_custsales',
             file_uri_list => uri_gold || '/custsales/*.parquet',
@@ -131,7 +132,7 @@ begin
                             APP VARCHAR2(4000 BYTE)'
         ); 
         
-        dbms_output.put_line(systimestamp || ' - ... ext_pizza_location');       
+        admin.moviestream_write(' - ... ext_pizza_location');       
         dbms_cloud.create_external_table(
             table_name => 'ext_pizza_location',
             file_uri_list => uri_landing || '/pizza_location/*.csv',
@@ -148,7 +149,7 @@ begin
                             COUNTY VARCHAR2(250 BYTE)'
             ); 
         
-        dbms_output.put_line(systimestamp || ' - ... ext_customer_contact');  
+        admin.moviestream_write(' - ... ext_customer_contact');  
         dbms_cloud.create_external_table(
             table_name => 'ext_customer_contact',
             file_uri_list => uri_gold || '/customer_contact/*.csv',
@@ -171,7 +172,7 @@ begin
     
             ); 
     
-        dbms_output.put_line(systimestamp || ' - ... ext_customer_extension');
+        admin.moviestream_write(' - ... ext_customer_extension');
         dbms_cloud.create_external_table(
             table_name => 'ext_customer_extension',
             file_uri_list => uri_landing || '/customer_extension/*.csv',
@@ -204,32 +205,32 @@ begin
                             YRS_RESIDENCE                NUMBER'
             ); 
     
-        dbms_output.put_line(systimestamp || ' - external tables created.') ;
+        admin.moviestream_write(' - external tables created.') ;
     
     
         --  Create tables from external tables
     
-        dbms_output.put_line(systimestamp || ' - create pizza_locations');
+        admin.moviestream_write(' - create pizza_locations');
         execute immediate 'create table pizza_location as select * from ext_pizza_location';
         execute immediate 'drop table ext_pizza_location';
      
-        dbms_output.put_line(systimestamp || ' - create genre');
+        admin.moviestream_write(' - create genre');
         execute immediate 'create table genre as select * from ext_genre';
         execute immediate 'drop table ext_genre';
      
-        dbms_output.put_line(systimestamp || ' - create customer_segment');
+        admin.moviestream_write(' - create customer_segment');
         execute immediate 'create table customer_segment as select * from ext_customer_segment';
         execute immediate 'drop table ext_customer_segment';
      
-        dbms_output.put_line(systimestamp || ' - create customer_contact');
+        admin.moviestream_write(' - create customer_contact');
         execute immediate 'create table customer_contact as select * from ext_customer_contact';
         execute immediate 'drop table ext_customer_contact';
     
-        dbms_output.put_line(systimestamp || ' - create customer_extension');
+        admin.moviestream_write(' - create customer_extension');
         execute immediate 'create table customer_extension as select * from ext_customer_extension';
         execute immediate 'drop table ext_customer_extension';
     
-        dbms_output.put_line(systimestamp || ' - create movie');
+        admin.moviestream_write(' - create movie');
         execute immediate 'create table movie as
             select
                 cast(m.doc.movie_id as number) as movie_id,
@@ -253,12 +254,12 @@ begin
             from ext_movie m';
         execute immediate 'drop table ext_movie';            
      
-        dbms_output.put_line(systimestamp || ' - create custsales');
+        admin.moviestream_write(' - create custsales');
         execute immediate 'create table custsales as select * from ext_custsales';
         execute immediate 'drop table ext_custsales';
     
         -- Table combining the two independent ones
-        dbms_output.put_line(systimestamp || ' - create combined customer');
+        admin.moviestream_write(' - create combined customer');
         execute immediate 'create table CUSTOMER
                 as
                 select  cc.CUST_ID,                
@@ -302,7 +303,7 @@ begin
                 where cc.cust_id = ce.cust_id';
      
         -- View combining data
-        dbms_output.put_line(systimestamp || ' - create view v_custsales');
+        admin.moviestream_write(' - create view v_custsales');
         execute immediate 'CREATE OR REPLACE VIEW v_custsales AS
                 SELECT
                     cs.day_id,
@@ -372,7 +373,7 @@ begin
                 AND  c.segment_id = s.segment_id';
     
         -- Add constraints and indexes
-        dbms_output.put_line(systimestamp || ' - creating constraints and indexes');
+        admin.moviestream_write(' - creating constraints and indexes');
     
         execute immediate 'alter table genre add constraint pk_genre_id primary key("GENRE_ID")';
     
@@ -398,7 +399,7 @@ begin
         execute immediate 'alter table custsales add constraint fk_custsales_cust_id foreign key("CUST_ID") references customer("CUST_ID")';
         execute immediate 'alter table custsales add constraint fk_custsales_day_id foreign key("DAY_ID") references time("DAY_ID")';
         execute immediate 'alter table custsales add constraint fk_custsales_genre_id foreign key("GENRE_ID") references genre("GENRE_ID")';
-        dbms_output.put_line(systimestamp || '- finished creating constraints and indexes.');
+        admin.moviestream_write('- finished creating constraints and indexes.');
      end;
      
    
@@ -408,9 +409,9 @@ end reset_schema_1;
     -- Generate the procedure in the moviestream schema
     execute immediate reset_proc;
     -- Run the procedure
-    dbms_output.put_line(systimestamp || ' - compiling moviestream.reset_schema_1');
+    admin.moviestream_write(' - compiling moviestream.reset_schema_1');
     execute immediate 'alter procedure moviestream.reset_schema_1 compile';
-    dbms_output.put_line(systimestamp || ' - run moviestream.reset_schema_1');
+    admin.moviestream_write(' - run moviestream.reset_schema_1');
     
     execute immediate 'begin moviestream.reset_schema_1; end;';
 end lab_load_data;

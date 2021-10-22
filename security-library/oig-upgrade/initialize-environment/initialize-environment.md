@@ -18,9 +18,8 @@ In this lab, you will:
 * Verify the status of 12c Domain.
 
 ### Prerequisites
-
-* An Oracle Cloud Account - Please view this workshop's LiveLabs landing page to see which environments are supported
-* SSH Private Key to access the host via SSH
+This lab assumes you have:
+- A Free Tier, Paid or LiveLabs Oracle Cloud account
 
 *Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
 

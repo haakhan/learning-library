@@ -18,7 +18,7 @@ Estimated Lab Time: 30 minutes
 
 ### Objectives
 
-You learn how to perform the following tasks:
+In this lab, you will:
 
 - View sensitive data in your database
 - Discover sensitive data in your database by using the Data Discovery feature
@@ -29,11 +29,11 @@ You learn how to perform the following tasks:
 
 ### Prerequisites
 
-Before starting, be sure that you have completed the following prerequisite tasks:
+This lab assumes you have:
 
-- You obtained an Oracle Cloud account and signed in to the Oracle Cloud Infrastructure Console.
-- You prepared your environment for this workshop. If not, see [Prepare Your Environment](?lab=prepare-environment). It's important that your ATP database is registered with Oracle Data Safe, the Data Discovery and Data Masking features are enabled on your database, and you have the appropriate privileges in Oracle Data Safe to use the Data Discovery and Data Masking features with your database.
-- You registered your Autonomous Database with Oracle Data Safe and loaded sample data into it. You know the `ADMIN` password for your database. If not, see [Register an Autonomous Database](?lab=register-autonomous-database).
+- Obtained an Oracle Cloud account and signed in to the Oracle Cloud Infrastructure Console
+- Prepared your environment for this workshop (see [Prepare Your Environment](?lab=prepare-environment)). It's important that your ATP database is registered with Oracle Data Safe, the Data Discovery and Data Masking features are enabled on your database, and you have the appropriate privileges in Oracle Data Safe to use the Data Discovery and Data Masking features with your database.
+- Registered your Autonomous Database with Oracle Data Safe and loaded sample data into it. Have the `ADMIN` password for your database on hand (see [Register an Autonomous Database](?lab=register-autonomous-database)).
 
 
 ### Assumptions
@@ -43,7 +43,7 @@ Before starting, be sure that you have completed the following prerequisite task
 
 ## Task 1: View sensitive data in your database
 
-Use Oracle Database Actions to query sensitive data in your database. You can access Database Actions from your database's Console.
+Use Oracle Database Actions to query sensitive data in your database. You can access Database Actions from your database's Console in Oracle Cloud Infrastructure.
 
 1. Select the browser tab that is signed in to the Oracle Cloud Infrastructure Console. If needed, sign in again.
 
@@ -105,59 +105,57 @@ The Data Discovery wizard generates a sensitive data model that contains sensiti
 
 1. Return to the browser tab for the Oracle Cloud Infrastructure Console. If needed, sign in again.
 
-2. From the navigation menu, select **Data Safe**. The **Overview** page for the Oracle Data Safe service is displayed.
+2. From the navigation menu, select **Oracle Database** and then **Data Safe**. The **Overview** page for the Oracle Data Safe service is displayed.
 
-3. Click **Service Console**. The **Home** page in the Oracle Data Safe Console is displayed.
+3. Click **Security Center**, and then click **Data Discovery**. The Data Discovery wizard is displayed in the Oracle Data Safe Console.
 
-4. To access the Data Discovery wizard, click the **Data Discovery** tab.
-
-5. On the **Select Target for Sensitive Data Discovery** page, select your target database, and then click **Continue**.
+4. On the **Select Target for Sensitive Data Discovery** page, select your target database, and then click **Continue**.
 
     ![Select Target for Sensitive Data Discovery page](images/select-target-for-sensitive-data-discovery.png "Select Target for Sensitive Data Discovery page")
 
-6. On the **Select Sensitive Data Model** page, leave **Create** selected, enter **SDM1** for the name, enable **Show and save sample data**, select your compartment, and then click **Continue**.
+5. On the **Select Sensitive Data Model** page, leave **Create** selected, enter **SDM1** for the name, enable **Show and save sample data**, select your compartment, and then click **Continue**.
 
-7. On the **Select Schemas for Sensitive Data Discovery** page, scroll down and select the **HCM1** schema, and then click **Continue**.
+6. On the **Select Schemas for Sensitive Data Discovery** page, scroll down and select the **HCM1** schema, and then click **Continue**.
 
     ![Select Schemas for Sensitive Data Discovery page](images/select-schemas-for-sensitive-data-discovery.png "Select Schemas for Sensitive Data Discovery page")
 
-8. On the **Select Sensitive Types for Sensitive Data Discovery** page, expand all of the categories by moving the slider to the right, and then scroll down the page and review the sensitive types. Notice that you can select individual sensitive types, sensitive categories, and all sensitive types.
+7. On the **Select Sensitive Types for Sensitive Data Discovery** page, expand all of the categories by moving the slider to the right, and then scroll down the page and review the sensitive types. Notice that you can select individual sensitive types, sensitive categories, and all sensitive types.
 
     ![Select Sensitive Types for Sensitive Data Discovery page](images/select-sensitive-types-expand-all.png "Select Sensitive Types for Sensitive Data Discovery page")
 
 
-9. At the top of the page, select the **Select All** check box, and then click **Continue** to start the data discovery job.
+8. At the top of the page, select the **Select All** check box, and then click **Continue** to start the data discovery job.
 
     ![Select All check box selected](images/select-sensitive-types-select-all.png "Select All check box selected")
 
 
-10. When the job is completed, ensure that the **Detail** column states **Data discovery job finished successfully**, and then click **Continue**.
+9. When the job is completed, ensure that the **Detail** column states **Data discovery job finished successfully**, and then click **Continue**.
 
     ![Detail column](images/sensitive-data-discovery-complete.png "Detail column")
 
 
-11. On the **Sensitive Data Discovery Result** page, examine the sensitive data model created by the Data Discovery wizard. Oracle Data Safe automatically saves your sensitive data model to the Oracle Data Safe Library.
+10. On the **Sensitive Data Discovery Result** page, examine the sensitive data model created by the Data Discovery wizard. Oracle Data Safe automatically saves your sensitive data model to the Oracle Data Safe Library.
 
-12. To view all of the sensitive columns, move the **Expand All** slider to the right.
+11. To view all of the sensitive columns, move the **Expand All** slider to the right.
 
     ![Sensitive Data Discovery Result page](images/sensitive-data-discovery-result.png "Sensitive Data Discovery Result page")
 
-13. From the drop-down list, select **Schema View** to sort the sensitive columns by table name.
+12. From the drop-down list, select **Schema View** to sort the sensitive columns by table name.
 
     ![Schema View circled](images/schema-view.png "Schema View circled")
 
-14. Scroll down the page to view the sensitive columns.
+13. Scroll down the page to view the sensitive columns.
 
     - You can view sample data (if it's available for a sensitive column) and estimated data counts.
-    - In particular, take a look at the sensitive columns that Data Discovery found in the `EMPLOYEES` table. Columns that do not have a check mark, such as `MANAGER_ID`, are called referential relationships. They are included because they have a relationship to another sensitive column and that relationship is defined in the database's data dictionary.
+    - In particular, view the sensitive columns that Data Discovery found in the `EMPLOYEES` table. Columns that do not have a check mark, such as `MANAGER_ID`, are called referential relationships. They are included because they have a relationship to another sensitive column and that relationship is defined in the database's data dictionary.
     - Review the sample data provided to get an idea of what the sensitive data looks like.
 
     ![Sensitive columns list](images/employees-table-sample-data.png)
 
 
-15. To generate the **Data Discovery** report, scroll to the bottom of the page, and then click **Report**.
+14. To generate the **Data Discovery** report, scroll to the bottom of the page, and then click **Report**.
 
-16. Review the **Data Discovery** report.
+15. Review the **Data Discovery** report.
 
     - The chart compares sensitive categories. You can view totals of sensitive values, sensitive types, sensitive tables, and sensitive columns.
     - The table displays individual sensitive column names, sample data for the sensitive columns, column counts based on sensitive categories, and estimated data counts.
@@ -165,24 +163,24 @@ The Data Discovery wizard generates a sensitive data model that contains sensiti
     ![Sensitive columns table](images/data-discovery-report.png "Sensitive columns table")
 
 
-17. Click the chart's **Expand** button.
+16. Click the chart's **Expand** button.
 
     ![Chart's Expand button circled](images/chart-expand-button.png "Chart's Expand button circled")
 
-18. Position your mouse over **Identification Info** to view statistics.
+17. Position your mouse over **Identification Info** to view statistics.
 
     ![Statistics](images/identification-info.png "Statistics")
 
-19. With your mouse still over **Identification Info**, click the **Expand** button to drill down.
+18. With your mouse still over **Identification Info**, click the **Expand** button to drill down.
 
     ![Expand button over Identification Info](images/identification-info-expand-button.png "Expand button over Identification Info")
 
 
-20. Notice that the **Identification Info** category is divided into two smaller categories (**Personal IDs** and **Public IDs**). To drill-up, position your mouse over an expanded sensitive category (for example, **Identification Info**), and then click the **Collapse** button.
+19. Notice that the **Identification Info** category is divided into two smaller categories (**Personal IDs** and **Public IDs**). To drill-up, position your mouse over an expanded sensitive category (for example, **Identification Info**), and then click the **Collapse** button.
 
     ![Collapse button over Identification Info](images/identification-info-collapse-button.png "Collapse button over Identification Info")
 
-21. Click the **Close** button (**X**) to close the expanded chart. Continue to work in the wizard.
+20. Click the **Close** button (**X**) to close the expanded chart. Continue to work in the wizard.
 
 
 ## Task 3: Mask sensitive data by using Data Masking
@@ -289,4 +287,4 @@ The Data Masking wizard generates a masking policy for your target database base
 
 ## Acknowledgements
 * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-* **Last Updated By/Date** - Jody Glover, May 28 2021
+* **Last Updated By/Date** - Jody Glover, September 28 2021

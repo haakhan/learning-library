@@ -8,33 +8,33 @@
       "filename": "../../intro/intro.md"
     },
     {
-      "title": "Environment Setup",
+      "title": "Lab 1: Environment Setup",
       "description": "Verify Setup of compute instance",
       "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/verify-compute/verify-compute-novnc.md"
     },
     {
-      "title": "Initialize Environment",
+      "title": "Lab 2: Initialize Environment",
       "description": "Initialize Environment",
       "filename": "../../essbase-initialize-env/essbase-initialize-env.md"
     },
     {
-      "title": "Essbase Features: Basic",
+      "title": "Lab 3: Essbase Features: Basic",
       "filename": "../../essbase-basic/essbase-basic.md"
     },
     {
-      "title": "Essbase Features: Advanced",
+      "title": "Lab 4: Essbase Features: Advanced",
       "filename": "../../essbase-advanced/essbase-advanced.md"
     },
     {
-      "title": "Essbase Drill Through Feature",
+      "title": "Lab 5: Essbase Drill Through Feature",
       "filename": "../../essbase-drill-thru/essbase-drill-thru.md"
     },
     {
-      "title": "Scenario Management",
+      "title": "Lab 6: Scenario Management",
       "filename": "../../scenario/scenario.md"
     },
     {
-      "title": "Essbase Administration Services(EAS) Lite (Optional)",
+      "title": "Lab 7: Essbase Administration Services(EAS) Lite (Optional)",
       "filename": "../../eas/eas.md"
     },
     {

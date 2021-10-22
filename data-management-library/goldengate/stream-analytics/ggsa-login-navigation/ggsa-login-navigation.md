@@ -17,34 +17,10 @@ Golden Gate Stream Analytics (GGSA) is a tool designed to consume a stream of da
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
-
-<!-- ## Task 1: Log-in
-
-1. Launch your browser to the following URL
-
-    ```
-    URL: <copy>https://[your instance public-ip address]/osa</copy>
-    ```
-
-2. Provide login credentials
-
-    ```
-    Username: <copy>osaadmin</copy>
-    ```
-    ```
-    Password: <copy>welcome1</copy>
-    ```
-
-    ![](./images/login.png " ")
-
-3. You should see the home page
-
-    ![](./images/home.png " ") -->
+    - Lab: Initialize Environment
 
 ## Task 1: GGSA Version
 1. Click on the drop-down menu in the upper right-hand corner of the screen.

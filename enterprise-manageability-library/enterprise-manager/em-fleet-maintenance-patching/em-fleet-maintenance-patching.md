@@ -36,9 +36,7 @@ In this lab you will perform the following steps:
 
 ### Prerequisites
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH (*Free-tier* and *Paid Tenants* only)
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
     - Lab: Initialize Environment
@@ -61,7 +59,7 @@ Software Standardization Advisor enables administrators to understand various da
 
   ![](images/em-fleet-maintenance-overview-2.png " ")
 
-1. On the *Firefox* window on the right preloaded with *Enterprise Manager*, click on the *Username* field and select the saved credentials to login. These credentials have been saved within *Firefox* and are provided below for reference
+1. On the browser window on the right preloaded with *Enterprise Manager*, if not already logged in, click on the *Username* field and login with the credentials provided below.
 
     ```
     Username: <copy>sysman</copy>
@@ -126,7 +124,7 @@ Software Standardization Advisor enables administrators to understand various da
 
     - Patch database “hr.subnet.vcn.oraclevcn.com” from 18.3 to 18.10 -->
 
-## Task 2: Database Server patching with Fleet maintenance (Overview)
+## Task 3: Database Server patching with Fleet maintenance (Overview)
 
 ### **Database Fleet Maintenance**
 
@@ -146,7 +144,7 @@ We will go through steps for patching database target ***hr.subnet.vcn.oraclevcn
 
     You will see ***hr.subnet.vcn.oraclevcn.com*** Container Database has a pluggable database ‘HRPDB’. Both the Container Database and Pluggable database targets have status ‘UP’ and version 18.3.0.0.0. If target status is ‘DOWN’, start the target (using */home/oracle/start\_db\_hr.sh*).
 
-## Task 3: Create Gold Image
+## Task 4: Create Gold Image
 
 1. Review reference home setup *[READ-ONLY– This step has already been implemented]*
 
@@ -218,10 +216,10 @@ We will go through steps for patching database target ***hr.subnet.vcn.oraclevcn
     ```
 
     ```
-    <copy>cat /home/oracle/applicability.out</copy>
+    <copy>cat /home/oracle/applicability.out | more</copy>
     ```
 
-    - Output of above command is redirected to a file. You may review the output using any standard editor or tool of your choice.
+    - Output of above emcli command is redirected to a file. You may review the output using any standard editor or tool of your choice.
 
     ![](images/5f050173735f58aabd279987996192ea.png " ")
 
@@ -231,7 +229,7 @@ We will go through steps for patching database target ***hr.subnet.vcn.oraclevcn
     - Applicable and Image has more bug fixes: The image contains more bug fixes than those applied on the database. The list of extra bugs is displayed. The image can be applied on the specified target.
     - Not Applicable: The database contains more bug fixes than those included in the image. The list of missing bugs is displayed. The administrator has to create a new version of the image that includes the missing bugs before the database can uptake the same.
 
-## Task 4: Subscribe Database
+## Task 5: Subscribe Database
 
 1.  Review the flow on subscribing Targets to the Selected Gold Image
 
@@ -250,7 +248,7 @@ We will go through steps for patching database target ***hr.subnet.vcn.oraclevcn
 
     ![](images/ca94c4b76f9c24eee24f4d06b35c6764.png " ")
 
-## Task 5: Deploy Image
+## Task 6: Deploy Image
 
 1.  Review the flow on Gold Image Deployment
 
@@ -294,7 +292,7 @@ We will go through steps for patching database target ***hr.subnet.vcn.oraclevcn
 
     ![](images/68541ee5acf4db8b4f26a5a794b1c15c.png " ")
 
-## Task 6: Migrate Listener
+## Task 7: Migrate Listener
 
 1. Review and execute the following command to Migrate the Listener
 
@@ -318,7 +316,7 @@ We will go through steps for patching database target ***hr.subnet.vcn.oraclevcn
 
     ![](images/91d2873ae19a8b7b53a5d31c842b5b9f.png " ")
 
-## Task 7: Update Database – Patch 18.3 to 18.10
+## Task 8: Update Database – Patch 18.3 to 18.10
 
 1.  Review the flow on Update Database task. Once the deploy operation completes successfully. We are ready to run the final UPDATE operation which patches the database by switching it to the newly deployed home.
 
@@ -354,7 +352,7 @@ We will go through steps for patching database target ***hr.subnet.vcn.oraclevcn
 
     ![](images/425da84e806d9024383be869fda527d4.png " ")
 
-## Task 8:  Rollback Database – Reversed Patch 18.10 to 18.3
+## Task 9:  Rollback Database – Reversed Patch 18.10 to 18.3
 
 Once the database is updated, we will perform a rollback to 18.3
 
@@ -385,7 +383,7 @@ below.
 
     ![](images/7afa56b6cb5fee053c57b141a5c08245.png " ")
 
-## Task 9:  Cleanup Old Homes
+## Task 10:  Cleanup Old Homes
 
 1. Clean up Database HR
 

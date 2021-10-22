@@ -2,7 +2,7 @@
 
 Prerequisites
 1. Azure subscription
-2. Azure CLI 
+2. Azure CLI
 3. kubectl
 
 
@@ -10,7 +10,7 @@ Prerequisites
 
     az group create --name <resource-group-name> --location <location-name>
     az aks create --resource-group <resource-group-name> --name <aks-cluster-name> --node-count 2 --node-vm-size Standard_DS2_v2 --kubernetes-version 1.18.14
-    
+
   Once aks cluster is created, configure your local KUBECONFIG environment variable to use the k8s configuration of the aks cluster. This is done by the following command automatically:
     az aks get-credentials --resource-group <resource-group-name> --name <aks-cluster-name>
     kubectl get nodes
@@ -19,13 +19,13 @@ Prerequisites
     az group create --name <resource-group-name> --location <location-name>
 
 2. Create aks cluster (Azure Kubernetes Service Cluster)
-    az aks create --resource-group <resource-group-name> --name <aks-cluster-name> --node-count 2 --node-vm-size Standard_DS2_v2 --kubernetes-version 1.18.14 
+    az aks create --resource-group <resource-group-name> --name <aks-cluster-name> --node-count 2 --node-vm-size Standard_DS2_v2 --kubernetes-version 1.18.14
 
 3. Merge aks cluster config with your KUBECONFIG
     az aks get-credentials --resource-group <resource-group-name> --name <aks-cluster-name>
-    
+
 4. Setup interconnect   oracle blog and https://medium.com/@j.jamalarif/how-to-setup-the-interconnect-between-oracle-cloud-infrastructure-and-microsoft-azure-da359233e5e9
-    On OCI...
+    On Oracle Cloud Infrastructure
     - Step 1: Create a VCN in Oracle Cloud Infrastructure
     - Step 2: Create a Dynamic Routing Gateway in Oracle Cloud Infrastructure
     - Step 3: Attach the DRG to the VCN
@@ -41,7 +41,6 @@ Prerequisites
     - Step 4: Associate a Network Security Group (NSG) and Route Table with the Azure VNet
     - Step 5: Configure VCN Security Lists and Route Table
     - Step 6: Test the Connection
-    - 
-    
-5. Deploy Verrazzano 
+    -
 
+5. Deploy Verrazzano

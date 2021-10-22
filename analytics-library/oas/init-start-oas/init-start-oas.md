@@ -1,103 +1,165 @@
-# Environment Setup
+# Initialize Environment
 
 ## Introduction
-This lab will show you how to access Oracle Analytics Server and obtain necessary workshop artifacts needed for executing the labs
+This lab provides detailed instructions of connecting to Oracle Analytics Server (OAS). This compute instance comes with OAS installed and configured with Oracle database, both managed using Unix/Linux *systemd* services to automatically start and shutdown as required.
 
 *Estimated time:* 10 Minutes
 
 ### Objectives
 - Validate that the environment has been initialized and is ready
-- Download and stage workshop artifacts
+<if type="external">- Download and stage workshop artifacts</if>
 
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
 
 ## Task 1: Login to Oracle Analytics Server UI
 This lab has been designed to be executed end-to-end with any modern browser on your laptop or workstation. Proceed as detailed below to login.
 
-### UI Access
-1. Launch your browser to the following URL to access Oracle Analytics Server UI
+1. Now with access to your remote desktop session, proceed as indicated below to validate your environment before you start executing the subsequent labs. The following Processes should be up and running:
+
+    - Database Listener
+        - LISTENER
+    - Database Server instance
+        - ORCLCDB
+    - Oracle Analytics Server (OAS)
+
+2. On the *Web Browser* window on the right preloaded with *OAS Web Console*, click on the *Username* field and select the saved credentials to login. These credentials have been saved within *Web Browser* and are provided below for reference
+
+    - Username
+
+    ```
+    <copy>biworkshopuser</copy>
+    ```
+
+    - Password
+
+    ```
+    <copy>Admin123</copy>
+    ```
+
+    ![](images/oas-login.png " ")
+
+3. Confirm successful login. Please note that it takes about 5 minutes after instance provisioning for all processes to fully start.
+
+    ![](images/oas-landing.png " ")
+
+    If successful, the page above is displayed and as a result your environment is now ready.  
+
+    <if type="external">
+    **Notes:** If for any reasons you prefer to bypass the remote desktop and access the OAS UI directly from your local computer/workstation, launch your browser to the following URL
 
     ```
     URL: <copy>http://[your instance public-ip address]:9502/dv/ui</copy>
     e.g: http://111.888.111.888:9502/dv/ui
     ```
+    </if>
 
-    ***Note:*** While application processes are automatically started upon instance boot up, it takes approximately 15 minutes for this URL to become active after all processes have fully started. Should this URL remain inactive after 15 minutes, refer to **Step 3** below for manual start.
+4. If you are still unable to login or the login page is not functioning after reloading the application URL, open a terminal session and proceed as indicated below to validate the services.
 
-2. Provide login credentials
-
-    ```
-    Username: <copy>biworkshopuser</copy>
-    ```
-    ```
-    Password: <copy>Admin123</copy>
-    ```
-
-    ![](./images/oas-login.png " ")
-
-3. The landing page is displayed
-
-    ![](./images/oas-landing-page.png " ")
-
-### Login to Host using SSH Key based authentication (optional)
-While you will only need the browser to perform all tasks included in this workshop, you can optionally use your preferred SSH client to connect to the instance should you need to perform any troubleshooting task such as restarting processes, rebooting the instance, or just look around.
-
-Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH client type (e.g. Putty on Windows or Native such as terminal on Mac OS):
- - Authentication OS User - “*opc*”
- - Authentication method - *SSH RSA Key*
- - OS User – “*oracle*”.
-
-1. First login as “*opc*” using your SSH Private Key
-
-2. Then sudo to “*oracle*”. E.g.
+    - Database and Listener
 
     ```
-    <copy>sudo su - oracle</copy>
+    <copy>
+    sudo systemctl status oracle-database
+    </copy>
     ```
 
-## Task 2: Download and Stage Workshop Artifacts
-In order to run this workshop, you will need a set of files that have been conveniently packaged for you. Proceed as indicated below.
+    ![](images/db-service-status.png " ")
+
+    - Oracle Analytics Server (OAS)
+
+    ```
+    <copy>
+    /opt/oracle/product/Middleware/Oracle_Home/user_projects/domains/bi/bitools/bin/status.sh
+    </copy>
+    ```
+
+    ![](images/oas-service-status.png " ")
+
+5. If you see questionable output(s), failure or down component(s), restart the corresponding service(s) accordingly
+
+    - Database and Listener
+
+    ```
+    <copy>
+    sudo sudo systemctl restart oracle-database
+    </copy>
+    ```
+
+    - Oracle Analytics Server (OAS)
+
+    ```
+    <copy>
+    sudo sudo systemctl restart oas
+    </copy>
+    ```
+
+<if type="external">
+## Task 2: Download and Stage Workshop Artifacts (not needed if using the remote desktop)
+In order to run this workshop, you will need a set of files that have been conveniently packaged and stage on the instance for you. If you are bypassing the remote desktop and  connecting directly to OAS UI from your local computer/workstation, proceed as indicated below.
 
 1. Download [OAS_Workshop.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/6_WvdYP8HOSRFYJpU2958aV8WpEq2sDaqZUP4dJdFlz2NvBPIdlRg8uHyDC0WMyA/n/natdsecurity/b/labs-files/o/OAS_Workshop.zip) and save to a staging area on your laptop or workstation.
 
 2. Uncompress the ZIP archive
+</if>
 
-## Task 3: Managing DB and OAS processes (optional)
-Your workshop instance is configured to automatically start all processes needed for the labs. Should you need to stop/start these processes, proceed as shown below as user *opc* from your SSH terminal session
+## Appendix 1: Managing Startup Services
+Your workshop instance is configured to automatically start all processes needed for the labs. Should you need to stop/start these processes, proceed as shown below from your remote desktop session
 
-### DB Startup/Shutdown
+1. Database Service (Database and Listener).
 
-1. Startup
-
-    ```
-    <copy>sudo systemctl start dbora</copy>
-    ```
-
-2. Shutdown
+    - Start
 
     ```
-    <copy>sudo systemctl stop dbora</copy>
+    <copy>sudo systemctl start oracle-database</copy>
     ```
 
-### OAS Startup/Shutdown
+    - Stop
 
-1. Startup
+    ```
+    <copy>sudo systemctl stop oracle-database</copy>
+    ```
+
+    - Status
+
+    ```
+    <copy>sudo systemctl status oracle-database</copy>
+    ```
+
+    - Restart
+
+    ```
+    <copy>sudo systemctl restart oracle-database</copy>
+    ```
+
+2. Oracle Analytics Server (OAS)
+
+    - Start
 
     ```
     <copy>sudo systemctl start oas</copy>
     ```
 
-2. Shutdown
+    - Stop
 
     ```
     <copy>sudo systemctl stop oas</copy>
+    ```
+
+    - Status
+
+    ```
+    <copy>sudo systemctl status oas</copy>
+    ```
+
+    - Restart
+
+    ```
+    <copy>sudo systemctl restart oas</copy>
     ```
 
 You may now [proceed to the next lab](#next).
@@ -110,4 +172,4 @@ You may now [proceed to the next lab](#next).
 ## Acknowledgements
 * **Authors** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, January 2021
 * **Contributors** - Diane Grace
-* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, January 2021
+* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2021

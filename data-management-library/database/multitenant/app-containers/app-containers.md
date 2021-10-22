@@ -1,23 +1,23 @@
-# Application Containers #
+# Application containers
 
 ## Introduction
-This is a series of 12 hands-on labs designed to familiarize you with the Application Container functionality of Oracle Multitenant. In these labs, we follow the journey of a notional company, Walt’s Malts, as their business expands from a single store to a global powerhouse – “from startup to starship”.
+This is a series of 12 hands-on labs designed to familiarize you with the Application Container functionality of Oracle Multitenant. In these labs, we follow the journey of a notional company, Walt’s Malts, as their business expands from a single store to a global powerhouse, “from startup to starship”.
 
-*Estimated Workshop Time*: 1 hour
+Estimated Time: 1 hour
 
 [](youtube:ZPOjjF3kCvo)
 
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
+- SSH Private Key to access the host using SSH
 - You have completed:
     - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
     - Lab: Clone, Plug and Drop
 
-## Task 0: Connect to Your Instance and Login
+## Task 0: Connect to your instance and log in
 
 This Lab assumes that you have already Initialized your environment as instructed in "*Lab: Clone, Plug and Drop*". If you haven't please return to that lab and execute "*Step 0*" at the minimum.
 
@@ -40,42 +40,36 @@ This Lab assumes that you have already Initialized your environment as instructe
     CDB1
     ```
 
-    ```
-    <copy>
-    sqlplus /nolog
-    </copy>
-    ```
-
-    ```
-    <copy>connect sys/oracle@localhost:1523/cdb1 as sysdba</copy>
-    ```
-
 ## Task 1: Instant SaaS
 This section shows how Multitenant with Application Containers provides an instant SaaS architecture for an application formerly architected for standalone deployment.
 
-The tasks you will accomplish in this step are:
+The tasks you will do in this step are:
 - Setup Application Root - wmStore_Master
 - Install v1 of Application wmStore in Application Root
 - Create and sync Application Seed and provision Application PDBs for four franchises: Tulsa, California, Tahoe, NYC
 - Populate Application Tenant PDBs with demo data.
 
-1. Connect to **CDB1**.
+In the following labs, instead of SQL\*Plus you will use Oracle SQL Developer Command Line (SQLcl).  Oracle **SQLcl** is the modern, command line interface to the database. **SQLcl** has many key features that add to the value of the utility, including command history, in-line editing, auto complete using the TAB key and more. You can learn more about **SQLcl** [at the Oracle SQLcl website](https://www.oracle.com/database/technologies/appdev/sqlcl.html).
+
+
+1. Start SQLcl, set the sqlformat for easier on-screen viewing, and connect to **CDB1**.
 
     ```
-    <copy>sqlplus /nolog</copy>
+    <copy>
+    sql /nolog
+    set sqlformat ANSICONSOLE
+    </copy>
     ```
 
     ```
-    <copy>connect sys/oracle@localhost:1523/cdb1 as sysdba</copy>
+    <copy>
+    connect sys/oracle@localhost:1523/cdb1 as sysdba
+    </copy>
     ```
 
-    ![](./images/step1.1-connectcdb1.png " ")
+    ![](./images/task1.1-connectcdb1.png " ")
 
 2. Create and open the master application root.
-
-    ```
-    <copy>conn system/oracle@localhost:1523/cdb1;</copy>
-    ```
 
     ```
     <copy>create pluggable database wmStore_Master as application container
@@ -86,9 +80,9 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database wmStore_Master open;</copy>
     ```
 
-    ![](./images/step1.2-createmaster.png " ")
+    ![](./images/task1.2-createmaster.png " ")
 
-3. Define the application master.
+3. Define the application "wmStore" master.
 
     ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master;</copy>
@@ -97,8 +91,6 @@ The tasks you will accomplish in this step are:
     ```
     <copy>alter pluggable database application wmStore begin install '1.0';</copy>
     ```
-
-    ![](./images/step1.3.1-connectwmstore.png " ")
 
     ```
     <copy>create tablespace wmStore_TBS datafile size 100M autoextend on next 10M maxsize 200M;</copy>
@@ -112,11 +104,11 @@ The tasks you will accomplish in this step are:
     <copy>grant create session, dba to wmStore_Admin;</copy>
     ```
 
-    ![](./images/step1.3.2-createwmstoreadmin.png " ")
-
     ```
     <copy>alter user wmStore_Admin default tablespace wmStore_TBS;</copy>
     ```
+
+    ![](./images/task1.3.1-createwmstoreadmin.png " ")
 
     ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master;</copy>
@@ -167,7 +159,7 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step1.3.3-createtable1.png " ")
+    ![](./images/task1.3.2-createtable1.png " ")
 
     ```
     <copy>
@@ -229,7 +221,7 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step1.3.4-createtable2.png " ")
+    ![](./images/task1.3.3-createtable2.png " ")
 
     ```
     <copy>
@@ -257,9 +249,9 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore end install '1.0';</copy>
     ```
 
-    ![](./images/step1.3.5-insertvalues.png " ")
+    ![](./images/task1.3.4-insertvalues.png " ")
 
-4. Create the application seed.
+4. Create the application seed PDB, which will be used to create additional application PDBs. Open the application seed PDB after it is created.
 
     ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master;</copy>
@@ -267,24 +259,15 @@ The tasks you will accomplish in this step are:
 
     ```
     <copy>create pluggable database as seed
-    admin user wm_admin identified by oracle;</copy>
+    admin user wm_admin identified by oracle;
+
+    alter pluggable database wmStore_Master$Seed open;
+    </copy>
     ```
 
-    ![](./images/step1.4-createseed.png " ")
+    ![](./images/task1.4-createseed.png " ")
 
-5. Open the application seed.
-
-    ```
-    <copy>connect sys/oracle@localhost:1523/wmStore_Master as SysDBA</copy>
-    ```
-
-    ```
-    <copy>alter pluggable database wmStore_Master$Seed open;</copy>
-    ```
-
-    ![](./images/step1.5-openseed.png " ")
-
-6. Sync the seed with the application wmStore.
+5. Sync the seed with the application wmStore.
 
     ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master$Seed;</copy>
@@ -294,9 +277,9 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore sync;</copy>
     ```
 
-    ![](./images/step1.6-syncseed.png " ")
+    ![](./images/task1.5-syncseed.png " ")
 
-7.  Provision the application databases for the 4 stores.
+6.  Provision separate application databases for each of the 4 stores.
 
     ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master;</copy>
@@ -326,26 +309,30 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database all open;</copy>
     ```
 
-    ![](./images/step1.7-createapppdb.png " ")
+    ![](./images/task1.6-createapppdb.png " ")
 
-8. Create franchise specific data.
+7. Create franchise-specific data by running the supplied script. In SQLcl we'll use the "cd" command to execute scripts from the correct directory.
 
     ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master;</copy>
     ```
 
     ```
+    <copy>cd /home/oracle/labs/multitenant</copy>
+    ```
+
+    ```
     <copy>@Franchise_Data_Lab1</copy>
     ```
 
-    ![](./images/step1.8-createfranchise1.png " ")
+    ![](./images/task1.7-createfranchise1.png " ")
 
-    ![](./images/step1.8-createfranchise2.png " ")
+    ![](./images/task1.7-createfranchise2.png " ")
 
-## Task 2: PDB Exploration
-This section will take a brief tour of the newly created SaaS estate.
+## Task 2: PDB exploration
+In this section you will take a brief tour of the newly created SaaS estate.
 
-The tasks you will accomplish in this step are:
+The tasks you will do in this step are:
 - Look at the PDBs that have been created so far
 - Experiment with different classes of User
 - Perform queries against different franchises
@@ -356,56 +343,25 @@ The tasks you will accomplish in this step are:
     <copy>connect system/oracle@localhost:1523/cdb1</copy>
     ```
 
-2. Show PDBs created so far.
+2. Show PDBs created so far in container database **CDB1**.
 
     ```
     <copy>
-    set linesize 180
-
-    column c0  noprint new_value            CDB_Name
-    column c1  heading "Con ID"             format 99
-    column c2  heading "PDB Name"           format a30
-    column c3  heading "Con UID"            format 99999999999
-    column c4  heading "Restricted?"        format a11
-    column c5  heading "Open Mode"          format a10
-    column c6  heading "Root?"              format a5
-    column c7  heading "App PDB?"           format a8
-    column c8  heading "Seed?"              format a5
-    column c9  heading "Root Clone?"        format a11
-    column c10 heading "Proxy?"             format a6
-    column c11 heading "App Container Name" format a30
-
-    set termout off
-
-    select Sys_Context('Userenv', 'CDB_Name') c0
-    from dual
-    ;
-    </copy>
-    ```
-
-    ![](./images/step2.2-showpdbs1.png " ")
-
-    ```
-    <copy>
-    ttitle "PDBs in CDB &CDB_Name"
-
-    set termout on
-
-    select P.Con_ID                 c1
-    ,      P.Name                   c2
-    ,      P.CON_UID                c3
-    ,      P.Restricted             c4
-    ,      P.Open_Mode              c5
-    ,      P.Application_Root       c6
-    ,      P.Application_PDB        c7
-    ,      P.Application_Seed       c8
-    ,      P.Application_Root_Clone c9
-    ,      P.Proxy_PDB              c10
-    ,      AC.Name                  c11
+    select P.Con_ID                 
+    ,      P.Name                   "PDB Name"
+    ,      P.CON_UID                "Con UID"
+    ,      P.Restricted             "Restricted?"
+    ,      P.Open_Mode              "Open Mode?"
+    ,      P.Application_Root       "Root?"
+    ,      P.Application_PDB        "App PDB?"
+    ,      P.Application_Seed       "App Seed?"
+    ,      P.Application_Root_Clone "Root Clone?"
+    ,      P.Proxy_PDB              "Proxy?"
+    ,      AC.Name                  "App Container Name"
     from v$PDBs P
     left outer join v$PDBs AC
     on AC.Con_ID = P.Application_Root_Con_ID
-    order by P.Name
+    order by P.Con_ID, P.Name
     ,        nvl(AC.Name,P.Name)
     ,        P.Application_Root desc
     ,        P.Application_Seed desc
@@ -414,17 +370,9 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step2.2-showpdbs2.png " ")
+    ![](./images/task2.2-showpdbs.png " ")
 
-3. You should be able to set your container to Tulsa because weStore_Admin is an Application Common user but it should fail if you try to set it to CDB$Root since that container is outside of the application container.
-
-    ```
-    <copy>show user</copy>
-    ```
-
-    ```
-    <copy>alter session set container=wmStore_Master;</copy>
-    ```
+3. You should be able to set your container to Tulsa because wmStore_Admin is an Application Common user but it should fail if you try to set it to CDB$Root since that container is outside of the application container.
 
     ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master;</copy>
@@ -438,9 +386,9 @@ The tasks you will accomplish in this step are:
     <copy>alter session set container = CDB$Root;</copy>
     ```
 
-    ![](./images/step2.3-failsettulsa.png " ")
+    ![](./images/task2.3-failsetroot.png " ")
 
-4. You can connect directly as the various local users. Keep in mind these are local users, it just happens to be that they have the same password. Notice that the local user for Califorina cannot use the Tulsa container because it is local to the Califorina container.
+4. You can connect directly to application PDBs as the various local users. Keep in mind these are local users, it just happens to be that they have the same password. Notice that the local user for California cannot use the Tulsa container because it is local to the California container.
 
     ```
     <copy>connect wm_admin/oracle@localhost:1523/Tulsa;</copy>
@@ -458,26 +406,65 @@ The tasks you will accomplish in this step are:
     <copy>alter session set container = Tulsa;</copy>
     ```
 
-    ![](./images/step2.4-cannotusetulsa.png " ")
+    ![](./images/task2.4-cannotusetulsa.png " ")
 
-5. When prompted give one of the PDBs that was created (Tulsa, California, NYC, or Tahoe). You can rerun this script giving a different store if you want to view the data.
+5. Now you'll explore the data inside the application PDBs using some sample queries. Note that each store has its own products, sales campaigns, and order quantities. First you'll create a script to query each franchise's sales by product by campaign
 
     ```
-    <copy>@Lab2_Queries.sql</copy>
+    <copy>
+    select     p.Name         Product
+    ,      sum( i.Order_Qty)   Qty
+    from wm_Orders o
+    left outer join wm_Campaigns c
+    on  o.Campaign_ID = c.Row_GUID
+    left outer join wm_Order_Items i
+    on  i.Order_ID = o.Row_GUID
+    join wm_Products p
+    on   i.Product_ID = p.Row_GUID
+    Group by p.Name
+    order by 1
+    .
+
+    save orders_by_product.sql
+    </copy>
     ```
 
-    ![](./images/step2.5-nycpdb1.png " ")
+    ![](./images/task2.5-savescript.png " ")
 
-    ![](./images/step2.5-nycpdb2.png " ")
+    ```
+    <copy>connect wmStore_Admin/oracle@localhost:1523/NYC
+    @orders_by_product.sql
+    </copy>
+    ```
 
-    ![](./images/step2.5-nycpdb3.png " ")
+    ```
+    <copy>connect wmStore_Admin/oracle@localhost:1523/Tulsa
+    @orders_by_product.sql
+    </copy>
+    ```
 
-    ![](./images/step2.5-nycpdb4.png " ")
+    ```
+    <copy>connect wmStore_Admin/oracle@localhost:1523/California
+    @orders_by_product.sql
+    </copy>
+    ```
+
+    ```
+    <copy>connect wmStore_Admin/oracle@localhost:1523/Tahoe
+    @orders_by_product.sql
+    </copy>
+    ```
+
+    ![](./images/task2.5-orders1.png " ")
+
+    ![](./images/task2.5-orders2.png " ")
+
+In this section you have observed how each application PDB has its own data through queries directly against each application PDB.  In an upcoming lab, you will learn how to run queries from the Application Root across multiple Application Tenant PDBs.
 
 ## Task 3: Upgrade from v1 to v2
-This section we upgrade Application wmStore from v1 to v2. Despite each franchise having a separate tenant PDB, there is only one master application definition to be upgraded – in Application Root. We run the upgrade script only once, against the Application Root. It is then simply a matter of synchronizing the tenant PDBs for each franchise for them to be upgraded to the new version. Note that this model allows for granular (per tenant/franchise) upgrade schedules.
+In this section we'll upgrade Application wmStore from v1 to v2. Despite each franchise having a separate tenant PDB, there is only one master application definition to be upgraded, in the Application Root. We run the upgrade script only once, against the Application Root. It is then simply a matter of synchronizing the tenant PDBs for each franchise for them to be upgraded to the new version. Note that this model allows for granular (per tenant/franchise) upgrade schedules.
 
-The tasks you will accomplish in this step are:
+The tasks you will do in this step are:
 - Upgrade application wmStore to v2
 - Synchronize three of four Application Tenant PDBs
 
@@ -540,7 +527,7 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step3.1-createupgrade1.png " ")
+    ![](./images/task3.1-createupgrade1.png " ")
 
     ```
     <copy>
@@ -564,7 +551,7 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore end upgrade;</copy>
     ```
 
-    ![](./images/step3.1-createupgrade2.png " ")
+    ![](./images/task3.1-createupgrade2.png " ")
 
 2. Apply the upgrade to Tulsa.
 
@@ -576,9 +563,9 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore sync;</copy>
     ```
 
-    ![](./images/step3.2-upgradetulsa.png " ")
+    ![](./images/task3.2-upgradetulsa.png " ")
 
-3. Apply the upgrade to California.
+3. Apply the upgrade to California and Tahoe.
 
     ```
     <copy>connect system/oracle@localhost:1523/California</copy>
@@ -588,10 +575,6 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore sync;</copy>
     ```
 
-    ![](./images/step3.3-upgradecal.png " ")
-
-4. Apply the upgrade to Tahoe.
-
     ```
     <copy>connect system/oracle@localhost:1523/Tahoe</copy>
     ```
@@ -600,29 +583,10 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore sync;</copy>
     ```
 
-    ![](./images/step3.4-upgradetahoe.png " ")
+    ![](./images/task3.3-upgradecaliftahoe.png " ")
 
-5. Take a look at a pluggable the upgrade was applied to.
+4. Take a look at a pluggable database where the upgrade was applied.
 
-    ```
-    <copy>
-    column Row_GUID noprint
-    column Name             format a30 heading "Product Name"
-    column Local_Product_YN format a14 heading "Local Product?"
-    </copy>
-    ```
-
-    ```
-    <copy>define Franchise = "Tulsa"</copy>
-    ```
-
-    ```
-    <copy>ttitle "Products in Franchise &Franchise"</copy>
-    ```
-
-    ```
-    <copy>set echo on</copy>
-    ```
 
     ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/Tulsa</copy>
@@ -634,31 +598,14 @@ The tasks you will accomplish in this step are:
 
     ```
     <copy>
-    select *
-    from wm_Products
-    ;
+    select * from wm_Products;
     </copy>
     ```
 
-    ```
-    <copy>set echo off</copy>
-    ```
+    ![](./images/task3.4-lookupgradepdb.png " ")
 
-    ![](./images/step3.5-lookupgradedpdb.png " ")
+5. Look at the application PDB **NYC** where the upgrade was not applied, comparing the table definitions and data to the application PDB that was upgraded.
 
-6. Look at a pluggable that the upgrade was not applied to and look at the table definitions and data compared to one that was upgraded.
-
-    ```
-    <copy>define Franchise = "NYC"</copy>
-    ```
-
-    ```
-    <copy>ttitle "Products in Franchise &Franchise"</copy>
-    ```
-
-    ```
-    <copy>set echo on</copy>
-    ```
 
     ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/NYC</copy>
@@ -670,153 +617,74 @@ The tasks you will accomplish in this step are:
 
     ```
     <copy>
-    select *
-    from wm_Products
-    ;
+    select * from wm_Products;
     </copy>
     ```
 
-    ```
-    <copy>set echo off</copy>
-    ```
+    ![](./images/task3.5-looknotupgradepdb.png " ")
 
-    ![](./images/step3.6-looknotupgradedpdb.png " ")
+## Task 4: Containers queries
+In this section we introduce a very powerful cross-container aggregation capability: **containers()** queries. Containers() queries enable an application administrator to connect to the Application Root and aggregate data with a single query across some or all Application Tenants (Franchises). This is another example of how Multitenant, with Application Containers, enables you to manage many Application Tenants as one, when needed. Notice values in the column Franchise come from Con$Name. Remember that containers() queries are executed in Root and all containers plugged into it.
 
-## Task 4: Containers Queries
-This section we introduce a very powerful cross-container aggregation capability – containers() queries. Containers() queries allow an application administrator to connect to Application Root and aggregate data with a single query across multiple Application Tenants (Franchises) – or across all of them. This is another example of how Multitenant, with Application Containers, allows you to manage many Application Tenants as one, when needed. Notice values in column Franchise come from Con$Name. Remember that containers() queries are executed in Root and all containers plugged into it.
-
-The tasks you will accomplish in this step are:
+The task you will do in this step is:
 - Run Queries across containers
 
-1. Connect to ``CDB1``.
+1. Connect to the Application Master PDB as the application administrator.
 
     ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master</copy>
     ```
 
-2. Products in Tulsa and NYC.
+2. Query the products in Tulsa and NYC.
 
     ```
     <copy>
-    column c1 format a30       heading "Franchise"
-    column c2 format 9999999   heading "Order #"
-    column c3 format a30       heading "Campaign"
-    column c4 format 999999    heading "Item #"
-    column c5 format a30       heading "Product"
-    column c6 format 9,999     heading "Qty"
-    column c7 format 9,999,999 heading "Num Orders"
-    </copy>
-    ```
-
-    ```
-    <copy>break on c1 on c3 on c5</copy>
-    ```
-
-    ```
-    <copy>column c4 noprint</copy>
-    ```
-
-    ```
-    <copy>ttitle "Products (in Tulsa and NYC)"</copy>
-    ```
-
-    ```
-    <copy>set echo on</copy>
-    ```
-
-    ```
-    <copy>
-    select con$name c1
-    ,      Name     c5
+    set pagesize 50
+    select con$name "Franchise",
+           Name     "Product Name"
     from containers(wm_Products)
     where con$name in ('TULSA','NYC')
-    order by 1
-    ,        2
-    ;
+    order by 1,2;
     </copy>
     ```
 
-    ```
-    <copy>set echo off</copy>
-    ```
+    ![](./images/task4.2-products.png " ")
 
-    ![](./images/step4.2-products.png " ")
+3. Query order quantities per campaign across all franchises.
 
-3. Order Counts Per Campaign.
-
-    ```
-    <copy>ttitle "Order Counts Per Campaign (Across All Franchises)"</copy>
-    ```
-
-    ```
-    <copy>set echo on</copy>
-    ```
 
     ```
     <copy>
-    select con$name      c1
-    ,      Campaign_Name c3
-    ,      count(*)      c7
+    select con$name      "Franchise"
+    ,      Campaign_Name "Campaign Name"
+    ,      count(*)      "Total Orders"
     from containers(wm_Order_Details)
-    group by con$name
-    ,        Campaign_Name
-    order by 1
-    ,        3 desc
-    ,        2
-    ;
+    group by con$name, Campaign_Name
+    order by 1, 3 desc, 2;
     </copy>
     ```
 
-    ```
-    <copy>set echo off</copy>
-    ```
+    ![](./images/task4.3-ordercount.png " ")
 
-    ![](./images/step4.3-ordercount.png " ")
-
-4. Order Volume Per Product.
-
-    ```
-    <copy>ttitle "Order Volume Per Product (Across All Franchises)"</copy>
-    ```
-
-    ```
-    <copy>set echo on</copy>
-    ```
+4. Query order volume by product across all franchises.
 
     ```
     <copy>
-    select con$name      c1
-    ,      Product_Name  c5
-    ,      count(*)      c7
+    select con$name      "Franchise"
+    ,      Product_Name  "Product Name"
+    ,      count(*)      "Total Orders"
     from containers(wm_Order_Details)
-    group by con$name
-    ,        Product_Name
-    order by 1
-    ,        3 desc
-    ,        2
-    ;
+    group by con$name, Product_Name
+    order by 1, 3 desc, 2;
     </copy>
     ```
 
-    ```
-    <copy>set echo off</copy>
-    ```
+    ![](./images/task4.4-ordervolume.png " ")
 
-    ![](./images/step4.4-ordervolume.png " ")
-
-## Task 5: Application Root Clones and Compatibility
-This section will explore the PDBs, users and data within the various pluggable databses created in the earlier section.
-
-The tasks you will accomplish in this step are:
-- Create a pluggable database ``OE`` in the container database ``CDB1``
-- Create a load against the pluggable database ``OE``
-- Create a hot clone ``OE_DEV`` in the container database ``CDB2`` from the pluggable database ``OE``
+## Task 5: Application compatibility
+In this section you will explore the PDBs and learn how to set compatibility at the Application Master.
 
 1. Connect to ``CDB1``.
-
-    ```
-    <copy>sqlplus /nolog</copy>
-    ```
 
     ```
     <copy>connect system/oracle@localhost:1523/cdb1</copy>
@@ -825,65 +693,21 @@ The tasks you will accomplish in this step are:
 2. Review the pluggable databases in the container database.
 
     ```
-    <copy>set linesize 180</copy>
-    ```
-
-    ```
     <copy>
-    column c0  noprint new_value            CDB_Name
-    column c1  heading "Con ID"             format 99
-    column c2  heading "PDB Name"           format a30
-    column c3  heading "Con UID"            format 99999999999
-    column c4  heading "Restricted?"        format a11
-    column c5  heading "Open Mode"          format a10
-    column c6  heading "Root?"              format a5
-    column c7  heading "App PDB?"           format a8
-    column c8  heading "Seed?"              format a5
-    column c9  heading "Root Clone?"        format a11
-    column c10 heading "Proxy?"             format a6
-    column c11 heading "App Container Name" format a30
-    </copy>
-    ```
-
-    ```
-    <copy>set termout off</copy>
-    ```
-
-    ```
-    <copy>
-    select Sys_Context('Userenv', 'CDB_Name') c0
-    from dual
-    ;
-    </copy>
-    ```
-
-    ![](./images/step5.2-reviewpdb1.png " ")
-
-    ```
-    <copy>ttitle "PDBs in CDB &CDB_Name"</copy>
-    ```
-
-    ```
-    <copy>set termout on</copy>
-    ```
-
-    ```
-    <copy>
-    select P.Con_ID                 c1
-    ,      P.Name                   c2
-    ,      P.CON_UID                c3
-    ,      P.Restricted             c4
-    ,      P.Open_Mode              c5
-    ,      P.Application_Root       c6
-    ,      P.Application_PDB        c7
-    ,      P.Application_Seed       c8
-    ,      P.Application_Root_Clone c9
-    ,      P.Proxy_PDB              c10
-    ,      AC.Name                  c11
+    select P.Name                   "PDB Name"
+    ,      P.CON_UID                "Con UID"
+    ,      P.Restricted             "Restricted?"
+    ,      P.Open_Mode              "Open Mode"
+    ,      P.Application_Root       "App Root?"
+    ,      P.Application_PDB        "App PDB?"
+    ,      P.Application_Seed       "App Seed?"
+    ,      P.Application_Root_Clone "Root Clone?"
+    ,      P.Proxy_PDB              "Proxy?"
+    ,      AC.Name                  "App Container Name"
     from v$PDBs P
     left outer join v$PDBs AC
     on AC.Con_ID = P.Application_Root_Con_ID
-    order by P.Name
+    order by AC.Name, P.Name
     ,        nvl(AC.Name,P.Name)
     ,        P.Application_Root desc
     ,        P.Application_Seed desc
@@ -892,9 +716,9 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step5.2-reviewpdb2.png " ")
+    ![](./images/task5.2-reviewpdb2.png " ")
 
-3. Connect to the master database and set the compatibility to 2.0. Notice you will get an error because one of the databases is not currently at that version.
+3. Connect to the master database and set the application compatibility to 2.0. Notice you will get an error because one of the databases is not currently at that version.
 
     ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master;</copy>
@@ -904,38 +728,28 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore set compatibility version '2.0';</copy>
     ```
 
-    ![](./images/step5.3-compatibilityerror.png " ")
+    ![](./images/task5.3-compatibilityerror.png " ")
 
 4. Run the query below and notice that there are applications that are not at the current version. If you look at the output from the first query you can see that the NYC and wmStore_Master$Seed are still at 1.0.
-
-    ```
-    <copy>
-    column CON_UID               heading "Con UID"          format 999999999999
-    column APP_NAME              heading "Application Name" format a20          truncate
-    column APP_ID                heading "App ID"           format 99999
-    column APP_VERSION           heading "Version"          format a7
-    column APP_STATUS            heading "Status"           format a12  
-    column APP_ID                noprint
-    </copy>
-    ```
 
     ```
     <copy>select * from DBA_App_PDB_Status;</copy>
     ```
 
-    ![](./images/step5.4-noticeversion.png " ")
+    ![](./images/task5.4-noticeversion.png " ")
 
 5. Connect to NYC and bring that up to the current version.
 
     ```
-    <copy>conn system/oracle@localhost:1523/NYC;</copy>
+    <copy>conn system/oracle@localhost:1523/NYC</copy>
     ```
 
     ```
     <copy>alter pluggable database application wmStore sync;</copy>
     ```
 
-    ![](./images/step5.5-connectnyc.png " ")
+    ![](./images/task5.5-syncnyc.png " ")
+
 
 6. Connect to wmStore_Master$Seed and bring that up to the current version.
 
@@ -947,7 +761,7 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore sync;</copy>
     ```
 
-    ![](./images/step5.6-connectmasterseed.png " ")
+    ![](./images/task5.6-syncmasterseed.png " ")
 
 7. Connect back to wmStore_Master and set the compatibility to 2.0. This time it should work.
 
@@ -959,91 +773,23 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore set compatibility version '2.0';</copy>
     ```
 
-    ![](./images/step5.7-setcompatibility.png " ")
-
-8. Look back at the list of PDBs now that the upgrades are complete.
+    ![](./images/task5.7-setcompatibility.png " ")
 
     ```
-    <copy>conn system/oracle@localhost:1523/cdb1</copy>
+    <copy>select * from DBA_App_PDB_Status;</copy>
     ```
 
-    ```
-    <copy>set linesize 180</copy>
-    ```
+    ![](./images/task5.7-pdbappstatus.png " ")
 
-    ```
-    <copy>
-    column c0  noprint new_value            CDB_Name
-    column c1  heading "Con ID"             format 99
-    column c2  heading "PDB Name"           format a30
-    column c3  heading "Con UID"            format 99999999999
-    column c4  heading "Restricted?"        format a11
-    column c5  heading "Open Mode"          format a10
-    column c6  heading "Root?"              format a5
-    column c7  heading "App PDB?"           format a8
-    column c8  heading "Seed?"              format a5
-    column c9  heading "Root Clone?"        format a11
-    column c10 heading "Proxy?"             format a6
-    column c11 heading "App Container Name" format a30
-    </copy>
-    ```
 
-    ```
-    <copy>set termout off</copy>
-    ```
 
-    ```
-    <copy>
-    select Sys_Context('Userenv', 'CDB_Name') c0
-    from dual
-    ;
-    </copy>
-    ```
+## Task 6: Expansion beyond single CDB and application root replicas
+In this section we follow the global expansion of Walt's Malts. To comply with requirements of data sovereignty and latency, Walt's Malts has had to expand into a second CDB, CDB2. (In reality this would be in a separate server.) It is very important to note that we still only have a single master application definition, despite the application now being deployed across multiple CDBs.
 
-    ![](./images/step5.8-lookpdbs1.png " ")
-
-    ```
-    <copy>ttitle "PDBs in CDB &CDB_Name"</copy>
-    ```
-
-    ```
-    <copy>set termout on</copy>
-    ```
-
-    ```
-    <copy>
-    select P.Con_ID                 c1
-    ,      P.Name                   c2
-    ,      P.CON_UID                c3
-    ,      P.Restricted             c4
-    ,      P.Open_Mode              c5
-    ,      P.Application_Root       c6
-    ,      P.Application_PDB        c7
-    ,      P.Application_Seed       c8
-    ,      P.Application_Root_Clone c9
-    ,      P.Proxy_PDB              c10
-    ,      AC.Name                  c11
-    from v$PDBs P
-    left outer join v$PDBs AC
-    on AC.Con_ID = P.Application_Root_Con_ID
-    order by P.Name
-    ,        nvl(AC.Name,P.Name)
-    ,        P.Application_Root desc
-    ,        P.Application_Seed desc
-    ,        P.Name
-    ;
-    </copy>
-    ```
-
-    ![](./images/step5.8-lookpdbs2.png " ")
-
-## Task 6: Expansion Beyond Single CDB and Application Root Replicas
-This section we follow the global expansion of Walt's Malts. In order to comply with requirements of data sovereignty and latency Walt's Malts has had to expand into a second CDB, CDB2. (In reality this would be in a separate server.) It is very important to note that we still only have a single master application definition, despite the application now being deployed across multiple CDBs.
-
-The tasks you will accomplish in this step are:
+The tasks you will do in this step are:
 - Create and Open Application Root Replicas (ARRs): wmStore_International, wmStore_West
 - Create Proxy PDBs for the ARRs
-- Synchronize the ARRs via their proxies
+- Synchronize the ARRs by using their proxies
 - Create App Seeds for the ARRs
 - Provision the App PDBs for five new franchises
 - Add franchise-specific products for new franchises
@@ -1051,14 +797,10 @@ The tasks you will accomplish in this step are:
 1. Connect to **CDB2**.
 
     ```
-    <copy>sqlplus /nolog</copy>
-    ```
-
-    ```
     <copy>connect system/oracle@localhost:1524/cdb2</copy>
     ```
 
-2. Create a datbase link to CDB1 to pull the data across.
+2. Create a database link to CDB1 to pull the data across.
 
     ```
     <copy>
@@ -1068,27 +810,60 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step6.2-createdblink.png " ")
+    ![](./images/task6.2-createdblink.png " ")
 
 3. Create and open the Application Root Replicas (ARRs).
 
     ```
-    <copy>create pluggable database wmStore_International as application container
-    from wmStore_Master@CDB1_DBLink;</copy>
+    <copy>
+    create pluggable database wmStore_International as application container
+    from wmStore_Master@CDB1_DBLink;
+    </copy>
     ```
 
     ```
-    <copy>create pluggable database wmStore_West as application container
-    from wmStore_Master@CDB1_DBLink;</copy>
+    <copy>
+    create pluggable database wmStore_West as application container
+    from wmStore_Master@CDB1_DBLink;
+    </copy>
     ```
 
     ```
-    <copy>alter pluggable database all open;</copy>
+    <copy>
+    alter pluggable database all open;
+    show pdbs
+    </copy>
     ```
 
-    ![](./images/step6.3-openarrs.png " ")
+    ![](./images/task6.3-openarrs.png " ")
 
-4. Create the CDB$Root-level DB Link to CDB2.
+4. Since the databases in CDB2 register with a listener with a non-default port (in this case, port 1524) you will need to update the ARRs with that port information. This is critical, since the proxy PDBs you will create require this configuration in order to communicate with their target PDBs.
+
+    ```
+    <copy>connect system/oracle@localhost:1524/wmStore_International</copy>
+    ```
+
+    ```
+    <copy>
+    alter pluggable database CONTAINERS port=1524;
+    alter pluggable database CONTAINERS host='localhost';
+    </copy>
+    ```
+
+    ```
+    <copy>connect system/oracle@localhost:1524/wmStore_West</copy>
+    ```
+
+    ```
+    <copy>
+    alter pluggable database CONTAINERS port=1524;
+    alter pluggable database CONTAINERS host='localhost';
+    </copy>
+    ```
+
+    ![](./images/task6.4-setarrporthost.png " ")
+
+5. Create the CDB$Root-level DB Link to CDB2.
 
     ```
     <copy>connect system/oracle@localhost:1523/cdb1</copy>
@@ -1102,9 +877,9 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step6.4-createrootdblink.png " ")
+    ![](./images/task6.5-createrootdblink.png " ")
 
-5. Create the Application-Root-level DB Links to CDB2.
+6. Create the Application-Root-level DB Links to CDB2.
 
     ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master</copy>
@@ -1118,9 +893,9 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step6.5-createapprootdblink.png " ")
+    ![](./images/task6.6-createapprootdblink.png " ")
 
-6. Create and open Proxy PDBs for the Application Root Replicas.
+7. Create and open Proxy PDBs for the Application Root Replicas.
 
     ```
     <copy>create pluggable database wmStore_International_Proxy
@@ -1136,29 +911,29 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database all open;</copy>
     ```
 
-    ![](./images/step6.6-openproxypdb.png " ")
+    ![](./images/task6.7-openproxypdb.png " ")
 
-7. Synchronize the ARRs via their proxies. Notice you need to connect as sys to do this.
-
-    ```
-    <copy>conn sys/oracle@localhost:1523/wmStore_International_Proxy as sysdba</copy>
-    ```
+8. Synchronize the Application Root Replicas (ARRs) by using their proxies.
 
     ```
-    <copy>alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ```
-    <copy>conn sys/oracle@localhost:1523/wmStore_West_Proxy as sysdba</copy>
+    <copy>conn system/oracle@localhost:1523/wmStore_International_Proxy</copy>
     ```
 
     ```
     <copy>alter pluggable database application wmStore sync;</copy>
     ```
 
-    ![](./images/step6.7-syncarrstoproxypdb.png " ")
+    ```
+    <copy>conn system/oracle@localhost:1523/wmStore_West_Proxy</copy>
+    ```
 
-8. Create and open the Application Seed PDBs for wmStore_International and sync it with Application wmStore.
+    ```
+    <copy>alter pluggable database application wmStore sync;</copy>
+    ```
+
+    ![](./images/task6.8-syncarrstoproxypdb.png " ")
+
+9. Create and open the Application Seed PDBs for wmStore_International and sync it with Application wmStore.
 
     ```
     <copy>conn system/oracle@localhost:1524/wmStore_International</copy>
@@ -1167,10 +942,6 @@ The tasks you will accomplish in this step are:
     ```
     <copy>create pluggable database as seed
     admin user wm_admin identified by oracle;</copy>
-    ```
-
-    ```
-    <copy>conn sys/oracle@localhost:1524/wmStore_International as SysDBA</copy>
     ```
 
     ```
@@ -1185,9 +956,9 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore sync;</copy>
     ```
 
-    ![](./images/step6.8-intopenappseedpdbs.png " ")
+    ![](./images/task6.9-intopenappseedpdbs.png " ")
 
-9. Create and open the Application Seed PDBs for wmStore_West and sync it with Application wmStore.
+10. Create and open the Application Seed PDBs for wmStore_West and sync it with Application wmStore.
 
     ```
     <copy>conn system/oracle@localhost:1524/wmStore_West</copy>
@@ -1196,10 +967,6 @@ The tasks you will accomplish in this step are:
     ```
     <copy>create pluggable database as seed
     admin user wm_admin identified by oracle;</copy>
-    ```
-
-    ```
-    <copy>conn sys/oracle@localhost:1524/wmStore_West as SysDBA</copy>
     ```
 
     ```
@@ -1214,9 +981,9 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore sync;</copy>
     ```
 
-    ![](./images/step6.9-westopenappseedpdbs.png " ")
+    ![](./images/task6.10-westopenappseedpdbs.png " ")
 
-10. Connect to the wmStore_International Application Root Replica (ARR) and create a database link from that ARR to the CDB of the Master Root.
+11. Connect to the wmStore_International Application Root Replica (ARR) and create a database link from that ARR to the CDB of the Master Root.
 
     ```
     <copy>connect system/oracle@localhost:1524/wmStore_International</copy>
@@ -1230,9 +997,9 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step6.10-connectintarr.png " ")
+    ![](./images/task6.11-connectintarr.png " ")
 
-11. Provision Application PDBs for the UK, Denmark and France franchises.
+12. Provision Application PDBs for the UK, Denmark and France franchises.
 
     ```
     <copy>create pluggable database UK
@@ -1249,9 +1016,9 @@ The tasks you will accomplish in this step are:
     admin user wm_admin identified by oracle;</copy>
     ```
 
-    ![](./images/step6.11-provisionapppdb.png " ")
+    ![](./images/task6.12-provisionapppdb.png " ")
 
-12. Connect to the wmStore_West Application Root Replica (ARR) and create a database link from that ARR to the CDB of the Master Root.
+13. Connect to the wmStore_West Application Root Replica (ARR) and create a database link from that ARR to the CDB of the Master Root.
 
     ```
     <copy>connect system/oracle@localhost:1524/wmStore_West</copy>
@@ -1265,9 +1032,9 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step6.12-connectwestarr.png " ")
+    ![](./images/task6.13-connectwestarr.png " ")
 
-13. Provision Application PDBs for the Sant Monica and Japan franchises.
+14. Provision Application PDBs for the Santa Monica and Japan franchises.
 
     ```
     <copy>create pluggable database Santa_Monica
@@ -1279,9 +1046,9 @@ The tasks you will accomplish in this step are:
     admin user wm_admin identified by oracle;</copy>
     ```
 
-    ![](./images/step6.13-provisionfranchise.png " ")
+    ![](./images/task6.14-provisionfranchise.png " ")
 
-14. Switch to the container root and open all of the pluggable databases.
+15. Switch to the container root and open all pluggable databases.
 
     ```
     <copy>alter session set container=CDB$Root;</copy>
@@ -1291,65 +1058,31 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database all open;</copy>
     ```
 
-    ![](./images/step6.14-switchtoroot.png " ")
+    ![](./images/task6.15-switchtoroot.png " ")
 
-15. Create franchise-specific data.
+16. Create franchise-specific data by running a pre-supplied script.
 
     ```
     <copy>@Franchise_Data_Lab6</copy>
     ```
 
-    ![](./images/step6.15-franchisedata1.png " ")
+    ![](./images/task6.16-franchisedata.png " ")
 
-    ![](./images/step6.15-franchisedata2.png " ")
-
-## Task 7: Durable Location Transparency
-This section demonstrates "durable location transparency". In the previous section we saw how Proxy PDBs can provide location transparency. The Proxy PDBs for the Application Root Replicas (ARRs) provided local context (in the master Application Root) for the ARRs, which are physically located in a different CDB. This is a good example of location transparency. In this section, we see how these ARR Proxies can provide "durable location transparency". That is, location transparency that survives the physical reconfiguration of the Application Estate – specifically by relocating an Application PDB for a particular franchise from one CDB to another.
-
-The tasks you will accomplish in this step are:
-- Run a report against wmStore_Master
-- Relocate Tahoe to wmStore_West
-- Run the report again
-
-1. Connect and run a report against wmStore_Master.
-
-    ```
-    <copy>sqlplus /nolog</copy>
-    ```
+17. Connect to wmStore_Master and run a report of orders by franchise. Note the results include the stores who's application PDBs reside in **CDB2**; these are accessed through the Proxy PDBs that were created in **CDB1**.
 
     ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master</copy>
     ```
 
     ```
-    <copy>set verify off</copy>
-    ```
-
-    ```
-    <copy>define Campaign = "Locals vs Yokels"</copy>
-    ```
-
-    ```
     <copy>
-    column c1 format a30       heading "Franchise"
-    column c2 format a10       heading "CDB"
-    column c3 format 9,999,999 heading "Num Orders"
-    </copy>
-    ```
-
-    ```
-    <copy>ttitle "Business-Wide Count of Orders for Campaign &Campaign"</copy>
-    ```
-
-    ```
-    <copy>
-    select con$name c1
-    ,      cdb$name c2
-    ,      count(*) c3
+    select con$name "Franchise"
+    ,      cdb$name "CDB"
+    ,      count(*) "Num Orders"
     from containers(wm_Orders) o
     ,    wm_Campaigns c
     where o.Campaign_id = c.row_guid
-    and   c.Name = '&Campaign'
+    and   c.Name = 'Locals vs Yokels'
     group by con$name
     ,        cdb$name
     order by 3 desc
@@ -1358,64 +1091,62 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step7.1-reportmaster.png " ")
+    ![](./images/task6.17-reportmaster.png " ")
 
-2. Relocate Tahoe to wmStore_West.
+
+
+## Task 7: Durable location transparency
+This lab task demonstrates "durable location transparency." In the previous section we saw how Proxy PDBs can provide location transparency, allowing us to access remote application PDBs from the local Application Root. The Proxy PDBs for the Application Root Replicas (ARRs) provided local context (in the master Application Root) for the ARRs, which are physically located in a different CDB. This is a good example of location transparency. In this section, we see how these ARR Proxies can provide "durable location transparency." That is, location transparency that survives the physical reconfiguration of the Application Estate – specifically by relocating an Application PDB for a particular franchise from one CDB to another.
+
+The tasks you will do in this step are:
+- Run a report against wmStore_Master
+- Relocate Tahoe to wmStore_West
+- Run the report again
+
+1. Review the report output from the previous task.
+
+    ![](./images/task6.17-reportmaster.png " ")
+
+2. Now, relocate the application PDB **Tahoe** to wmStore_West.
 
     ```
     <copy>connect system/oracle@localhost:1524/wmStore_West</copy>
     ```
 
     ```
-    <copy>create pluggable database Tahoe from Tahoe@CDB1_DBLink
-    relocate availability max;</copy>
+    <copy>
+    create pluggable database Tahoe from Tahoe@CDB1_DBLink relocate;
+    </copy>
     ```
 
     ```
-    <copy>connect sys/oracle@localhost:1524/cdb2 as SysDBA</copy>
+    <copy>connect sys/oracle@localhost:1524/cdb2 as sysdba</copy>
     ```
 
     ```
-    <copy>alter pluggable database Tahoe open;</copy>
+    <copy>
+    alter pluggable database Tahoe open;
+    show pdbs
+    </copy>
     ```
 
-    ![](./images/step7.2-relocatetahoe.png " ")
+    ![](./images/task7.2-relocatetahoe.png " ")
 
-3. Rerun the report and take note of the changes in data based on the relocation.
+3. Rerun the report and take note of the change: the report results are basically the same, but now you can see that TAHOE is located in CDB2.
 
     ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master</copy>
     ```
 
     ```
-    <copy>set verify off</copy>
-    ```
-
-    ```
-    <copy>define Campaign = "Locals vs Yokels"</copy>
-    ```
-
-    ```
     <copy>
-    column c1 format a30       heading "Franchise"
-    column c2 format a10       heading "CDB"
-    column c3 format 9,999,999 heading "Num Orders"
-    </copy>
-    ```
-
-    ```
-    <copy>ttitle "Business-Wide Count of Orders for Campaign &Campaign"</copy>
-    ```
-
-    ```
-    <copy>
-    select con$name c1
-    ,      cdb$name c2
-    ,      count(*) c3
+    select con$name "Franchise"
+    ,      cdb$name "CDB"
+    ,      count(*) "Num Orders"
     from containers(wm_Orders) o
     ,    wm_Campaigns c
     where o.Campaign_id = c.row_guid
-    and   c.Name = '&Campaign'
+    and   c.Name = 'Locals vs Yokels'
     group by con$name
     ,        cdb$name
     order by 3 desc
@@ -1424,12 +1155,16 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step7.3-rerunreport.png " ")
+    ![](./images/task7.3-rerunreport.png " ")
 
-## Task 8: Data Sharing
-This section we introduce the advanced concept of data sharing. We have already seen how Multitenant, with Application Containers, can provide an instant SaaS architecture for an application previously architected for standalone deployment. Technically this is done by installing a master application definition in an Application Root. Application PDBs for each tenant / franchise are plugged into this Application Root and the metadata for the database components of the Application definition is served from the Application root. However, so far all data, including data which may be considered part of the application definition ("seed data") has been local. In other words, there's a replica of this seed data in every Application PDB. In this lab we'll see how, in addition to metadata, common data may also be shared from Application Root. To do this we'll upgrade application wmStore to v3.0 and introduce various powerful data sharing capabilities.
+Although we physically relocated an application PDB from one CDB to another, that move was transparent to our reporting application.
 
-The tasks you will accomplish in this step are:
+## Task 8: Data sharing
+In this section we introduce the advanced concept of data sharing. We have already seen how Multitenant, with Application Containers, can provide an instant SaaS architecture for an application previously architected for standalone deployment. Technically this is done by installing a master application definition in an Application Root. Application PDBs for each tenant / franchise are plugged into this Application Root and the metadata for the database components of the Application definition is served from the Application root. Up to this point, all data - including data which may be considered part of the application definition "seed data" - has been local. In other words, there's a replica of this seed data in every Application PDB.
+
+In this lab we'll see how, in addition to metadata, common data may also be shared from Application Root. To do this we'll upgrade application wmStore to v3.0 and introduce various powerful data sharing capabilities.
+
+The tasks you will do in this step are:
 - Upgrade Application wmStore to v3.0
 - Propagate the Upgrade to all franchises
 - Query the wm_Products table in a franchise PDB to see the sources of data
@@ -1451,8 +1186,8 @@ The tasks you will accomplish in this step are:
     ```
     <copy>
     create table wm_List_Of_Values
-    -- sharing = metadata -- the default
-    sharing = data
+    -- sharing = metadata
+    -- the default sharing = data
     -- sharing = extended data
     (Row_GUID    raw(16)        default Sys_GUID() primary key
     ,Type_Code   varchar2(30)   not null
@@ -1470,7 +1205,7 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step8.1-createupgrade1.png " ")
+    ![](./images/task8.1-createupgrade1.png " ")
 
     ```
     <copy>
@@ -1497,14 +1232,12 @@ The tasks you will accomplish in this step are:
     insert into wm_List_Of_Values (Type_Code, Value_Code) values ('Country', 'France');
 
     insert into wm_List_Of_Values (Type_Code, Value_Code) values ('Country', 'Japan');
+
+    commit;
     </copy>
     ```
 
-    ![](./images/step8.1-createupgrade2.png " ")
-
-    ```
-    <copy>commit;</copy>
-    ```
+    ![](./images/task8.1-createupgrade2.png " ")
 
     ```
     <copy>alter table wm_Orders disable constraint wm_Orders_F1;</copy>
@@ -1537,153 +1270,99 @@ The tasks you will accomplish in this step are:
     insert into wm_Products (Row_GUID, Name) values ('03', 'Root 66 Beer Float');
 
     insert into wm_Products (Row_GUID, Name) values ('04', 'Yokie Dokie Okie Eggnog');
+
+    commit;
     </copy>
     ```
 
-    ![](./images/step8.1-createupgrade3.png " ")
+    ![](./images/task8.1-createupgrade3.png " ")
 
-    ```
-    <copy>commit;</copy>
-    ```
 
     ```
     <copy>alter pluggable database application wmStore end upgrade;</copy>
     ```
 
-    ![](./images/step8.1-createupgrade4.png " ")
+    ![](./images/task8.1-createupgrade4.png " ")
 
-2. Sync some of the pluggable databases.
-
-    ```
-    <copy>connect system/oracle@localhost:1523/WMSTORE_MASTER$SEED</copy>
-    ```
+2. Sync some pluggable databases.
 
     ```
-    <copy>alter pluggable database application wmStore sync;</copy>
+    <copy>
+    connect system/oracle@localhost:1523/WMSTORE_MASTER$SEED
+
+    alter pluggable database application wmStore sync;
+
+    connect system/oracle@localhost:1523/CALIFORNIA
+
+    alter pluggable database application wmStore sync;
+
+    connect system/oracle@localhost:1523/NYC
+
+    alter pluggable database application wmStore sync;
+
+    connect system/oracle@localhost:1523/TULSA
+
+    alter pluggable database application wmStore sync;
+
+    connect system/oracle@localhost:1524/WMSTORE_INTERNATIONAL$SEED
+
+    alter pluggable database application wmStore sync;
+
+    connect system/oracle@localhost:1524/DENMARK
+
+    alter pluggable database application wmStore sync;
+    </copy>
     ```
 
-    ```
-    <copy>connect system/oracle@localhost:1523/CALIFORNIA</copy>
-    ```
+    ![](./images/task8.2-syncpdbs1.png " ")
 
     ```
-    <copy>alter pluggable database application wmStore sync;</copy>
+    <copy>connect system/oracle@localhost:1524/FRANCE
+
+    alter pluggable database application wmStore sync;
+
+    connect system/oracle@localhost:1524/UK
+
+    alter pluggable database application wmStore sync;
+
+    connect system/oracle@localhost:1524/WMSTORE_WEST$SEED
+
+    alter pluggable database application wmStore sync;
+
+    connect system/oracle@localhost:1524/JAPAN
+
+    alter pluggable database application wmStore sync;
+
+    connect system/oracle@localhost:1524/SANTA_MONICA
+
+    alter pluggable database application wmStore sync;
+
+    connect system/oracle@localhost:1524/TAHOE
+
+    alter pluggable database application wmStore sync;
+    </copy>
     ```
 
-    ```
-    <copy>connect system/oracle@localhost:1523/NYC</copy>
-    ```
+    ![](./images/task8.2-syncpdbs2.png " ")
 
-    ```
-    <copy>alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ```
-    <copy>connect system/oracle@localhost:1523/TULSA</copy>
-    ```
-
-    ```
-    <copy>alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ```
-    <copy>connect system/oracle@localhost:1524/WMSTORE_INTERNATIONAL$SEED</copy>
-    ```
-
-    ```
-    <copy>alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ```
-    <copy>connect system/oracle@localhost:1524/DENMARK</copy>
-    ```
-
-    ```
-    <copy>alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ![](./images/step8.2-syncpdbs1.png " ")
-
-    ```
-    <copy>connect system/oracle@localhost:1524/FRANCE</copy>
-    ```
-
-    ```
-    <copy>alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ```
-    <copy>connect system/oracle@localhost:1524/UK</copy>
-    ```
-
-    ```
-    <copy>alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ```
-    <copy>connect system/oracle@localhost:1524/WMSTORE_WEST$SEED</copy>
-    ```
-
-    ```
-    <copy>alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ```
-    <copy>connect system/oracle@localhost:1524/JAPAN</copy>
-    ```
-
-    ```
-    <copy>alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ```
-    <copy>connect system/oracle@localhost:1524/SANTA_MONICA</copy>
-    ```
-
-    ```
-    <copy>alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ```
-    <copy>connect system/oracle@localhost:1524/TAHOE</copy>
-    ```
-
-    ```
-    <copy>alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ![](./images/step8.2-syncpdbs2.png " ")
-
-3. Queries against container CDB1.
+3. Now, run a query to list all the PDBs in CDB1.
 
     ```
     <copy>connect system/oracle@localhost:1523/cdb1</copy>
     ```
 
-
-    ```
-    <copy>column c01 format 999999 heading "Con_ID"
-    column c02 format a30    heading "Container"</copy>
-    ```
-
-
-    ```
-    <copy>ttitle "Containers"</copy>
-    ```
-
-
     ```
     <copy>
-    select Con_ID c01
-    ,      Name   c02
+    select Con_ID
+    ,      Name   "Container"
     from v$containers
     order by 1;
     </copy>
     ```
 
-    ![](./images/step8.3-querycdb1.png " ")
+    ![](./images/task8.3-querycdb1.png " ")
 
-4. Queries against container wmStore_Master.
+4. This query shows the types of data sharing present in the wmStore application.
 
     ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master</copy>
@@ -1691,19 +1370,9 @@ The tasks you will accomplish in this step are:
 
 
     ```
-    <copy>column c03 format a30    heading "Table Name"
-    column c04 format a20    heading "Sharing Type"</copy>
-    ```
-
-
-    ```
-    <copy>ttitle "Sharing Modes for Campaigns, Products and Orders"</copy>
-    ```
-
-    ```
     <copy>
-    select Object_Name c03
-    ,      Sharing     c04
+    select Object_Name "Table Name"
+    ,      Sharing     "Sharing Type"
     from DBA_Objects
     where Owner = User
     and   Object_Name in ('WM_CAMPAIGNS','WM_PRODUCTS','WM_ORDERS')
@@ -1712,9 +1381,9 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step8.4-querymaster.png " ")
+    ![](./images/task8.4-querymaster.png " ")
 
-5. Queries against container Tulsa.
+5. Query against the container Tulsa. Note all the data is visible but some data is being shared from the application master.
 
     ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/Tulsa</copy>
@@ -1722,36 +1391,25 @@ The tasks you will accomplish in this step are:
 
 
     ```
-    <copy>column c1 format a20 heading "Origin Con_ID"
-    column c2 format a30            heading "Product"</copy>
-    ```
-
-
-    ```
-    <copy>ttitle "Products Visible in Franchise Tulsa"</copy>
-    ```
-
-
-    ```
     <copy>
-    select Row_GUID c1
-    ,      Name          c2
+    select Row_GUID "Origin Con_ID"
+    ,      Name     "Product"
     from wm_Products
     ;
     </copy>
     ```
 
-    ![](./images/step8.5-querytulsa.png " ")
+    ![](./images/task8.5-querytulsa.png " ")
 
-## Task 9: Application Patches
-This section we define an application patch. Patches are comparable to the application upgrades that we've seen in previous labs, but there are three important differences.
-- The types of operation that are allowed in a patch are more limited. Essentially operations which are destructive are not allowed, including:
-    - Drop a table, column, index, trigger...
-    - create or replace view, package, procedure...
+## Task 9: Application patches
+In this task we define an application patch. Patches are comparable to the application upgrades that we've seen in previous labs, but there are three important differences.
+- The types of operations that are allowed in a patch are more limited. Operations which are destructive are not allowed within a patch, including:
+    - Drop a table, column, index, trigger, and others.
+    - Create or replace view, package, procedure, and others.
 - Patches do not involve creation of Application Root Clones.
 - Patches are not version-specific. This means that a single patch may be applied to multiple application versions.
 
-The tasks you will accomplish in this step are:
+The tasks you will do in this step are:
 - Define patch 301 for application wmStore
 - Propagate the patch to the Application Root Replicas. Then apply it to three franchises (but not to all)
 
@@ -1797,13 +1455,11 @@ The tasks you will accomplish in this step are:
     insert into wm_List_Of_Values (Type_Code, Value_Code) values ('Financial Quarter', 'Q3,FY2017');
 
     insert into wm_List_Of_Values (Type_Code, Value_Code) values ('Financial Quarter', 'Q4,FY2017');
+
+    commit;
     </copy>
     ```
 
-
-    ```
-    <copy>commit;</copy>
-    ```
 
     ```
     <copy>
@@ -1812,82 +1468,51 @@ The tasks you will accomplish in this step are:
     where Order_Date >= '01-JAN-16'
     and   Order_Date <  '01-APR-16'
     ;
-    </copy>
-    ```
 
-    ```
-    <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q2,FY2016'
     where Order_Date >= '01-APR-16'
     and   Order_Date <  '01-JUL-16'
     ;
-    </copy>
-    ```
 
-    ```
-    <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q3,FY2016'
     where Order_Date >= '01-JUL-16'
     and   Order_Date <  '01-OCT-16'
     ;
-    </copy>
-    ```
 
-    ```
-    <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q4,FY2016'
     where Order_Date >= '01-OCT-16'
     and   Order_Date <  '01-JAN-17'
     ;
-    </copy>
-    ```
 
-    ```
-    <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q1,FY2017'
     where Order_Date >= '01-JAN-17'
     and   Order_Date <  '01-APR-17'
     ;
-    </copy>
-    ```
 
-    ```
-    <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q2,FY2017'
     where Order_Date >= '01-APR-17'
     and   Order_Date <  '01-JUL-17'
     ;
-    </copy>
-    ```
 
-    ```
-    <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q3,FY2017'
     where Order_Date >= '01-JUL-17'
     and   Order_Date <  '01-OCT-17'
     ;
-    </copy>
-    ```
 
-    ```
-    <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q4,FY2017'
     where Order_Date >= '01-OCT-17'
     and   Order_Date <  '01-JAN-18'
     ;
+
+    commit;
     </copy>
-    ```
-
-
-    ```
-    <copy>commit;</copy>
     ```
 
 
@@ -1895,39 +1520,31 @@ The tasks you will accomplish in this step are:
     <copy>alter pluggable database application wmStore end patch;</copy>
     ```
 
-    ![](./images/step9.1-createpatch1.png " ")
+    ![](./images/task9.1-createpatch1.png " ")
 
-2. Apply the patch to some but not all of the databases.
+    ![](./images/task9.1-createpatch2.png " ")
 
-    ```
-    <copy>connect system/oracle@localhost:1523/Tulsa</copy>
-    ```
+2. Apply the patch to some but not all databases.
 
     ```
-    <copy>alter pluggable database application wmStore sync to patch 301;</copy>
-    ```
+    <copy>
+    connect system/oracle@localhost:1523/Tulsa
 
-    ```
-    <copy>connect system/oracle@localhost:1523/California</copy>
-    ```
+    alter pluggable database application wmStore sync to patch 301;
 
-    ```
-    <copy>alter pluggable database application wmStore sync to patch 301;</copy>
-    ```
+    connect system/oracle@localhost:1523/California
 
-    ```
-    <copy>connect system/oracle@localhost:1523/NYC</copy>
-    ```
+    alter pluggable database application wmStore sync to patch 301;
 
+    </copy>
     ```
-    <copy>alter pluggable database application wmStore sync to patch 301;</copy>
-    ```
+    ![](./images/task9.2-applypatch.png " ")
 
-## Task 10: DBA Views
-This section we introduce some of the DBA Views which are relevant to Application Containers.
+## Task 10: DBA views
+This section we introduce some DBA Views which are relevant to Application Containers.
 
-The tasks you will accomplish in this step are:
-- Explore various DBA Views
+The task you will do in this step is:
+- Explore various DBA Views as they relate to Application Containers
 
 1. DBA_PDBs
 
@@ -1936,60 +1553,24 @@ The tasks you will accomplish in this step are:
     ```
 
     ```
-    <copy>ttitle off</copy>
-    ```
-
-    ```
-    <copy>set linesize 180</copy>
-    ```
-
-    ```
     <copy>
-    column c1  heading "Con ID"             format 9999
-    column c2  heading "PDB Name"           format a30
-    column c3  heading "PDB ID"             format a10
-    column c3  noprint
-    column c4  heading "Con UID"            format a12
-    column c5  heading "Status"             format a10
-    column c6  heading "Root?"              format a5
-    column c7  heading "App PDB?"           format a8
-    column c8  heading "Seed?"              format a5
-    column c9  heading "Root Clone?"        format a11
-    column c10 heading "Proxy?"             format a6
-    column c11 heading "App Container Name" format a30
+    set pagesize 100
+    desc DBA_PDBs
     </copy>
     ```
 
-
-    ```
-    <copy>set echo on</copy>
-    ```
-
-    ```
-    <copy>desc DBA_PDBs</copy>
-    ```
-
-    ```
-    <copy>set echo off</copy>
-    ```
-
-    ```
-    <copy>set echo on</copy>
-    ```
-
     ```
     <copy>
-    select P.Con_ID             c1
-    ,      P.PDB_Name           c2
-    ,      P.PDB_ID             c3
-    ,      P.CON_UID            c4
-    ,      P.Status             c5
-    ,      P.Application_Root   c6
-    ,      P.Application_PDB    c7
-    ,      P.Application_Seed   c8
-    ,      P.Application_Clone  c9
-    ,      P.Is_Proxy_PDB       c10
-    ,      AC.PDB_Name          c11
+    select P.Con_ID             "Con ID"
+    ,      P.PDB_Name           "PDB Name"
+    ,      P.CON_UID            "Con UID"
+    ,      P.Status             "Status"
+    ,      P.Application_Root   "App Root?"
+    ,      P.Application_PDB    "App PDB?"
+    ,      P.Application_Seed   "App Seed?"
+    ,      P.Application_Clone  "Root Clone?"
+    ,      P.Is_Proxy_PDB       "Proxy?"
+    ,      AC.PDB_Name          "App Container Name"
     from DBA_PDBs P
     left outer join DBA_PDBs AC
     on AC.Con_ID = P.Application_Root_Con_ID
@@ -2004,45 +1585,15 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ```
-    <copy>set echo off</copy>
-    ```
+    ![](./images/task10.1-dba_pdbs.png " ")
 
-    ![](./images/step10.1.png " ")
+    ![](./images/task10.1-dba_pdbs_query.png " ")
 
-2. DBA_APPLICATIONS
+
+2. DBA\_APPLICATIONS
 
     ```
     <copy>connect system/oracle@localhost:1523/wmStore_Master</copy>
-    ```
-
-    ```
-    <copy>
-    column CON_UID               heading "Con UID"          format 9999999999
-    column APP_NAME              heading "Application Name" format a20          truncate
-    column APP_ID                heading "App ID"           format 99999
-    column APP_VERSION           heading "Version"          format a7
-    column APP_VERSION_COMMENT   heading "Comment"          format a50
-    column APP_STATUS            heading "Status"           format a12  
-    column APP_IMPLICIT          heading "Implicit"         format a8
-    column APP_CAPTURE_SERVICE   heading "Capture Svc"      format a30
-    column APP_CAPTURE_MODULE    heading "Capture Mod"      format a15
-    column PATCH_NUMBER          heading "Patch #"          format 999999
-    column PATCH_MIN_VERSION     heading "Min Vers"         format a8
-    column PATCH_STATUS          heading "Status"           format a10  
-    column PATCH_COMMENT         heading "Comment"          format a50
-    column ORIGIN_CON_ID         heading "Origin_Con_ID"    format 999999999999        
-    column STATEMENT_ID          heading "Stmt ID"          format 999999
-    column CAPTURE_TIME          heading "Capture TS"       format a9          
-    column APP_STATEMENT         heading "SQL Statement"    format a50          truncate    
-    column ERRORNUM              heading "Error #"          format 999999         
-    column ERRORMSG              heading "Error Message"    format a50          truncate
-    column SYNC_TIME             heading "Sync TS"          format a9
-    </copy>
-    ```
-
-    ```
-    <copy>set echo on</copy>
     ```
 
     ```
@@ -2057,15 +1608,10 @@ The tasks you will accomplish in this step are:
     <copy>set echo off</copy>
     ```
 
-    ![](./images/step10.2.1.png " ")
+    ![](./images/task10.2-dba_applications.png " ")
 
-    ![](./images/step10.2.2.png " ")
 
-3. DBA_APP_VERSIONS
-
-    ```
-    <copy>set echo on</copy>
-    ```
+3. DBA\_APP\_VERSIONS
 
     ```
     <copy>desc DBA_App_Versions</copy>
@@ -2075,17 +1621,9 @@ The tasks you will accomplish in this step are:
     <copy>select * from DBA_App_Versions;</copy>
     ```
 
-    ```
-    <copy>set echo off</copy>
-    ```
+    ![](./images/task10.3-dba_app_versions.png " ")
 
-    ![](./images/step10.3.png " ")
-
-4. DBA_APP_PATCHES
-
-    ```
-    <copy>set echo on</copy>
-    ```
+4. DBA\_APP\_PATCHES
 
     ```
     <copy>desc DBA_App_Patches</copy>
@@ -2095,17 +1633,9 @@ The tasks you will accomplish in this step are:
     <copy>select * from DBA_App_Patches;</copy>
     ```
 
-    ```
-    <copy>set echo off</copy>
-    ```
+    ![](./images/task10.4-dba_app_patches.png " ")
 
-    ![](./images/step10.4.png " ")
-
-5. DBA_APP_PDB_STATUS
-
-    ```
-    <copy>set echo on</copy>
-    ```
+5. DBA\_APP\_PDB\_STATUS
 
     ```
     <copy>desc DBA_App_PDB_Status</copy>
@@ -2115,17 +1645,9 @@ The tasks you will accomplish in this step are:
     <copy>select * from DBA_App_PDB_Status;</copy>
     ```
 
-    ```
-    <copy>set echo off</copy>
-    ```
+    ![](./images/task10.5-dba_app_pdb_status.png " ")
 
-    ![](./images/step10.5.png " ")
-
-6. DBA_APP_STATEMENTS
-
-    ```
-    <copy>set echo on</copy>
-    ```
+6. DBA\_APP\_STATEMENTS
 
     ```
     <copy>desc DBA_App_Statements</copy>
@@ -2135,23 +1657,9 @@ The tasks you will accomplish in this step are:
     <copy>select * from DBA_App_Statements;</copy>
     ```
 
-    ```
-    <copy>set echo off</copy>
-    ```
+    ![](./images/task10.6-dba_app_statements.png " ")
 
-    ![](./images/step10.6.1.png " ")
-
-    ![](./images/step10.6.2.png " ")
-
-    ![](./images/step10.6.3.png " ")
-
-    ![](./images/step10.6.4.png " ")
-
-7. DBA_APP_ERRORS
-
-    ```
-    <copy>set echo on</copy>
-    ```
+7. DBA\_APP\_ERRORS
 
     ```
     <copy>connect system/oracle@localhost:1523/NYC</copy>
@@ -2169,52 +1677,49 @@ The tasks you will accomplish in this step are:
     <copy>set echo off</copy>
     ```
 
-    ![](./images/step10.7.png " ")
+    ![](./images/task10.7-dba_app_errors.png " ")
 
-## Task 11: Diagnosing, Correcting Problems, and Restarting Sync
-This section we explore the restartability of the patching process.
+## Task 11: Diagnosing and correcting problems, restarting sync
+This section will explore the ability to restart the patching process after diagnosing errors.
 
-The tasks you will accomplish in this step are:
-- Deliberately make a manual change to NYC that will conflict with applying patch 301
-- Attempt to sync NYC to apply the patch – anticipating a failure
+The tasks you will do in this step are:
+- Make a manual change to NYC that will intentionally conflict with applying patch 301
+- Attempt to sync NYC to apply the patch - anticipating failure
 - Query relevant DBA views to identify the problem
-- Resolve the problem and re-start the sync, which should now succeed
+- Resolve the problem and restart the sync, which should now succeed.
 
-1. Create an index that will break the sync.
-
-    ```
-    <copy>connect wmStore_Admin/oracle@localhost:1523/NYC
-    create index wm_Orders_M1 on wm_Orders(Order_Date);</copy>
-    ```
-
-    ![](./images/step11.1.png " ")
-
-2. Try the sync and have it fail.
-
-    ```
-    <copy>connect system/oracle@localhost:1523/NYC
-    alter pluggable database application wmStore sync;</copy>
-    ```
-
-    ![](./images/step11.2.png " ")
-
-3. Check for errors.
+1. Create an index that will break the ability to sync the application
 
     ```
     <copy>
-    set linesize 180
+    connect wmStore_Admin/oracle@localhost:1523/NYC
+    create index wm_Orders_M1 on wm_Orders(Order_Date);
+    </copy>
+    ```
 
-    column APP_NAME              heading "Application Name" format a20          truncate
-    column APP_STATEMENT         heading "SQL Statement"    format a50          truncate    
-    column ERRORNUM              heading "Error #"          format 999999         
-    column ERRORMSG              heading "Error Message"    format a50          truncate
-    column SYNC_TIME             heading "Sync TS"          format a9
+    ![](./images/task11.1-createindex.png " ")
 
+
+2. Attempt the sync and observe that it fails.
+
+    ```
+    <copy>
+    connect system/oracle@localhost:1523/NYC
+    alter pluggable database application wmStore sync to patch 301;
+    </copy>
+    ```
+
+    ![](./images/task11.2-syncerror.png " ")
+
+3. Check for dba\_app\_errors.
+
+    ```
+    <copy>
     select * from DBA_App_Errors;
     </copy>
     ```
 
-    ![](./images/step11.3.png " ")
+    ![](./images/task11.3-apperrors.png " ")
 
 4. Correct the issue and try the sync again.
 
@@ -2226,16 +1731,16 @@ The tasks you will accomplish in this step are:
 
     connect system/oracle@localhost:1523/NYC
 
-    alter pluggable database application wmStore sync;
+    alter pluggable database application wmStore sync to patch 301;
     </copy>
     ```
 
-    ![](./images/step11.4.png " ")
+    ![](./images/task11.4-syncsuccess.png " ")
 
-## Task 12: Container Map
-This section we explore another location transparency technology: Container Map. Here we follow the expansion of Walt's Malts through the acquisition of a formerly independent distributor of Walt's Malts products. This company is named Terminally Chill, and their niche was selling Walt's Malts produce through a number of small kiosks in various airports globally. The Terminally Chill application has a different design from the original wmStore application. Whereas wmStore was originally designed for standalone deployment, Terminally Chill used a single database to manage data for all kiosks in all airports. The application server tiers are designed to connect directly to a single database, with query predicates to retrieve data for the right airport and kiosk. In this lab, we'll see how Container Map can help accommodate applications of this design.
+## Task 12: Container map
+This section we explore another location transparency technology: Container Map. Here we follow the expansion of Walt's Malts through the acquisition of a formerly independent distributor of Walt's Malts products. This company is named Terminally Chill, and their niche was selling Walt's Malts products through a number of small kiosks in various airports globally. The Terminally Chill application has a different design from the original wmStore application. Whereas wmStore was originally designed for standalone deployment, Terminally Chill used a single database to manage data for all kiosks in all airports. The application server tiers are designed to connect directly to a single database, with query predicates to retrieve data for the right airport and kiosk. In this lab, we'll see how Container Map can help accommodate applications of this design.
 
-The tasks you will accomplish in this step are:
+The tasks you will do in this step are:
 - Setup Application PDBs for new Airport franchises
 - Install v1 of Application "Terminal"
 - Sync Application PDBs
@@ -2255,7 +1760,7 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step12.1.png " ")
+    ![](./images/task12.1-create_termmaster.png " ")
 
 2. Create the Application PDBs.
 
@@ -2280,7 +1785,7 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step12.2.png " ")
+    ![](./images/task12.2-term_app_pdbs.png " ")
 
 3. Create the 1.0 Terminal Install.
 
@@ -2289,8 +1794,6 @@ The tasks you will accomplish in this step are:
     connect system/oracle@localhost:1523/Terminal_Master
 
     alter pluggable database application Terminal begin install '1.0';
-
-    connect system/oracle@localhost:1523/Terminal_Master
 
     create table tc_Kiosk_Map
     (Kiosk varchar2(30) not null
@@ -2334,8 +1837,6 @@ The tasks you will accomplish in this step are:
     ;
     </copy>
     ```
-
-    ![](./images/step12.3.1.png " ")
 
     ```
     <copy>
@@ -2387,8 +1888,6 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step12.3.2.png " ")
-
     ```
     <copy>
     alter table tc_List_Of_Values  add constraint tc_List_Of_Values_U1
@@ -2421,8 +1920,6 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step12.3.3.png " ")
-
     ```
     <copy>
     insert into tc_List_Of_Values (Type_Code, Value_Code) values ('Type', 'Financial Quarter');
@@ -2446,8 +1943,6 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step12.3.4.png " ")
-
     ```
     <copy>
     alter table tc_Orders enable containers_default;
@@ -2458,9 +1953,10 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step12.3.5.png " ")
+    ![](./images/task12.3-terminstall1.png " ")
 
-    ![](./images/step12.3.6.png " ")
+    ![](./images/task12.3-terminstall2.png " ")
+
 
 4. Sync the Application databases to install 1.0.
 
@@ -2484,7 +1980,7 @@ The tasks you will accomplish in this step are:
     </copy>
     ```
 
-    ![](./images/step12.4.png " ")
+    ![](./images/task12.4-synctermapp.png " ")
 
 5. Load the Terminal Data.
 
@@ -2492,44 +1988,29 @@ The tasks you will accomplish in this step are:
     <copy>@Terminal_Data_Lab12</copy>
     ```
 
-    ![](./images/step12.5.1.png " ")
+    ![](./images/task12.5.1-dataload1.png " ")
 
-    ![](./images/step12.5.2.png " ")
+    ![](./images/task12.5.1-dataload2.png " ")
 
-    ![](./images/step12.5.3.png " ")
-
-6. Review the Container Map.
+6. Review the query results utilizing the Container Map: a "CONTAINERS" clause is not needed in the query, although it still fetches results from each Application PDB.
 
     ```
     <copy>
     connect Terminal_Admin/oracle@localhost:1523/Terminal_Master
-    column c1 format a30     heading "Airport"
-    column c2 format a30     heading "Kiosk"
-    column c3 format 999,999 heading "Num Orders"
+    set pagesize 100
 
-    define Kiosk = "LAX INTL"
-    ttitle "Order Count in Kiosk &Kiosk in Past Year"
-
-    select count(*)
+    select count(*) "Num Orders"
+    ,      Kiosk_Code "Kiosk"
+    ,      Campaign_Code "Compaign"
     from tc_Orders
-    where Order_Date > current_date-365
-    and   Kiosk_Code = '&Kiosk'
+    group by Kiosk_Code, Campaign_Code
+    order by 2,3
     ;
 
-    ttitle "Order Count in Subset of Kiosks in Past Year"
-
-    select o.Kiosk_Code c2
-    ,      count(*)     c3
-    from tc_Orders o
-    where o.Kiosk_Code in ('SFO INTL','LHR T5')
-    and   o.Campaign_Code = 'Foreign Getaway'
-    and   o.Order_Date > current_date-365
-    group by o.Kiosk_Code
-    ;
     </copy>
     ```
 
-    ![](./images/step12.6.png " ")
+    ![](./images/task12.6-queryresult.png " ")
 
 **Congratulations! You have completed this workshop!**
 
@@ -2537,5 +2018,5 @@ The tasks you will accomplish in this step are:
 
 - **Author** - Patrick Wheeler, VP, Multitenant Product Management
 - **Adapted to Cloud by** -  David Start, OSPA
-- **Contributors** -  David Start, Anoosha Pilli, Rene Fontcha
-- **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, April 2021
+- **Contributors** -  David Start, Anoosha Pilli, Rene Fontcha, Joseph Bernens
+- **Last Updated By/Date** - Joseph Bernens, Principal Solutions Engineer, NA Technology / September 2021

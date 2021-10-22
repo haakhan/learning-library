@@ -17,7 +17,7 @@ This lab assumes you have:
 
     ```
     <copy>
-    sudo su - || sudo sed -i -e 's|root:x:0:0:root:/root:.*$|root:x:0:0:root:/root:/bin/bash|g' /etc/passwd; sudo su -
+    sudo su - || (sudo sed -i -e 's|root:x:0:0:root:/root:.*$|root:x:0:0:root:/root:/bin/bash|g' /etc/passwd && sudo su -)
 
     </copy>
     ```
@@ -49,6 +49,7 @@ This lab assumes you have:
     #  MODIFIED        Date                 Comments
     #  --------        ----------           -----------------------------------
     #  Rene Fontcha    02/17/2021           Initial Creation
+    #  Rene Fontcha    10/07/2021           Added routine to update livelabs-get_started.sh
     #
     ###############################################################################
 
@@ -61,6 +62,17 @@ This lab assumes you have:
     # Add static name to /etc/hosts
     #echo "\$(oci-metadata -g privateIp --value-only | head -1)   <host>.livelabs.oraclevcn.com  <host>" >>/etc/hosts
     echo "\$(oci-metadata -g privateIp |sed -n -e 's/^.*Private IP address: //p')   <host>.livelabs.oraclevcn.com  <host>" >>/etc/hosts
+
+    # Update "livelabs-get_started.sh"
+    cd /tmp
+    wget -q https://objectstorage.us-ashburn-1.oraclecloud.com/p/RcNjQSg0UvYprTTudZhXUJCTA4DyScCh3oRdpXEEMsHuasT9S9N1ET3wpxnrW5Af/n/natdsecurity/b/misc/o/livelabs-get_started.zip
+
+    if [[ -f livelabs-get_started.zip ]]; then
+      unzip -q livelabs-get_started.zip
+      chmod +x livelabs-get_started.sh
+      mv -f livelabs-get_started.sh /usr/local/bin/
+      rm -f livelabs-get_started.zip
+    fi
 
     EOF
     </copy>

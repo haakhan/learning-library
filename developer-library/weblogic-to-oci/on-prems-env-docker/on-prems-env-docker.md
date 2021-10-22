@@ -69,7 +69,7 @@ Estimated Completion Time: 30 minutes.
     ```bash
     <copy>
     cd ~/
-    wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip
+    wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/5OJx9Uw1KIXVDKxCSvg5TjXdRiyxBoP5sJTk06ItQ87T4TY8WUzINwRt8U5EDQ3V/n/orasenatdpltintegration01/b/images/o/weblogic-to-oci.zip
     </copy>
     ```
 
@@ -81,7 +81,7 @@ Estimated Completion Time: 30 minutes.
     </copy>
     ```
 
-You can also download the code here: [https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip).
+You can also download the code here: [https://objectstorage.us-ashburn-1.oraclecloud.com/p/5OJx9Uw1KIXVDKxCSvg5TjXdRiyxBoP5sJTk06ItQ87T4TY8WUzINwRt8U5EDQ3V/n/orasenatdpltintegration01/b/images/o/weblogic-to-oci.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/5OJx9Uw1KIXVDKxCSvg5TjXdRiyxBoP5sJTk06ItQ87T4TY8WUzINwRt8U5EDQ3V/n/orasenatdpltintegration01/b/images/o/weblogic-to-oci.zip).
 
 ### **On Mac OS X**
 
@@ -90,7 +90,7 @@ You can also download the code here: [https://objectstorage.us-ashburn-1.oraclec
     ```bash
     <copy>
     cd ~/
-    wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip
+    wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/5OJx9Uw1KIXVDKxCSvg5TjXdRiyxBoP5sJTk06ItQ87T4TY8WUzINwRt8U5EDQ3V/n/orasenatdpltintegration01/b/images/o/weblogic-to-oci.zip
     </copy>
     ```
 
@@ -109,11 +109,11 @@ You can also download the code here: [https://objectstorage.us-ashburn-1.oraclec
     </copy>
     ```
 
-You can also download the code here: [https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip).
+You can also download the code here: [https://objectstorage.us-ashburn-1.oraclecloud.com/p/5OJx9Uw1KIXVDKxCSvg5TjXdRiyxBoP5sJTk06ItQ87T4TY8WUzINwRt8U5EDQ3V/n/orasenatdpltintegration01/b/images/o/weblogic-to-oci.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/5OJx9Uw1KIXVDKxCSvg5TjXdRiyxBoP5sJTk06ItQ87T4TY8WUzINwRt8U5EDQ3V/n/orasenatdpltintegration01/b/images/o/weblogic-to-oci.zip).
 
 ### **On Windows**
 
-1. Download the code here: [https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip).
+1. Download the code here: [https://objectstorage.us-ashburn-1.oraclecloud.com/p/5OJx9Uw1KIXVDKxCSvg5TjXdRiyxBoP5sJTk06ItQ87T4TY8WUzINwRt8U5EDQ3V/n/orasenatdpltintegration01/b/images/o/weblogic-to-oci.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/5OJx9Uw1KIXVDKxCSvg5TjXdRiyxBoP5sJTk06ItQ87T4TY8WUzINwRt8U5EDQ3V/n/orasenatdpltintegration01/b/images/o/weblogic-to-oci.zip).
 
 2. Unzip the file with your preferred tool.
 

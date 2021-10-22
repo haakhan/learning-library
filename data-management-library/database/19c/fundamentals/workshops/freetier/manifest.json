@@ -10,70 +10,65 @@
         {
             "title": "Getting Started",
             "description": "This is the prerequisites for customers using Free Trial and Paid tenancies, and Always Free accounts (if applicable). The title of the lab and the Contents Menu title (the title above) match for Prerequisite lab. This lab is always first.",
-            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
-        },
-        {
-            "title": "Lab 1: Generate SSH Keys - Cloud Shell",
-            "description": "Steps to generate SSH keys using Cloud Shell.",
-            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/generate-ssh-key-cloud-shell/generate-ssh-keys-cloud-shell.md",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md",
             "type": "freetier"
         },
         {
-            "title": "Lab 2: Obtain a Compute Image with Staged Oracle Database 19c Installer Files",
-            "description": "Obtain a compute instance wtih staged Oracle Database 19c installer files by using Resource Manager.",
-            "filename": "./../../obtain-compute-image-19c-staged/obtain-compute-image-19c-staged.md",
+            "title": "Prepare Your Environment",
+            "description": "Steps to create the workshop-staged and workshop-installed compute instances.",
+            "filename": "./../../prepare-environment/prepare-environment.md",
             "type": "freetier"
         },
         {
-            "title": "Lab 3: Install Oracle Database 19c with Automatic Root Script Execution",
+            "title": "Initialize Your Environment",
+            "description": "Steps to verify the workshop-installed compute instance and download the lab files.",
+            "filename": "./../../initialize-environment/initialize-environment.md",
+            "type": "freetier"
+        },
+        {
+            "title": "Lab 1: Install Oracle Database 19c with Automatic Root Script Execution",
             "description": "Install Oracle Database 19c with automatic configuration script execution.",
             "filename": "./../../install-db19c-auto-root-script-execution/install-db19c-auto-root-script-execution.md",
             "type": "freetier"
          },
           {
-              "title": "Lab 4: Obtain a Compute Image with Oracle Database 19c Installed",
-              "description": "Obtain a compute instance that has Oracle Database 19c already installed by using Resource Manager",
-              "filename": "./../../obtain-compute-image-19c-installed/obtain-compute-image-19c-installed.md",
-              "type": "freetier"
-          },
-          {
-              "title": "Lab 5: Clone a PDB by Using DBCA in Silent Mode",
-              "description": "Clone a PDB by using DBCA in silent mode.",
+              "title": "Lab 2: Clone a PDB from a Remote CDB by Using DBCA in Silent Mode",
+              "description": "Clone a PDB from a remote CDB by using DBCA in silent mode.",
               "filename": "./../../clone-pdb-using-dbca-silent-mode/clone-pdb-using-dbca-silent-mode.md",
               "type": "freetier"
           },
           {
-              "title": "Lab 6: Relocate a PDB by Using DBCA in Silent Mode",
-              "description": "Relocate a PDB by using DBCA in silent mode.",
+              "title": "Lab 3: Relocate a PDB to a Remote CDB by Using DBCA in Silent Mode",
+              "description": "Relocate a PDB to a remote CDB by using DBCA in silent mode.",
               "filename": "./../../relocate-pdb-using-dbca-silent-mode/relocate-pdb-using-dbca-silent-mode.md",
               "type": "freetier"
           },
           {
-              "title": "Lab 7: Duplicate a CDB by Using DBCA in Silent Mode",
+              "title": "Lab 4: Duplicate a CDB by Using DBCA in Silent Mode",
               "description": "Duplicate a CDB by using DBCA in silent mode.",
               "filename": "./../../duplicate-cdb-using-dbca-silent-mode/duplicate-cdb-using-dbca-silent-mode.md",
               "type": "freetier"
           },
           {
-              "title": "Lab 8: Decrease the Transportable Tablespace (TTS) Import and Export Time",
+              "title": "Lab 5: Decrease the Transportable Tablespace (TTS) Import and Export Time",
               "description": "Decrease the transportable tablespace (TTS) import and export time.",
               "filename": "./../../decrease-transportable-tablespace-import-export-time/decrease-transportable-tablespace-import-export-time.md",
               "type": "freetier"
           },
           {
-              "title": "Lab 9: Omit the Column Encryption Attribute During Import",
+              "title": "Lab 6: Omit the Column Encryption Attribute During Import",
               "description": "Omit the column encryption attribute during import.",
               "filename": "./../../omit-column-encryption-attribute-during-import/omit-column-encryption-attribute-during-import.md",
               "type": "freetier"
           },
           {
-              "title": "Lab 10: Use RMAN to Connect to a PDB to Use the Recovery Catalog",
+              "title": "Lab 7: Use RMAN to Connect to a PDB to Use the Recovery Catalog",
               "description": "Use Resource Manager (RMAN) to connect to a pluggable database (PDB) to use the recovery catalog.",
               "filename": "./../../use-rman-connect-to-pdb-to-use-recovery-catalog/use-rman-connect-to-pdb-to-use-recovery-catalog.md",
               "type": "freetier"
           },
           {
-              "title": "Lab 11: Explore Automatic Deletion of Flashback Logs",
+              "title": "Lab 8: Explore Automatic Deletion of Flashback Logs",
               "description": "Omit the column encryption attribute during import.",
               "filename": "./../../explore-automatic-deletion-flashback-logs/explore-automatic-deletion-flashback-logs.md",
               "type": "freetier"

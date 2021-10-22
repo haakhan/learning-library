@@ -15,7 +15,7 @@
         {
             "title": "Lab 1: Provision Autonomous Database",
             "description": "Provision Autonomous Database",
-            "filename": "./../../adb-provision/adb-provision.md"
+            "filename": "./../../adb-provision/adb-provision-conditional.md"
         },
         {
             "title": "Lab 2: Explore SQL Developer Web",

@@ -10,22 +10,22 @@
     {
       "title": "Getting Started",
       "description": "This is the prerequisites for customers using Free Trial and Paid tenancies, and Always Free accounts (if applicable). The title of the lab and the Contents Menu title (the title above) match for Prerequisite lab. This lab is always first.",
-      "filename": "../../signup/signup.md"
+      "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
     },
     {
       "title": "Lab 1: Infrastructure Configuration",
       "filename": "../../infrastructure/infrastructure.md"
     },
     {
-      "title": "Lab 2: Create MySQL DB System (MDS) with Heatwave",
+      "title": "Lab 2: Enable HeatWave & Configure Private Access Channel",
       "filename": "../../dbmds/dbmds.md"
     },
     {
-      "title": "Lab 3: Run queries leveraging HeatWave",
+      "title": "Lab 3: Run Queries Leveraging HeatWave",
       "filename": "../../heatwave/heatwave.md"
     },
     {
-      "title": "Lab 4: Use Analytics Cloud on MySQL Database Service powered by HeatWave",
+      "title": "Lab 4: Use Analytics Cloud on MySQL Database Service Powered by HeatWave",
       "filename": "../../analytics/analytics.md"
     },
    

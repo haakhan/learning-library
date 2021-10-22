@@ -1,4 +1,4 @@
-# Configure Database and GoldenGate Users
+# Initialize Environment
 
 ## Introduction
 In this lab we will setup the required database and GoldenGate replication users.
@@ -14,9 +14,7 @@ Understanding how to prepare and setup an Oracle Database for replication and de
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
 
@@ -38,8 +36,7 @@ This lab assumes you have:
     </copy>
     ```
 
-2. On the *Firefox* window on the right preloaded with *Oracle GoldenGate ServiceManager*, click on the *Username* field and select the saved credentials to login. These credentials have been saved within *Firefox* and are provided below for reference
-
+2. On the web browser window on the right preloaded with *Oracle GoldenGate ServiceManager*, click on the *Username* field and provide the credentials below to login.
 
     ```
     Username: <copy>oggadmin</copy>
@@ -49,11 +46,11 @@ This lab assumes you have:
     Password: <copy>Welcome1</copy>
     ```
 
+    ![](./images/goldegate-login.png" ")
+
+3. Confirm successful login. Please note that it may take up to 5 minutes after instance provisioning for all processes to fully start.
+
     ![](./images/goldegate-landing.png" ")
-
-3. Confirm successful login. Please note that it takes about 5 minutes after instance provisioning for all processes to fully start.
-
-    ![](./images/goldengate-service-mgr.png " ")
 
     If successful, the page above is displayed and as a result your environment is now ready.  
 
@@ -181,4 +178,4 @@ You may now [proceed to the next lab](#next).
 ## Acknowledgements
 * **Author** - Brian Elliott, Data Integration, November 2020
 * **Contributors** - Zia Khan, Rene Fontcha
-- **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, January 2021
+- **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2021

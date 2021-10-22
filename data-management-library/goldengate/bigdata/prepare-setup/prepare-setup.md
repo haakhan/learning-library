@@ -27,7 +27,9 @@ This workshop requires a certain number of ports to be available, a requirement 
 | Port           |Description                            |
 | :------------- | :------------------------------------ |
 | 22             | SSH                                   |
-| 8888           | Cloudera Hue                             |
+| 8888           | Cloudera Hue                          |
+| 16000-16005    | GGSA Console (https)                  |
+
 
 1.  Go to *Networking >> Virtual Cloud Networks*
 2.  Choose your network
@@ -49,5 +51,3 @@ Using the details from the two steps above, proceed to the lab *Environment Setu
 * **Author** - Rene Fontcha, Master Principal Solutions Architect, NA Technology
 * **Contributors** - Kay Malcolm, Product Manager, Database Product Management
 * **Last Updated By/Date** - Rene Fontcha, Master Principal Solutions Architect, NA Technology, October 2020
-
-

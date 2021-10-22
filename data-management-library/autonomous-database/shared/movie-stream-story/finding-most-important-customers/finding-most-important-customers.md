@@ -4,7 +4,7 @@
 
 In this lab we are going to create a Recency Frequency Monetary (RFM) query to analyze our sales data. This commonly used customer metric will combine some of the SQL analytic functions used in previous queries to create a more complex query using the **`WITH`** clause.
 
-**NOTE:** For more information about RFM, see **[this page](https://en.wikipedia.org/wiki/RFM_(market_research)** on Wikipedia:
+> **Note:** For more information about RFM, see **[this page](https://en.wikipedia.org/wiki/RFM_(market_research)** on Wikipedia:
 
 Estimated time: 10 minutes
 
@@ -15,6 +15,14 @@ Estimated time: 10 minutes
 - Learn how to combine queries using **`WITH`** clause
 
 - Learn about binning as an analytical technique
+
+### Prerequisites
+- This lab requires completion of the previous labs in the Contents menu on the left.
+- You can complete the prerequisite labs in two ways:
+
+    a. Manually run through the labs.
+
+    b. Provision your Autonomous Database and then go to the **Initializing Labs** section in the contents menu on the left. Initialize Labs will create the MOVIESTREAM user plus the required database objects.
 
 ### Overview Of Business Problem
 
@@ -63,7 +71,7 @@ Customers will be categorized into 5 buckets measured (using the NTILE function)
 
     ![Result of query to segment customers into bins](images/lab-5c-step-1-substep-2.png " ")
 
-    The last column in the report shows the "Bin" value. A value of 1 in this column indicates that a customer is a low spending customer and a value of 5 indicates that a customer is a high spending customer. To see more information about using the `NTILE` function in the SQL documentation, click [here](https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/NTILE.html#GUID-FAD7A986-AEBD-4A03-B0D2-F7F2148BA5E9).
+    The last column in the report shows the "Bin" value. A value of 1 in this column indicates that a customer is a low spending customer and a value of 5 indicates that a customer is a high spending customer. For more information about using the `NTILE` function, see [the SQL documentation](https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/NTILE.html#GUID-FAD7A986-AEBD-4A03-B0D2-F7F2148BA5E9).
 
 ## Task 2:  Binning Customer Sales By Frequency
 
@@ -84,7 +92,7 @@ Customers will be categorized into 5 buckets measured (using the NTILE function)
 
     Now we can identify those customers, based on when they last watched a movie, that watch the fewest number of movies, where the rfm\_frequency is 1, versus those customers that watch the most number of movies, where the rfm\_frequency is 5.
 
-## Task 3:  Creating an RFM Query
+## Task 3:  Create an RFM Query
 
 1. Now we use the **`WITH`** clause to combine these two queries to create an RFM query:
 
@@ -115,13 +123,15 @@ Customers will be categorized into 5 buckets measured (using the NTILE function)
     ORDER BY r.rfm_monetary desc, r.rfm_recency desc;</copy>
     ```
 
-2. The result only shows customers who have significant spend (>= 4) but have not visited the site recently (<= 2).
+2. The result only shows customers who have significant spend (greater than or equal to 4) but have not visited the site recently (less than or equal to 2).
 
     ![Query result showing customers with significant spend and having not visited site recently](images/lab-5c-task-3-step-2.png " ")
 
+You may now [proceed to the next lab](#next).
+
 ## Recap
 
-Let's quickly recap what has been covered in this lab:
+Let's quickly recap what we covered in this lab:
 
 - How to use `NTILE` function to "bin" your sales data
 
@@ -129,10 +139,8 @@ Let's quickly recap what has been covered in this lab:
 
 - How to create a Recency Frequency Monetary query
 
-Please *proceed to the next lab*.
-
 ## **Acknowledgements**
 
-- **Author** - Keith Laker, ADB Product Management
+- **Author** - Keith Laker, Oracle Autonomous Database Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
 - **Last Updated By/Date** - Keith Laker, August 2021

@@ -1,1 +1,0 @@
-The `dbca` command from `$ORACLE_HOME/bin` starts Oracle DBCA with the Database Operation window.

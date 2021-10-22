@@ -20,7 +20,6 @@ In this lab, you will:
 This workshop assumes you have:
 
 * A Free Tier, Paid or LiveLabs Oracle Cloud account
-* SSH Private Key to access the host via SSH
 * The following are required to complete this lab:
     * [Ensure that you have all the Prerequisites to install Enterprise Manager instance on Marketplace](https://blogs.oracle.com/oem/oracle-enterprise-manager-is-now-available-on-oracle-cloud-marketplace)
     * [Oracle Enterprise Manager should be installed on OCI Marketplace - Phase 1](https://blogs.oracle.com/oem/enterprise-manager-on-oci-installation-phase-1-em-app-oci-environment-prerequisitesyou-must-do-these-things-before-installing-the-em-app)
@@ -39,7 +38,7 @@ Use these links to get more information about Oracle GoldenGate Enterprise Manag
 * [A Simple Guide to Oracle GoldenGate Enterprise Manager Plug-in -Blog](https://blogs.oracle.com/dataintegration/a-simple-guide-to-oracle-goldengate-enterprise-manager-plug-in)
 * [New Route to Discovery in Oracle GoldenGate Enterprise Manager Plug-in 13.4.2.0.0](https://blogs.oracle.com/dataintegration/new-route-to-discovery-in-oracle-goldengate-enterprise-manager-plug-in)
 
-
+## Acknowledgements
 * **Author** - Anuradha Chepuri, Principal UA Developer, Oracle GoldenGate User Assistance
 * **Contributors** -  Nisharahmed Soneji (PM), Sarvanan Vetrivel (QA), GoldenGate
-* **Last Updated By/Date** - Anuradha Chepuri, Oracle GoldenGate User Assistance, April 2021
+* **Last Updated By/Date** - Anuradha Chepuri, Oracle GoldenGate User Assistance, September 2021

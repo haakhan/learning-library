@@ -2,23 +2,18 @@
 
 ## Introduction
 
-This lab will walk you through the steps to create an OCI Data Integration **application**, **publish tasks** into the application and create a Data Integration **pipeline** which calls the published tasks.
+Learn how to create an OCI Data Integration **application**, **publish tasks** into the application and create a Data Integration **pipeline** which calls the published tasks.
 
-The Pipeline you will create in this Lab step will orchestrate the execution of all of the tasks you created and published in this Workshop until now (Integration tasks, Data Loader task, SQL task). It will load and transform Customers, Revenues and Employees data and populate a statistics table in the Autonomous Data Warehouse with the success/error result of the Pipeline, along with the pipeline name and task run key.
+The Pipeline you will create will orchestrate the execution of all of the tasks you created and published in _Create a Data Loader task, two Data Flows, Integration tasks and a SQL task_. It will load and transform Customers, Revenues and Employees data and populate a statistics table in the Autonomous Data Warehouse with the success/error result of the Pipeline, along with the pipeline name and task run key.
 
-*Estimated Lab Time*: 30 minutes
+**Estimated Time**: 30 minutes
 
 ### Objectives
-In this lab, you will:
 * Create an Application
 * Publish tasks to Application
 * Creating a Pipeline which calls the published tasks
 * Creating a Pipeline Task
 * Publish the Pipeline Task
-
-### Prerequisites
-* **Free Tier/ Paid Oracle Cloud Account**
-* All previous labs have been **successfully completed**
 
 ## Task 1: Create an Application
 
@@ -48,7 +43,7 @@ In OCI Data Integration, an **Application** is a container for published tasks, 
 
 In Oracle Cloud Infrastructure Data Integration, a **Task** is a design-time resource that specifies a set of actions to perform on data. You create tasks from a project details or folder details page. You then publish the tasks into an Application to test or roll out into production.
 
-You will publish into the Workshop Application all of the tasks that you have created in the previous Lab (Integration tasks, Data Loader task and SQL task).
+You will publish into the Workshop Application all of the tasks that you have created in _Create a Data Loader task, two Data Flows, Integration tasks and a SQL task_.
 
 1. From the Application Details you are currently in, click on **Open tab** (plus icon) in the tab bar and select **Projects**.
 
@@ -58,7 +53,7 @@ You will publish into the Workshop Application all of the tasks that you have cr
 
   ![](./images/di-workshop.png " ")
 
-3. In the **Tasks** list, **check all of the four tasks** you created in the previous lab (two Integration tasks, one Data Loader task and one SQL task).
+3. In the **Tasks** list, **check all of the four tasks** you created in _Create a Data Loader task, two Data Flows, Integration tasks and a SQL task_.
 
   ![](./images/select-all-tasks.png " ")
 
@@ -68,7 +63,7 @@ You will publish into the Workshop Application all of the tasks that you have cr
 
 5. In the Publish to Application dialog, select `Workshop Application` and then click **Publish**.
 
-   *Note: You can modify the tasks or edit the data flow without impacting the published task. This enables you to test a version of your data flow, while working on some new changes.*
+   *Note*: You can modify the tasks or edit the data flow without impacting the published task. This enables you to test a version of your data flow, while working on some new changes.
 
   ![](./images/app-publish.png " ")
 
@@ -96,7 +91,7 @@ You will publish into the Workshop Application all of the tasks that you have cr
 
 A **pipeline** is a set of tasks connected **in a sequence** or **in parallel** to facilitate data processing. It manages and orchestrates the execution of a set of related tasks and processes. The pipeline functionality in Oracle Cloud Infrastructure Data Integration helps write complex data pipelines using published tasks from any application, and you can add data loader, integration or SQL tasks. You can create pipelines quickly using a designer similar to the Data Flow designer.
 
-The Pipeline you will create in this Lab step will orchestrate the execution of all of the tasks you created and published in this Workshop until now. The pipeline will begin with the **parallel execution** of the `LOAD_CUSTOMERS_LAB` **Integration Task** and `LOAD_REVENUE_DATA_INTO_DATA_WAREHOUSE` **Data Loader task**. After the successful execution of these two tasks, the `LOAD_EMPLOYEES_BY_REGIONS` **Integration Task** will be executed in sequence.
+The Pipeline you will create in this step will orchestrate the execution of all of the tasks you created and published in this Workshop until now. The pipeline will begin with the **parallel execution** of the `LOAD_CUSTOMERS_LAB` **Integration Task** and `LOAD_REVENUE_DATA_INTO_DATA_WAREHOUSE` **Data Loader task**. After the successful execution of these two tasks, the `LOAD_EMPLOYEES_BY_REGIONS` **Integration Task** will be executed in sequence.
 Then, an **Expression operator** will add a new field that is populated with the Pipeline name and Task run key **system parameters of the pipeline**.
 The following **SQL task** step will get success/error input configured in the pipeline and the system parameters expression as the **Input parameters**. It will load this information in the Autonomous Data Warehouse, according to the SQL stored procedure logic.
 
@@ -145,7 +140,7 @@ Any user interested in seeing the successful/ unsuccessful result of the Data In
 
     ![](./images/select-task.png " ")
 
-10. In the properties bar, the **Integration Task** `Load Customers Lab` is now selected. The Identifier has automatically changed with the name of Integration Task you selected. For Incoming Link Condition, leave the default option of **Always run**.  *Note: Be sure to save often during design time!*
+10. In the properties bar, the **Integration Task** `Load Customers Lab` is now selected. The Identifier has automatically changed with the name of Integration Task you selected. For Incoming Link Condition, leave the default option of **Always run**.  *Note*: Be sure to save often during design time!
 
   ![](./images/pipeline-first-operator.png " ")
 
@@ -175,7 +170,7 @@ Any user interested in seeing the successful/ unsuccessful result of the Data In
 
   ![](./images/merge-op.png " ")
 
-16. Under the Details tab of the **Properties** panel of the **MERGE\_1** operator, you can enter a name and optional description. Change the name to MERGE\_SUCCESS. For Merge Condition select the **All Success** option, which means that all parallel operations that are linked upstream must complete and succeed before the next downstream operation can proceed.  *Note: Be sure to save often during design time!*
+16. Under the Details tab of the **Properties** panel of the **MERGE\_1** operator, you can enter a name and optional description. Change the name to MERGE\_SUCCESS. For Merge Condition select the **All Success** option, which means that all parallel operations that are linked upstream must complete and succeed before the next downstream operation can proceed.  *Note*: Be sure to save often during design time!
 
   ![](./images/merge-success.png " ")
 
@@ -205,7 +200,7 @@ Any user interested in seeing the successful/ unsuccessful result of the Data In
 
   ![](./images/pipeline-expression-operator.png " ")
 
-22. In the **Properties** bar of **EXPRESSION\_1** operator, change the Identifier to **PIPELINE\_NAME\_TASK\_RUN** and click on **Add** under Expression.  *Note: Be sure to save often during design time!*
+22. In the **Properties** bar of **EXPRESSION\_1** operator, change the Identifier to **PIPELINE\_NAME\_TASK\_RUN** and click on **Add** under Expression.  *Note*: Be sure to save often during design time!
 
   ![](./images/pipeline-add-expression.png " ")
 
@@ -220,7 +215,7 @@ The expression will concatenate the **PIPELINE\_NAME** system parameter with the
     ```
     <copy>CONCAT(CONCAT(${SYS.PIPELINE_NAME}, ' '),${SYS.TASK_RUN_KEY})</copy>
     ```
-   *Note: You can also manually create the expression in the Expression Builder, by double-click or drag an drop of the System defined parameters and CONCAT function.*
+   *Note*: You can also manually create the expression in the Expression Builder, by double-click or drag an drop of the System defined parameters and CONCAT function.
     - Click **Add**.
 
     ![](./images/add-expression-pipeline.png " ")
@@ -243,7 +238,7 @@ The expression will concatenate the **PIPELINE\_NAME** system parameter with the
 
   ![](./images/sql-dwh.png " ")
 
-27. In the properties bar, the **SQL Task** `Procedure DWH Load Stats` is now selected. The Identifier has automatically changed with the name of SQL Task you selected. For Incoming Link Condition, leave the default option of **Run on success of previous operator**.  *Note: Be sure to save often during design time!*
+27. In the properties bar, the **SQL Task** `Procedure DWH Load Stats` is now selected. The Identifier has automatically changed with the name of SQL Task you selected. For Incoming Link Condition, leave the default option of **Run on success of previous operator**.  *Note*: Be sure to save often during design time!
 
   ![](./images/run-sql-success.png " ")
 
@@ -273,7 +268,7 @@ The expression will concatenate the **PIPELINE\_NAME** system parameter with the
     - Check the box to select the `PIPELINE_NAME_TASK_RUN.PIPELINE_NAME_RUN` field from the previous Expression operator. The SQL task will use the value from the Expression as the input parameter for the SQL task.
     - Click **Done**.
 
-   *Note: Be sure to save often during design time!*
+   *Note*: Be sure to save often during design time!
    ![](./images/pipeline-second-parameter.png " ")
 
 33. The two input parameters of the SQL task now have Configured values . Click **Configure**.
@@ -302,7 +297,7 @@ The expression will concatenate the **PIPELINE\_NAME** system parameter with the
 
   ![](./images/sql-dwh.png " ")
 
-38. In the properties bar, the **SQL Task** `Procedure DWH Load Stats` is now selected. The Identifier has automatically changed with the name of SQL Task you selected. For Incoming Link Condition, leave the default option of **Run on failure of previous operator**. The arrow from the previous operator to the new SQL task operator will turn **red**.  *Note: Be sure to save often during design time!*
+38. In the properties bar, the **SQL Task** `Procedure DWH Load Stats` is now selected. The Identifier has automatically changed with the name of SQL Task you selected. For Incoming Link Condition, leave the default option of **Run on failure of previous operator**. The arrow from the previous operator to the new SQL task operator will turn **red**.  *Note*: Be sure to save often during design time!
 
   ![](./images/failure-op.png " ")
 
@@ -401,7 +396,7 @@ You will create a Pipeline task for the pipeline you created in the above step.
 
   ![](./images/app-select.png " ")
 
-   **Congratulations!**  You may now [proceed to the next lab](#next).
+   **Congratulations!**  
 
 ## Learn More
 

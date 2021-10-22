@@ -31,7 +31,7 @@ Before you develop you should ensure you have the latest content from production
   ![](./images/git-hub-merge-branch.png " ")
 
 3. Select the branch upstream/master (there may be a number of branches, search until you see *upstream/master*). Press the **merge upstream/master into master** button.
-   
+
   ![](./images/git-hub-merge-branch-2.png " ")
 
 4. Finally, select **Push Origin**
@@ -134,16 +134,16 @@ After your pull request is complete, wait a few minutes and perform the steps be
 
   https://github.com/oracle/learning-library/tree/master/sample-livelabs-templates/create-labs/labs/workshops/freetier
 
-3. The published version becomes: 
+3. The published version becomes:
 
   https://oracle.github.io/learning-library/sample-livelabs-templates/create-labs/labs/workshops/freetier
 
 ## Task 7: Change your status
 Now that your workshop is in the learning library, change your status.  If you are finished and ready to QA, change your status to **Self QA**, if you still have some work to do, change your status to **Moving to Github**.
 1. Go into the LWMS (Oracle employees only - bit.ly/oraclelivelabs) and click edit your workshop.
-4.  Go to the row for your workshop and change your workshop status to at least *Moving to GitHub* *Note: If your workshop is already in production you will need to contact livelabs-admin_us@oracle.com to edit it.* 
+4.  Go to the row for your workshop and change your workshop status to at least *Moving to GitHub* *Note: If your workshop is already in production you will need to contact livelabs-admin_us@oracle.com to edit it.*
 5.  Click on the ID for your workshop
-6.  On the edit page, scroll down and update the **Production GitHub URL** update it to the new oracle.github.io address you identified in step 3. 
+6.  On the edit page, scroll down and update the **Production GitHub URL** update it to the new oracle.github.io address you identified in step 3.
 7.  Update your Development GithHub URL to your personal github pages address
 8.  When you are finished with your workshop, set your workshop status to **Self QA**.
 9.  Questions?  Go to your workshop and find your support url, contact your assigned support team.  You can also ask in the #livelabs-authors-help slack channel.
@@ -170,6 +170,8 @@ You may now [proceed to the next lab](#next).
 
   ![](./images/git-hub-sync-ahead.png " ")
 
+This concludes this lab. You may now proceed to the next lab.
+
 ## Want to Learn More?
 
 * [Using GitHub Desktop to merge, commit and make pull requests](https://otube.oracle.com/media/t/1_bxj0cfqf)
@@ -181,9 +183,8 @@ You may now [proceed to the next lab](#next).
     * Anuradha Chepuri, Principal User Assistance Developer, Oracle GoldenGate
 * **Contributors:**
     * Lauran Serhal, Principal User Assistance Developer, Oracle Database and Big Data User Assistance
-* **Reviewed by:**  
     * Aslam Khan, Senior User Assistance Manager, ODI, OGG, EDQ
     * Tom McGinn, Database and Database Cloud Service Senior Principal Product Manager, DB Development - Documentation
-* **Last Updated By/Date:** Kamryn Vinson, May 2021
+    * Kamryn Vinson, Product Manager, Database
 
-
+* **Last Updated By/Date:** Anuradha Chepuri, October, 2021

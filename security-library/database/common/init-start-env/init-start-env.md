@@ -90,6 +90,7 @@ This lab assumes you have:
 5. If you see questionable output(s), failure or down component(s), restart the corresponding service(s) accordingly
 
     - Database and Listener
+
         ```
         <copy>
         sudo systemctl restart oracle-database
@@ -195,4 +196,4 @@ If for any reason you want to login from a location that is external to your rem
 ## Acknowledgements
 - **Author** - Rene Fontcha, LiveLabs Platform Lead, NA Technology
 - **Contributors** - Hakim Loumi
-* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, August 2021
+- **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2021

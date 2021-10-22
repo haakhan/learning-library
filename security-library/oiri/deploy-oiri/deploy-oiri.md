@@ -15,18 +15,14 @@ In this lab, you will:
 * Create and Seed the Database schema
 * Install the OIRI Helm chart
 
-
 ### Prerequisites
-
-* An Oracle Cloud Account - Please view this workshop's LiveLabs landing page to see which environments are supported
-* SSH Private Key to access the host via SSH
-* You have completed:
-      - Lab : Generate SSH Keys (Free-tier and Paid Tenants only)
-      - Lab : Prepare Setup (Free-tier and Paid Tenants only)
-      - Lab : Environment Setup
-      - Lab : Initialize Environment
-      - Lab : Deploy Kubernetes Cluster and Start OIG Server
-
+This lab assumes you have:
+- A Free Tier, Paid or LiveLabs Oracle Cloud account
+- You have completed:
+    - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
+    - Lab: Environment Setup
+    - Lab: Initialize Environment
+    - Lab: Deploy Kubernetes Cluster and Start OIG Server
 
 ## Task 1: Load the OIRI docker images
 

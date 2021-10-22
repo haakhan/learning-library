@@ -54,7 +54,63 @@ During the execution of your labs you may need to copy text from your local PC/M
 
 You may now [proceed to the next lab](#next).
 
+## Appendix: Connecting remotely using SSH.
+
+While your workshop can be executed end-to-end from the remote desktop, follow the steps provided below if you need to access the instance remotely using an SSH client such as Putty, Unix/Linux/MacOS Terminal, OCI cloudshell, and other terminal emulators available on Windows.
+
+*Notes:* In this section you are enabling SSH access to the OS user running the remote desktop. This could be oracle, opc, or any other OS user for which the noVNC remote desktop has been configured.
+
+This assumes that you already have an RSA type SSH key-pair available on the local system where you will be connecting from. If you don't and for more info on creating and using SSH keys for your specific platform and client, please refer to the guide [Generate SSH Keys](https://oracle.github.io/learning-library/common/labs/generate-ssh-key)
+
+1. Open the remote clipboard on the remote desktop as shown in *Task 2* and launch a terminal session
+
+2. Paste the block below onto the remote clipboard first, then onto the terminal to create or update the file *$HOME/.ssh/authorized_keys* with the *Vi* editor
+
+    ```
+    <copy>
+    cd $HOME; mkdir .ssh; cd .ssh
+    vi authorized_keys
+    </copy>
+    ```
+
+    ![](./images/novnc-copy-pub-key-4.png " ")
+
+3. From the local system (e.g. your laptop) and with the exception of *Putty* users, locate the SSH public key from the key-pair, open it, and copy the entire content to the clipboard.
+
+    ![](./images/novnc-copy-pub-key-1.png " ")
+
+    If using Putty you must load the private key (*.ppk*) into *Puttygen* utility to see the relevant public key block to copy. Do not copy the content of the public key file directly as it will not work.
+
+    ![](./images/novnc-copy-pub-key-2.png " ")
+
+4. Paste the copied public key onto the remote clipboard first, then onto the terminal where you opened *authorized_keys* for edit
+
+    ![](./images/novnc-copy-pub-key-3.png " ")
+
+5. Save and exit *Vi* editor
+
+6. Set required permissions on *$HOME/.ssh* and *authorized_keys*
+
+    ```
+    <copy>
+    chmod 0700 $HOME/.ssh
+    chmod 0600 $HOME/.ssh/authorized_keys
+    </copy>
+    ```
+
+7. Test/Validate connectivity using the private key (for Unix/Linux/MacOS Terminal, OCI cloudshell, and Terminal emulators on Windows such as Cygwin and MobaXterm).
+
+    ```
+    ssh -i [path to private key] remote-user@[instance-public-ip-address]
+    e.g.
+    <copy>
+    ssh -i /home/appuser1/.ssh/livelabs_rsa_priv oracle@150.136.123.105
+    </copy>
+    ```
+
+    For Putty, please refer to the guide [Generate SSH Keys](https://oracle.github.io/learning-library/common/labs/generate-ssh-key) on how to establish the connection using the *.ppk* private key 
+
 ## Acknowledgements
 * **Author** - Rene Fontcha, LiveLabs Platform Lead, NA Technology
 * **Contributors** -
-* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, June 2021
+* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, October 2021

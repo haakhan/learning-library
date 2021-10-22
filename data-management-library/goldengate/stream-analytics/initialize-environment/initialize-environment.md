@@ -12,9 +12,7 @@ In this lab we will review and startup all components required to successfully r
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH (*Free-tier* and *Paid Tenants* only)
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
 
@@ -30,7 +28,7 @@ This lab assumes you have:
     - Apache Spark Master
     - Apache Spark Slave
 
-2. On the *Firefox* window on the right preloaded with *Golden Gate Stream Analytics*, click on the *Username* field and select the saved credentials to login. These credentials have been saved within *Firefox* and are provided below for reference
+2. On the web browser window on the right preloaded with *Golden Gate Stream Analytics* login page, click on the *Username* field and provide the credentials below to login.
 
     - Username
 
@@ -139,7 +137,7 @@ This lab assumes you have:
     ```
     <copy>sudo systemctl restart <Service-name></copy>
     ```
-    
+
     *Note*- The following are the service-name used in this workshop
 
     | Service Name                    |systemctl service             |
@@ -155,6 +153,6 @@ This lab assumes you have:
 
 
 ## Acknowledgements
-* **Author** - Anuradha Chepuri, Principal UA Developer, Oracle GoldenGate User Assistance
+* **Author** - Ashish Kumar, LiveLabs Platform, NA Technology, July 2021
 * **Contributors** -  Nisharahmed Soneji, Sukin Varghese , Rene Fontcha
-* **Last Updated By/Date** - Ashish Kumar, LiveLabs Platform, NA Technology, July 2021
+* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2021

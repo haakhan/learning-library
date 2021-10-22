@@ -15,9 +15,7 @@ Dynamically redact sensitive data preventing it from being displayed outside the
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
     - Lab: Initialize Environment
@@ -31,85 +29,81 @@ This lab assumes you have:
 
 ## Task 1: Create a basic Data Redaction policy
 
-1. Open a SSH session on your **DBSec-Lab VM as *oracle* user**
-
-      ````
-      <copy>sudo su - oracle</copy>
-      ````
+1. As OS user *oracle* on your **DBSec-Lab** VM remote desktop session, Double-Click on the *Terminal* icon on the desktop to launch a session
 
 2. Go to the scripts directory
 
-      ````
-      <copy>cd $DBSEC_LABS/data-redaction</copy>
-      ````
+    ````
+    <copy>cd $DBSEC_LABS/data-redaction</copy>
+    ````
 
 3. First, let's view the data before we redact it
 
-      ````
-      <copy>./dr_query_employee_data.sh</copy>
-      ````
+    ````
+    <copy>./dr_query_employee_data.sh</copy>
+    ````
 
-   ![](./images/dr-001.png " ")
+    ![](./images/dr-001.png " ")
 
 4. Create the redaction policy `PROTECT_EMPLOYEES` for the `DEMO_HR_EMPLOYEES` table to (**FULL**) redact data on column **SIN** for all queries (**Expression "1=1"**)
 
-      ````
-      <copy>./dr_redact_for_all.sh</copy>
-      ````
+    ````
+    <copy>./dr_redact_for_all.sh</copy>
+    ````
 
-   ![](./images/dr-002.png " ")
+    ![](./images/dr-002.png " ")
 
 5. Re-run the query to see the redacted data
 
-      ````
-      <copy>./dr_query_employee_data.sh</copy>
-      ````
+    ````
+    <copy>./dr_query_employee_data.sh</copy>
+    ````
 
-   ![](./images/dr-003.png " ")
+    ![](./images/dr-003.png " ")
 
 ## Task 2: Contextualize an existing Data Redaction policy
 
 1. Now, modify the redaction policy to only redact non-Glassfish queries (**Expression with "Rule Set"**)
 
-      ````
-      <copy>./dr_redact_nonapp_queries.sh</copy>
-      ````
+    ````
+    <copy>./dr_redact_nonapp_queries.sh</copy>
+    ````
 
-   ![](./images/dr-004.png " ")
+    ![](./images/dr-004.png " ")
 
 2. Add additional columns (**SSN** and **NINO**) to the redaction policy
 
-      ````
-      <copy>./dr_add_redacted_columns.sh</copy>
-      ````
+    ````
+    <copy>./dr_add_redacted_columns.sh</copy>
+    ````
 
-   ![](./images/dr-005.png " ")
+    ![](./images/dr-005.png " ")
 
 3. Run the query to see the redact data again
 
-      ````
-      <copy>./dr_query_employee_data.sh</copy>
-      ````
+    ````
+    <copy>./dr_query_employee_data.sh</copy>
+    ````
 
-   ![](./images/dr-006.png " ")
+    ![](./images/dr-006.png " ")
 
 ## Task 3: (Optional) Drop the Data Redaction policy
 
 1. When you are finished with the lab, you can drop the redaction policy
 
-      ````
-      <copy>./dr_drop_redaction_policy.sh</copy>
-      ````
+    ````
+    <copy>./dr_drop_redaction_policy.sh</copy>
+    ````
 
-   ![](./images/dr-007.png " ")
+    ![](./images/dr-007.png " ")
 
 2. Check that all data are now not redacted
 
-      ````
-      <copy>./dr_query_employee_data.sh</copy>
-      ````
+    ````
+    <copy>./dr_query_employee_data.sh</copy>
+    ````
 
-   ![](./images/dr-001.png " ")
+    ![](./images/dr-001.png " ")
 
 You may now [proceed to the next lab](#next)..
 
@@ -138,7 +132,7 @@ This option enables you to test the internal operation of your redaction policie
 
 Data Redaction performs the redaction at runtime, that is, the moment that the user tries to view the data. This functionality is ideally suited for dynamic production systems in which data constantly changes. While the data is being redacted, Oracle Database is able to process all of the data normally and to preserve the back-end referential integrity constraints. Data redaction can help you to comply with industry regulations such as Payment Card Industry Data Security Standard (PCI DSS) and the Sarbanes-Oxley Act.
 
-   ![](./images/aso-concept-dr.png " ")
+    ![](./images/aso-concept-dr.png " ")
 
 ### **Benefits of Using Oracle Data Redaction**
 - You have different styles of redaction from which to choose

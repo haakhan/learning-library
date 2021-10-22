@@ -1,0 +1,4 @@
+This images shows the command to import the oml module and establish a connection with the Oracle Database. It also shows the output TRUE, which indicates that the database connection is established by the OML Notebook environment.
+
+
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

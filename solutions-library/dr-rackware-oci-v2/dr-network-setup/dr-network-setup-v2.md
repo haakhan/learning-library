@@ -9,7 +9,7 @@ Estimated Lab Time 45-60 minutes
 - Deploy Terraform to setup necessary architecture for DR
 
 ### Prerequisites
-1. Download & unzip the [Terraform zip file](https://objectstorage.us-ashburn-1.oraclecloud.com/p/EI0RqkgDQsid-sm5OQP2Z-rzJAHXboftWh0HrWii2duBC8WRaBYF4CglkFkt3mQ3/n/c4u04/b/solutions-library/o/DR-ORDS-RW-master.zip) to your local machine.
+1. Download & unzip the [Terraform zip file](https://objectstorage.us-ashburn-1.oraclecloud.com/p/El0bKQBM-DFwTxp7p6YigKkTR6IoVJLCJRvUh6vgI7dMOdKXG9ULl0aAhwhzWBv5/n/c4u04/b/solutions-library/o/DR-ORDS-RW-Master-v2.zip) to your local machine.
 
 2.  Create your own private/public key pair on your local system.
 3.  Zip up all of the files in to a zip folder. The zip file name is not important.
@@ -20,54 +20,54 @@ Estimated Lab Time 45-60 minutes
         ├── dr-ords-schema.yaml
         ├── main.tf
         ├── modules
-        │   ├── bastion_instance
-        │   │   ├── main.tf
-        │   │   ├── outputs.tf
-        │   │   └── variables.tf
-        │   ├── dbaas
-        │   │   ├── main.tf
-        │   │   ├── outputs.tf
-        │   │   └── variables.tf
-        │   ├── network
-        │   │   ├── main.tf
-        │   │   ├── outputs.tf
-        │   │   └── variables.tf
-        │   └── ords
-        │       ├── main.tf
-        │       ├── outputs.tf
-        │       ├── README.md
-        │       ├── remote-exec.tf
-        │       └── variables.tf
+        │ ├── bastion_instance
+        │ │ ├── main.tf
+        │ │ ├── outputs.tf
+        │ │ └── variables.tf
+        │ ├── dbaas
+        │ │ ├── main.tf
+        │ │ ├── outputs.tf
+        │ │ └── variables.tf
+        │ ├── network
+        │ │ ├── main.tf
+        │ │ ├── outputs.tf
+        │ │ └── variables.tf
+        │ └── ords
+        │     ├── main.tf
+        │     ├── outputs.tf
+        │     ├── README.md
+        │     ├── remote-exec.tf
+        │     └── variables.tf
         ├── outputs.tf
         ├── providers.tf
         ├── terraform.tfvars
         ├── userdata
-        │   ├── bootstrap.sh
-        │   ├── files_init
-        │   │   └── config_init.sh
-        │   ├── files_init.zip
-        │   ├── files_jetty
-        │   │   ├── apex_add_db.sh
-        │   │   ├── apex_inst_check.sql
-        │   │   ├── apex_setup_base.exp
-        │   │   ├── config_apex1.sql
-        │   │   ├── config_apex2.sql
-        │   │   ├── config_cert.sh
-        │   │   ├── config_jetty_apex.sh
-        │   │   ├── config_jetty_ca-ssl.sh
-        │   │   ├── config_jetty_init.sh
-        │   │   ├── config_jetty_ords.sh
-        │   │   ├── dns_ocidns.sh
-        │   │   ├── ords_add_db.sh
-        │   │   ├── ords_pu_check.sql
-        │   │   ├── ords_setup_base.exp
-        │   │   ├── ords_validate_base.exp
-        │   │   ├── pw_prof_chk.sql
-        │   │   ├── pw_verify_base.sql
-        │   │   ├── pw_verify_null.sql
-        │   │   ├── start_ords.sh
-        │   │   └── stop_ords.sh
-        │   └── files_jetty.zip
+        │ ├── bootstrap.sh
+        │ ├── files_init
+        │ │ └── config_init.sh
+        │ ├── files_init.zip
+        │ ├── files_jetty
+        │ │ ├── apex_add_db.sh
+        │ │ ├── apex_inst_check.sql
+        │ │ ├── apex_setup_base.exp
+        │ │ ├── config_apex1.sql
+        │ │ ├── config_apex2.sql
+        │ │ ├── config_cert.sh
+        │ │ ├── config_jetty_apex.sh
+        │ │ ├── config_jetty_ca-ssl.sh
+        │ │ ├── config_jetty_init.sh
+        │ │ ├── config_jetty_ords.sh
+        │ │ ├── dns_ocidns.sh
+        │ │ ├── ords_add_db.sh
+        │ │ ├── ords_pu_check.sql
+        │ │ ├── ords_setup_base.exp
+        │ │ ├── ords_validate_base.exp
+        │ │ ├── pw_prof_chk.sql
+        │ │ ├── pw_verify_base.sql
+        │ │ ├── pw_verify_null.sql
+        │ │ ├── start_ords.sh
+        │ │ └── stop_ords.sh
+        │ └── files_jetty.zip
         └── variables.tf
 
     
@@ -90,8 +90,8 @@ Estimated Lab Time 45-60 minutes
 5. Copy your public and private key. Make sure you are using the correct format.
     ![](./images/ResourceManager-Keys.PNG)
 
-6. Input the configuration for the object storage. Make sure to copy the following link [apex](https://objectstorage.us-ashburn-1.oraclecloud.com/p/I3bUrYDk8L2HMDRdRNnh3IPjIvnK81QH2n_XqrdmAiqYMqSXkwH60ijL4h_21V21/n/c4u04/b/solutions-library/o/apex_20.1.zip) into the URL\_APEX\_FILE field.
-   Make sure to copy the following link [ords](https://objectstorage.us-ashburn-1.oraclecloud.com/p/B71llCDFaVYuBQw40SsZ6Bal_VK-e2k658wtmEMyKp3fSX85SVoHBjPQM_Xf2eS3/n/c4u04/b/solutions-library/o/ords.war) into the URL\_ORDS\_FILE field.
+6. Input the configuration for the object storage. Make sure to copy the following link [apex](https://objectstorage.us-ashburn-1.oraclecloud.com/p/uoRIkmmXSSb2SI4Hfil6fHWfw4b_9Z1Ln4iEmfzNHJQNGtAMfP_Y8EHYBraPrW3A/n/c4u04/b/solutions-library/o/apex_20.1.zip) into the URL\_APEX\_FILE field.
+   Make sure to copy the following link [ords](https://objectstorage.us-ashburn-1.oraclecloud.com/p/nZNTd1Figtx0Mcngl8lvJrO7K8WPIdPsA2To4lr_KaQmJQzAWrt4eDMWVkUMsHhU/n/c4u04/b/solutions-library/o/ords.war) into the URL\_ORDS\_FILE field.
     ![](./images/ResourceManager-ObjectStorage.PNG)
 
 7. Review & click on the **Create** button
@@ -126,8 +126,8 @@ You may now **proceed to the next lab.**
 
 ## Acknowledgements
 - **Author** - Saul Chavez
-- **Last Updated by/date** Will Bullock, November 2020
-- **Lab Expiry Date** - 11/30/2021
+- **Last Updated by/date** Saul Chavez September 31, 2021
+- **Lab Expiration date** - 10/01/2022
 
 
 

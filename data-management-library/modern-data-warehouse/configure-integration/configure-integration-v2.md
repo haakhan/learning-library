@@ -272,7 +272,7 @@ Now that you have configured your connections to your source and destination, we
 You may now proceed to Lab 6.
 
 ## Acknowledgements
-- **Authors** - Yash Lamba, April 2021
+- **Authors** - Yash Lamba, Massimo Castelli, April 2021
 - **Contributor** - Srinidhi Koushik, April 2021
 - **Last Updated By/Date** - Yash Lamba, April 2021
 

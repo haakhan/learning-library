@@ -12,9 +12,7 @@ In this lab we will review and startup all components required to successfully r
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH (*Free-tier* and *Paid Tenants* only)
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
 
@@ -95,28 +93,8 @@ You may now [proceed to the next lab](#next).
     sudo systemctl restart oracle-database
     </copy>
     ```
-<!-- ## Appendix 2: External Terminal Access (using SSH Key Based Authentication)
-
-While you will only need the browser to perform all tasks included in this workshop, you can optionally use your preferred SSH client to connect to the instance should you prefer to run SSH Terminal tasks from a local client (e.g. Putty, MobaXterm, MacOS Terminal, etc.) or need to perform any troubleshooting task such as restarting processes, rebooting the instance, or just look around.
-
-1. Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH client type (e.g. Putty on Windows or Native such as terminal on Mac OS):
-
-    - From the web session where you completed your provisioning request, do:
-        - For **Reserve Workshop on LiveLabs** - Navigate to "*My Reservations* >> *Launch Workshop* >> *Workshop Instructions* >> *Lab: Environment Setup*"
-        - For **Launch Free Trial Workshop** and **Run on Your Tenancy** - Click on the corresponding provisioning option and open *Lab: Environment Setup*
-    - Authentication OS User - “*opc*”
-    - Authentication method - *SSH RSA Key*
-    - OS User – “*oracle*”.
-
-2. First login as “*opc*” using your SSH Private Key
-
-3. Then sudo to “*oracle*”. E.g.
-
-    ```
-    <copy>sudo su - oracle</copy>
-    ``` -->
 
 ## Acknowledgements
 * **Author** - Rene Fontcha, LiveLabs Platform Lead, NA Technology
 * **Contributors** - Mike Dietrich, Database Product Management
-* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, July 2021
+* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, August 2021

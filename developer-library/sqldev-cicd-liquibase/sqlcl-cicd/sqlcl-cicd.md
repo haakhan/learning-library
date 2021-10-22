@@ -25,10 +25,12 @@ In this lab, you will:
 
 1. On Oracle Cloud Developer Image you used for the compute node there is SQLcl installed in folder `/opt/oracle/sqlcl`, however it is necessary to update to version 19.2 or superior. Download the latest version from [SQLcl Downloads](https://www.oracle.com/tools/downloads/sqlcl-downloads.html).
 
-2. Unzip the downloaded package into the existing folder. When asked, replace all files with the new version.
+2. Unzip the downloaded package into the existing folder. When asked, replace **All** (A) files with the new version.
 
     ````
-    unzip sqlcl-21.1.0.104.1544.zip -d /opt/oracle/
+    ls ~/Downloads/
+    
+    unzip Downloads/sqlcl-latest.zip -d /opt/oracle/
 
     replace /opt/oracle/sqlcl/lib/javax.json.jar? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
     ````
@@ -63,6 +65,12 @@ In this lab, you will:
 
     ````
     lb
+    ````
+
+8. Exit SQLcl.  
+
+    ````
+    exit
     ````
 
 
@@ -114,7 +122,7 @@ In this lab, you will:
     sed -i -e 's/\/>/ relativeToChangelogFile="true"\/>/g' v1.0/controller.xml
     ````
 
-6. Create a Liquibase master changelog to reference other changelogs in your project. The master changelog is used to break up your entire changelog into more manageable pieces, by creating multiple changelogs to separate your changesets in a way that makes sense for your project.
+6. In `cicd-ws-rep00` folder, create a Liquibase master changelog to reference other changelogs in your project. The master changelog is used to break up your entire changelog into more manageable pieces, by creating multiple changelogs to separate your changesets in a way that makes sense for your project.
 
     ````
     gedit hr-master.xml
@@ -136,23 +144,24 @@ In this lab, you will:
     </databaseChangeLog>
     ````
 
-8. Validate your master changelog.
+8. From SQLcl, validate your master changelog. Remember you are now in sub-folder `v1.0`.
 
     ````
-    lb validate -changelog hr-master.xml
+    lb validate -changelog ./../hr-master.xml
 
-    No issues were found in file hr-master.xml, validation passed.
+    No issues were found in file ./../hr-master.xml, validation passed.
     ````
 
 9. Mark all these initial changes as deployed in the local development database, as they belong to the initial HR schema we used for our project.
 
     ````
-    lb changelogsync -changelog hr-master.xml
+    lb changelogsync -changelog ./../hr-master.xml
 
+    ...
     Operation completed successfully.
     ````
 
-10. Use SQL Developer, connected as **HR** user to your ATP service to run the generated script from the previous step, and commit changes.
+10. Copy and paste into SQL Developer **HR** user connection the generated script from the previous step, run it, and commit changes.
 
     ````
     /* changelogsync script here */
@@ -167,9 +176,11 @@ In this lab, you will:
       from DATABASECHANGELOG order by 4 desc;
     ````
 
-12. Add initial schema changes to the Git repository. Use the second Terminal window tab to run these bash commands.
+12. Add initial schema changes to the Git repository. Use the second Terminal window tab to run these bash commands in `cicd-ws-rep00` folder.
 
     ````
+    export PATH=$PATH:/usr/local/git/bin
+
     git add v1.0/*
 
     git add hr-master.xml
@@ -177,6 +188,13 @@ In this lab, you will:
     git commit -a -m "Version 1: Add initial HR schema changelog including code"
 
     git push
+    ````
+
+13. Use your token to authenticate to GitHub.
+
+    ````
+    Username: your_username
+    Password: your_token
     ````
 
 
@@ -293,15 +311,15 @@ In this lab, you will:
 10. Every time you modify your master changelog, you must validate it.
 
     ````
-    lb validate -changelog hr-master.xml
+    lb validate -changelog ./../hr-master.xml
 
-    No issues were found in file hr-master.xml, validation passed.
+    No issues were found in file ./../hr-master.xml, validation passed.
     ````
 
 11. Mark all these initial changes as deployed in the local development database.
 
     ````
-    lb changelogsync -changelog hr-master.xml
+    lb changelogsync -changelog ./../hr-master.xml
 
     Operation completed successfully.
     ````
@@ -324,6 +342,8 @@ In this lab, you will:
 14. Add initial schema changes to the Git repository. Use the second Terminal window tab to run these bash commands.
 
     ````
+    cd ~/cicd-ws-rep00
+
     git add v2.0/*
 
     git commit -a -m "Version 2: Prospects table and Investment package"
@@ -431,15 +451,15 @@ In this lab, you will:
 9. Every time you modify your master changelog, you must validate it.
 
     ````
-    lb validate -changelog hr-master.xml
+    lb validate -changelog ./../hr-master.xml
 
-    No issues were found in file hr-master.xml, validation passed.
+    No issues were found in file ./../hr-master.xml, validation passed.
     ````
 
 10. Mark all these initial changes as deployed in the local development database.
 
     ````
-    lb changelogsync -changelog hr-master.xml
+    lb changelogsync -changelog ./../hr-master.xml
 
     Operation completed successfully.
     ````
@@ -462,6 +482,8 @@ In this lab, you will:
 13. Add initial schema changes to the Git repository. Use the second Terminal window tab to run these bash commands.
 
     ````
+    cd ~/cicd-ws-rep00
+    
     git add v3.0/*
 
     git commit -a -m "Version 3: HR Events table and trigger"
@@ -540,15 +562,15 @@ In this lab, you will:
 9. Every time you modify your master changelog, you must validate it.
 
     ````
-    lb validate -changelog hr-master.xml
+    lb validate -changelog ./../hr-master.xml
 
-    No issues were found in file hr-master.xml, validation passed.
+    No issues were found in file ./../hr-master.xml, validation passed.
     ````
 
 10. Mark all these initial changes as deployed in the local development database.
 
     ````
-    lb changelogsync -changelog hr-master.xml
+    lb changelogsync -changelog ./../hr-master.xml
 
     Operation completed successfully.
     ````
@@ -571,6 +593,8 @@ In this lab, you will:
 13. Add initial schema changes to the Git repository. Use the second Terminal window tab to run these bash commands.
 
     ````
+    cd ~/cicd-ws-rep00
+
     git add v3.1/*
 
     git commit -a -m "Version 3 ticket 001: Prospects drop 2 columns, add 1"
@@ -671,15 +695,15 @@ In this lab, you will:
 12. Every time you modify your master changelog, you must validate it.
 
     ````
-    lb validate -changelog hr-master.xml
+    lb validate -changelog ./../hr-master.xml
 
-    No issues were found in file hr-master.xml, validation passed.
+    No issues were found in file ./../hr-master.xml, validation passed.
     ````
 
 13. Mark all these initial changes as deployed in the local development database.
 
     ````
-    lb changelogsync -changelog hr-master.xml
+    lb changelogsync -changelog ./../hr-master.xml
 
     Operation completed successfully.
     ````
@@ -702,6 +726,8 @@ In this lab, you will:
 16. Add initial schema changes to the Git repository. Use the second Terminal window tab to run these bash commands.
 
     ````
+    cd ~/cicd-ws-rep00
+
     git add v3.2/*
 
     git commit -a -m "Version 3 ticket 002: Code changes in package body and trigger"

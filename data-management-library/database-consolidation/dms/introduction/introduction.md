@@ -4,6 +4,10 @@ The labs in this workshop will walk you through all the steps to get started usi
 
 With DMS we make it quick and easy for you to migrate databases from on-premises, Oracle or third-party cloud into Oracle databases on OCI.
 
+Watch the video below for an overview of Oracle Database Migration.
+
+[](youtube:i4u6HREERTk)
+
 ## About OCI Database Migration
 
 DMS provides high performance, fully managed approach to migrating databases from on-premises, Oracle or third-party cloud into OCI-hosted databases. Migrations can be in either one of the following modes:

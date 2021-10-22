@@ -8,7 +8,7 @@ Autonomous Data Warehouse - Shared Infrastructure (ADW) or Autonomous Transactio
 
 **Note: While this lab uses Autonomous Data Warehouse, the steps are identical for creating and connecting to an Autonomous Transaction Processing database.**
 
-Estimated Lab Time: 10 minutes.
+Estimated Time: 10 minutes.
 
 ### Objectives
 
@@ -52,7 +52,7 @@ Learn how to
 4. Enter the Autonomous Database account credentials or the Graph-enabled user (e.g. `GRAPHUSER`) into the login screen.   
    Do **not** use `ADMIN`.
 
-    ![](./images/graph-studio-login.png " ")
+    ![ALT text is not available for this image](./images/graph-studio-login.png " ")
 
 5. Then click the "Sign In" button.
 
@@ -60,15 +60,15 @@ Learn how to
 
 1. The following screenshot shows Graph Studio user interface with the menu, or navigation, icons on the left. They naviagte to the Home, Models, Graphs, Notebooks, and Jobs pages respectively.
 
-    ![](./images/home-page.png " ")
+    ![ALT text is not available for this image](./images/home-page.png " ")
 
 2. Click on the `Graphs` menu icon:
 
-    ![](./images/graphs-menu-blank.png " ")
+    ![ALT text is not available for this image](./images/graphs-menu-blank.png " ")
 
 3. Next click the `</> Query` button on the page. You should see a page titled  **</> Query Playground**
 
-    ![](./images/query-playground-empty.png " ")
+    ![ALT text is not available for this image](./images/query-playground-empty.png " ")
 4. Copy and paste the following DDL code into the PGQL input text area:
 
     ```
@@ -102,41 +102,41 @@ Learn how to
 
 5. Click the Execute button on the top left.
 
-    ![](./images/query-playground-create-graph-statement.png " ")
+    ![ALT text is not available for this image](./images/query-playground-create-graph-statement.png " ")
 
 ## Task 3: Load the Graph into Memory
 
 1. Navigate to the Graphs page:
 
-    ![](./images/graph-menu-my-first-graph.png " ")
+    ![ALT text is not available for this image](./images/graph-menu-my-first-graph.png " ")
 
 2. Click on `MY_FIRST_GRAPH`:
 
-    ![](./images/graph-first-graph-click-load-into-memory.png " ")
+    ![ALT text is not available for this image](./images/graph-first-graph-click-load-into-memory.png " ")
 
 3. Click on the **Load into memory** icon on the right of the details section:
 
-    ![](./images/graph-click-load-into-memory.png " ")
+    ![ALT text is not available for this image](./images/graph-click-load-into-memory.png " ")
 
     In the resulting dialog, click **Yes**.
 
-    ![](./images/my-first-graph-load-into-memory.png " ")
+    ![ALT text is not available for this image](./images/my-first-graph-load-into-memory.png " ")
 
 5. You get redirected to the Jobs page. Wait for the job to complete.
 
-    ![](./images/jobs-first-graph-load-into-memory.png " ")
+    ![ALT text is not available for this image](./images/jobs-first-graph-load-into-memory.png " ")
 
 ## Task 4: Create your First Notebook
 
 1. Navigate to the Notebooks page:
 
-    ![](./images/notebooks-menu.png " ")
+    ![ALT text is not available for this image](./images/notebooks-menu.png " ")
 
 2. Click the **Create** button on the right.  
 
 3. Name the notebook **Learn/My First Notebook**, then click **Create**. That will create a folder named `Learn` and the note `My First Notebook` within it.
 
-    ![](./images/notebooks-create-first-notebook.png " ")
+    ![ALT text is not available for this image](./images/notebooks-create-first-notebook.png " ")
 
 4. Each notebook is organized into a set of **paragraphs**. Each paragraph has an input (called *Code*) and an output (called **Result**). In Graph Studio, there are 3 types of paragraphs:
 
@@ -159,11 +159,11 @@ This is my first paragraph
 
 1. Execute the paragraph:
 
-    ![](./images/first-notebook-execute-md-para.png " ")
+    ![ALT text is not available for this image](./images/first-notebook-execute-md-para.png " ")
 
     You will see the Markdown code rendered as HTML:
 
-    ![](./images/first-notebook-executed-first-md-para.png " ")
+    ![ALT text is not available for this image](./images/first-notebook-executed-first-md-para.png " ")
 
     Markdown paragraphs are useful to add explanations to your notebooks and order them into chapters. You can embed images and even videos using Markdown or HTML syntax, give it a try.
 
@@ -171,7 +171,7 @@ This is my first paragraph
 
 1. Add another paragraph to the notebook by hovering at the middle of the bottom of the paragrah and clicking the **+** button which appears.
 
-   ![](./images/first-notebook-add-para.png)
+   ![ALT text is not available for this image](./images/first-notebook-add-para.png)
 
 2. Then enter the following code in the new paragraph.
 
@@ -184,12 +184,12 @@ var graph = session.getGraph("MY_FIRST_GRAPH")
 
 3. Execute that paragraph, you will see we successfully referenced our graph that we just created from scratch via the PGX Java APIs.
 
-    ![](./images/first-notebook-pgx-get-graph.png " ")
+    ![ALT text is not available for this image](./images/first-notebook-pgx-get-graph.png " ")
 
 
 **Note: Some users have encountered an issue when copying and pasting the `%md` and `%java-pgx` code above.** If you see an error message `"Invalid Parameter. No interpreter with the name 'java-pgx' is currently registered to the server."` then delete the text, or the paragraph, and manually enter the same text and re-execute the paragraph.   
 The following screenshot shows the error message some, but not all, have encountered.  
-    ![](./images/no-interpreter-found-error.png " ")
+    ![ALT text is not available for this image](./images/no-interpreter-found-error.png " ")
 
 
 
@@ -205,7 +205,7 @@ analyst.countTriangles(graph, true)
 
 5. Execute the updated paragraph again. Upon completion it displays the result, i.e. the graph contains exactly one triangle.
 
-    ![](./images/first-notebook-pgx-count-triangles.png " ")
+    ![ALT text is not available for this image](./images/first-notebook-pgx-count-triangles.png " ")
 
 6. Add a paragraph and enter the following code. This will be a PGQL paragraph since it starts with the line `%pgql-pgx`.
 
@@ -215,23 +215,23 @@ analyst.countTriangles(graph, true)
     select v, e from match (v)-[e]->() on MY_FIRST_GRAPH
     </copy>
     ```
-    ![](./images/first-notebook-pgql-execute-query.png)
+    ![ALT text is not available for this image](./images/first-notebook-pgql-execute-query.png)
 
 7. Execute that paragraph and the results are rendered as an interactive graph.
 
-    ![](./images/first-notebook-pgql-query-result.png " ")
+    ![ALT text is not available for this image](./images/first-notebook-pgql-query-result.png " ")
 
 8. Right click on one of the vertices on the screen to see all the details of that vertex.
 
-    ![](./images/first-notebook-pgql-view-properties.png)
+    ![ALT text is not available for this image](./images/first-notebook-pgql-view-properties.png)
 
 9. Click on the settings icon of the visualization.
 
-    ![](./images/first-notebook-pgql-settings.png " ")
+    ![ALT text is not available for this image](./images/first-notebook-pgql-settings.png " ")
 
 10.  Navigate to the **Visualization** tab and select **NAME** as the label to render next to the vertices:
 
-    ![](./images/first-notebook-pgql-viz-label.png " ")    
+    ![ALT text is not available for this image](./images/first-notebook-pgql-viz-label.png " ")    
 
     You now see the name next to each vertex, which will help you better understand the visualization. There are lots of other options to help you make sense of the graph. Feel free to play around with the settings as you like.
 
@@ -244,15 +244,15 @@ analyst.countTriangles(graph, true)
     </copy>
     ```
 
-    ![](./images/first-notebook-population-query.png " ")
+    ![ALT text is not available for this image](./images/first-notebook-population-query.png " ")
 
 12.  Change the output to be a pie chart.
 
-    ![](./images/first-notebook-population-as-pie-chart.png " ")   
+    ![ALT text is not available for this image](./images/first-notebook-population-as-pie-chart.png " ")   
 
 Congratulations! You successfully created, analyzed and visualized a graph from scratch using Graph Studio. Hopefully this little example gave you a feeling of how can use your Autonomous Database as a graph database.
 
-Please *proceed to the next lab* to see more complex examples of how to create and analyze graphs.
+Please **proceed to the next lab** to see more complex examples of how to create and analyze graphs.
 
 ## Acknowledgements
 * **Author** - Korbi Schmid, Product Development

@@ -1,165 +1,167 @@
-# Environment Setup
+# Initialize Environment
 
 ## Introduction
-This lab will show you how to access Oracle Analytics Server and obtain the necessary workshop artifacts needed for executing the labs.
+This lab provides detailed instructions of connecting to Oracle Analytics Server (OAS). This compute instance comes with OAS installed and configured with Oracle database, both managed using Unix/Linux *systemd* services to automatically start and shutdown as required.
 
-*Estimated Lab Time*: 10 Minutes
+*Estimated time:* 10 Minutes
 
 ### Objectives
 - Validate that the environment has been initialized and is ready
-- Download and stage workshop artifacts
+<if type="external">- Download and stage workshop artifacts</if>
 
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
 
-## Task 1: Environment Access
+## Task 1: Login to Oracle Analytics Server UI
 This lab has been designed to be executed end-to-end with any modern browser on your laptop or workstation. Proceed as detailed below to login.
 
-### Login to Oracle Analytics Server UI
-1. Launch your browser to the following URL to access Oracle Analytics Server UI
+1. Now with access to your remote desktop session, proceed as indicated below to validate your environment before you start executing the subsequent labs. The following Processes should be up and running:
+
+    - Database Listener
+        - LISTENER
+    - Database Server instance
+        - ORCLCDB
+    - Oracle Analytics Server (OAS)
+
+2. On the *Web Browser* window on the right preloaded with *OAS Web Console*, click on the *Username* field and select the saved credentials to login. These credentials have been saved within *Web Browser* and are provided below for reference
+
+    - Username
+
+    ```
+    <copy>biworkshopuser</copy>
+    ```
+
+    - Password
+
+    ```
+    <copy>Admin123</copy>
+    ```
+
+    ![](images/oas-login.png " ")
+
+3. Confirm successful login. Please note that it takes about 5 minutes after instance provisioning for all processes to fully start.
+
+    ![](images/oas-landing.png " ")
+
+    If successful, the page above is displayed and as a result your environment is now ready.  
+
+    <if type="external">
+    **Notes:** If for any reasons you prefer to bypass the remote desktop and access the OAS UI directly from your local computer/workstation, launch your browser to the following URL. Do however keep in mind that you will need to use the remote desktop for several tasks requiring the pre-configured installation of Oracle SQL Developer.
 
     ```
     URL: <copy>http://[your instance public-ip address]:9502/dv/ui</copy>
     e.g: http://111.888.111.888:9502/dv/ui
     ```
+    </if>
 
-    ***Note:*** While application processes are automatically started upon instance boot up, it takes approximately 15 minutes for this URL to become active after all processes have fully started. Should this URL remain inactive after 15 minutes, refer to **Step 3** below for manual start.
+4. If you are still unable to login or the login page is not functioning after reloading the application URL, open a terminal session and proceed as indicated below to validate the services.
 
-2. Provide login credentials
-
-    ```
-    Username: <copy>biworkshopuser</copy>
-    ```
-    ```
-    Password: <copy>Admin123</copy>
-    ```
-
-    ![](./images/oas-login.png " ")
-
-3. The landing page is displayed
-
-    ![](./images/oas-landing-page.png " ")
-
-### Access the graphical desktop (optional)
-For ease of execution of this workshop, your instance has been pre-configured for remote graphical desktop accessible using any modern browser on your laptop or workstation. Proceed as detailed below to login.
-
-1. Launch your browser to the following URL
+    - Database and Listener
 
     ```
-    URL: <copy>http://[your instance public-ip address]:8080/guacamole</copy>
+    <copy>
+    sudo systemctl status oracle-database
+    </copy>
     ```
 
-2. Provide login credentials
+    ![](images/db-service-status.png " ")
+
+    - Oracle Analytics Server (OAS)
 
     ```
-    Username: <copy>oracle</copy>
-    ```
-    ```
-    Password: <copy>Guac.LiveLabs_</copy>
-    ```
-
-    ![](./images/guacamole-login.png " ")
-
-    *Note*: There is an underscore `_` character at the end of the password.
-
-3. To launch *Firefox* browser or a *Terminal* client, click on respective icon on the desktop
-
-    ![](./images/guacamole-landing.png " ")
-
-### Enable Copy/Paste from local to remote desktop (Guacamole clipboard)
-During the execution of your labs you may need to copy text from your local PC/Mac to the Guacamole remote desktop, such as commands from the lab guide. While such direct copy/paste isn't supported as you will realize, you may proceed as indicated below to enable an alternative local-to-remote clipboard with Input Text Field.
-
-1. From your remote desktop session, enter CTRL+ALT+SHIFT (*Windows*) or CTRL+CMD+SHIFT (*Mac*)
-
-2. Select *Text Input*
-
-    ![](./images/guacamole-clipboard-1.png " ")
-
-3. Notice the black Text Input field added at the bottom of your screen after you made the selection in the previous step. This is the field to paste any text copied from your local environment.
-
-    ![](./images/guacamole-clipboard-2.png " ")
-
-4. Test copy/pasting the text below. Prior to pasting ensure that the cursor has been placed at the location where the intended text is to be pasted, then right-click inside the black *Text Input* field and paste it
-
-    ```
-    <copy>echo "This text was copied from my local desktop on to my remote session"</copy>
+    <copy>
+    /opt/oracle/product/Middleware/Oracle_Home/user_projects/domains/bi/bitools/bin/status.sh
+    </copy>
     ```
 
-    ![](./images/guacamole-clipboard-3.png " ")
+    ![](images/oas-service-status.png " ")
 
+5. If you see questionable output(s), failure or down component(s), restart the corresponding service(s) accordingly
 
-### Login to Host using SSH Key based authentication (optional)
-While you will only need the browser to perform all tasks included in this workshop, you can optionally use your preferred SSH client to connect to the instance should you need to perform any troubleshooting task such as restarting processes, rebooting the instance, or just look around.
-
-Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH client type (e.g. Putty on Windows or Native such as terminal on Mac OS):
- - Authentication OS User - “*opc*”
- - Authentication method - *SSH RSA Key*
- - OS User – “*oracle*”.
-
-1. First login as “*opc*” using your SSH Private Key
-
-2. Then sudo to “*oracle*”. E.g.
+    - Database and Listener
 
     ```
-    <copy>sudo su - oracle</copy>
+    <copy>
+    sudo sudo systemctl restart oracle-database
+    </copy>
     ```
 
-## Task 2: Download and Stage Workshop Artifacts (optional)
-We recommend running this workshop end-to-end from the remote desktop session for all tasks requiring either *SQL Developer* or *Web browser*. Should you elect to use these tools locally on your PC/Mac then proceed as indicated below.
+    - Oracle Analytics Server (OAS)
+
+    ```
+    <copy>
+    sudo sudo systemctl restart oas
+    </copy>
+    ```
+
+<if type="external">
+## Task 2: Download and Stage Workshop Artifacts (not needed if using the remote desktop)
+In order to run this workshop, you will need a set of files that have been conveniently packaged and stage on the instance for you. If you are bypassing the remote desktop and  connecting directly to OAS UI from your local computer/workstation, proceed as indicated below.
 
 1. Download [`OAS_OML_Workshop_LabFiles.zip`](https://objectstorage.us-ashburn-1.oraclecloud.com/p/upY4mzN1N2Oq3PrWIr_PaaAw5hLK3XesrlIehHBFqvobSJTKF309EnZSuLUTlXFt/n/natdsecurity/b/labs-files/o/OAS_OML_Workshop_LabFiles.zip) and save to a staging area on your laptop or workstation.
 
 2. Uncompress the ZIP archive
 
   ***Note***: If you are running the labs exclusively from the remote desktop session as recommended, the content of *`OAS_OML_Workshop_LabFiles.zip`* is already unpacked and staged at *`/opt/oracle/stage/OAS_OML_Workshop_LabFiles`/*
+</if>
 
-## Task 3: Managing DB and OAS processes (optional)
-Your workshop instance is configured to automatically start all processes needed for the labs. Should you need to stop/start these processes, proceed as shown below as user *opc* from your SSH terminal session
+## Appendix 1: Managing Startup Services
+Your workshop instance is configured to automatically start all processes needed for the labs. Should you need to stop/start these processes, proceed as shown below from your remote desktop session
 
-### DB Startup/Shutdown
+1. Database Service (Database and Listener).
 
-1. Check Current State
-
-    ```
-    <copy>sudo systemctl status oracle-database</copy>
-    ```
-
-2. Startup
+    - Start
 
     ```
     <copy>sudo systemctl start oracle-database</copy>
     ```
 
-3. Shutdown
+    - Stop
 
     ```
-    <copy>sudo systemctl stop  oracle-database</copy>
+    <copy>sudo systemctl stop oracle-database</copy>
     ```
 
-### OAS Startup/Shutdown
-
-1. Check Current State
+    - Status
 
     ```
-    <copy>sudo systemctl status oas</copy>
+    <copy>sudo systemctl status oracle-database</copy>
     ```
 
-2. Startup
+    - Restart
+
+    ```
+    <copy>sudo systemctl restart oracle-database</copy>
+    ```
+
+2. Oracle Analytics Server (OAS)
+
+    - Start
 
     ```
     <copy>sudo systemctl start oas</copy>
     ```
 
-3. Shutdown
+    - Stop
 
     ```
     <copy>sudo systemctl stop oas</copy>
+    ```
+
+    - Status
+
+    ```
+    <copy>sudo systemctl status oas</copy>
+    ```
+
+    - Restart
+
+    ```
+    <copy>sudo systemctl restart oas</copy>
     ```
 
 You may now [proceed to the next lab](#next).
@@ -172,4 +174,4 @@ You may now [proceed to the next lab](#next).
 ## Acknowledgements
 * **Authors** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, January 2021
 * **Contributors** - Diane Grace
-* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, March 2021
+* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2021

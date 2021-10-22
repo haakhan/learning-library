@@ -2,22 +2,16 @@
 
 ## Introduction
 
-This lab will walk you through the steps to create a **Data Loader task**, **two Data Flows** along with **Integration tasks** and a **SQL task** in OCI Data Integration. The use-case for each of these data integration tasks is detailed at the beginning of each of the steps.
+Learn how to create a **Data Loader task**, **two Data Flows** along with **Integration tasks** and a **SQL task** in OCI Data Integration. The use-case for each of these data integration tasks is detailed in the associated workshop task.
 
-*Estimated Lab Time*: 1 hour
+**Estimated Time**: 1 hour
 
 ### Objectives
-In this lab, you will:
 * Create an OCI Data Integration project
 * Create a Data Loader task
 * Create two Data Flows
 * Create Integration tasks
 * Create a SQL task
-
-### Prerequisites
-* **Free Tier/ Paid Oracle Cloud Account**
-* All previous labs have been **successfully completed**
-
 
 ## Task 1: Create an OCI Data Integration project
 
@@ -29,23 +23,23 @@ In Oracle Cloud Infrastructure Data Integration, a **project** is the container 
 
 2. From the Workspaces page, make sure that you are in the compartment for data integration (`DI-compartment`). Click on your **Workspace** (`DI-workspace`).
 
-  ![](./images/workspaces-click.png " ")
+   ![](./images/workspaces-click.png " ")
 
 3. On your workspace home page, click **Open tab** (plus icon) in the tab bar and then select **Projects**.
 
-  ![](./images/click-projects.png " ")
+   ![](./images/click-projects.png " ")
 
 4. On the Projects page, click **Create Project**.
 
-  ![](./images/create-project.png " ")
+   ![](./images/create-project.png " ")
 
 5. On the Create Project page, enter `DI_Workshop` for **Name** and an optional **Description**, and then click **Create**.
 
-  ![](./images/create-project-page.png " ")
+   ![](./images/create-project-page.png " ")
 
 6. You are now in the **Project Details** page for `DI_Workshop` project.
 
-  ![](./images/di-workshop-project.png " ")
+   ![](./images/di-workshop-project.png " ")
 
 
 ## Task 2: Create a Data Loader task
@@ -82,8 +76,8 @@ In this step of the Workshop, you will create a Data Loader task that will load 
 
     - **Data Asset**: `Object_Storage`.
     - **Connection**: `Default Connection`.
-    - **Compartment**: `DI-compartment` (the Compartment in which you have the bucket where you uploaded your REVENUE.CSV file in Lab 0).
-    - **Schema**: `DI-bucket` (the Object Storage bucket where you uploaded your REVENUE.CSV file in Lab 0).
+    - **Compartment**: `DI-compartment` (the Compartment in which you have the bucket where you uploaded your REVENUE.CSV file in _Setting up the Data Integration prerequisites in OCI_).
+    - **Schema**: `DI-bucket` (the Object Storage bucket where you uploaded your REVENUE.CSV file in _Setting up the Data Integration prerequisites in OCI_).
     - **Data Entity**: Click `Browse by Name` and then select **REVENUE.csv**.
     - **File Type**: Set to **CSV**. Then leave the default settings as-is in all the remaining fields.
     - Click **Select**.
@@ -158,7 +152,7 @@ A panel displays, showing the **Data Profile** and the **Attribute Profile** for
 
     ![](./images/data-loader-target-selections.png " ")
 
-21. The Target section in the Data Loader task now displays your selections for the target. Click **Save and Close**.
+21. The Target section in the Data Loader Task now displays your selections for the target. Click **Save and Close**.
 
   ![](./images/loader-save.png " ")
 
@@ -177,7 +171,7 @@ You will create a data flow to ingest data from **two source files**, containing
 
   ![](./images/click-create-df.png " ")
 
-3. The data flow designer opens in a new tab. In the Properties panel, for **Name** enter `Load Customers and Revenue Data`, then click **Save**. *Note: Be sure to save often during design time!*
+3. The data flow designer opens in a new tab. In the Properties panel, for **Name** enter `Load Customers and Revenue Data`, then click **Save**. *Note*: Be sure to save often during design time!
 
    On the left side of the canvas, you can find the data flow operators which represent input sources, output targets, and transformations that can be used. The Shaping Operators currently available are Filter, Join, Expression, Aggregate, Distinct, Sort, Union, Minus, Intersect, Split and Lookup Operator. From the Operators panel, you can drag and drop operators onto the canvas to design a data flow. Then use the Properties panel to configure the properties for each operator. For more details on Data Flow Operators, please see the following [link](https://docs.oracle.com/en-us/iaas/data-integration/using/using-operators.htm).
 
@@ -231,7 +225,7 @@ You will create a data flow to ingest data from **two source files**, containing
    ![](./images/csv-source.png " ")
 
 11. When you complete your selections for **SOURCE\_1**, the operator name becomes **REVENUE\_CSV**, reflecting your data entity selection. In the Identifier field, rename the source operator to **REVENUE**.
-   *Note: Be sure to save often during design time!*
+   *Note*: Be sure to save often during design time!
 
    ![](./images/revenue.png " ")
 
@@ -276,7 +270,7 @@ In the Attributes tab, you can view the data entity's attributes and apply **exc
     - Click **Create**.
     ![](./images/filter-condition.png " ")
 
-20. The details for **FILTER_1 operator** should now look like this: *Note: Be sure to save often during design time!*
+20. The details for **FILTER_1 operator** should now look like this: *Note*: Be sure to save often during design time!
 
   ![](./images/filter-details.png " ")
 
@@ -328,7 +322,7 @@ The number of attributes in the table are filtered. Only those attributes that m
 
   ![](./images/expression-operator.png " ")
 
-30. With the new **EXPRESSION\_1** operator selected in the data flow, in the Properties panel, change the name in Identifier to **CHANGE\_CASE**. *Note: Be sure to save often during design time!*
+30. With the new **EXPRESSION\_1** operator selected in the data flow, in the Properties panel, change the name in Identifier to **CHANGE\_CASE**. *Note*: Be sure to save often during design time!
 
   ![](./images/expression-name.png " ")
 
@@ -364,7 +358,7 @@ The number of attributes in the table are filtered. Only those attributes that m
 
     ![](./images/expression-conditions.png " ")
 
-35. The new expression is now listed in the **Expression operator**. You can add as many expressions as you want. *Note: Be sure to save often during design time!*
+35. The new expression is now listed in the **Expression operator**. You can add as many expressions as you want. *Note*: Be sure to save often during design time!
 
   ![](./images/final-expression.png " ")
 
@@ -392,7 +386,7 @@ To join the data from expression **CONCAT\_FULL\_NAME** with the data from **FIL
 
   ![](./images/join-properties.png " ")
 
-40. From the Operators panel, drag and drop a **Target operator** onto the canvas. Connect JOIN\_1 to TARGET\_1. *Note: Be sure to save often during design time!*
+40. From the Operators panel, drag and drop a **Target operator** onto the canvas. Connect JOIN\_1 to TARGET\_1. *Note*: Be sure to save often during design time!
 
   ![](./images/target-operator.png " ")
 
@@ -408,7 +402,7 @@ To join the data from expression **CONCAT\_FULL\_NAME** with the data from **FIL
     - For **Schema**, select `BETA`.
     - For **Data Entity**, select `CUSTOMERS_TARGET`.
     ![](./images/target-operator-selections.png " ")
-    - For **Staging Location**, select the **Object Storage data asset**, its **default connection** and your **compartment**. Then for **Schema**, select the **Object Storage bucket** that you created before importing the sample data (in Lab 0). Click **Select**.
+    - For **Staging Location**, select the **Object Storage data asset**, its **default connection** and your **compartment**. Then for **Schema**, select the **Object Storage bucket** that you created before importing the sample data in _Setting up the Data Integration prerequisites in OCI_. Click **Select**.
     ![](./images/staging-location.png " ")
 
 43. The properties details for **CUSTOMERS_TARGET operator** should now look like this:
@@ -486,7 +480,7 @@ This Data Flow will load data from **multiple source files** containing Employee
    In the end, your details for the source operator should look like this.
    ![](./images/pattern-source.png " ")
 
-7. Drag and drop a **Distinct operator** on the data flow canvas. We use the distinct operator to return distinct rows with unique values. Connect **EMPLOYEES\_SOURCE\_FILES** source to the **DISTINCT\_1** operator.  *Note: Be sure to save often during design time!*
+7. Drag and drop a **Distinct operator** on the data flow canvas. We use the distinct operator to return distinct rows with unique values. Connect **EMPLOYEES\_SOURCE\_FILES** source to the **DISTINCT\_1** operator.  *Note*: Be sure to save often during design time!
 
   ![](./images/add-distinct.png " ")
 
@@ -538,7 +532,7 @@ This Data Flow will load data from **multiple source files** containing Employee
 
   ![](./images/expressions-second-df.png " ")
 
-15. Drag and drop an **Expression operator** on the data flow canvas. Connect the **TRANSFORM\_DATAYPES** operator to the new **Expression** operator.  *Note: Be sure to save often during design time!*
+15. Drag and drop an **Expression operator** on the data flow canvas. Connect the **TRANSFORM\_DATAYPES** operator to the new **Expression** operator.  *Note*: Be sure to save often during design time!
 
   ![](./images/new-expression-df.png " ")
 
@@ -557,12 +551,12 @@ This Data Flow will load data from **multiple source files** containing Employee
     - Enter
 
     ```
-    <copy>CASE WHEN DAYOFYEAR(CURRENT_DATE)>=DAYOFYEAR(EXPRESSION_1.EXPRESSION_1.BIRTH_DATE) THEN TRUNC(YEAR(CURRENT_DATE)-YEAR(EXPRESSION_1.EXPRESSION_1.BIRTH_DATE)) ELSE TRUNC(YEAR(CURRENT_DATE)-YEAR(EXPRESSION_1.EXPRESSION_1.BIRTH_DATE)-1) END</copy>
+    <copy>CASE WHEN DAYOFYEAR(CURRENT_DATE)>=DAYOFYEAR(EXPRESSION_1.TRANSFORM_DATAYPES.BIRTH_DATE) THEN TRUNC(YEAR(CURRENT_DATE)-YEAR(EXPRESSION_1.TRANSFORM_DATAYPES.BIRTH_DATE)) ELSE TRUNC(YEAR(CURRENT_DATE)-YEAR(EXPRESSION_1.TRANSFORM_DATAYPES.BIRTH_DATE)-1) END</copy>
     ```
    in the **expression** box.
    This function will calculate the age of the employee, by doing a minus between the current date and his birth date. CASE WHEN function returns the value for which a condition is met.
 
-   *Note: In case the attributes in the expression don't get automatically highlighted, please replace them, by highlighting in the expression's placeholders and then double-click or drag and drop attributes from the Incoming list.*
+   *Note*: In case the attributes in the expression don't get automatically highlighted, please replace them, by highlighting in the expression's placeholders and then double-click or drag and drop attributes from the Incoming list.
     - Click **Add**.
 
     ![](./images/new-expression-case.png " ")
@@ -585,7 +579,7 @@ This Data Flow will load data from **multiple source files** containing Employee
 
   ![](./images/phone-no-expression.png " ")
 
-21. The two expressions you defined for this operator are now displayed. Click on **Attributes** tab.  *Note: Be sure to save often during design time!*
+21. The two expressions you defined for this operator are now displayed. Click on **Attributes** tab.  *Note*: Be sure to save often during design time!
 
   ![](./images/attributes-tab.png " ")
 
@@ -605,19 +599,19 @@ This Data Flow will load data from **multiple source files** containing Employee
 
   ![](./images/data-tab-employee.png " ")
 
-26. Scroll to the right until you get to the attribute **EXPRESSION\_1.EMPLOYEES\_SOURCE\_FILES.Region**. Click on it and a **Data Profile** window will appear. You can observe that there is employee data from four regions: Northeast, West, South, Midwest. In this data flow you will split the employee data into two target tables based on the region: one target table for employees from **Northeast and South** region (table named `EMPLOYEES_NORTHEAST_SOUTH`) and one target table for employees from **West and Midwest** region (table named `EMPLOYEES_WEST_MIDWEST`).
+26. Scroll to the right until you get to the attribute **EMPLOYEE\_AGE\_AND\_PHONE.EMPLOYEES\_SOURCE\_FILES.Region**. Click on it and a **Data Profile** window will appear. You can observe that there is employee data from four regions: Northeast, West, South, Midwest. In this data flow you will split the employee data into two target tables based on the **region**: one target table for employees from **Northeast and South** region (table named `EMPLOYEES_NORTHEAST_SOUTH`) and one target table for employees from **West and Midwest** region (table named `EMPLOYEES_WEST_MIDWEST`).
 
   ![](./images/data-profile-region.png " ")
 
-27. Drag and drop a **Split operator** on the data flow canvas. Connect the **EMPLOYEE\_AGE\_AND\_PHONE operator** to the new **Split operator**. Use the split operator to divide one source of input data into two or more output ports based on split conditions that are evaluated in a sequence. Each split condition has an output port. Data that satisfies a condition is directed to the corresponding output port.  *Note: Be sure to save often during design time!*
+27. Drag and drop a **Split operator** on the data flow canvas. Connect the **EMPLOYEE\_AGE\_AND\_PHONE operator** to the new **Split operator**. Use the split operator to divide one source of input data into two or more output ports based on split conditions that are evaluated in a sequence. Each split condition has an output port. Data that satisfies a condition is directed to the corresponding output port.  *Note*: Be sure to save often during design time!
 
   ![](./images/split-operator.png " ")
 
-28. In the **Properties** bar of the Split Operator, we will rename it to **SPLIT\_BY\_REGION** and leave the default **Match** option (**First matching condition** means that data that matches the first condition should be removed from further processing by other conditions).
+28. In the **Properties** bar of the Split Operator, we will leave the default **Identifier** (**SPLIT\_1**) and **Match** option (**First matching condition** means that data that matches the first condition should be removed from further processing by other conditions).
 
   ![](./images/split-region.png " ")
 
-29. Still in Properties bar of the Split Operator, click on **Add** in **Conditions section**.
+29. Still in Properties bar of the Split Operator, click on **Add Condition** in **Split Conditions section**.
 
   ![](./images/add-condition.png " ")
 
@@ -636,7 +630,7 @@ This Data Flow will load data from **multiple source files** containing Employee
 
   ![](./images/split-operator-properties.png " ")
 
-32. Still in Properties bar of the Split Operator, click on **Add** in **Conditions section** to add a new split condition.
+32. Still in Properties bar of the Split Operator, click on **Add Condition** in **Split Conditions section** to add a new split condition.
 
   ![](./images/add-new-split-condition.png " ")
 
@@ -656,7 +650,7 @@ This Data Flow will load data from **multiple source files** containing Employee
 
   ![](./images/split-operator-all-conditions.png " ")
 
-35. Drag and drop a **target operator**. Connect the **WEST\_MIDWEST\_REGION** output of the Split operator to the **TARGET\_1** operator.  *Note: Be sure to save often during design time!*
+35. Drag and drop a **target operator**. Connect the **WEST\_MIDWEST\_REGION** output of the Split operator to the **TARGET\_1** operator.  *Note*: Be sure to save often during design time!
 
   ![](./images/first-target.png " ")
 
@@ -666,7 +660,7 @@ This Data Flow will load data from **multiple source files** containing Employee
     - For **Data Asset**, select `Data_Warehouse`.
     - For **Connection**, select `Beta connection`.
     - For **Schema**, select `Beta`.
-    - For **Data Entity**, select `EMPLOYEES_WEST_MIDWEST` (this target table was created with the SQL script from Lab 0 that you ran on the Autonomous Data Warehouse).
+    - For **Data Entity**, select `EMPLOYEES_WEST_MIDWEST` (this target table was created with the SQL script from _Setting up the Data Integration prerequisites in Oracle Cloud Infrastructure_ that you ran on the Autonomous Data Warehouse).
     - For **Staging Location**, select your **Object Storage bucket** (`DI-bucket`).
     - **Merge Key** will automatically get populated with the primary key name of the table, from the database.
 
@@ -695,7 +689,7 @@ This Data Flow will load data from **multiple source files** containing Employee
 
    ![](./images/map-by-pattern.png " ")
 
-41. The attribute mapping for the **EMPLOYEES\_WEST\_MIDWEST target table** is now complete.  *Note: Be sure to save often during design time!*
+41. The attribute mapping for the **EMPLOYEES\_WEST\_MIDWEST target table** is now complete.  *Note*: Be sure to save often during design time!
 
   ![](./images/mapping-result.png " ")
 
@@ -705,18 +699,17 @@ This Data Flow will load data from **multiple source files** containing Employee
     - For **Data Asset**, select `Data_Warehouse`.
     - For **Connection**, select `Beta connection`.
     - For **Schema**, select `Beta`.
-    - For **Data Entity**, select `EMPLOYEES_NORTHEAST_SOUTH` (this target table was created with the SQL script from Lab 0 that you ran on the Autonomous Data Warehouse).
+    - For **Data Entity**, select `EMPLOYEES_NORTHEAST_SOUTH` (this target table was created with the SQL script from _Setting up the Data Integration prerequisites in OCI_ that you ran on the Autonomous Data Warehouse).
     - For **Staging Location**, select your **Object Storage bucket** (`DI-bucket`)
     - **Merge Key** will automatically get populated with the primary key name of the table, from the database.
 
-   **Make sure you also map all of the columns, same as in steps 35, 36 and 37 of this lab.**
+   **Make sure you also map all of the columns, same as in steps 38, 39 and 40.**
 
   ![](./images/employees-northeast-and-south.png " ")
 
-43. The design of the Data Flow is now ready. Click on **Validate**. The result in the Global Validation window displays two warnings related to the UNMATCHED output port of the split operator, which is not connected to any target table.
-   *Note: However, since these are not errors which could cause the task to fail, and for the purposes of this workshop, we will ignore these warnings.*
+43. The design of the Data Flow is now ready. Click on **Validate**. The Validation panel lets you know if any warnings or errors were detected.  *Note*: If any warnings or errors are found, select an issue and it'll take you to the operator that caused it, to investigate further. Warnings that might be displayed should not cause the task to fail.
 
-   ![](./images/validate-df.png " ")
+  ![](./images/validate-df.png " ")
 
 44. Click on **Save and Close**.
 
@@ -724,7 +717,7 @@ This Data Flow will load data from **multiple source files** containing Employee
 
 ## Task 5: Create Integration Tasks
 
-**Integration tasks** in OCI Data Integration let you take your data flow design and choose the parameter values you want to use at runtime. With the help of Integration Tasks, you can create multiple Tasks with distinct configurations for the same Data Flow. You will create Integration tasks for the two Data Flows you created in the previous steps of this Lab.
+**Integration tasks** in OCI Data Integration let you take your data flow design and choose the parameter values you want to use at runtime. With the help of Integration Tasks, you can create multiple Tasks with distinct configurations for the same Data Flow. You will create Integration tasks for the two Data Flows you created in the previous steps.
 
 1. From your Workspace home page of OCI Data Integration, click **Open tab** (plus icon), and then select **Projects**.
 
@@ -751,7 +744,8 @@ This Data Flow will load data from **multiple source files** containing Employee
     - In the **Select a Data Flow** panel, select `Load Customers and Revenue Data`, and then click Select.
     ![](./images/select-df.png " ")
     - The Data Flow will be **validated** after the selection and the result should be displayed as **Successful**.
-    - Click **Save and Close**.
+    - Click **Create and Close**.
+
     ![](./images/integration-task-save.png " ")
 
 6. From the `DI_Workshop` project section **Tasks**, you will now create an Integration Task for your second Data Flow. Click **Create Task** and then select **Integration**.
@@ -762,8 +756,8 @@ This Data Flow will load data from **multiple source files** containing Employee
 
     - Change the **Name** to `Load Employees by Regions` and enter the optional **Description**. The value in the **Identifier** field is auto-generated based on the value you enter for Name.
     - In the Data Flow section, click Select. In the **Select a Data Flow** panel, select `Load Employees by Region`, and then click Select.
-    - The Data Flow will be **validated**. The warnings that you got when validating the Data Flow in Step 4 will be displayed. *Note: However, since these are not errors which could cause the task to fail, and for the purposes of this workshop, we will ignore these warnings.*
-    - Click **Save and Close**.
+    - The Data Flow will be **validated**.
+    - Click **Create and Close**.
 
     ![](./images/save-close-integration-task.png " ")
 
@@ -773,7 +767,7 @@ A **SQL task** lets you run a SQL stored procedure in pipeline. You create a SQL
 
 When you create a SQL task, you can configure values for **input parameters** only. If input parameters are configured in a SQL task, you can **override the default values** when you configure the SQL task in a pipeline, and when you run a pipeline that includes the SQL task.
 
-This SQL task in this workshop will write inside a statistics table on the Autonomous Data Warehouse (`DWH_LOAD_STATS`) the successful/ unsuccessful result of a Pipeline task run based on input parameter from the pipeline, but also the pipeline name and task run key. This SQL task will be included in a Pipeline in the following lab. To understand better the SQL stored procedure, please check the `OCIDI_RESULT` procedure statement from the SQL script you downloaded and ran on Autonomous Data Warehouse in Lab 0.
+The SQL task that you create will write inside a statistics table on the Autonomous Data Warehouse (`DWH_LOAD_STATS`) the successful/ unsuccessful result of a Pipeline task run based on input parameter from the pipeline, but also the pipeline name and task run key. This SQL task will be included in a Pipeline in _Create an Application, a Pipeline and publish tasks_. To understand better the SQL stored procedure, please check the `OCIDI_RESULT` procedure statement from the SQL script you downloaded and ran on Autonomous Data Warehouse in _Setting up the Data Integration prerequisites in OCI_.
 Any user interested in seeing the successful/ unsuccessful result of the Data Integration Pipeline along with the pipeline name and task run key will be able to either do it in the database by querying the `DWH_LOAD_STATS` table, or by checking the result in the Data Integration Application from OCI Console.
 
 1. From your Workspace home page in OCI Data Integration, click **Open tab** (plus icon), and then select **Projects**.
@@ -795,7 +789,7 @@ Any user interested in seeing the successful/ unsuccessful result of the Data In
 5. On the **Create SQL Task** page, enter:
 
     - Name: Use `Procedure DWH Load Stats`.
-    *Note: The Identifier field is a system-generated value based on what you enter for Name. You can change the value, but after you save the task, you cannot change the value again.*
+    *Note*: The Identifier field is a system-generated value based on what you enter for Name. You can change the value, but after you save the task, you cannot change the value again.
     - **Description** (optional).
     - Project **DI_Workshop** is auto-populated because we're creating this task from project details page.
 
@@ -811,7 +805,7 @@ Any user interested in seeing the successful/ unsuccessful result of the Data In
     - **Connection**: Choose the `Beta Connection`.
     - **Schema**: `BETA` schema on your ADW.
     - **Stored Procedure**: Choose the `OCIDI_RESULT` procedure.
-    *Note: The `OCIDI_RESULT` procedure was created in the Autonomous Data Warehouse during Lab 0. It writes into DWH\_LOAD\_STATS target table a new entry in case of success or failure.*
+    *Note*: The `OCIDI_RESULT` procedure was created in the Autonomous Data Warehouse during "Setting up the Data Integration prerequisites in OCI." It writes into DWH\_LOAD\_STATS target table a new entry in case of success or failure.
 
     ![](./images/sql-procedure-task.png " ")
 
@@ -845,7 +839,7 @@ Any user interested in seeing the successful/ unsuccessful result of the Data In
   ![](./images/save-close.png " ")
 
 
-   **Congratulations!**  You created the Data Flows, Integration tasks, Data Loader task and SQL tasks in OCI Data Integration. You may now [proceed to the next lab](#next).
+   **Congratulations!**  You created the Data Flows, Integration tasks, Data Loader task and SQL tasks in OCI Data Integration.
 
 ## Learn More
 
@@ -858,4 +852,4 @@ Any user interested in seeing the successful/ unsuccessful result of the Data In
 
 * **Author** - Theodora Cristea
 * **Contributors** -  Aditya Duvuri, Rohit Saha
-* **Last Updated By/Date** - Theodora Cristea, July 2021
+* **Last Updated By/Date** - Theodora Cristea, August 2021

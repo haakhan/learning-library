@@ -1,17 +1,19 @@
-# Restore Point Propagation
+# Testing Restore Point Propagation
 
 ## Introduction
-In this lab, we will use the 19c new feature which is called the Restore point propagation.
+In this lab, we will test the 19c new feature "Restore point propagation"
 
 ![](./images/01-dg-primary-restore-point-propagation.gif)
 
 Oracle 19c supports automatic restore point propagation from the primary database to the standby database.
 
-This can be particularly useful in situations that during a logical operation on the primary database, the database suddenly fails beyond repair. When you perform a failover, the database would be in the same state as the primary, which would be logically corrupt.
+This can be particularly useful in situations that during a logical operation on the primary database, the database will immediately fails beyond repair. When you perform a failover, the database would be in the same state as the primary, which would be logically corrupt.
 
-To avoid this, we are now forwarding the restore points automatically, that in case you need to use the standby, you can also flashback the standby database to a known good point in time.
+To avoid this, we are now forwarding the restore points automatically from the Primary Database to the Standby database.
 
-To accommodate this, the `v$restore_point` view was updated with a `REPLICATED` column and the restore point name is suffixed with `_PRIMARY`.
+Using this feature you can also flashback the standby database to a known good point in time.
+
+To accommodate this, the `v$restore_point` view updates with a `REPLICATED` column, and the restore point name suffixes with `_PRIMARY.`
 
 Estimated Lab Time: 20 Minutes
 
@@ -59,7 +61,7 @@ Estimated Lab Time: 20 Minutes
 6. Do the same on the standby database.
     ![](./images/rp03.png)
 
-The restore point drop is now replicated to the standby and has been suffixed with `_PRIMARY` and the replicated column on the primary indicates this has been performed.
+The restore point drop is now replicated to the standby and it suffixes with `_PRIMARY` and the replicated column on the primary indicates as YES.
 
 ## Task 2: Drop the restore point
 
@@ -86,4 +88,4 @@ You have now successfully used Active Data Guard Restore point propagation. You 
 
 - **Author** - Pieter Van Puymbroeck, Product Manager Data Guard, Active Data Guard and Flashback Technologies
 - **Contributors** - Robert Pastijn, Database Product Management
-- **Last Updated By/Date** -  Tom McGinn, July 2021
+- **Last Updated By/Date** -  Suraj Ramesh,September 2021

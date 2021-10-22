@@ -8,15 +8,15 @@ This lab describes the prescribed folder structure that we need follow for devel
 
 ## Task 1: Folder Structure of the learning-library Repository
 
-The following image shows a folder structure of the "Getting Started with Oracle Big Data Service" workshop that is opened in the **Atom** Editor, through the project folder **bds**. You can see this structure at the following URL [https://github.com/oracle/learning-library/tree/master/data-management-library/big-data/bds](https://github.com/oracle/learning-library/tree/master/data-management-library/big-data/bds), or in the **data-management-library/big-data/bds** folder of the clone on your machine.
+The following image shows a folder structure of the "Getting Started with Oracle Big Data Service" workshop that is opened in the **Atom** Editor, through the project folder **bds**. You can see this structure at the following URL [https://github.com/oracle/learning-library/tree/master/data-management-library/big-data/bds-non-ha](https://github.com/oracle/learning-library/tree/master/data-management-library/big-data/bds-non-ha), or in the **data-management-library/big-data/bds-non-ha** folder of the clone on your machine.
     ![](./images/temp-folder-structure-example1.png " ")
 
 ## Task 2: Understand the Components of the Workshop and Lab Folders
   The following describes the components of the above example:
-  * The root folder of this example is the name of the project, **bds**.
+  * The root folder of this example is the name of the project, **bds-non-ha**.
 
       **Note:** You can create your project folder anywhere within your cloned repository. For example, the **bds** project folder is created in the **\learning-library\data-management-library\big-data**.
-  * Each lab has a separate folder, for example, **bds-access-utility-node**, **bds-create-hadoop-user** etc, containing respective `.md` files.
+  * Each lab has a separate folder, for example, **create-cluster**, **bds-create-hadoop-user** etc, containing respective `.md` files.
   * Each lab folder has an **images** folder that contains the screenshots that are used in the lab.
   * The **workshops** is the workshop folder, which contains the **freetier** folder that in turn contains the following:  `index.html`, `intro.md`, `manifest.json`, and `README.md` files.
   * The `index.html` file is executed when it is accessed by a browser.
@@ -27,7 +27,7 @@ The following image shows a folder structure of the "Getting Started with Oracle
     The following screen shows a sample `manifest.json` file that is opened in the **Atom** Editor.
     ![](./images/temp-folder-structure-manifest-json.png " ")
 
-You may now [proceed to the next lab](#next).
+This concludes this lab. You may now proceed to the next lab.
 
 ## Want to Learn More?
 
@@ -40,11 +40,7 @@ You may now [proceed to the next lab](#next).
     * Anuradha Chepuri, Principal User Assistance Developer, Oracle GoldenGate
 * **Contributors:**
     * Lauran Serhal, Principal User Assistance Developer, Oracle Database and Big Data User Assistance
-
-* **Reviewed by:**  
     * Aslam Khan, Senior User Assistance Manager, ODI, OGG, EDQ
     * Tom McGinn, Database and Database Cloud Service Senior Principal Product Manager, DB Development - Documentation
 
-* **Last Updated By/Date:** Anuradha Chepuri, November 2020
-
-
+* **Last Updated By/Date:** Anuradha Chepuri, October 2021

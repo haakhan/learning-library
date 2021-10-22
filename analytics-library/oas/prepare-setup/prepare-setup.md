@@ -12,7 +12,6 @@ This lab will show you how to download the Oracle Resource Manager (ORM) stack z
 ### Prerequisites
 This lab assumes you have:
 - An Oracle Free Tier or Paid Cloud account
-- SSH Keys
 
 ## Task 1: Download Oracle Resource Manager (ORM) stack zip file
 1.  Click on the link below to download the Resource Manager zip file you need to build your environment: [oas-mkplc-freetier.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/YDUrvikh-qFK03FcjbB8XxTMRZ9LBCwrXzbria6S9y40rb_xTFBVgjGW4Fx8WCco/n/natdsecurity/b/stack/o/oas-mkplc-freetier.zip)
@@ -27,6 +26,7 @@ This workshop requires a certain number of ports to be available, a requirement 
 | Port           |Description                            |
 | :------------- | :------------------------------------ |
 | 22             | SSH                                   |
+| 6080           | noVNC Remote Desktop                  |
 | 9502           | OAS Presentation service              |
 
 1.  Go to *Networking >> Virtual Cloud Networks*
@@ -50,4 +50,4 @@ You may now [proceed to the next lab](#next).
 
 * **Author** - Rene Fontcha, LiveLabs Platform Lead, NA Technology
 * **Contributors** - Kay Malcolm, Product Manager, Database Product Management
-* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, January 2021
+* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2021

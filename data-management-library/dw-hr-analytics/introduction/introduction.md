@@ -37,7 +37,7 @@ Lab 2 - Run Analytics - Create Dashboards (45 minutes)
 
 ## Acknowledgements
 
- - **Author** - Yash Lamba, Cloud Native Solutions Architect, September 2020
+ - **Author** - Yash Lamba, Cloud Native Solutions Architect, Massimo Castelli, Senior Director Product Management, September 2020
  - **Contributors** - Maharshi Desai, Frankie OToole, Clarence Ondieki, Shikhar Mishra, Srihareendra Bodduluri, Arvi Dinavahi, Devika Chandrasekhar, Shikhar Mishra,
  - **Last Updated By/Date** - Kay Malcolm, October 2020
 

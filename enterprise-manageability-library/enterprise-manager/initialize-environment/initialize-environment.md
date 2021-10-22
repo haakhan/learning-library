@@ -12,9 +12,7 @@ In this lab we will review and startup all components required to successfully r
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH (*Free-tier* and *Paid Tenants* only)
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
 
@@ -37,7 +35,8 @@ This lab assumes you have:
     - Enterprise Manager - Management server (OMS)
     - Enterprise Manager - Management Agent (emagent)
 
-2. On the *Firefox* window on the right preloaded with *Enterprise Manager*, click on the *Username* field and select the saved credentials to login. These credentials have been saved within *Firefox* and are provided below for reference
+2. On the browser window on the right preloaded with *Enterprise Manager*, click on the *Username*  and login with the credentials provided below. 
+(If the browser shows any certificate authority invalid error code, click on *Advanced* and add the exception to proceed as outlined in Appendix 2)
 
     ```
     Username: <copy>sysman</copy>
@@ -120,7 +119,7 @@ This lab assumes you have:
 
 ### **Generate SSH Keys**
 
-1. From your remote desktop session, open a terminal window run the following to generate the key pair
+1. From your remote desktop session, open a terminal window and run the following to generate the key pair
 
     ```
     <copy>
@@ -129,7 +128,7 @@ This lab assumes you have:
     </copy>
     ```
 
-2. Accept defaults for file and passphrase by press *Enter* three times to create a key with no passphrase.
+2. Accept defaults for file and passphrase by pressing *Enter* three times to create a key with no passphrase.
 
     ![](images/ssh-key-gen.png " ")
 

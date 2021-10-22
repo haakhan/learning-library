@@ -1,0 +1,51 @@
+{
+  "workshoptitle": "Fusion Analytics Warehouse for HCM",
+  "help": "livelabs-help-license_us@oracle.com",
+  "tutorials": [
+
+    {
+      "title": "Getting Started",
+      "description": "This is the test Workshop for Demo Services team. Fusion Analytics Warehouse for HCM.",
+      "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
+    },
+    {
+      "title": "Introduction",
+      "filename": "../../faw-hcm-intro/faw-hcm-intro.md"
+    },
+    {
+      "title": "Task 1: Analytics Update",
+      "description": "Overall Business Performance Monitoring",
+      "filename": "../../analytics-update/analytics-update.md"
+    },
+    {
+      "title": "Task 2: Business Resilience",
+      "description": "Fusion Application Reporting",
+      "filename": "../../business-resilience/business-resilience.md"
+    },
+    {
+      "title": "Task 3: Diversity and Inclusion",
+      "description": "Top talent retention for different employee categories",
+      "filename": "../../diversity-inclusion/diversity-inclusion.md"
+    },
+    {
+      "title": "Task 4: Workforce Analysis",
+      "description": "Workforce Analysis sample",
+      "filename": "../../workforce-analysis/workforce-analysis.md"
+    },
+    {
+      "title": "Task 5: Workforce Overall",
+      "description": "Workforce Overall sample",
+      "filename": "../../workforce-overall/workforce-overall.md"
+    },
+    {
+      "title": "Task 6: Workforce Sales",
+      "description": "Workforce Sales sample",
+      "filename": "../../workforce-sales/workforce-sales.md"
+    },
+    {
+      "title": "Need Help?",
+      "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+      "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-freetier.md"
+    }
+  ]
+}

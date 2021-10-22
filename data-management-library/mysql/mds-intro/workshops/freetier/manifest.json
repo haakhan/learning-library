@@ -18,7 +18,7 @@
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/generate-ssh-key-local/generate-ssh-keys-local.md"
         },
         {
-            "title": "Lab 2: Launch Your First MySQL Database Service System",
+            "title": "Lab 2: Create and connect to a MySQL DB System",
             "filename": "../../launchmds/launchmds.md"
         },
         {

@@ -1,4 +1,4 @@
-# Tracing Using Jaeger
+# Trace using jaeger
 
 ## Introduction
 
@@ -16,7 +16,7 @@ Quick walk through on how you can trace microservice activity using Jaeger.
 ## Task 1: Verify tracing
 
 1. Notice @Traced annotations on `placeOrder` method of `$GRABDISH_HOME/frontend-helidon/src/main/java/io/helidon/data/examples/FrontEndResource.java` and `placeOrder` method of `$GRABDISH_HOME/order-helidon/src/main/java/io/helidon/data/examples/OrderResource.java`
-   Also notice the additional calls to set tags, baggage, etc. in this `OrderResource.placeOrder` method.
+   Also notice the additional calls to set tags, baggage, and so forth in this `OrderResource.placeOrder` method.
 
    ![](images/ordertracingsrc.png " ")
 
@@ -28,19 +28,19 @@ Quick walk through on how you can trace microservice activity using Jaeger.
     <copy>services</copy>
     ```
 
-    ![](images/jaegerservice.png " ")
+    ![](images/ingress-nginx-loadbalancer-externalip.png " ")
 
 4. Open a new browser tab and enter the external IP URL:
 
-  `https://<EXTERNAL-IP>`
+  `https://<EXTERNAL-IP>/jaeger`
 
-   Note that for convenience a self-signed certificate is used to secure this https address and so it is likely you will be prompted by the browser to allow access.
+   Note that for convenience a self-signed certificate was used to secure this https address and so you will be prompted by the browser to allow access.
 
 5. Select `frontend.msdataworkshop` from the `Service` dropdown menu and click **Find Traces**.
 
     ![](images/jaegertrace.png " ")
 
-   Select a trace with a large number of spans and drill down on the various spans of the trace and associated information. In this case we see placeOrder order, saga, etc. information in logs, tags, and baggage.
+   Select a trace with many spans and drill down on the various spans of the trace and associated information. In this case we see information about placeOrder order, saga, and so on in logs, tags, and baggage.
 
    *If it has been more than an hour since the trace you are looking for, select a an appropriate value for Lookback and click Find Traces.*
 

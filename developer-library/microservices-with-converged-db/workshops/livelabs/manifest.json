@@ -1,9 +1,9 @@
 {
-  "workshoptitle": "Building Microservices with Oracle Converged Database",
+  "workshoptitle": "Simplifying Microservices with converged Oracle Database",
   "help": "livelabs-help-db_us@oracle.com",
 	"tutorials": [
       {
-        "title": "Getting Started",
+        "title": "Getting started",
         "description": "Login to Oracle Cloud",
         "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"
       },
@@ -20,7 +20,7 @@
         "filename": "../../walkthrough-helidon/walkthrough-helidon.md"
       },
       {
-        "title": "Lab 3: Polyglot Microservices",
+        "title": "Lab 3: Polyglot microservices",
         "filename": "../../polyglot/polyglot.md"
       },
       {
@@ -28,15 +28,15 @@
         "filename": "../../scaling/scaling.md"
       },
       {
-        "title": "Lab 5: Tracing Using Jaeger",
-        "filename": "../../tracing/tracing.md"
+        "title": "Lab 5: Observability",
+        "filename": "../../observability/observability.md"
       },
       {
-        "title": "Lab 6: Create an APEX App to Make Sense of the Data",
+        "title": "Lab 6: Create an APEX app to view and update data",
         "filename": "../../apex/apex.md"
       },
       {
-        "title": "Lab 7: Transactional Tests: Compare MongoDB, Postgres, and Kafka to OracleDB with TEQ/AQ",
+        "title": "Lab 7: Transactional tests: compare MongoDB, Postgres, and Kafka to Oracle DB with TEQ/AQ",
         "filename": "../../transactional/transactional.md"
       },
       {

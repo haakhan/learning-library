@@ -24,9 +24,13 @@
             "filename": "../../monitor/monitor.md"
         },
         {
+            "title": "Lab 5: Purge unused Trail files",
+            "filename": "../../purge/purge.md"
+        },
+        {
             "title": "Need Help?",
             "description": "Solutions to Common Problems and Directions for Receiving Live Help",
-            "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-freetier.md"
+            "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-livelabs.md"
         }
     ]
 }

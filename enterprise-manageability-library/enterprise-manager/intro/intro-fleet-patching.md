@@ -68,6 +68,16 @@ For additional Enterprise Manager use cases, see below and visit [LiveLabs](http
 * Run Database Replay of 18c Database Workload in 19c Database
 * Run Consolidation Replay in 2 separate Pluggable Databases
 
+#### 7. Enterprise Monitoring
+- Explore Enterprise Summary page and drill down to see a list of down targets
+- Triage unassigned incidents from Incident Manager and acknowledge then assign an incident
+- Change the Warning and Critical threshold of a metric from Metric and Collection Settings page. Go to the All Metrics page and review the metric in context of the thresholds
+- Create a new Corrective Action and associate it with a metric
+- Test a Metric Extension on a target to see the results then deploy the same Metric Extension to multiple targets
+- Create a Monitoring Template from a Database Instance target and deploy the Monitoring Template to other Database Instance targets to standardize monitoring settings across the enterprise
+- View the hierarchy of an existing Administrator Group
+- Review out-of-the-box incident rules shipped with Enterprise Manager
+
 ## Learn More
 Managing Your Hybrid Database Fleet
 [](youtube:TUaAweMX3S4)

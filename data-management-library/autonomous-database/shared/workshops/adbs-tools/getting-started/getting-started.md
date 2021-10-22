@@ -7,6 +7,10 @@ In this lab, you will create a database user.
 
 Estimated Time: 10 minutes
 
+Watch the video below for a quick walk through of the lab.
+
+[](youtube:het5eBAOa3E)
+
 ### Objectives
 
 In this lab, you will:
@@ -25,9 +29,9 @@ To complete this lab, you need to have the following:
 
 When you create a new data warehouse, you automatically get an account called ADMIN that is your super administrator user. In the real world, you will definitely want to keep your data warehouse data completely separate from the administration processes. Therefore, you will need to know how to create separate new users and grant them access to your data warehouse. This section will guide you through this process using the "New User" wizard within the SQL Worksheet (one of the built-in tools in Autonomous Data Warehouse).
 
-For this workshop we need to create one new user.
+For this workshop, we need to create one new user.
 
-1. Navigate to the Details page of the Autonomous Database you provisioned in the "Provision an ADW Instance" lab. In this example, the database is named "ADW Finance Mart." Launch **Database Actions** by clicking the **Tools** tab and then click the button to open the Database Actions home page.
+1. Navigate to the Details page of the Autonomous Database you provisioned in the "Provision an ADB Instance" lab. In this example, the database is named "ADW Finance Mart." Launch **Database Actions** by clicking the **Tools** tab and then click the button to open the Database Actions home page.
 
   ![ALT text is not available for this image](images/database-tools.png)
 
@@ -39,11 +43,11 @@ For this workshop we need to create one new user.
 
   ![ALT text is not available for this image](images/database-users.png)
 
-4.  You can see that your ADMIN user is listed as the current user.  On the right-hand side click the "+ **Create User**" button.
+4.  You can see that your ADMIN user is listed as the current user.  On the right-hand side, click the "+ **Create User**" button.
 
   ![ALT text is not available for this image](images/create-user.png)
 
-5. The **Create User**  form will appear on the right-hand side of your browser window. Use the settings below to complete the form:
+5. The **Create User** form will appear on the right-hand side of your browser window. Use the settings below to complete the form:
 
  - User Name: **QTEAM**
  - Password: make up your own suitably strong password.
@@ -64,13 +68,14 @@ For this workshop we need to create one new user.
 
     There is more information available in the documentation about password rules and how to create your own password rules. See here: [Create Users on Autonomous Database](https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/manage-users-create.html#GUID-B5846072-995B-4B81-BDCB-AF530BC42847)
 
-  - Toggle the **Web Access** button to **On** and expand **Web access advanced features**. Accept the default alias which is automatically set to qteam - this allows the user access to our new data warehouse using the Database Actions tools.
-  - Leave the **Authorization required** toggle button as on/blue. 
   - Leave the Graph button turned off.
+  - Toggle the **Web Access** button to **On** and expand **Web access advanced features**.
+  - Leave the **Authorization required** toggle button as on/blue.
+  - Accept the default alias which is automatically set to qteam - this allows the user access to our new data warehouse using the Database Actions tools.
   - Select **UNLIMITED** from the drop down menu for Quota on tablespace DATA
   - Leave the **Password Expired** toggle button as off (note this controls whether the user will be prompted to change their password when they next login).
-  - Leave the **Account is locked **toggle button as off. 
-
+  - Leave the **Account is Locked** toggle button as off. 
+  
 Next you will examine the form.
 
 6. When you examine the form, it should look like this:

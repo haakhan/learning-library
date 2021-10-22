@@ -3,4 +3,4 @@
 This images shows the Py Note notebook opened. The Py Note notebook is present in USER1 Project and is edited by USER2. The second paragraph of the notebook shows commands to render some random data in two histograma. USER2 runs the paragraph. 
 
  
-Copyright © 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

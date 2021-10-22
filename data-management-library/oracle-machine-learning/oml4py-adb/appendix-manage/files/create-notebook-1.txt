@@ -1,0 +1,1 @@
+This is the screenshot of the Notebooks page with the Create button highlighted. The other buttons are Edit, Duplicate, and Save.

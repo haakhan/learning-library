@@ -56,7 +56,7 @@ Lab 5 - Perform Analysis - Import Dashboards (10 minutes)
 
 ## Acknowledgements
 
- - **Author** - Yash Lamba, Cloud Native Solutions Architect, February 2021
+ - **Author** - Yash Lamba, Cloud Native Solutions Architect, Massimo Castelli, Senior Director Product Management, February 2021
  - **Contributors** - Clarence Ondieki, Maharshi Desai
  - **Last Updated By/Date** - Yash Lamba, February 2021
 

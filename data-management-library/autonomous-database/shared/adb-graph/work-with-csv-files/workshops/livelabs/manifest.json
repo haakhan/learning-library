@@ -1,14 +1,14 @@
 {
-  "workshoptitle": "Graph Studio: Finding Circular Payment Chains using Graph Queries",
+  "workshoptitle": "Graph Studio: Find Circular Payment Chains using Graph Queries in Autonomous Database",
     "help": "livelabs-help-db_us@oracle.com",
 	"tutorials": [
         {
-            "title": "Getting Started",
-            "description": "Prerequisites for LiveLabs (Oracle-owned tenancies). The title of the lab and the Contents Menu title (the title above) match for Prerequisite lab. This lab is always first.",
+            "title": "Get Started",
+            "description": "Prerequisites for this workshop",
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"        },
         {
             "title": "Introduction",
-            "description": "Loading data from CSV files and creating a graph.",
+            "description": "About this workshop",
             "filename": "../../introduction/introduction-ll.md"
         },
         {

@@ -14,9 +14,7 @@ This workshop introduces the functionality of Oracle Native Network Encryption (
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
     - Lab: Initialize Environment
@@ -31,23 +29,19 @@ This lab assumes you have:
 
 ## Task 1: Check the current network configuration
 
-1. Open a SSH session on your **DBSec-Lab VM as *oracle* user**
-
-      ````
-      <copy>sudo su - oracle</copy>
-      ````
+1. As OS user *oracle* on your **DBSec-Lab** VM remote desktop session, Double-Click on the *Terminal* icon on the desktop to launch a session
 
 2. Go to the scripts directory
 
-      ````
-      <copy>cd $DBSEC_LABS/nne</copy>
-      ````
+    ````
+    <copy>cd $DBSEC_LABS/nne</copy>
+    ````
 
 3. View your **SQL*Net.ora** file content
 
-      ````
-      <copy>./nne_view_sqlnet_ora.sh</copy>
-      ````
+    ````
+    <copy>./nne_view_sqlnet_ora.sh</copy>
+    ````
 
     **Note**: It should be empty!
 
@@ -55,22 +49,22 @@ This lab assumes you have:
 
 4. Check if the network is already encrypted
 
-      ````
-      <copy>./nne_is_sess_encrypt.sh</copy>
-      ````
+    ````
+    <copy>./nne_is_sess_encrypt.sh</copy>
+    ````
 
-   ![](./images/nne-002.png " ")
+    ![](./images/nne-002.png " ")
 
 
 ## Task 2: Generate and capture SQL traffic
 
 1. Run tcpdump on the traffic to analyze the packets in transit on the network
 
-      ````
-      <copy>./nne_tcpdump_traffic.sh</copy>
-      ````
+    ````
+    <copy>./nne_tcpdump_traffic.sh</copy>
+    ````
 
-   ![](./images/nne-003.png " ")
+    ![](./images/nne-003.png " ")
 
     **Note**:
     - The output has been saved to tcpdump.pcap
@@ -80,37 +74,37 @@ This lab assumes you have:
 
 3. On your terminal session, begin the capture script
 
-      ````
-      <copy>./nne_capt_empsearch_traffic.sh</copy>
-      ````
+    ````
+    <copy>./nne_capt_empsearch_traffic.sh</copy>
+    ````
 
 4. On your Glassfish App, perform the following steps:
 
     - Login to the HR Application as *`hradmin`* with the password "*`Oracle123`*"
 
-      ````
-      <copy>hradmin</copy>
-      ````
+    ````
+    <copy>hradmin</copy>
+    ````
 
-      ````
-      <copy>Oracle123</copy>
-      ````
+    ````
+    <copy>Oracle123</copy>
+    ````
 
-   ![](./images/nne-009.png " ")
+    ![](./images/nne-009.png " ")
 
-   ![](./images/nne-010.png " ")
+    ![](./images/nne-010.png " ")
 
     - Click on **Search Employees**
 
-   ![](./images/nne-011.png " ")
+    ![](./images/nne-011.png " ")
 
     - Click [**Search**]
 
-   ![](./images/nne-012.png " ")
+    ![](./images/nne-012.png " ")
 
 5. Go back to your terminal session to see traffic content
 
-   ![](./images/nne-004.png " ")
+    ![](./images/nne-004.png " ")
 
 6. When you have seen the un-encrypted data, use "`[Ctrl]+C`" to stop the `nne_capt_empsearch_traffic.sh` script
 
@@ -119,31 +113,31 @@ You will enable SQL*Net encryption with the `REQUESTED` value for `SQLNET.ENCRYP
 
 1. To begin with, we use this option because it will allow non-encrypted connections to still connect. While this rarely has an impact, it is often important to do this so the change does not interfere with production systems that cannot encrypt between the client and the database!
 
-      ````
-      <copy>./nne_enable_requested.sh</copy>
-      ````
+    ````
+    <copy>./nne_enable_requested.sh</copy>
+    ````
 
-   ![](./images/nne-005.png " ")
+    ![](./images/nne-005.png " ")
 
     **Note**: There's an alternative to Native Network Encryption, it's TLS certificates but those require user management and more configuration
 
 2. Now, re-run the script to check if the session is encrypted
 
-      ````
-      <copy>./nne_is_sess_encrypt.sh</copy>
-      ````
+    ````
+    <copy>./nne_is_sess_encrypt.sh</copy>
+    ````
 
-   ![](./images/nne-006.png " ")
+    ![](./images/nne-006.png " ")
 
     **Note**: You should notice an additional line that says "**AES256 Encryption service adapter for Linux**"
 
 3. Now, re-run tcpdump on the traffic
 
-      ````
-      <copy>./nne_tcpdump_traffic.sh</copy>
-      ````
+    ````
+    <copy>./nne_tcpdump_traffic.sh</copy>
+    ````
 
-   ![](./images/nne-007.png " ")
+    ![](./images/nne-007.png " ")
 
     **Note**: The `DEMO_HR_EMPLOYEES` table data is still queryable but when it shows up in tcpdump it shows up as **junk** because the session is encrypted
 
@@ -151,29 +145,29 @@ You will enable SQL*Net encryption with the `REQUESTED` value for `SQLNET.ENCRYP
 
     - On your terminal session capture the traffic generated
 
-          ````
-        <copy>./nne_capt_empsearch_traffic.sh</copy>
-          ````
+    ````
+    <copy>./nne_capt_empsearch_traffic.sh</copy>
+    ````
 
-       ![](./images/nne-008.png " ")
+    ![](./images/nne-008.png " ")
 
     - In your browser, **logout** the Glassfish application and **login** again as *`hradmin`* to see what happens when we sniff this traffic
 
-       ![](./images/nne-009.png " ")
+    ![](./images/nne-009.png " ")
 
-       ![](./images/nne-010.png " ")
+    ![](./images/nne-010.png " ")
 
     - Click on **Search Employees**
 
-       ![](./images/nne-011.png " ")
+    ![](./images/nne-011.png " ")
 
     - Click [**Search**]
 
-       ![](./images/nne-012.png " ")
+    ![](./images/nne-012.png " ")
 
 5. Go back to your terminal session to see traffic content
 
-   ![](./images/nne-008.png " ")
+    ![](./images/nne-008.png " ")
 
     **Note**:
     - The data is encrypted between our Glassfish application (JDBC Thin Client) and the database
@@ -185,11 +179,11 @@ You will enable SQL*Net encryption with the `REQUESTED` value for `SQLNET.ENCRYP
 
 1. When you have completed the lab, you can return the Native Network Encryption to the default settings
 
-      ````
-      <copy>./nne_disable.sh</copy>
-      ````
+    ````
+    <copy>./nne_disable.sh</copy>
+    ````
 
-   ![](./images/nne-013.png " ")
+    ![](./images/nne-013.png " ")
 
 You may now [proceed to the next lab](#next)..
 
@@ -198,7 +192,7 @@ You may now [proceed to the next lab](#next)..
 
 Oracle Database provides native **data network encryption and integrity** to ensure that data in-motion is secure as it travels across the network.
 
-   ![](./images/nne-concept.png " ")
+    ![](./images/nne-concept.png " ")
 
 The purpose of a secure cryptosystem is to convert plaintext data into unintelligible ciphertext based on a key, in such a way that it is very hard (computationally infeasible) to convert ciphertext back into its corresponding plaintext without knowledge of the correct key.
 
@@ -214,4 +208,4 @@ Technical Documentation: [Oracle Native Network Encryption 19c](https://docs.ora
 ## Acknowledgements
 - **Author** - Hakim Loumi, Database Security PM
 - **Contributors** - Gian Sartor, Rene Fontcha
-- **Last Updated By/Date** - Hakim Loumi, Database Security PM - May 2021
+- **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2021

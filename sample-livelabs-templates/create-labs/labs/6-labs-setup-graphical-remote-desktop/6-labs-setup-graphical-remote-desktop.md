@@ -16,14 +16,13 @@ This lab assumes you have:
 - An Oracle Enterprise Linux 7 (OEL) that meets requirement for marketplace publishing
 
 ## Task 1: Deploy noVNC
-1.  As root, download and run the latest setup script. You will be prompted for the following two inputs:
+1.  As root, download and run the latest setup script. You will be prompted for the following input:
 
-    - *Estimated time in minutes* for initial processes to fully start after instance boot up. This will be used to delay noVNC startup and prevent situations where workshop attendees may initially be unable to access noVNC until all dependent services on the instance are started. *Default: 5 minutes*
     - The *OS user* for which the remote desktop will be configured. *Default: Oracle*
 
     ```
     <copy>
-    sudo su - || sudo sed -i -e 's|root:x:0:0:root:/root:.*$|root:x:0:0:root:/root:/bin/bash|g' /etc/passwd; sudo su -
+    sudo su - || (sudo sed -i -e 's|root:x:0:0:root:/root:.*$|root:x:0:0:root:/root:/bin/bash|g' /etc/passwd && sudo su -)
 
     </copy>
     ```
@@ -36,36 +35,16 @@ This lab assumes you have:
     unzip -o setup-novnc-livelabs.zip
     chmod +x setup-novnc-livelabs.sh
     ./setup-novnc-livelabs.sh
-    pwd
 
     </copy>
     ```
-
-2. Start VNC Server using *systemctl*
-
-    ```
-    <copy>
-    appuser=$(cat /tmp/.appuser)
-    systemctl start vncserver_${appuser}@:1.service
-    systemctl status vncserver_${appuser}@:1.service
-    </copy>
-    ```
-
-3. Run script *novnc-2.sh* to finalize
-
-    ```
-    <copy>
-    /tmp/novnc-2.sh
-    </copy>
-    ```
-
-4. After validating successful setup from URL displayed by above script, remove all setup scripts from "*/tmp*"
+2. After validating successful setup from URL displayed by above script, remove all setup scripts from "*/tmp*"
 
     ```
     <copy>
     rm -rf /tmp/novnc-*.sh
     rm -rf /tmp/set-os-user.sh
-    rm -rf /tmp/setup-novnc-livelabs.sh
+    rm -rf /tmp/setup-novnc-livelabs*
 
     </copy>
     ```
@@ -96,11 +75,33 @@ For ease of access to desktop applications provided on the instance and needed t
     ![](./images/create-shortcut-4.png " ")
     ![](./images/create-shortcut-5.png " ")
 
-6. Repeat steps above to add *Google Chrome* browser and any other required Application the workshop may need to the Desktop (e.g. Terminal, SQL Developer, etc...)
+6. Repeat steps [2-5] to add the *Terminal* utility, *Google Chrome* browser, and any required Application the workshop may need to the Desktop (e.g. JDeveloper, SQL Developer, etc...)
 
     ![](./images/create-shortcut-6.png " ")
 
-## Task 3: Configure Desktop   
+## Task 3: Optimize Terminal Utility
+Perform the following to optimize the *Terminal* utility
+
+1. Double-click on the *Terminal* icon to launch a session, then Click on *Edit* and select *Preferences*
+
+    ![](./images/novnc-terminal-1.png " ")
+
+2. Select the *Colors* tab, uncheck *Use colors from system theme*, Select *White on black* from *Built-in schemes* drop-down, and click on *Close*
+
+    ![](./images/novnc-terminal-2.png " ")
+
+3. Review *$HOME/.bash_profile* and move any custom entry of type alias, script call, or function to  *$HOME/.bashrc*. If these are referencing environment variables set in the file, then copy those over to *$HOME/.bashrc* as well.
+
+    *Notes:* Do not remote the following default entry from *$HOME/.bash_profile*
+
+    ```
+    # Get the aliases and functions
+    if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+    fi
+    ```
+
+## Task 4: Configure Desktop   
 LiveLabs compute instance are password-less and only accessible optionally via SSH keys. As result it's important to adjust session settings to ensure a better user experience.
 
 1. Follow steps in the screenshot below and run command provided below to resize desktop icons
@@ -197,49 +198,47 @@ LiveLabs compute instance are password-less and only accessible optionally via S
     ![](./images/novnc-startup-prog-5.png " ")
     ![](./images/novnc-startup-prog-6.png " ")
 
-## Task 4: Optimize Chrome Browser
-Perform the following to further customize and optimize *Chrome* Browser.
+## Task 5: Optimize Chrome Browser
+Perform the following to further customize and optimize *Google Chrome* Browser.
 
-1. Right-click on *Google Chrome* browser icon, select *Properties*
+1. Close any running *Google Chrome* browser session running on the remote desktop
 
-    ![](./images/novnc-custom-chrome-0.png " ")
-
-2. Update the *command* field with the custom value below
+2. Launch *Terminal* utility and run the following to customize *Google Chrome* Launch Command
 
     ```
     <copy>
-    /usr/bin/google-chrome --password-store=basic --user-data-dir="/home/<os-user>/.livelabs/chrome-window2" --disable-session-crashed-bubble
+    sed -i "s|^Exec=/usr/bin/google-chrome-stable|Exec=/usr/bin/google-chrome --password-store=basic --user-data-dir="${HOME}/.livelabs/chrome-window2" --disable-session-crashed-bubble|g" $HOME/Desktop/google-chrome.desktop
     </copy>
     ```
 
-    *Notes:* Replace *<os-user>* with the correct OS User that owns the remote desktop session. e.g. *opc* as in this example, or *oracle* for the vast majority
+3. Double-click on *Google Chrome* browser icon to launch and click on *Trust and Launch*
+
+    ![](./images/novnc-custom-chrome-0.png " ")
+
+4. Keep *Make Google Chrome the default browser* checked, uncheck *Automatic Usage Statistics & Crash reporting* and click *OK*
 
     ![](./images/novnc-custom-chrome-1.png " ")
 
-3. Double-click on *Google Chrome* browser icon to launch, Uncheck *Automatic Usage Statistics & Crash reporting* and click *OK*
-
-    ![](./images/novnc-custom-chrome-2.png " ")
-
-4. Click on *Get Started*, on the next 3 pages click on *Skip*, and finally on *No Thanks*.
+5. Click on *Get Started*, on the next 3 pages click on *Skip*, and finally on *No Thanks*.
 
     ![](./images/novnc-custom-chrome-3.png " ")
     ![](./images/novnc-custom-chrome-4.png " ")
     ![](./images/novnc-custom-chrome-5.png " ")
     ![](./images/novnc-custom-chrome-6.png " ")
 
-5. Click in the *Three dots* at the top right, then select *"Bookmarks >> Show bookmarks bar"*
+6. Click in the *Three dots* at the top right, then select *"Bookmarks >> Show bookmarks bar"*
 
     ![](./images/add-bookmarks-01.png " ")
 
-6. Right-click anywhere in the *Bookmarks bar area*, then Uncheck *Show apps shortcuts* and *Show reading list*
+7. Right-click anywhere in the *Bookmarks bar area*, then Uncheck *Show apps shortcuts* and *Show reading list*
 
     ![](./images/add-bookmarks-04.png " ")
 
-7. Right-click anywhere in the *Bookmarks bar area* and select *Add page*
+8. Right-click anywhere in the *Bookmarks bar area* and select *Add page*
 
     ![](./images/add-bookmarks-02.png " ")
 
-8. Provide the following two inputs, select *Bookmark bar* for destination, and click *Save* to create a bookmark to *LiveLabs*
+9. Provide the following two inputs, select *Bookmark bar* for destination, and click *Save* to create a bookmark to *LiveLabs*
 
     - Name
 
@@ -255,49 +254,58 @@ Perform the following to further customize and optimize *Chrome* Browser.
 
     ![](./images/add-bookmarks-03.png " ")
 
-9. Click on the newly added bookmark to confirm successful page loading.
+10. Click on the newly added bookmark to confirm successful page loading.
 
     ![](./images/add-bookmarks-05.png " ")
 
-10. Click in the *Three dots* at the top right, then select *Settings*
+11. Click in the *Three dots* at the top right, then select *Settings*
 
     ![](./images/add-bookmarks-06.png " ")
 
-11. Scroll down to *On Startup* section, select *open a specific page or set of pages*, and select *Use current pages* or simply add the *LiveLabs* address you set earlier as bookmark.
+12. Scroll down to *On Startup* section, select *open a specific page or set of pages*, and select *Use current pages* or simply add the *LiveLabs* address you set earlier as bookmark.
 
     ![](./images/add-bookmarks-07.png " ")
 
-12. Create and run the script below to initialize LiveLabs browser windows.
+13. Run the following from terminal session to initialize LiveLabs browser windows.
 
     ```
     <copy>
-    cat > /tmp/init_ll_windows.sh <<EOF
-    #!/bin/bash
-    # Initialize LL Windows
-
-    #Drop existing sessions
-
-    ll_windows_opened=\$(ps aux | grep 'disable-session-crashed-bubble'|grep -v grep |awk '{print \$2}'|wc -l)
-    user_data_dir_base="/home/\$(whoami)/.livelabs"
-
-    if [[ "\${ll_windows_opened}" -gt 0 ]]; then
-     kill -2 \$(ps aux | grep 'disable-session-crashed-bubble'|grep -v grep |awk '{print \$2}')
-    fi
-
-    desktop_guide_url="https://oracle.github.io/learning-library/sample-livelabs-templates/sample-workshop/workshops/livelabs"
-    desktop_app1_url="https://oracle.com"
-    desktop_app2_url="https://bit.ly/golivelabs"
-    google-chrome --password-store=basic --app=\${desktop_guide_url} --window-position=110,50 --window-size=887,912 --user-data-dir="\${user_data_dir_base}/chrome-window1" --disable-session-crashed-bubble >/dev/null 2>&1 &
-    google-chrome --password-store=basic \${desktop_app1_url} --window-position=1010,50 --window-size=887,950 --user-data-dir="\${user_data_dir_base}/chrome-window2" --disable-session-crashed-bubble >/dev/null 2>&1 &
-    google-chrome --password-store=basic \${desktop_app2_url} --window-position=1010,50 --window-size=887,950 --user-data-dir="\${user_data_dir_base}/chrome-window2" --disable-session-crashed-bubble >/dev/null 2>&1 &
-    EOF
-    chmod +x /tmp/init_ll_windows.sh
-    /tmp/init_ll_windows.sh
-    rm -f /tmp/init_ll_windows.sh
-
+    $HOME/.livelabs/init_ll_windows.sh
     </copy>
     ```
-13. Close all browser windows opened.
+14. If the *desktop_app1_url* and/or *desktop_app2_url* are applicable to the workshop, test with *chrome-window2* chrome profile to validate before proceeding to custom image creation.
+
+    e.g. The example below is from the *DB Security - Key Vault* workshop
+
+    ```
+    <copy>
+    user_data_dir_base="/home/$(whoami)/.livelabs"
+    desktop_app1_url="https://kv"
+    desktop_app2_url="https://dbsec-lab:7803/em"
+    google-chrome --password-store=basic ${desktop_app1_url} --window-position=1010,50 --window-size=887,950 --user-data-dir="${user_data_dir_base}/chrome-window2" --disable-session-crashed-bubble >/dev/null 2>&1 &
+    google-chrome --password-store=basic ${desktop_app2_url} --window-position=1010,50 --window-size=887,950 --user-data-dir="${user_data_dir_base}/chrome-window2" --disable-session-crashed-bubble >/dev/null 2>&1 &
+    </copy>
+    ```
+
+15. Update *vncserver* startup script to add dependency(ies) on primary service(s) supporting Web Apps behind *desktop_app1_url* and/or *desktop_app2_url*. This will prevent premature web browser startup leading to *404-page-not-found-error* when the app requested is not yet ready.
+
+    - Edit `/etc/systemd/system/vncserver_${appuser}@\:1.service` and append the dependent service(s) at the end of the starting with **After=**
+
+    e.g. The example below is from the *EM Fundamentals* workshop, please substitute *oracle-emcc.service* in the block below with the correct service name relevant to your workshop before running it.
+
+    ```
+    <copy>
+    sudo sed -i "/^After=/ s/$/ oracle-emcc.service/" /etc/systemd/system/vncserver_$(whoami)@\:1.service
+    sudo systemctl daemon-reload
+    cat /etc/systemd/system/vncserver_$(whoami)@\:1.service |grep After
+    </copy>
+    ```
+
+    ![](./images/add-bookmarks-08.png " ")
+
+    - Verify the output as shown above and confirm that the service dependency has been successfully added
+
+16. Close all browser windows opened.
 
 You may now [proceed to the next lab](#next).
 
@@ -472,7 +480,7 @@ Prior to noVNC some images were configured with *Apache Guacamole*. If this appl
 
     ```
     <copy>
-    sudo su - || sudo sed -i -e 's|root:x:0:0:root:/root:.*$|root:x:0:0:root:/root:/bin/bash|g' /etc/passwd; sudo su -
+    sudo su - || (sudo sed -i -e 's|root:x:0:0:root:/root:.*$|root:x:0:0:root:/root:/bin/bash|g' /etc/passwd && sudo su -)
 
     </copy>
     ```
@@ -511,10 +519,12 @@ Prior to noVNC some images were configured with *Apache Guacamole*. If this appl
     rm -rf /etc/guac*
     rm -rf /etc/nginx*
     rm -f /tmp/remove-guac.sh
+    rm -rf /opt/guac*
+    cd
     </copy>
     ```
 
 ## Acknowledgements
 * **Author** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2020
 * **Contributors** - Robert Pastijn
-* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, August 2021
+* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, October 2021

@@ -1,0 +1,4 @@
+This images shows the Test Anomaly detection notebook listed in the Notebooks page.  
+
+
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

@@ -1,3 +1,0 @@
-> In the Finish window, click **Password Management** to view the status of Oracle Database user accounts. Except SYS and SYSTEM, all other users are initially in locked state.  
-
-> To unlock a user, click the **Lock Account** column. You can also change the default password for the users in this window. However, you can do these tasks at a later time. Click **OK** to close the Password Management window.

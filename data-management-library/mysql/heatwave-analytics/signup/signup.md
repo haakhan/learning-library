@@ -4,17 +4,17 @@
 
 Before you get started, you will need an Oracle Cloud account. This 5-minute lab walks you through the Tasks of getting an Oracle Cloud Free Tier account and signing in.
 
-**Existing Cloud Accounts**
+### Existing Cloud Accounts
 
 If you already have access to an Oracle Cloud account, including an Oracle Cloud account using Oracle Universal Credits, skip to Task 2 to sign in to your cloud tenancy.
 
-**Two Cloud Offers in One**
+### Two Cloud Offers in One
 
 Oracle Cloud Free Tier allows you to sign up for an Oracle Cloud account which provides a number of Always Free services and a Free Trial with US$300 of free credit to use on all eligible Oracle Cloud Infrastructure services for up to 30 days. The Always Free services are available for an unlimited period of time. The Free Trial services may be used until your US$300 of free credits are consumed or the 30 days has expired, whichever comes first.
 
 ![](images/oracle_cloud_free_tier.png)
 
-**What you will need**
+### What you will need
 
  - A valid email address
  - Ability to receive SMS text verification (only if your email isn't recognized)

@@ -1,7 +1,7 @@
 # Introduction
 
 ## About this Workshop
-This workshop is for Java Developers looking to start building applications with Micronaut, GraalVM and Oracle Cloud with Autonomous Database. The workshop features several labs that walk you through the
+This workshop is for Java Developers looking to start building applications with Micronaut, GraalVM, and Oracle Cloud with Autonomous Database. The workshop features several labs that walk you through the
 steps to get going with Micronaut and Oracle Cloud.
 
 Estimated Workshop Time: 120 minutes
@@ -15,8 +15,7 @@ Micronaut also includes a persistence framework called Micronaut Data that preco
 
 ### Objectives
 
-This 2-hour lab walks you through the steps to use Micronaut, Micronaut Data
-and Oracle Cloud to connected to an Oracle Database.
+This 2-hour lab walks you through the steps to use Micronaut, Micronaut Data, and Oracle Cloud to connected to an Oracle Database.
 
 - Lab 1: Setup Oracle Autonomous Database(20 minutes)
 - Lab 2: Create a new Micronaut Application (15 minutes)
@@ -28,12 +27,11 @@ and Oracle Cloud to connected to an Oracle Database.
 ### Prerequisites
 - An Oracle Cloud Account - Please view this workshop's LiveLabs landing page to see which environments are supported
 - Understanding of the Java programming language
-- [Micronaut 2.4](https://micronaut.io/download.html) 
-- [GraalVM 21.0.0 for JDK 11](https://www.graalvm.org/docs/getting-started-with-graalvm/) 
-- An IDE such as [VS Code](https://code.visualstudio.com/) or [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac)
+- [Micronaut 3.0](https://micronaut.io/download.html)
+- [GraalVM 21.2.0 for JDK 11](https://www.graalvm.org/docs/getting-started/)
+- An IDE such as [VS Code](https://code.visualstudio.com/) or [IntelliJ](https://www.jetbrains.com/idea/download/)
 
 *Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
-
 
 ## More Information
 - [Micronaut](https://micronaut.io/)

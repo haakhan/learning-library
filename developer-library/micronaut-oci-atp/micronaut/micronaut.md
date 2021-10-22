@@ -15,7 +15,6 @@ If you were unable to setup the Autonomous Database and necessary cloud resource
     git clone -b lab3-h2 https://github.com/graemerocher/micronaut-hol-example.git
     </copy>
 
-
 Estimated Lab Time: 30 minutes
 
 ### Objectives
@@ -32,16 +31,13 @@ In this lab you will:
 ### Prerequisites
 - An Oracle Cloud account, Free Trial, LiveLabs or a Paid account
 
-
 ## Task 1: Create Micronaut Data entities that map Oracle Database tables
 
 In the previous lab Flyway was used to setup the following schema:
 
-
     CREATE TABLE "PET" ("ID" VARCHAR(36),"OWNER_ID" NUMBER(19) NOT NULL,"NAME" VARCHAR(255) NOT NULL,"TYPE" VARCHAR(255) NOT NULL);
     CREATE TABLE "OWNER" ("ID" NUMBER(19) PRIMARY KEY NOT NULL,"AGE" NUMBER(10) NOT NULL,"NAME" VARCHAR(255) NOT NULL);
     CREATE SEQUENCE "OWNER_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
-
 
 As you can see a table called `OWNER` and a table called `PET` were created.
 
@@ -100,7 +96,7 @@ As you can see a table called `OWNER` and a table called `PET` were created.
     </copy>
     ```
 
-    The `@MappedEntity` annotation is used to indicate that the entity is mapped to a database table. By default this will be a table using the same name as the class (in this case `owner`).
+    The `@MappedEntity` annotation indicates that the entity is mapped to a database table. By default, this will be a table using the same name as the class (in this case `owner`).
 
     The columns of the table are represented by each Java property. In the above case an `id` column will be used to represent the primary key and by using `@GeneratedValue` this sets up the mapping to assume the use of an `identity` column in Autonomous Database.
 
@@ -234,18 +230,21 @@ First create the DTO class in a file called `NameDTO.java` under `src/main/java/
 <copy>
 package example.atp.domain;
 
+import io.micronaut.core.annotation.Creator;
 import io.micronaut.core.annotation.Introspected;
 
 @Introspected
 public class NameDTO {
-    private String name;
+
+    private final String name;
+
+    @Creator
+    public NameDTO(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
 </copy>
@@ -295,17 +294,16 @@ Define a new `OwnerController` class in a file called `OwnerController.java` in 
 <copy>
 package example.atp.controllers;
 
-import java.util.List;
-import java.util.Optional;
-
-import javax.validation.constraints.NotBlank;
-
 import example.atp.domain.Owner;
 import example.atp.repositories.OwnerRepository;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
+
+import javax.validation.constraints.NotBlank;
+import java.util.List;
+import java.util.Optional;
 
 @Controller("/owners")
 @ExecuteOn(TaskExecutors.IO)
@@ -345,9 +343,6 @@ Next define another REST endpoint called `PetController` in a file called `PetCo
 <copy>
 package example.atp.controllers;
 
-import java.util.List;
-import java.util.Optional;
-
 import example.atp.domain.NameDTO;
 import example.atp.domain.Pet;
 import example.atp.repositories.PetRepository;
@@ -355,6 +350,9 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
+
+import java.util.List;
+import java.util.Optional;
 
 @ExecuteOn(TaskExecutors.IO)
 @Controller("/pets")
@@ -398,8 +396,8 @@ import example.atp.repositories.PetRepository;
 import io.micronaut.context.event.StartupEvent;
 import io.micronaut.runtime.Micronaut;
 import io.micronaut.runtime.event.annotation.EventListener;
+import jakarta.inject.Singleton;
 
-import javax.inject.Singleton;
 import javax.transaction.Transactional;
 import java.util.Arrays;
 
@@ -413,7 +411,7 @@ public class Application {
         this.petRepository = petRepository;
     }
 
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
         Micronaut.run(Application.class);
     }
 

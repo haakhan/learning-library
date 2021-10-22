@@ -2,9 +2,13 @@
 
 ## Introduction
 
-In this lab you will use the SQL Developer Web browser-based tool, connect to your Database, create and REST enable a table.
+In this lab you will use the batch load API to load large amounts of data into a table.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 20 minutes
+
+Watch the video below for a quick walk through of the lab.
+
+[](youtube:t57IlegnhjA)
 
 ### Objectives
 
@@ -14,17 +18,20 @@ Estimated Lab Time: 10 minutes
 ### Prerequisites
 
 - The following lab requires an <a href="https://www.oracle.com/cloud/free/" target="\_blank">Oracle Cloud account</a>. You may use your own cloud account, a cloud account that you obtained through a trial, or a training account whose details were given to you by an Oracle instructor.
-- This lab assumes you have successfully provisioned Oracle Autonomous database an connected to ADB with SQL Developer web.
-- Completed the [User Setups Lab](../user-setups/user_setups.md)
-- Completed the [Create and auto-REST enable a table lab](../create_table/create_table.md)
+
+This lab assumes you have completed the following labs:
+* Lab 1: [Login to Oracle Cloud](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md)
+* Lab 2: [Provision an Autonomous Database](https://raw.githubusercontent.com/oracle/learning-library/master/data-management-library/autonomous-database/shared/adb-provision/adb-provision.md)
+* Lab 3: [Connect to your Autonomous Database using Database Actions/SQL Developer Web](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/sqldevweb-login/sqldevweb-login.md)
+* Lab 4: [Create and auto-REST enable a table](../create-table/create-table.md)
 
 ## Task 1: Load data into the Database
 
-1. Start by again using the cURL slide out on our REST enabled table.
+1. Start by again using the **cURL slide out** on our **REST enabled table**.
 
     ![right click the table name in the navigator, select REST, then cURL Command](./images/ld-1.png)
 
-2. We now have the cURL for the table CSV_DATA slideout. 
+2. We now see the cURL for the table CSV_DATA slideout on the right side of the web broswer. 
 
     ![cURL for the table CSV_DATA slideout](./images/ld-2.png)
 
@@ -40,23 +47,24 @@ Estimated Lab Time: 10 minutes
 
     ```
     curl --location --request POST \
+    --header "Content-Type: <CONTENT_TYPE>" \
     --data-binary @<FILE_NAME> \
-    'https://coolrestlab-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/csv_data/' 
+    'https://coolrestlab-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/csv_data/batchload' 
     ```
 
     **Save this code in a text editor or a notes application, we will be using it in just a bit.**
 
-4.  We are going to alter this a bit for our data load. First, we need to be in either the **OCI Cloud Shell** or a local computer with cURL installed. Every OCI account has Cloud Shell so we would encourage using that. 
+4.  We are going to alter this a bit for our data load. First, we need to be in either the **Oracle Cloud Infrastructure Cloud Shell** or a local computer with cURL installed. Every Oracle Cloud Infrastructure account has Cloud Shell so we would encourage using that. 
 
-    To use the Cloud Shell, after logging into your OCI account, click the Cloud Shell icon in the upper right of the OCI banner:
+    To use the Cloud Shell, after logging into your Oracle Cloud Infrastructure account, click the Cloud Shell icon in the upper right of the Oracle Cloud Infrastructure banner:
 
-    ![Cloud Shell on OCI Banner](./images/ld-5.png)
+    ![Cloud Shell on Oracle Cloud Infrastructure Banner](./images/ld-5.png)
 
     The Cloud Shell will open on the lower part of the web browser:
 
     ![Cloud Shell on bottom of browser](./images/ld-6.png)
 
-    We will be using the OCI Cloud Shell for examples in this lab going forward.
+    We will be using the Oracle Cloud Infrastructure Cloud Shell for examples in this lab going forward.
 
 5. Time to get ready for the data load. To start, we need to download the csv file. Using the Cloud Shell, enter the following command:
 
@@ -72,8 +80,9 @@ Estimated Lab Time: 10 minutes
 
     ```
     curl --location --request POST \
+    --header "Content-Type: <CONTENT_TYPE>" \
     --data-binary @<FILE_NAME> \
-    'https://coolrestlab-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/csv_data/' 
+    'https://coolrestlab-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/csv_data/batchload' 
     ```
 
     Let's add a few modifications. First, we can add **--write-out '%{time_total}'** so we can see exactly how long this data load took. 
@@ -107,7 +116,7 @@ Estimated Lab Time: 10 minutes
     -H "Content-Type:text/csv" --user "admin:PASSWORD"
     ```
 
-    Finally, we need to add the URL we copied previously. We will be appending **batchload?batchRows=5000&errorsMax=20** to indicate that this is a batch load, we want to load them in groups of 5000, and to stop running if we hit 20 errors:
+    Finally, we need to **add the URL we copied previously**. We will be replacing **batchload** with **batchload?batchRows=5000&errorsMax=20** to indicate that this is a batch load, we want to load them in groups of 5000, and to stop running if we hit 20 errors:
 
     ```
     curl --write-out '%{time_total}' -X POST --data-binary "@2M.csv" \
@@ -117,11 +126,11 @@ Estimated Lab Time: 10 minutes
 
     There it is, the final cURL command we will use to load the data into the table. Remember to replace **PASSWORD** with your password you used when we first created the user in Lab 1.
 
-7. Using the Cloud Console, paste your constructed cURL command at the prompt.
+7. Using the **Cloud Shell**, **paste** your constructed cURL at the **command prompt**.
 
     ![running the command in cloud shell](./images/ld-7.png)
 
-8. When the command is finished, you should see that all 2,097,148 records were inserted into the table.
+8. When the **command is finished**, you should see that all **2,097,148 records were inserted** into the table.
 
     ```
     curl --write-out '%{time_total}' -X POST --data-binary "@2M.csv" \
@@ -137,7 +146,7 @@ Estimated Lab Time: 10 minutes
         
     the 29.447 is the result of the **--write-out '%{time_total}'** command we added indicating it took about 30 seconds to load 2 million records.
 
-9. Back in the SQL worksheet, we can verify the load by running the following SQL. In the worksheet, enter the following statement:
+9. Back in the **SQL worksheet**, we can verify the load by running the following SQL. **In the worksheet**, enter the following statement:
 
     ````
     <copy>select count(*) from csv_data;</copy>
@@ -151,7 +160,7 @@ Estimated Lab Time: 10 minutes
 
     ![SQL results](./images/ld-9.png)
 
-10. Business logic is up next. We will be adding a function to our database schema to simulate some business logic. 
+10. **Business logic** is up next. We will be **adding a function** to our database schema to simulate some business logic. 
 
     The following function returns a count of all the rows that match the input provided to col2 in the table:
 

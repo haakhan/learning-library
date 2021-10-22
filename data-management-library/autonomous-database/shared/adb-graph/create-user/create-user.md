@@ -5,7 +5,7 @@
 
 In this lab you will create a database user with the appropriate roles and privileges required for using the graph capabilities of the Autonomous Database.
 
-Estimated Lab Time: 5 minutes. 
+Estimated Time: 5 minutes. 
 
 ### Objectives
 
@@ -19,33 +19,32 @@ Learn how to
 
 ## Task 1: Connect to the Database Actions for your Autonomous Database instance
 
-**Note: Right-click on a screenshot to open it in a new tab or window to view it in full resolution.**
 
 1. Open the service detail page for your Autonomous Database instance in the OCI console. 
 
-   ![](images/adw-details-page.png " ")
+   ![ALT text is not available for this image](images/adw-details-page.png " ")
 
 2. Click on the Tools tab and then the Database Actions link to open it. 
    
-   ![](images/adb-tools-tab-db-actions.png " ")
+   ![ALT text is not available for this image](images/adb-tools-tab-dbactions.png " ")
 
 ## Task 2: Create the web access and graph-enabled user
 
 1. Login as the ADMIN user for your Autonomous Database instance. 
 
-    ![](./images/login.png " ")
+    ![ALT text is not available for this image](./images/login.png " ")
 
 2. Click on the `Database Users` tile under `Administration`. 
    
-   ![](./images/db-actions-users.png " ")
+   ![ALT text is not available for this image](./images/db-actions-users.png " ")
    
 3. Click on the `+ Create User` icon:
 
-    ![](./images/db-actions-create-user.png " ")
+    ![ALT text is not available for this image](./images/db-actions-create-user.png " ")
 
 4. Enter the required details, i.e. user name and password. Turn on the **Graph Enable** and **Web Access** radio buttons. And select a quota, e.g. `UMLIMITED`,  to allocate on the `DATA` tablespace.
    
-   ![](images/db-actions-create-graph-user.png " ")
+   ![ALT text is not available for this image](images/db-actions-create-graph-user.png " ")
 
 **Note: Please do not Graph Enable the ADMIN user and do not login to Graph Studio as the ADMIN user.**
 
@@ -53,9 +52,9 @@ Learn how to
 
    The newly created user will now be listed.
 
-   ![](./images/db-actions-user-created.png " ")   
+   ![ALT text is not available for this image](./images/db-actions-user-created.png " ")   
 
-   **Note: The UI steps above can be instead done by executing the following sql commands listed below when logged in as ADMIN. So step 2 below is not necessary. It shows an alternative way of creating and enabling GRAPHUSER.**
+   **Note:** *The UI steps above can be instead done by executing the following sql commands listed below when logged in as ADMIN. So step 5 below is not necessary. It shows an alternate way of creating and enabling GRAPHUSER.*
    
 5. Allocate a desired table space quota to the newly created user. Open the SQL page and issue the alter command.  
    For example, 
@@ -80,11 +79,11 @@ Learn how to
 
    The screenshots below show an example of executing the ALTER USER statement.
 
-   ![](./images/alter-user.png " ")  
+   ![ALT text is not available for this image](./images/alter-user.png " ")  
 
-   ![](./images/run-sql.png " ")  
+   ![ALT text is not available for this image](./images/run-sql.png " ")  
 
-   ![](./images/user-altered.png " ") 
+   ![ALT text is not available for this image](./images/user-altered.png " ") 
  
  6. You can similarly use SQL statements to verify that GRAPHUSER has been set up correctly.  
     You must be logged into Data Actions SQL as `ADMIN`.  
@@ -99,15 +98,15 @@ Learn how to
     ```
     The results should be the same as in the screenshots below.
 
-    ![](images/graphuser-role-privs.png " ")
+    ![ALT text is not available for this image](images/graphuser-role-privs.png " ")
 
-    ![](images/graphuser-proxy-grant.png " ")
+    ![ALT text is not available for this image](images/graphuser-proxy-grant.png " ")
 
 
 
-Please *proceed to the next lab* to learn how to create and analyze graphs in ADB.
+Please **proceed to the next lab** to learn how to create and analyze graphs in ADB.
 
 ## Acknowledgements
 * **Author** - Jayant Sharma, Product Development
-* **Last Updated By/Date** - Jayant Sharma, May 2021
+* **Last Updated By/Date** - Jayant Sharma, September 2021
   

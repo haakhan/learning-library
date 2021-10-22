@@ -1,4 +1,4 @@
-# Perform a Failover
+# How to Perform Database Failover
 
 ## Introduction
 In this lab, we will be performing a failover operation.
@@ -119,7 +119,7 @@ A failover means that the old primary, in our case the DB in AD2, will be disabl
 
     ![](./images/failover-15.png)
 
-We can conclude that the Database in AD2 is the primary database and the database in AD1 is the Standby database.
+We can conclude that the Database in AD1 is the primary database and the database in AD2 is the Standby database.
 
 You have now successfully performed a failover. You may now [proceed to the next lab](#next).
 
@@ -128,4 +128,4 @@ You have now successfully performed a failover. You may now [proceed to the next
 
 - **Author** - Pieter Van Puymbroeck, Product Manager Data Guard, Active Data Guard and Flashback Technologies
 - **Contributors** - Robert Pastijn, Database Product Management
-- **Last Updated By/Date** -  Tom McGinn, July 2021
+- **Last Updated By/Date** -  Suraj Ramesh, September 2021

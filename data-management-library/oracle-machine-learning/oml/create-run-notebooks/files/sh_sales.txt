@@ -1,1 +1,3 @@
 This is the image of the sql query to fetch data from the SALES table in the SH schema. The sql query is select * from SH.SALES. 
+
+Copyright © 2017, 2021 Oracle and/or its affiliates. All rights reserved.

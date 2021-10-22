@@ -17,13 +17,12 @@ You should have a text editor, where you can paste the commands and URLs and mod
 
 ## Task 1: Modify the bobs-books-comp.yaml file
 
-1. We have an application configuration file, *bobs-books-comp.yaml*. In Lab 2, we downloaded the source code. To change to the *bobs-books* directory, copy the following command and paste it in the *Cloud Shell*.
+1. We have an application configuration file, *bobs-books-comp.yaml*. In Lab 2, we downloaded the application yaml files.  To change to the Home directory which contains the yaml file, copy the following command and paste it in the *Cloud Shell*.
 
     ```bash
-    <copy>cd ~/verrazzano/examples/bobs-books/</copy>
+    <copy>cd ~</copy>
     ```
 
-    ![Change Directory](images/1.png)
 
 2. In this location, we have the configuration file for the bobs-books application. As part of Lab 5, we modified bobbys-helidon-stock-application and built a new Docker image for that component. In Lab 6, we pushed that Docker image to the Oracle Cloud Container Registry repository. Now, in this lab, we will modify the *bobs-books-comp.yaml* file so that it takes the new updated Docker image from the Oracle Cloud Container Registry repository. To modify the *bobs-books-comp.yaml* file, copy the following command and paste it in the *Cloud Shell*.
 

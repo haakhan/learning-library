@@ -41,12 +41,10 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
 2. Setup the Oracle jdbc driver as user `oracle`.
 
     ```
-    <copy>
-    mkdir -p /u01/app/jars/oracle_jdbc
+    <copy>mkdir -p /u01/app/jars/oracle_jdbc
     cd /u01/app/jars/oracle_jdbc
     cp /home/oracle/Downloads/ojdbc8-full.tar.gz /u01/app/jars/oracle_jdbc/
-    tar -xvzf ojdbc8-full.tar.gz
-    </copy>
+    tar -xvzf ojdbc8-full.tar.gz</copy>
     ```
 
  2. Login to ggsci (GG command line interface)
@@ -57,10 +55,8 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
 3. Add the replicat with the below commands by logging into ggsci prompt
 
     ```
-    <copy>
-    add replicat rjdbc, exttrail ./dirdat/eb
-    edit param rjdbc
-    </copy>
+    <copy>add replicat rjdbc, exttrail ./dirdat/eb
+    edit param rjdbc</copy>
     ```
 
 4. Add the below parameters in the parameter file :
@@ -91,18 +87,15 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
 5. Now edit the `dirprm/jdbc_oracle_with_mdp.props` file with the below parameters. You can use sample property files found in `$GGBD_HOME/AdapterExamples/big-data/jdbc`.
 
     ```
-    <copy>
-    exit
+    <copy>exit
     cd dirprm
-    vi jdbc_oracle_with_mdp.props
-    </copy>
+    vi jdbc_oracle_with_mdp.props</copy>
     ```
 
 6. Verify and use the parameters.
 
     ```
-    <copy>
-    gg.handlerlist=jdbcwriter
+    <copy>gg.handlerlist=jdbcwriter
     gg.handler.jdbcwriter.type=jdbc
 
     #Handler properties for Oracle database target with JDBC Metadata provider
@@ -124,8 +117,7 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
     gg.log=log4j
     gg.log.level=INFO
     gg.report.time=30sec
-    javawriter.bootoptions=-Xmx512m -Xms32m -Djava.class.path=.:ggjava/ggjava.jar:./dirprm
-    </copy>
+    javawriter.bootoptions=-Xmx512m -Xms32m -Djava.class.path=.:ggjava/ggjava.jar:./dirprm</copy>
     ```
 
 5. Now Goto ggsci command prompt and start the replicat.
@@ -137,9 +129,7 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
 6. Login to the database `cdb1`
 
     ```
-    <copy>
-    . oraenv
-    </copy>
+    <copy>. oraenv</copy>
     ORACLE_SID = [cdb1]
     ```
     ```
@@ -149,14 +139,12 @@ Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH 
 7. Now run the below script to get the tables counts
 
     ```
-    <copy>
-    select 'employees       table -> '|| count(1) as Target from employees.employees UNION ALL
+    <copy>select 'employees       table -> '|| count(1) as Target from employees.employees UNION ALL
     select 'departments     table -> '|| count(1) from employees.departments UNION ALL
     select 'dept_manager    table -> '|| count(1) from employees.dept_manager UNION ALL
     select 'dept_emp        table -> '|| count(1) from employees.dept_emp UNION ALL
     select 'titles          table -> '|| count(1) from employees.titles UNION ALL
-    select 'salaries        table -> '|| count(1) from employees.salaries;
-    </copy>
+    select 'salaries        table -> '|| count(1) from employees.salaries;</copy>
     ```
 
 ## Learn More

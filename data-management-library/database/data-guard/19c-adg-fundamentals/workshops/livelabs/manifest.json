@@ -1,5 +1,5 @@
 {
-    "workshoptitle": "19c Active Data Guard Fundamentals on DBCS",
+    "workshoptitle": "Protect Your Data with Oracle Active Data Guard",
     "help": "livelabs-help-db_us@oracle.com",
     "tutorials": [
         {
@@ -17,43 +17,43 @@
             "title": "Lab 1: Connecting to the Database ",
             "description":"Connection to the databases",
             "type": "livelabs",
-            "filename":"../../connect-db/connect-db.md"
+            "filename":"../../connect-db/connect-db-cs.md"
         },
         {
             "title": "Lab 2: Performing a switchover",
             "description":"Perform a switchover",
             "publisheddate": "26/02/2021",
-            "filename":"../../switchover/switchover.md"
+            "filename":"../../switchover/switchover-cs.md"
         },
         {
             "title": "Lab 3: Perform a Failover ",
             "description":"Perform a Failover",
             "publisheddate": "26/02/2021",
-            "filename":"../../failover/failover.md"
+            "filename":"../../failover/failover-cs.md"
         },
         {
             "title": "Lab 4: Enable Active Data Guard DML Redirection ",
             "description":"Enable Active Data Guard DML Redirection",
             "publisheddate": "26/02/2021",
-            "filename":"../../dml-redirection/dml-redirection.md"
+            "filename":"../../dml-redirection/dml-redirection-cs.md"
         },
         {
             "title": "Lab 5: Automatic block media recovery",
             "description":"Learn about Automatic block media recovery ",
             "publisheddate": "26/02/2021",
-            "filename":"../../media-recovery/media-recovery.md"
+            "filename":"../../media-recovery/media-recovery-cs.md"
         },
         {
             "title": "Lab 6: Restore point propagation",
             "description":"Learn about Restore point propagation ",
             "publisheddate": "26/02/2021",
-            "filename":"../../restore-point-propagation/restore-point-propagation.md"
+            "filename":"../../restore-point-propagation/restore-point-propagation-cs.md"
         },
         {
             "title": "Lab 7: Change the SYS password",
             "description":"Change the SYS password",
             "publisheddate": "26/02/2021",
-            "filename":"../../sys-passwords/sys-passwords.md"
+            "filename":"../../sys-passwords/sys-passwords-cs.md"
         },
         {
             "title": "Appendix 1: Creation of the primary Database",

@@ -117,5 +117,5 @@ We will now leave it up to your imagination to analyse the data sets that have b
 *Congratulations! You have successfully completed the lab*.
 
 ## Acknowledgements
-- **Author** - Yash Lamba, Cloud Native Solutions Architect, January 2021
+- **Author** - Yash Lamba, Cloud Native Solutions Architect, Massimo Castelli, Senior Director Product Management, January 2021
 - **Last Updated By/Date** - Yash Lamba, May 2021

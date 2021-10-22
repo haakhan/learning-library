@@ -19,21 +19,46 @@ In this lab, you will:
 
 In order to complete this lab, you should have completed the preceding lab and have both an Extract and Replicat running.
 
-## Task 1: Using the Performance Metrics Server
+## Task 1: Perform Inserts to the Source Database
 
-1.  In the GoldenGate deployment console, click **Performance Metrics Server**.
+1.  Return to the Oracle Cloud Console and use the navigation menu (hamburger icon) to navigate back to **Oracle Database**, **Autonomous Transaction Processing**, and then **SourceATP**.
+
+2.  On the Source ATP Details page, click **Tools**, and then **Database Actions**.
+
+3.  Use the Source ATP database credentials in the Workshop details to log in to Database Actions, and then click **SQL**.
+
+4.  Enter the following inserts, and then click **Run Script**:
+
+    ```
+    <copy>Insert into SRC_OCIGGLL.SRC_CITY (CITY_ID,CITY,REGION_ID,POPULATION) values (1000,'Houston',20,743113);
+Insert into SRC_OCIGGLL.SRC_CITY (CITY_ID,CITY,REGION_ID,POPULATION) values (1001,'Dallas',20,822416);
+Insert into SRC_OCIGGLL.SRC_CITY (CITY_ID,CITY,REGION_ID,POPULATION) values (1002,'San Francisco',21,157574);
+Insert into SRC_OCIGGLL.SRC_CITY (CITY_ID,CITY,REGION_ID,POPULATION) values (1003,'Los Angeles',21,743878);
+Insert into SRC_OCIGGLL.SRC_CITY (CITY_ID,CITY,REGION_ID,POPULATION) values (1004,'San Diego',21,840689);
+Insert into SRC_OCIGGLL.SRC_CITY (CITY_ID,CITY,REGION_ID,POPULATION) values (1005,'Chicago',23,616472);
+Insert into SRC_OCIGGLL.SRC_CITY (CITY_ID,CITY,REGION_ID,POPULATION) values (1006,'Memphis',23,580075);
+Insert into SRC_OCIGGLL.SRC_CITY (CITY_ID,CITY,REGION_ID,POPULATION) values (1007,'New York City',22,124434);
+Insert into SRC_OCIGGLL.SRC_CITY (CITY_ID,CITY,REGION_ID,POPULATION) values (1008,'Boston',22,275581);
+Insert into SRC_OCIGGLL.SRC_CITY (CITY_ID,CITY,REGION_ID,POPULATION) values (1009,'Washington D.C.',22,688002);</copy>
+    ```
+
+5.  In the OCI GoldenGate Deployment Console, click the **Extract name (UAEXT)**, and then click **Statistics**. Verify that **SRC\_OCIGGLL.SRC\_CITY** is listed with 10 inserts.
+
+    ![](images/04-17.png " ")
+
+6.  Go back to the Overview screen, click the **Replicat name (REP)**, and then click **Statistics**. Verify that **SRC\_OCIGGLL.SRC\_CITY** is listed with 10 inserts.
+
+    ![](images/01-06-rep-statistics.png " ")
+
+## Task 2: Using the Performance Metrics Server
+
+1.  In the GoldenGate deployment console, click **Performance Metrics Server**, and then click **EXT**.
 
     ![](images/05-01-perf-serv.png)
 
-    ![](images/05-01-perf-serv-b.png)
+    > **Note:** *You can also view performance details for the Administration, Distribution, and Receiver Servers, as well as any processes created.*
 
-    Note: You can also view performance details for the Administration, Distribution, and Receiver Servers, as well as any processes created.
-
-2.  Click the Extract to view its performance details.
-
-    ![](images/05-02-ext.png)
-
-3.  Click **Database Statistics**.
+2.  Click **Database Statistics**.
 
     ![](images/05-03-db-stats.png)
 
@@ -41,7 +66,7 @@ In order to complete this lab, you should have completed the preceding lab and h
 
 4.  Repeat steps 1-3 to view a snapshot of the Replicat's (named **Rep** in our lab) Database Statistics.
 
-## Task 2: Viewing GoldenGate Metrics in the OCI Console
+## Task 3: Viewing GoldenGate Metrics in the OCI Console
 
 1.  On the OCI GoldenGate Deployments page, select **GGSDeployment**.
 
@@ -63,4 +88,3 @@ In this lab, you learned to monitor performance in the OCI GoldenGate Deployment
 * **Author** - Jenny Chan, Consulting User Assistance Developer, Database User Assistance
 * **Contributors** -  Denis Gray, Database Product Management
 * **Last Updated By/Date** - March 2021
-

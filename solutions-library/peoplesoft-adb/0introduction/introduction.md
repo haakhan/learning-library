@@ -6,7 +6,7 @@ This hands-on lab provides users with step-by-step instructions for migrating a 
 
 
 
-Estimated Lab Time: 10 hours
+Estimated Time: 10 hours
 
 Notes:
 - The workshop is quite detailed and technical. PLEASE take your time and DO NOT skip any steps.
@@ -14,12 +14,9 @@ Notes:
 - IP addresses and URLs in the screenshots in this workshop may differ from what you use in the labs as these are dynamically generated.
 - The user interface for the Oracle Cloud Infrastructure is constantly evolving. As a result the screens depicted in this tutorial may not exactly coincide with the current release. This tutorial is routinely updated for functional changes of Oracle Cloud Infrastructure, at which time any differences in the user interface will be reconciled.
 
-
-
-
 ### Objectives
 
-In Labs 1-15, you will :
+In Labs 1-11, you will :
 * Create an Oracle Autonomous Database shared 
 * Create a Service Request for PeopleSoft on ADB-S
 * ADB connectivity test for PeopleSoft On Premise
@@ -32,17 +29,15 @@ In Labs 1-15, you will :
 * Validating Peoplesoft Schema Objects on ADB-S
 * PeopleSoft Middle Tier Setup & Configuration and Test Peoplesoft login in OCI
 
-
 ### Prerequisites
 * An OCI tenancy with administrator user access. 
 * My Oracle Support (MOS) credentials. Please make sure that you can successfully login to [Oracle Support](https://support.oracle.com). 
-* PeopleSoft Source Database already created on an on-premise system with the following server specifications: Oracle Linux 7, PeopleSoft Campus Solution 9.2 PI 20 with PeopleTools 8.58.10 and Oracle Database version on 19.10. (Note: Peoplesoft Marketplcae images for HR system,Financials,Campus Solution etc can also be used in place of an on-premise PeopleSoft application,Refer to link [here](https://docs.oracle.com/en/applications/peoplesoft/peoplesoft-common/tutorial-deploy-demo-image/index.html#before_you_begin) for creation of new environment on OCI) 
+* PeopleSoft Source Database already created on an on-premise system with the following server specifications: Oracle Linux 7, PeopleSoft Campus Solution 9.2 PI 20 with PeopleTools 8.58.10 and Oracle Database version on 19.10. (Note: Peoplesoft Marketplcae images for HR system, Financials, Campus Solution etc can also be used in place of an on-premise PeopleSoft application,Refer to link [here](https://docs.oracle.com/en/applications/peoplesoft/peoplesoft-common/tutorial-deploy-demo-image/index.html#before_you_begin) for creation of new environment on OCI) 
 * The following should be installed:
     * A different web browser (i.e. Chrome) to connect to OCI web console. 
     * If you have a windows machine, please download:
         * Git Bash [https://git-scm.com/download/win](https://git-scm.com/download/win)
         * Putty [https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). In the Package Files section, click on an installer depending on 32/64 bits.
-
 
 ## Appendix
 

@@ -124,5 +124,5 @@ Estimated Lab Time: 30 minutes
 You may now proceed to Lab 2.
 
 ## Acknowledgements
-- **Author** - Yash Lamba, Cloud Native Solutions Architect, January 2021
+- **Author** - Yash Lamba, Cloud Native Solutions Architect, Massimo Castelli, Senior Director Product Management, January 2021
 - **Last Updated By/Date** - Yash Lamba, May 2021

@@ -15,7 +15,7 @@
         {
             "title": "Lab 2: Provision an Autonomous Database",
             "description": "Provision Autonomous Database",
-            "filename": "./../../adb-provision/adb-provisio-livelabs.md"
+            "filename": "./../../adb-provision/adb-provision-conditional.md"
         },
         {
             "title": "Lab 3: Work with Free Sample Data Sets",

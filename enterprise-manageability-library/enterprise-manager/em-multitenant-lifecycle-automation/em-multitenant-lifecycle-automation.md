@@ -24,9 +24,7 @@ The objective of this workshop is to highlight Oracle Enterprise Manager 13c Lif
 
 ### Prerequisites
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH (*Free-tier* and *Paid Tenants* only)
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
     - Lab: Initialize Environment
@@ -35,7 +33,7 @@ The objective of this workshop is to highlight Oracle Enterprise Manager 13c Lif
 
 ## Task 1: Create Pluggable Database (PDB)
 
-1. On the *Firefox* window on the right preloaded with *Enterprise Manager*, click on the *Username* field and select the saved credentials to login. These credentials have been saved within *Firefox* and are provided below for reference
+1. On the browser window on the right preloaded with *Enterprise Manager*, if not already logged in, click on the *Username* field and login with the credentials provided below.
 
     ```
     Username: <copy>sysman</copy>

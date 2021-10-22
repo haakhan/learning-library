@@ -19,7 +19,7 @@ In this lab, you will learn how to create a GitHub Account and associate it with
 * Access to the LiveLabs Workshop Management System
 
 ## Task 1: Submit a workshop to the LiveLabs Workshop Management System
-Before getting started, we recommend you submit your workshop to the LWMS. 	Submitting a workshop tells the Oracle ecosystem you are working on a workshop and submits your idea to the Workshop Council.  We urge you not to delay this step.  There are hundreds of workshops already, this step is important to helps us preserve the quality and integrity of the workshop catalog
+Before getting started, we recommend you submit your workshop to the WMS. 	Submitting a workshop tells the Oracle ecosystem you are working on a workshop and submits your idea to the Workshop Council.  We urge you not to delay this step.  There are hundreds of workshops already, this step is important to helps us preserve the quality and integrity of the workshop catalog
 
 1.  Login to Corporate VPN
 2.  Go to http://bit.ly/oraclelivelabs.  This is only available to Oracle Employees at this time.
@@ -29,6 +29,8 @@ Before getting started, we recommend you submit your workshop to the LWMS. 	Subm
 6.  We recommend you don't start working on your workshop until your workshop has been approved by a council member.
 
 Once your workshop is submitted, it will be sent to the workshop council.  The workshop council will approve your workshop or ask for more details.  Once approved, you will be entered into the workflow and given additional steps to progress through to production.
+
+**Note: For Developers/QA/PM: To create and publish a Custom image of the on-premises product to OCI Market place, refer [Creating Compute Images for Marketplace](https://oracle.github.io/learning-library/sample-livelabs-templates/create-labs/labs/workshops/compute/?lab=6-labs-setup-graphical-remote-desktop)**
 
 ## Task 2: Download and Install the latest version of Git (Optional Step)
   > > **Note:** For UA Developers, Oracle recommends the usage of the GitHub Desktop client because of its simple and user friendly user interface, and it is much easier than using the Git command line. Therefore, this is an optional Step.
@@ -130,7 +132,7 @@ To clone the forked repository:
 
   ![](./images/contribute-to-parent.png " ")
 
-You may now [proceed to the next lab](#next).
+This concludes this lab. You may now proceed to the next lab.
 
 ## Want to Learn More?
 
@@ -145,10 +147,8 @@ You may now [proceed to the next lab](#next).
     * Anuradha Chepuri, Principal User Assistance Developer, Oracle GoldenGate
 * **Contributors:**
     * Lauran Serhal, Principal User Assistance Developer, Oracle Database and Big Data User Assistance
-
-* **Reviewed by:**  
     * Aslam Khan, Senior User Assistance Manager, ODI, OGG, EDQ
     * Tom McGinn, Database and Database Cloud Service Senior Principal Product Manager, DB Development - Documentation
+    * Madhusudhan Rao, Principal Product Manager, Database
 
-
-* **Last Updated By/Date:** Madhusudhan Rao, February 2021
+* **Last Updated By/Date:** Anuradha Chepuri, October 2021

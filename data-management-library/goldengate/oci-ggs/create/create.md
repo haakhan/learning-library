@@ -2,12 +2,12 @@
 
 ## Introduction
 
-This lab walks you through the steps to create an Oracle Cloud Infrastructure GoldenGate Deployment.
+This lab walks you through the steps to create an Oracle Cloud Infrastructure GoldenGate deployment.
 
-Estimated Lab Time: 5 minutes
+Estimated time: 5 minutes
 
 ### About Oracle Cloud Infrastructure GoldenGate Deployments
-A Oracle Cloud Infrastructure GoldenGate deployment manages the resources it requires to function. The GoldenGate deployment also lets you access the GoldenGate deployment console, where you can access the OCI GoldenGate deployment console to create and manage Extracts and Replicats.
+A Oracle Cloud Infrastructure GoldenGate deployment manages the resources it requires to function. The GoldenGate deployment also lets you access the GoldenGate deployment console, where you can access the OCI GoldenGate deployment console to create and manage processes such as Extracts and Replicats.
 
 ### Objectives
 
@@ -21,47 +21,49 @@ In this lab, you will:
 
 This lab assumes that you completed all preceding labs.
 
-## Task 1: Create a Deployment
+## Task 1: Create a deployment
 
-*Note that the compartment names in the screenshots may differ from values that appear in your environment.*
+> **Note:** *Compartment names in the screenshots may differ from values that appear in your environment.*
 
 1.  Open the **Navigation Menu**, navigate to **Oracle Database**, and select **GoldenGate**.
 
-    ![Select GoldenGate from Oracle Database](images/database-goldengate.png " ")
+    ![](images/database-goldengate.png " ")
 
-    You're brought to the **Deployments** page.
+2.  On the GoldenGate **Overview** page, click **Deployments**.
 
-    ![GoldenGate Deployments page](images/01-01-02a.png "Deployments page")
+    ![](images/01-02-ggs-overview.png " ")
 
-2.  If you're prompted to select a compartment, select the compartment associated to your LiveLab workshop. For example, if your LiveLab username is LL1234-user, select the compartment **LL1234-COMPARTMENT**.
+3.  You may need to select a compartment. Under List Scope, from the Comparment dropdown, expand the root compartment, and then select the compartment associated with your username. For example, if your LiveLab username is LL1234-user, expand root, and then select the compartment **LL1234-COMPARTMENT**.
 
-2.  On the Deployments page, click **Create Deployment**.
+4.  On the Deployments page, click **Create Deployment**.
 
-    ![Click Create Deployment](images/01-02-01.png "Create a deployment")
+    ![Click Create Deployment](images/01-02-01.png "")
 
-3.  In the Create Deployment panel, enter **GGSDeployment** for Name.
+5.  In the Create Deployment panel, enter **GGSDeployment** for Name.
 
-4.  From the Compartment dropdown, select a compartment.
+6.  From the Compartment dropdown, select a compartment.
 
-5.  For OCPU Count, enter **2**.
+7.  For OCPU Count, enter **1**.
 
-6.  For Subnet, select **Public Subnet**.
+8.  For Subnet, select a subnet. If you're using the workshop environment, select **&lt;user&gt;pubsubnt**.
 
-7.  For License type, select **Bring You Own License (BYOL)**.
+9.  For License type, select **Bring You Own License (BYOL)**.
 
-8.  Click **Show Advanced Options**, and then select **Create Public Endpoint**.
+10. Click **Show Advanced Options**, and then select **Create Public Endpoint**.
 
-    ![Create GoldenGate Deployment](images/01-02-02_create_deployment_panel.png "Create GoldenGate Deployment")
+    ![Create GoldenGate Deployment](images/01-09.png " ")
 
-9.  Click **Next**.
+11. Click **Next**.
 
-10. For GoldenGate Instance Name, enter **ogginstance**.
+12. For GoldenGate Instance Name, enter **ggsinstance**.
 
-11. For Administrator Username, enter **oggadmin**.
+13. For Administrator Username, enter **oggadmin**.
 
-12. For Administrator Password, enter a password. Take note of this password.
+14. For Administrator Password, enter a password. Take note of this password.
 
-13. Click **Create**.
+15. Click **Create**.
+
+    ![](images/02-13.png " ")
 
 You're brought to the Deployment Details page. It takes a few minutes for the deployment to be created. Its status will change from CREATING to ACTIVE when it is ready for you to use.
 
@@ -77,21 +79,21 @@ On the Deployment Details page, you can:
 * Review the deployment resource information
 * Add tags
 
-    ![Deployment Details page](images/01-03-gg_deployment_details.png "GoldenGate Deployment details")
+    ![Deployment Details page](images/02-01-deployment-details.png " ")
 
 ## Task 3: Launch the GoldenGate Deployment Console
 
 1. When the deployment is active, click **Launch Console**.
 
-    ![Launch Console](images/04-01-ggs-launchconsole.png)
+    ![Launch Console](images/03-01.png " ")
 
 2. To log in to the GoldenGate deployment console, enter **oggadmin** for User Name and the password you provided above, and then click **Sign In**.
 
-    ![GoldenGate Deployment Console](images/04-02-ggs-deploymentconsole-signin.png)
+    ![GoldenGate Deployment Console](images/02-02.png " ")
 
-After you log in successfully, you're brought to the GoldenGate deployment console home page. Here, you can access the GoldenGate Administration, Performance Metrics, Distribution, and Receiver Servers, as well as add Extracts and Replicats for your data replication tasks.
+After you log in, you're brought to the GoldenGate deployment console home page. Here, you can access the GoldenGate Administration, Performance Metrics, Distribution, and Receiver Services, as well as add Extracts and Replicats for your data replication tasks.
 
-In this lab, you created an OCI Deployment and reviewed its Deployment details. You can now proceed to the next [lab](#next).
+In this lab, you created an OCI Deployment, reviewed its Deployment details, and launched the Deployment Console. You may now **proceed to the next lab**.
 
 ## Learn More
 
@@ -100,4 +102,4 @@ In this lab, you created an OCI Deployment and reviewed its Deployment details. 
 ## Acknowledgements
 * **Author** - Jenny Chan, Consulting User Assistance Developer, Database User Assistance
 * **Contributors** -  Denis Gray, Database Product Management
-* **Last Updated By/Date** - Jenny Chan, May 2021
+* **Last Updated By/Date** - Jenny Chan, October 2021

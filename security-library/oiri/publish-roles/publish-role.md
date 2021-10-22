@@ -12,18 +12,16 @@ In this lab, you will:
 * Publish roles from OIRI to OIG
 
 ### Prerequisites
-
-* A Free Tier, Paid or LiveLabs Oracle Cloud account
-* SSH Private Key to access the host via SSH
-* You have completed:
-      - Lab : Generate SSH Keys (Free-tier and Paid Tenants only)
-      - Lab : Prepare Setup (Free-tier and Paid Tenants only)
-      - Lab : Environment Setup
-      - Lab : Initialize Environment
-      - Lab : Deploy Kubernetes Cluster and Start OIG Server
-      - Lab : Deploy OIRI in the local Kubernetes Node
-      - Lab : Import Data into OIRI from OIG
-      - Lab : Role Mining
+This lab assumes you have:
+- A Free Tier, Paid or LiveLabs Oracle Cloud account
+- You have completed:
+    - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
+    - Lab: Environment Setup
+    - Lab: Initialize Environment
+    - Lab: Deploy Kubernetes Cluster and Start OIG Server
+    - Lab: Deploy OIRI in the local Kubernetes Node
+    - Lab: Import Data into OIRI from OIG
+    - Lab: Role Mining
 
 ## Task 1: Publish a candidate role
 

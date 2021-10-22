@@ -1,5 +1,5 @@
 {
-  "workshoptitle": "Oracle Converged Database With Machine Learning",
+  "workshoptitle": "Predictive Analytics with Oracle Machine Learning & Converged Database",
   "help": "livelabs-help-db_us@oracle.com",
   "tutorials": [
     {
@@ -33,12 +33,12 @@
       "filename": "../../regression/regression.md"
     },
     {
-      "title": "Lab 5: MBA",
+      "title": "Lab 4: MBA",
       "description": "MBA",
       "filename": "../../mba/mba.md"
     },
     {
-      "title": "Lab 6: Clustering",
+      "title": "Lab 5: Clustering",
       "description": "Clustering",
       "filename": "../../clustering/clustering.md"
     },

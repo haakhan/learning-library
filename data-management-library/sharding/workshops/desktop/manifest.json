@@ -13,29 +13,19 @@
       "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/remote-desktop/using-novnc-remote-desktop.md"
     },
     {
-      "title": "Initialize Environment",
+      "title": "Lab 1: Initialize Environment",
       "description": "Initialize Environment",
       "filename": "../../initialize-environment/initialize-environment.md"
     },
     {
-      "title": "About Eshop",
+      "title": "Lab 2: Building Applications with Oracle Sharding",
       "description": "About Eshop",
       "filename": "../../eshop/eshop.md"
     },
     {
-      "title": "Exploring Sharding Topology",
+      "title": "Lab 3: Exploring Sharding Topology",
       "description": "Exploring Sharding Topology",
       "filename": "../../topology/topology.md"
-    },
-    {
-      "title": "Eshop Application Schema & Code Snippet (read-only)",
-      "description": "Eshop App schema & Code Snippet",
-      "filename": "../../appschema/appschema.md"
-    },
-    {
-      "title": "Application Queries on Sharded Database",
-      "description": "Application Queries on sharding Database",
-      "filename": "../../appqueries/appqueries.md"
     },
     {
       "title": "Need Help?",

@@ -2,25 +2,25 @@
 
 ## About this Workshop
 
-In this workshop, you will provision a 21c autonomous database instance, manage blockchain tables and rows in a blockchain table. Later, work with signatures in blockchain table in the database. Then import a simple web application using Application Express (APEX) to see how to manage the rows, verify the rows and work with Signatures for Blockchain Table from a compute instance.
+In this workshop, you will provision an Oracle Autonomous Database instance, manage blockchain tables and rows in a blockchain table. Then import a simple web application using Application Express (APEX) to see how to manage the rows, verify the rows without the signature in the blockchain table. Finally, you will provision and connect to the compute instance, install and deploy Node.js application in it to sign a row in the blockchain table.
 
-Estimated Time: 1 hour, 15 minutes
+Estimated Workshop Time: 1 hour, 15 minutes
 
 ### Objectives
 
 In this workshop, you will:
 
-* Generate SSH keys
-* Provision an Oracle Autonomous Database 21c Instance, a Compute Instance and setup the environment
-* Manage Blockchain tables and rows in a Blockchain table
+* Provision an Oracle Autonomous Database Instance
+* Create and manage Blockchain tables and rows in a Blockchain table
 * Import a web application using Application Express (APEX) and test the blockchain tables functionality in the application
+* Generate SSH keys
 * Install and deploy Node.js application in compute instance to sign a row in Blockchain table
 
 ### Prerequisites
 
 This workshop assumes you have:
 
-* An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account
+* An Oracle Free Tier, Always Free, Paid, or LiveLabs Cloud Account
 
 You may now proceed to the next lab.
 
@@ -28,4 +28,4 @@ You may now proceed to the next lab.
 
 * **Author** - Anoosha Pilli, Database Product Manager
 * **Contributors** -  Anoosha Pilli, Database Product Management
-* **Last Updated By/Date** - Anoosha Pilli, July 2021
+* **Last Updated By/Date** - Anoosha Pilli, September 2021

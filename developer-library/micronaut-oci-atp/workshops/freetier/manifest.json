@@ -1,7 +1,7 @@
 {
     "workshoptitle": "Building Java Cloud Applications with Micronaut and OCI",
     "help": "livelabs-help-oci_us@oracle.com",
-	"tutorials": [
+    "tutorials": [
         {
             "title": "Introduction",
             "description": "Introduction to building Micronaut applications with Autonomous database.",
@@ -28,11 +28,11 @@
         {
             "title": "Lab 4: Build a GraalVM Native Image",
             "filename": "../../graalvm/nativeimage.md"
-        },        
+        },
         {
             "title": "Lab 5: Deploy to Oracle Cloud (Optional)",
             "filename": "../../deploy/deploy.md"
-        },        
+        },
         {
             "title": "Lab 6: Terminate and Destroy the OCI Resources (Optional)",
             "filename": "../../destroy/destroy.md"

@@ -13,13 +13,13 @@ Estimates Lab Time - 20 minutes
 
 ### Prerequisites
 
-* An Oracle Cloud paid account or free trial with credits. To sign up for a trial account with $300 in credits for 30 days, click [here](#previous).
+* An Oracle Cloud paid account or free trial with credits. To sign up for a trial account with $300 in credits for 30 days, click [Sign up](#previous).
 
 Note, you will not be able to complete this workshop with the 'Always Free' account. Make sure that you select the free trial account with credits.
 
 ## Task 1: Setup
     - Run `./setup-multicloud.sh` (takes ~20 minutes)
-    - Takes CLUSTER_NAME as an argument 
+    - Takes CLUSTER_NAME as an argument
     - This will install verrazzano, deploy workshop microservices, and provide URLs for the Frontend microservice and the consoles...
         - Grafana
         - Prometheus
@@ -28,11 +28,11 @@ Note, you will not be able to complete this workshop with the 'Always Free' acco
         - Rancher
         - KeyCloak
     - Example output...
-    
+
         `FrontEnd HOST is frontend-helidon-appconf.msdataworkshop.129.146.227.229.nip.io`
-        
+
         `    NAMESPACE         NAME                       CLASS    HOSTS                                                    ADDRESS          PORTS     AGE`
-    
+
             cattle-system       rancher                    <none>   rancher.default.158.101.26.111.nip.io                    158.101.26.111   80, 443   37h
             keycloak            keycloak                   <none>   keycloak.default.158.101.26.111.nip.io                   158.101.26.111   80, 443   37h
             verrazzano-system   verrazzano-ingress         <none>   verrazzano.default.158.101.26.111.nip.io                 158.101.26.111   80, 443   37h
@@ -42,7 +42,7 @@ Note, you will not be able to complete this workshop with the 'Always Free' acco
             verrazzano-system   vmi-system-prometheus      <none>   prometheus.vmi.system.default.158.101.26.111.nip.io      158.101.26.111   80, 443   37h
             verrazzano-system   vmi-system-prometheus-gw   <none>   prometheus-gw.vmi.system.default.158.101.26.111.nip.io   158.101.26.111   80, 443   37h
 
-## Task 2: Walkthrough of consoles...
+## Task 2: Walkthrough of consoles
 
 
 

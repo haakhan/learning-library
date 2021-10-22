@@ -25,13 +25,21 @@ This lab assumes you successfully completed all preceding labs.
 
 2.  From the navigation menu, under **Oracle Database**, select **GoldenGate**.
 
+    ![](images/01-01.png " ")
+
 3.  From the list of OCI GoldenGate deployments, select the deployment you created for this LiveLab.
 
 4.  In the Deployment Details page, next to **Console URL** click **Copy**.
 
+    ![](images/01-04.png " ")
+
 ## Task 2: Connect to the Admin Client
 
 1.  SSH into the Marketplace Oracle GoldenGate instance.
+
+    ```
+    <copy>ssh -i <private-SSH-key> opc@<ip-address></copy>
+    ```
 
 2.  Change directories to **/u01/app/ogg/bin**, and then start the Admin Client:
 
@@ -44,7 +52,7 @@ This lab assumes you successfully completed all preceding labs.
     ```
     <copy>connect <OCI-GoldenGate-deployment-url> as <OCI-GoldenGate-user> password <OCI-GoldenGate-password> !</copy>
     ```
-    ***Note:** The exclamation point (!) is very important. Without it, the command fails and returns an error.
+    > **Note:** *The exclamation point (!) is very important. Without it, the command fails and returns an error.*
 
 4.  After connecting successfully, you can run any of the following commands:
 
@@ -53,9 +61,9 @@ This lab assumes you successfully completed all preceding labs.
     <copy>info all</copy>
     ```
 
-    View statistics of your Replicat:
+    View statistics of your Extract:
     ```
-    <copy>view stats <replicat-name></copy>
+    <copy>stats <extract-name></copy>
     ```
 
     View the content of a ggserror log file:
@@ -74,4 +82,4 @@ This lab assumes you successfully completed all preceding labs.
 ## Acknowledgements
 * **Author** - Jenny Chan, Consulting User Assistance Developer, Database User Assistance
 * **Contributors** -  Julien Testut, Database Product Management
-* **Last Updated By/Date** - Jenny Chan, August 2021
+* **Last Updated By/Date** - Jenny Chan, September 2021

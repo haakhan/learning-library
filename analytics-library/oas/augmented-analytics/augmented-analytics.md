@@ -19,14 +19,12 @@ Advanced analytics functions such as forecasting, trend analysis and clustering 
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
     - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
     - Lab: Initialize Environment
 
-The following files downloaded in *"Lab: Initialize Environment"* are required to complete this lab.
+The following files <if type="external">referenced in [Lab: Initialize Environment](?lab=init-start-oas) should already be downloaded and staged as instructed, as they</if> <if type="desktop"> staged under *`/opt/oracle/stage`*</if> are required to complete this lab.
 - Attrition Training v3.xlsx
 - Employee_Analysis.dva
 
@@ -38,7 +36,7 @@ In this exercise we are going to import a data set containing a number of employ
 
 Once you have imported your data into Oracle Analytics, you begin with data profiling, and reviewing semantic recommendations in order to repair and enrich your data for further analysis. Next you will leverage an augmented analytics capability called *explain*. Explain is used to generate insights via a combination of natural language processing, descriptive statistics and predictive modeling techniques in order to better understand our data and obtain deeper insights, pre-analysis.
 
-1. From the browser session you started in *Lab: Initialize Environment*, go to the landing page, click on create button and select Project.
+1. From the browser session you started in [Lab: Initialize Environment](?lab=init-start-oas), go to the landing page, click on create button and select Project.
 
     ![](./images/hr1.png " ")
 
@@ -46,7 +44,7 @@ Once you have imported your data into Oracle Analytics, you begin with data prof
 
     ![](./images/hr2.png " ")
 
-3. Add the data set. From the staging area where you unzipped the downloaded artifacts in *Lab: Initialize Environment*, select *“Attrition Training v3.xlsx”*
+3. Add the data set. From <if type="external"> the staging area where you unpacked the downloaded artifacts as instructed in [Lab: Initialize Environment](?lab=init-start-oas)</if> <if type="desktop"> *`/opt/oracle/stage`*</if>, drag and drop, or browse and select the file *“Attrition Training v3.xlsx”*
 
     ![](./images/hr3.png " ")
 
@@ -237,7 +235,7 @@ Binary classification is a technique of classifying elements of a given dataset 
 
     ![](./images/hr2_13.png " ")
 
-14. Drag and drop, or browse and select the *“Employee_Analysis.dva”* file from the staging area where you unpacked the downloaded artifacts in *Lab: Initialize Environment*.
+14. Drag and drop, or browse and select the *“Employee_Analysis.dva”* file from <if type="external"> the staging area where you unpacked the downloaded artifacts as instructed in [Lab: Initialize Environment](?lab=init-start-oas)</if> <if type="desktop"> *`/opt/oracle/stage`*</if>.
 
     ![](./images/hr2_14.png " ")
 
@@ -336,4 +334,4 @@ Binary classification is a technique of classifying elements of a given dataset 
 ## Acknowledgements
 * **Authors** - Diane Grace, Manager, Analytics Platform Specialist Team, NA Technology
 * **Contributors** - Linda Dest, Jyotsana Rawat, Rene Fontcha
-* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, May 2021
+* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, September 2021

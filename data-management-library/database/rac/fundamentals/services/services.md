@@ -231,7 +231,7 @@ user/password@**//hostname:port/servicename**  EZConnect does not support all se
     SQL> /
     INST_ID     SERVICE_NAME         COUNT(*)
     ---------- -------------------- ----------
-       1         svctest                1
+       2         svctest                1
     ````
     It has not changed.
     The relocate service command will not disconnect active sessions unless a force option (**-force**) is specified. A stop service command will allow a drain timeout to be specified to allow applications to complete their work during the drain interval.

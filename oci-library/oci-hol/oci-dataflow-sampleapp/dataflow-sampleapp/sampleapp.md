@@ -11,7 +11,7 @@ In Spark, your first step is usually to clean the data. Data Cleaning means the 
 
 The data is provided in CSV format and your objective is to convert this data to Parquet and store it in object store for downstream processing.Once the application is done, your next objective is to create a Data Flow Application which runs this Spark app, and execute it with the correct parameters. This lab guides you step by step, and provides the parameters you need. The python application is uploaded to the object store [here] (https://objectstorage.us-ashburn-1.oraclecloud.com/n/bigdatadatasciencelarge/b/dataflow-code/o/data-cleansing%2Fdatacleaning.py)
 
-  ![](../images/ETL.png " ")
+![ETL](../images/ETL.png " ")
 
 ### Prerequisites
 
@@ -19,7 +19,7 @@ The data is provided in CSV format and your objective is to convert this data to
 
 * An Oracle Cloud log in with the API Key capability enabled. Load your user under Identity/Users, and confirm you can create API Keys.
 
-![](../images/api-keys-yes.png " ")
+![API-Key](../images/api-keys-yes.png " ")
 
 * An API key registered and deployed to your local environment. See [Register an API Key](https://docs.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm) for more information
 
