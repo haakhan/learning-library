@@ -27,13 +27,13 @@ The core algorithm of our Anomaly Detection service is a multivariate anomaly de
 * The training data should be anomaly-free (without outliers), containing observations that have normal conditions ONLY.
 * The training data should cover all the normal scenarios which contain the full value ranges on all attributes.
 
-Additionally, the algorithm also has some requirements on data type, minimum number of  attributes and observations on the training data as follows:
+Additionally, the algorithm also has some requirements on data type, minimum number of attributes and observations on the training data as follows:
 
 * The data should have a 2-D matrix shape for CSV format, which have:
     - columns containing one timestamp, and other numeric attributes/signals/sensors
     - rows representing observations of those attributes/signals/sensors at the given timestamps in the first column.
     - rows that are strictly ordered by timestamp, without duplicated timestamps.
-* The training data should have at least 3 highly correlated attributes.
+* The training data can have 1 or more attributes, up to 300 attributes in the current release as of Jan 2022.
 * At least one attribute does not have a missing value.
 * The number of observations/timestamps in training data should be at least eight times of attributes or 40, whichever is greater.
 
@@ -137,4 +137,4 @@ Congratulations on completing this lab!
     * Jason Ding - Principal Data Scientist - Oracle AI Services
     * Haad Khan - Senior Data Scientist - Oracle AI Services
 * **Last Updated By/Date**
-    * Jason Ding - Principal Data Scientist, July 2021
+    * Jason Ding - Principal Data Scientist, Jan 2022

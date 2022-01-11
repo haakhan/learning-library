@@ -52,6 +52,61 @@ At a high level, here are the process of completing a full cycle of using anomal
 
 Note that one project can have multiple data assets and multiple models.
 
+## Anomaly Detection Kernels
+
+Anomaly Detection uses two types of machine learning (ML) kernels to learn the patterns and detect anomalies from your multivariate dataset. One type for multivariate correlated signals and one for univariate independent signals.
+
+The ML engine embedded in the service automatically chooses the appropriate kernel and optimize the parameters to produce the best model and result.
+
+### Multivariate Kernel
+The Anomaly Detection service uses MSET2 as the main kernel to detect multivariate time-series anomalies from datasets. MSET2 stand for three techniques:
+
+* Multivariate State Estimation Technique (MSET)
+* Sequential Probability Ratio Test (SPRT)
+* Intelligent Data Processing (IDP)
+
+All of these techniques were invented by Oracle Labs. The MSET2 algorithm is successfully used in several industries for prognosis analysis.
+
+#### Capability
+It works well to detect pointy, contextual, and collective anomalies in multivariate datasets with highly correlated numerical signals. It can handle dataset with a moderate level of missing values, and provides estimated values.
+
+#### Requirements
+- The training and inferencing dataset can contain numerical values only. Categorical or nominal values aren't supported.
+The correlations between signals are relatively high.
+    - For example, the average pair-wise Pearson correlation between one signal to the rest of signals is no less than 0.1. The kernel excludes signals with lower correlations and treats them with univariate modeling.
+
+- The training dataset must be anomaly free. For example, the dataset contains normal business scenarios and data values without rare anomaly events.
+- All of the different normal business scenarios are included in the training dataset. For example, at least one business cycle in the training portion. Missing some normal business patterns may lead to false positives during inferencing.
+
+#### Use Cases
+Typical MSET2 use cases are in the manufacturing, IoT, transportation, oil and as, energy industries because the data is from a signal system or asset with well correlated signals.
+
+#### Restrictions
+Use cases with datasets that are not numerical, highly correlated, or non-time series based shouldn't use MSET2 to detect anomalies.
+
+### Univariate Kernel
+The univariate kernel builds one model per signal, and is one of the best classic ML algorithms. Signals considered as low correlations by MSET2 are automatically treated as univariate using this kernel.
+
+The univariate kernel is not standalone and uses the existing multivariate-based API with the same data input format. The univariate model for each univariate signal is built, optimized, and saved independently. The models are used for inferencing separately as well.
+
+#### Capability
+It detects anomalies in a signal by considering its time-series patterns, and works well on pointy or contextual anomalies.
+
+#### Requirements
+- The training and inferencing dataset containing numerical values only. Categorical or nominal values are not supported.
+- It uses a window-based feature engineering approach so it requires an extra one window size of data before the actual training or detecting data to learn the patterns or inference anomalies.
+    - By default, the window size is 20 timestamps. The minimum total number of timestamps is 80.
+
+- The training dataset must be anomaly free.
+- All of the different normal business scenarios are included in the training dataset. For example, at least one business cycle in the training portion.
+
+#### Use Cases
+Typical use cases of univariate kernel come from different industries where the data is numerical with signals that are more independent without any correlations among them, or suggested being monitored independently based on business domain knowledge.
+
+#### Restrictions
+- The kernel only treats one signal at a time so collective anomalies among multiple signals aren't addressed.
+- The kernel is not standalone and is automatically invoked by the existing multivariate Anomaly Detection service.
+
 ## Task 1: Set Up Policy
 
 In order for users to create and manage the resource used in Anomaly Detection service, the administrators of the tenancy need to add proper policy to grant permissions to users.
@@ -97,4 +152,4 @@ For example, in this lab session, we will use Oracle object storage as data sour
     * Haad Khan - Senior Data Scientist - Oracle AI Services
     * Marianne Liu - Senior Data Scientist - Oracle AI Services
 * **Last Updated By/Date**
-    * Jason Ding - Principal Data Scientist, August 2021
+    * Jason Ding - Principal Data Scientist, Jan 2022

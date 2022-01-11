@@ -213,4 +213,4 @@ Congratulations on completing this lab session!
     * Jason Ding - Principal Data Scientist - Oracle AI Services
     * Haad Khan - Senior Data Scientist - Oracle AI Services
 * **Last Updated By/Date**
-    * Jason Ding - Principal Data Scientist, August 2021
+    * Jason Ding - Principal Data Scientist, Nov 2021

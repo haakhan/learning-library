@@ -271,11 +271,11 @@ while get_model.data.lifecycle_state == Model.LIFECYCLE_STATE_CREATING:
 ### 5. Detection with the Model
 ```Python
 print("-*-*-*-DETECT-*-*-*-")
-## Method 1: Load the data from a csv file with first column as timestamp
+# ## Method 1: Load the data from a csv file with first column as timestamp
 # df = pd.read_csv(filename)
 # signalNames = [e for e in df.columns if e != 'timestamp']
 
-## Method 2: create a random dataframe with the appropriate header
+# ## Method 2: create a random dataframe with the appropriate header
 num_rows = 200
 signalNames = ["temperature_1", "temperature_2", "temperature_3", "temperature_4", "temperature_5", "pressure_1", "pressure_2", "pressure_3", "pressure_4", "pressure_5"]
 df = pd.DataFrame(np.random.rand(num_rows, len(signalNames)), columns=signalNames)
@@ -305,4 +305,4 @@ Congratulations on completing this lab!
     * Jason Ding - Principal Data Scientist - Oracle AI Services
     * Haad Khan - Senior Data Scientist - Oracle AI Services
 * **Last Updated By/Date**
-    * Jason Ding - Principal Data Scientist, August 2021
+    * Jason Ding - Principal Data Scientist, Jan 2022
